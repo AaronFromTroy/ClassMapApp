@@ -21,6 +21,10 @@ public class ClassMapApp {
 
         dictionary.searchForWord("acute");
 
+        System.out.println(dictionary.getCount());
+
+        System.out.println(dictionary.getIndex(0) + "\n");
+
         dictionary.printResults();
     }
     

@@ -16,7 +16,8 @@ import org.json.simple.parser.ParseException;
  */
 public class DictParser {
 
-    List list = Collections.synchronizedList(new ArrayList());
+    private int count;
+    private List list = Collections.synchronizedList(new ArrayList());
 
     public void searchForWord(String word)
     {
@@ -29,6 +30,7 @@ public class DictParser {
         }
 
         long amount = (long) pearsonObject.get("count");
+        count = (int) amount;
 
 
         JSONArray resultArray = (JSONArray) pearsonObject.get("results");
@@ -73,6 +75,11 @@ public class DictParser {
             return "Index out of range";
         }
         return (String) list.get(index);
+    }
+
+    public int getCount()
+    {
+        return count;
     }
 
     public void printResults()
