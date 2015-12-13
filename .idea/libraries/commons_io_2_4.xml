@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="commons-io-2.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Dropbox/PearsonProject/commons-io-2.4.jar!/" />
+      <root url="jar://$USER_HOME$/Dropbox/PearsonProject/json-simple-1.1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
