@@ -24,7 +24,7 @@ public class ClassMapApp {
 
         DictParser dictionary = new DictParser();
 
-        dictionary.searchForWord("woman");
+        dictionary.searchForWord("acute");
 
         dictionary.printResults();
     }
