@@ -24,7 +24,7 @@ public class ClassMapApp {
 
         DictParser dictionary = new DictParser();
 
-        dictionary.searchForWord("acute");
+        dictionary.searchForWord("porch");
 
         dictionary.printResults();
     }
