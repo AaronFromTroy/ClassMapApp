@@ -16,6 +16,14 @@ public class ClassMapApp {
     public static void main(String[] args) {
         System.out.println("ClassMap App Starts Here!");
         System.out.println("Hello, WOrld!");
+        DictParser dictionary = new DictParser();
+        dictionary.findWord("obtuse");
+
+        dictionary.printResults();
+
+        System.out.println(dictionary.getEnrty(1));
+        System.out.println(dictionary.getEnrty(2));
+
     }
     
 }
