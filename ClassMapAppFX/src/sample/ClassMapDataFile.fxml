@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+
+<GridPane fx:id="root" alignment="CENTER" hgap="10.0" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+  <children>
+    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="452.0" prefWidth="744.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <children>
+        <ToolBar layoutY="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="517.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+          <items>
+            <MenuButton mnemonicParsing="false" text="Create Node">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#createTextNode" text="Create Text Node" />
+                <MenuItem mnemonicParsing="false" text="Create Image Node" />
+              </items>
+            </MenuButton>
+            <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="false" disable="false" mnemonicParsing="false" text="Public" textAlignment="LEFT" />
+            <Button mnemonicParsing="false" text="Home" />
+            <Button mnemonicParsing="false" text="What's New" />
+          </items>
+        </ToolBar>
+        <Slider fx:id="zoomSlider" layoutX="723.0" layoutY="35.0" orientation="VERTICAL" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="35.0" />
+            <Pane fx:id="nodeStage" layoutY="35.0" prefHeight="417.0" prefWidth="722.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="35.0" />
+      </children>
+    </AnchorPane>
+  </children>
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+</GridPane>
