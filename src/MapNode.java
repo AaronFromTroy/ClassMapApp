@@ -2,7 +2,8 @@
  * MapNode Class.
  * Stores all information for each node in the database.
  */
-package javaapplication4;
+
+import javax.swing.*;
 import java.util.*;
 import java.sql.*;
 
@@ -11,7 +12,13 @@ import java.sql.*;
  * @author acous
  */
 public class MapNode {
-    
+
+
+
+    private JButton upVoteButton;
+    private JFormattedTextField formattedTextField1;
+    private JTextArea textArea1;
+
     public enum classification {
         Image, Link, String
     }
