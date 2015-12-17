@@ -64,12 +64,24 @@ public class Controller {
             }
         });
 
+        Tooltip tooltip;
+
+        DictParser dict = new DictParser();
+        dict.searchForWord(text.getText());
+        if(dict.getCount() > 0)
+        {
+            tooltip = new Tooltip(dict.getExactDefinition());
+        }
+        else
+        {
+            tooltip = new Tooltip("Not a definable word");
+        }
+
+        Tooltip.install(nodePane,tooltip);
+
         nodeStage.getChildren().add(nodePane);
 
     }
 
-    public void dragNode(ActionEvent actionEvent)
-    {
 
-    }
 }

@@ -10,7 +10,7 @@
 
 <GridPane fx:id="root" alignment="CENTER" hgap="10.0" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
   <children>
-    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="452.0" prefWidth="744.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="537.0" prefWidth="821.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <children>
         <ToolBar layoutY="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="517.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
           <items>
@@ -26,7 +26,7 @@
           </items>
         </ToolBar>
         <Slider fx:id="zoomSlider" layoutX="723.0" layoutY="35.0" orientation="VERTICAL" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="35.0" />
-            <Pane fx:id="nodeStage" layoutY="35.0" prefHeight="417.0" prefWidth="722.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="35.0" />
+            <Pane fx:id="nodeStage" layoutY="35.0" prefHeight="417.0" prefWidth="799.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="35.0" />
       </children>
     </AnchorPane>
   </children>
