@@ -19,6 +19,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class Controller {
@@ -27,6 +28,7 @@ public class Controller {
     public TitledPane mainStage;
     public GridPane root;
     public Pane nodeStage;
+    public ArrayList<MapNode> masterNodeList = new ArrayList<MapNode>();
 
     public void createTextNode(ActionEvent actionEvent) {
         TextInputDialog dialog = new TextInputDialog("Enter the text for the node");
@@ -34,53 +36,27 @@ public class Controller {
         dialog.setHeaderText("Enter the text below.");
         dialog.setContentText("Text: ");
         Optional<String> result = dialog.showAndWait();
-        Text text = new Text(result.get());
-        text.setBoundsType(TextBoundsType.VISUAL);
-        text.setWrappingWidth(150.0f);
-        double height = (text.getLayoutBounds().getHeight())*2/3;
-        double width = (text.getLayoutBounds().getWidth())*2/3;
-        double minHeight = 60.0f;
-        double minWidth = 60.0f;
 
-        if(width < minHeight)
+        TextNode newNode = new TextNode(result.get());
+
+        newNode.setTime();
+
+        masterNodeList.add(newNode);
+
+        nodeStage.getChildren().add(newNode.getNodePane());
+
+        printMasterList();
+
+    }
+
+    public void printMasterList()
+    {
+        int size = masterNodeList.size();
+
+        for(int x = 0; x < size; x++)
         {
-            width = minHeight;
+            System.out.println(masterNodeList.get(x).getSeconds());
         }
-        if(height < minWidth)
-        {
-            height = minWidth;
-        }
-
-        Ellipse newNode = new Ellipse(0.0f, 0.0f, width, height);
-        newNode.setFill(Paint.valueOf("white"));
-        newNode.setStroke(Paint.valueOf("black"));
-        StackPane nodePane = new StackPane();
-        nodePane.getChildren().addAll(newNode, text);
-        nodePane.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                nodePane.setTranslateX(event.getSceneX() - nodePane.getHeight()/2);
-                nodePane.setTranslateY(event.getSceneY() - nodePane.getWidth()/2);
-            }
-        });
-
-        Tooltip tooltip;
-
-        DictParser dict = new DictParser();
-        dict.searchForWord(text.getText());
-        if(dict.getCount() > 0)
-        {
-            tooltip = new Tooltip(dict.getExactDefinition());
-        }
-        else
-        {
-            tooltip = new Tooltip("Not a definable word");
-        }
-
-        Tooltip.install(nodePane,tooltip);
-
-        nodeStage.getChildren().add(nodePane);
-
     }
 
 

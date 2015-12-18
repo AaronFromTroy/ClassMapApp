@@ -3,9 +3,13 @@ package sample;/*
  * Stores all information for each node in the database.
  */
 
+import javafx.scene.Node;
+
 import javax.swing.*;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.sql.*;
+import java.util.Date;
 
 /**
  *
@@ -21,36 +25,42 @@ public class MapNode {
     private boolean userVote;
     public ArrayList<MapNode> children = new ArrayList<MapNode>();
     String data;
-    public int uniqueId;
+    //public int uniqueId; The date created and the user should be specific enough
     public int parent;
     boolean sinceLastLog;
-    public classification type; 
-    
-    public MapNode() {
-        
-    }
-    
-    public MapNode(String in, int id, int pid) {
-        
-        uniqueId = id;
-        parent = pid;
-        data = in;
-        if (in.contains("http://")) {
-            this.type = classification.Link;
-        }
-        else {
-            this.type = classification.String;
-        }
-     
-    }
+    public classification type;
+    public Date timeCreated;
+
     public int getVotes()
     {
         return this.votes;
     }
 
-    public int getUniqueId()
+//    public int getUniqueId()
+//    {
+//        return this.uniqueId;
+//    }
+
+    public int getParent()
     {
-        return this.uniqueId;
+        return this.parent;
     }
-    
+
+    public void AddNode(MapNode addition)
+    {
+        this.children.add(addition);
+    }
+
+    public void setTime()
+    {
+        timeCreated = new Date();
+    }
+
+    public long getSeconds()
+    {
+        return this.timeCreated.getTime();
+    }
+
+
 }
+
