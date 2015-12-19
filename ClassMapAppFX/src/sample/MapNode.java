@@ -20,16 +20,16 @@ public class MapNode {
     public enum classification {
         Image, Link, String
     }
-    
+
+    public int uniqueId;
     public int votes;
     private boolean userVote;
     public ArrayList<MapNode> children = new ArrayList<MapNode>();
-    String data;
     //public int uniqueId; The date created and the user should be specific enough
     public int parent;
     boolean sinceLastLog;
     public classification type;
-    public Date timeCreated;
+    public Timestamp timeCreated;
 
     public int getVotes()
     {
@@ -51,10 +51,10 @@ public class MapNode {
         this.children.add(addition);
     }
 
-    public void setTime()
-    {
-        timeCreated = new Date();
-    }
+//    //public void setTime()
+//    {
+//        timeCreated = new Timestamp();
+//    }
 
     public long getSeconds()
     {

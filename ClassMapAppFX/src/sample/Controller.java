@@ -39,9 +39,7 @@ public class Controller {
 
         TextNode newNode = new TextNode(result.get());
 
-        newNode.setTime();
-
-        masterNodeList.add(newNode);
+        //masterNodeList.add(newNode);
 
         nodeStage.getChildren().add(newNode.getNodePane());
 
