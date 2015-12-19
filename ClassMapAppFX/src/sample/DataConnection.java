@@ -61,7 +61,7 @@ public class DataConnection {
             while (rs.next()) {
                 if (rs.getString("type") == "string") {
                     collection.add(new TextNode(rs.getInt("id"), rs.getInt("parent_id"),
-                        rs.getString("string_date"), rs.getTimestamp("time_created")));
+                            rs.getString("string_date"), rs.getTimestamp("time_created")));
                 }
 //                else if (rs.getString("type") == "image") {
 //                    collection.add(new ImageNode(rs.getInt("id"), rs.getInt("parent_id"),
@@ -98,8 +98,24 @@ public class DataConnection {
 
     }
 
-    public void addMember(String email, String username, String password, String first_name,
-            String last_name) {
+    public static void addTextNode(TextNode node) {
+        Connection conn = dbConnector();
+        String query = "insert into nodes (parent_id, string_data, type) " + " values(?,?,?) ";
+        try
+        {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, node.parent);
+            ps.setString(2, node.getContents());
+            ps.setString(3, "string");
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+
+    public static void addMember(String email, String username, String password, String first_name,
+                                 String last_name) {
         Connection conn = dbConnector();
         try {
             String query = "insert into members (email, username, password, first_name, last_name) " + " values(?,?,?,?,?) ";
@@ -117,7 +133,7 @@ public class DataConnection {
         }
     }
 
-    public void deleteMember(String username) {
+    public static void deleteMember(String username) {
         Connection conn = dbConnector();
         String query = "delete from members where username=?"; //put in number for ? and take out ps.setInt(); to make it work also
         try {
@@ -131,7 +147,7 @@ public class DataConnection {
         }
     }
 
-    public void saveImage(String file) {
+    public static void saveImage(String file) {
         Connection conn = dbConnector();
         PreparedStatement ps;
         FileInputStream fis;
@@ -140,7 +156,7 @@ public class DataConnection {
             // create a file object for image by specifying full path of image as parameter.
             File image = new File(file);
 
-            /* prepareStatement() is used for create statement object that is 
+            /* prepareStatement() is used for create statement object that is
             used for sending sql statements to the specified database. */
             ps = conn.prepareStatement("insert into images (id, stored_image) " + " values(?,?) ");
 
@@ -149,7 +165,7 @@ public class DataConnection {
             fis = new FileInputStream(image);
             ps.setBinaryStream(2, (InputStream) fis, (int) (image.length()));
 
-            /* executeUpdate() method execute specified sql query. Here this query 
+            /* executeUpdate() method execute specified sql query. Here this query
             insert data and image from specified address.*/
             int s = ps.executeUpdate();
 
@@ -211,7 +227,7 @@ public class DataConnection {
 //        thread.start();
 //
 //    }
-    
+
 //    private static String parseFile() {
 //
 //    }

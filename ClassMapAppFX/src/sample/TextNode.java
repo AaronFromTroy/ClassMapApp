@@ -126,4 +126,8 @@ public class TextNode extends MapNode{
     {
         return nodePane;
     }
+
+    public String getContents() {
+        return this.contents;
+    }
 }

@@ -40,6 +40,7 @@ public class Controller {
         dialog.setContentText("Text: ");
         Optional<String> result = dialog.showAndWait();
 
+        DataConnection.addTextNode(new TextNode("Helloguy"));
         TextNode newNode = new TextNode(result.get());
 
         newNode.setTypeToText();
