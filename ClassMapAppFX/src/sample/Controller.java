@@ -6,6 +6,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventTarget;
 import javafx.scene.control.*;
+import javafx.scene.control.Dialog;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
@@ -17,8 +18,10 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
+import javafx.stage.FileChooser;
 
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -39,11 +42,11 @@ public class Controller {
 
         TextNode newNode = new TextNode(result.get());
 
-        //masterNodeList.add(newNode);
+        newNode.setTypeToText();
+
+        //masterNodeList.add(newNode); I think this is still necessary but not for the database
 
         nodeStage.getChildren().add(newNode.getNodePane());
-
-        printMasterList();
 
     }
 
@@ -58,4 +61,34 @@ public class Controller {
     }
 
 
+    public void createImageNodeURL(ActionEvent actionEvent) {
+        TextInputDialog dialog = new TextInputDialog("http://");
+        dialog.setTitle("Create Image Node from URL");
+        dialog.setHeaderText("Enter the URL below.");
+        dialog.setContentText("URL: ");
+        Optional<String> result = dialog.showAndWait();
+
+        ImageNode newNode = new ImageNode(result.get());
+
+        newNode.setTypeToImage();
+
+        //masterNodeList.add(image); I think this is still necessary but not for the database
+
+        nodeStage.getChildren().add(newNode.getNodePane());
+    }
+
+    public void createImageNodeFile(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open an image file");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg","*.gif","*.bmp"));
+        File openedFile = fileChooser.showOpenDialog(null);
+
+        ImageNode newNode = new ImageNode(openedFile);
+
+        newNode.setTypeToImage();
+
+        //masterNodeList.add(newNode);
+
+       nodeStage.getChildren().add(newNode.getNodePane());
+    }
 }

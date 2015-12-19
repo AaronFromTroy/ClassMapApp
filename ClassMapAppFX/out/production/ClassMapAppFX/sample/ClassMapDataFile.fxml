@@ -17,7 +17,8 @@
             <MenuButton mnemonicParsing="false" text="Create Node">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#createTextNode" text="Create Text Node" />
-                <MenuItem mnemonicParsing="false" text="Create Image Node" />
+                <MenuItem mnemonicParsing="false" onAction="#createImageNodeURL" text="Create Image Node from URL" />
+                        <MenuItem mnemonicParsing="false" onAction="#createImageNodeFile" text="Create Image Node from File" />
               </items>
             </MenuButton>
             <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="false" disable="false" mnemonicParsing="false" text="Public" textAlignment="LEFT" />

@@ -117,6 +117,11 @@ public class TextNode extends MapNode{
         Tooltip.install(nodePane,tooltip);
     }
 
+    public void setTypeToText()
+    {
+        this.type = classification.String;
+    }
+
     public StackPane getNodePane()
     {
         return nodePane;
