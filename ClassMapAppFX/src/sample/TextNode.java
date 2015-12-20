@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
 
 import java.sql.Timestamp;
+import java.util.Optional;
 
 public class TextNode extends MapNode{
 
@@ -19,6 +20,9 @@ public class TextNode extends MapNode{
 
     TextNode(String in)
     {
+        contents = in;
+        this.type = type.String;
+
         Text text = new Text(in);
         text.setBoundsType(TextBoundsType.VISUAL);
         text.setWrappingWidth(150.0f);

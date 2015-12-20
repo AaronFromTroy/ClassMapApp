@@ -17,14 +17,19 @@ public class DataConnection {
     static ArrayList<MapNode> collection = new ArrayList<>();
 
     private static Connection dbConnector() {
+        Connection conn = null;
         try {
             final String url = "jdbc:mysql://107.180.20.80/ClassMapApp";
-            Connection conn = DriverManager.getConnection(url, "ClassMapMaster", "PearsonComp1");
-            JOptionPane.showMessageDialog(null, "Connection Successful");
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection(url, "amartin125971", "kjedi285");
+            //JOptionPane.showMessageDialog(null, "Connection Successful");
             return conn;
 
         } catch (SQLException | HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Failed to Establish Connection!");
+            return null;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -33,14 +38,28 @@ public class DataConnection {
     login function should be handled like so
     while false, repeat login
      */
-    public static boolean login(String username, String password) {
+    public static boolean login(String user, String pass) {
         Connection conn = dbConnector();
-        try {
-            String query = "Select * from members where username=? and password=? ";
+        String query = "select * from members where username=? and password=? " ;
+        try
+        {
             PreparedStatement pst = conn.prepareStatement(query);
-            pst.setString(1, username);
-            pst.setString(2, password);
-            return true;
+            pst.setString(1, user);
+            pst.setString(2, pass);
+
+            ResultSet rst = pst.executeQuery();
+            int count = 0;
+            while(rst.next()) {
+                count++;
+            }
+            if(count == 1) {
+                JOptionPane.showMessageDialog(null, "Found User!");
+                return true;
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "More Than One User By That Username.");
+                return false;
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Incorrect Login. Try again.");
             return false;
@@ -100,13 +119,17 @@ public class DataConnection {
 
     public static void addTextNode(TextNode node) {
         Connection conn = dbConnector();
+        if(conn != null) {
+            System.out.println("Connection Good");
+        }
         String query = "insert into nodes (parent_id, string_data, type) " + " values(?,?,?) ";
         try
         {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, node.parent);
             ps.setString(2, node.getContents());
-            ps.setString(3, "string");
+            ps.setString(3, "String");
+            ps.executeUpdate();
         }
         catch(Exception e)
         {
@@ -146,6 +169,34 @@ public class DataConnection {
             JOptionPane.showMessageDialog(null, "User could not be deleted.");
         }
     }
+
+    public static void deleteNode(MapNode node) {
+        Connection conn = dbConnector();
+        String query = "delete from nodes where id=?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, node.uniqueId);
+            ps.executeUpdate();
+            ps.close();
+            if (node.getType() == "Image") {
+                String query2 = "delete from images where id=?";
+                try {
+                    PreparedStatement pst = conn.prepareStatement(query2);
+                    pst.setInt(1, node.uniqueId);
+                    pst.executeUpdate();
+                    pst.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     public static void saveImage(String file) {
         Connection conn = dbConnector();

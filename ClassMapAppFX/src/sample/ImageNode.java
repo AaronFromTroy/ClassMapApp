@@ -24,7 +24,7 @@ public class ImageNode extends MapNode {
     public ImageNode(String in)
     {
         Image image = new Image(in);
-
+        this.type = type.Image;
         ImageView viewer = new ImageView(image);
         viewer.setPreserveRatio(Boolean.TRUE);
         viewer.setFitHeight(80.0f);
@@ -75,7 +75,38 @@ public class ImageNode extends MapNode {
 
 
 
+
+
     }
+
+//    public ImageNode(byte[] img)
+//    {
+//        byte[] images = img;
+//        Image image = new Image(images);
+//        this.type = type.Image;
+//        ImageView viewer = new ImageView(image);
+//        viewer.setPreserveRatio(Boolean.TRUE);
+//        viewer.setFitHeight(80.0f);
+//        double height = viewer.getBoundsInParent().getHeight();
+//        double width = viewer.getBoundsInParent().getWidth() * 2/3;
+//
+//        Ellipse newNode = new Ellipse(0.0f, 0.0f, width, height);
+//        newNode.setFill(Paint.valueOf("white"));
+//        newNode.setStroke(Paint.valueOf("black"));
+//        nodePane = new StackPane();
+//        nodePane.getChildren().addAll(newNode, viewer);
+//
+//        nodePane.setOnMouseDragged(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                nodePane.setTranslateX(event.getSceneX() - nodePane.getHeight()/2);
+//                nodePane.setTranslateY(event.getSceneY() - nodePane.getWidth()/2);
+//            }
+//        });
+//
+//
+//
+//    }
 
     public void setTypeToImage()
     {

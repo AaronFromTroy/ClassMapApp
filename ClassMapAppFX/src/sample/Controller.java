@@ -22,6 +22,7 @@ import javafx.stage.FileChooser;
 
 import java.awt.*;
 import java.io.File;
+import java.security.Timestamp;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -40,8 +41,8 @@ public class Controller {
         dialog.setContentText("Text: ");
         Optional<String> result = dialog.showAndWait();
 
-        DataConnection.addTextNode(new TextNode("Helloguy"));
         TextNode newNode = new TextNode(result.get());
+        DataConnection.addTextNode(newNode);
 
         newNode.setTypeToText();
 
@@ -70,6 +71,7 @@ public class Controller {
         Optional<String> result = dialog.showAndWait();
 
         ImageNode newNode = new ImageNode(result.get());
+
 
         newNode.setTypeToImage();
 

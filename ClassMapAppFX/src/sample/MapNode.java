@@ -61,6 +61,8 @@ public class MapNode {
         return this.timeCreated.getTime();
     }
 
+    public String getType() { return this.type.toString(); }
+
 
 }
 
