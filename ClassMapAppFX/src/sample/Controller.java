@@ -21,10 +21,32 @@ import javafx.scene.text.TextBoundsType;
 import javafx.stage.FileChooser;
 
 import java.awt.*;
-import java.io.File;
+import java.io.*;
 import java.security.Timestamp;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReadParam;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+
+
+
 
 public class Controller {
 
@@ -71,7 +93,7 @@ public class Controller {
         Optional<String> result = dialog.showAndWait();
 
         ImageNode newNode = new ImageNode(result.get());
-
+        DataConnection.addImageNode(newNode);
 
         newNode.setTypeToImage();
 
@@ -80,13 +102,14 @@ public class Controller {
         nodeStage.getChildren().add(newNode.getNodePane());
     }
 
-    public void createImageNodeFile(ActionEvent actionEvent) {
+    public void createImageNodeFile(ActionEvent actionEvent) throws FileNotFoundException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open an image file");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg","*.gif","*.bmp"));
         File openedFile = fileChooser.showOpenDialog(null);
 
         ImageNode newNode = new ImageNode(openedFile);
+        DataConnection.addImageNode(newNode);
 
         newNode.setTypeToImage();
 

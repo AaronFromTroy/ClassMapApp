@@ -34,8 +34,6 @@ public class ClassMap extends Application {
 
 
     public static void main(String[] args) {
-        DataConnection.login("Travis", "Clinkscales");
-
         launch(args);
     }
 }

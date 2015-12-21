@@ -1,5 +1,6 @@
 package sample;
 
+//import java.awt.*;
 import java.awt.HeadlessException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,6 +10,7 @@ import java.sql.*;
 import javax.swing.*;
 import java.util.concurrent.Semaphore;
 import java.util.*;
+import javafx.scene.image.Image;
 
 public class DataConnection {
 
@@ -83,8 +85,7 @@ public class DataConnection {
                             rs.getString("string_date"), rs.getTimestamp("time_created")));
                 }
 //                else if (rs.getString("type") == "image") {
-//                    collection.add(new ImageNode(rs.getInt("id"), rs.getInt("parent_id"),
-//                        rs.getString("string_date"), rs.getBoolean("img_data"), rs.getTimestamp("time_created")));
+//                    collection.add(new ImageNode(rs.getInt("id"), rs.getInt("parent_id"), rs.getTimestamp("time_created")));
 //                    counting.acquire();
 //                    loadImg(collection.size() - 1);
 //                }
@@ -98,7 +99,7 @@ public class DataConnection {
                 }
             }
 
-            while (collection.size() > 1) {
+            while (counting.availablePermits() < 3) {
 
             }
             for (int i = (collection.size() - 1); i > 0; i--) {
@@ -119,9 +120,6 @@ public class DataConnection {
 
     public static void addTextNode(TextNode node) {
         Connection conn = dbConnector();
-        if(conn != null) {
-            System.out.println("Connection Good");
-        }
         String query = "insert into nodes (parent_id, string_data, type) " + " values(?,?,?) ";
         try
         {
@@ -137,8 +135,42 @@ public class DataConnection {
         }
     }
 
+    public static void addImageNode(ImageNode node) {
+        Connection conn =  dbConnector();
+        String query = "insert into nodes (parent_id, string_data, type)" + "values(?,?,?)";
+        String query2 = "select id from nodes where string_data=? and type='image'";
+        String query3 = "insert into images (id, stored_image)" + "values(?, ?)";
+        int id;
+
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, node.getParent());
+            ps.setString(2, node.getFormattedDate());
+            ps.setString(3, node.getType().toString());
+            ps.executeUpdate();
+            ps.close();
+
+            PreparedStatement pst = conn.prepareStatement(query2);
+            pst.setString(1, node.getFormattedDate());
+            ResultSet rs = pst.executeQuery();
+            rs.next();
+            id = rs.getInt("id");
+            rs.close();
+            pst.close();
+
+            PreparedStatement ps2 = conn.prepareStatement(query3);
+            ps2.setInt(1, id);
+            ps2.setBytes(2, node.imageToByteArray());
+            ps2.executeUpdate();
+            ps2.close();
+            conn.close();
+        } catch (Exception E) {
+            JOptionPane.showMessageDialog(null, "Happened at 1");
+        }
+    }
+
     public static void addMember(String email, String username, String password, String first_name,
-                                 String last_name) {
+                                 String last_name, String accountperms) {
         Connection conn = dbConnector();
         try {
             String query = "insert into members (email, username, password, first_name, last_name) " + " values(?,?,?,?,?) ";
@@ -165,6 +197,7 @@ public class DataConnection {
             ps.executeUpdate();
             System.out.println("Deleted record...");
             ps.close();
+            conn.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "User could not be deleted.");
         }
@@ -196,40 +229,6 @@ public class DataConnection {
         }
     }
 
-
-
-    public static void saveImage(String file) {
-        Connection conn = dbConnector();
-        PreparedStatement ps;
-        FileInputStream fis;
-
-        try {
-            // create a file object for image by specifying full path of image as parameter.
-            File image = new File(file);
-
-            /* prepareStatement() is used for create statement object that is
-            used for sending sql statements to the specified database. */
-            ps = conn.prepareStatement("insert into images (id, stored_image) " + " values(?,?) ");
-
-            ps.setInt(1, 3);
-
-            fis = new FileInputStream(image);
-            ps.setBinaryStream(2, (InputStream) fis, (int) (image.length()));
-
-            /* executeUpdate() method execute specified sql query. Here this query
-            insert data and image from specified address.*/
-            int s = ps.executeUpdate();
-
-            if (s > 0) {
-                System.out.println("Uploaded successfully!");
-            } else {
-                System.out.println("Failed to upload image.");
-            }
-        } catch (SQLException | FileNotFoundException ex) {
-            System.out.println("Found some error : " + ex);
-        }
-    }
-
     /*
     Used with populate to grab images from the database.
      */
@@ -255,7 +254,13 @@ public class DataConnection {
 //                        count++;
 //                    }
 //                    if (count == 1) {
-//                        collection.get(minionId).image = rs.getBytes("stored_image");
+//                        byte[] img = rs.getBytes("stored_image");
+//
+//                        ImageIcon image = new ImageIcon(img);
+//                        Image im = image.getImage();
+//                        //ADD THE CODE TO ADD PICTURE TO CURRENT NODE IN COLLECTION
+//                        ((ImageNode)(collection.get(id))).setImage(im);
+//
 //                    } else if (count > 1) {
 //                        JOptionPane.showMessageDialog(null, "Multiple rows by ID. Error Occured.");
 //                    } else {
@@ -276,10 +281,6 @@ public class DataConnection {
 //
 //        Minion thread = new Minion(id);
 //        thread.start();
-//
-//    }
-
-//    private static String parseFile() {
 //
 //    }
 

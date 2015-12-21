@@ -4,6 +4,8 @@ package sample;/*
  */
 
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import java.awt.Image.*;
 
 import javax.swing.*;
 import java.time.LocalDateTime;
@@ -25,11 +27,11 @@ public class MapNode {
     public int votes;
     private boolean userVote;
     public ArrayList<MapNode> children = new ArrayList<MapNode>();
-    //public int uniqueId; The date created and the user should be specific enough
     public int parent;
     boolean sinceLastLog;
     public classification type;
     public Timestamp timeCreated;
+
 
     public int getVotes()
     {
@@ -62,7 +64,6 @@ public class MapNode {
     }
 
     public String getType() { return this.type.toString(); }
-
 
 }
 
