@@ -26,7 +26,7 @@ public class TextNode extends MapNode{
     TextNode(String in)
     {
         contents = in;
-        this.type = type.String;
+        this.type = type.string;
 
         Text text = new Text(in);
         text.setBoundsType(TextBoundsType.VISUAL);
@@ -108,6 +108,7 @@ public class TextNode extends MapNode{
         parent = pid;
         contents = in;
         timeCreated = date_created;
+        this.type = type.string;
         Text text = new Text(in);
         text.setBoundsType(TextBoundsType.VISUAL);
         text.setWrappingWidth(150.0f);
@@ -136,13 +137,13 @@ public class TextNode extends MapNode{
         ImageView arrowView;
         if(this.getUserVote() == Boolean.TRUE)
         {
-            File path = new File("C:\\Users\\crims_000\\Documents\\GitHub\\ClassMapApp\\ClassMapAppFX\\Images\\Voted.png");
+            File path = new File("C:\\Users\\acous\\Documents\\GitHub\\ClassMapApp\\ClassMapAppFX\\Images\\Voted.png");
             arrow = new Image(path.toURI().toString());
 
         }
         else
         {
-            File path = new File("C:\\Users\\crims_000\\Documents\\GitHub\\ClassMapApp\\ClassMapAppFX\\Images\\NoVote.png");
+            File path = new File("C:\\Users\\acous\\Documents\\GitHub\\ClassMapApp\\ClassMapAppFX\\Images\\NoVote.png");
             arrow = new Image(path.toURI().toString());
         }
 
@@ -184,7 +185,7 @@ public class TextNode extends MapNode{
 
     public void setTypeToText()
     {
-        this.type = classification.String;
+        this.type = classification.string;
     }
 
     public GridPane getNodePane()

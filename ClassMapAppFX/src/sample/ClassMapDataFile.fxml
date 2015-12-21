@@ -22,7 +22,7 @@
               </items>
             </MenuButton>
             <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="false" disable="false" mnemonicParsing="false" text="Public" textAlignment="LEFT" />
-            <Button mnemonicParsing="false" text="Home" />
+            <Button mnemonicParsing="false" text="Home" onAction="#drawWorld"/>
             <Button mnemonicParsing="false" text="What's New" />
           </items>
         </ToolBar>

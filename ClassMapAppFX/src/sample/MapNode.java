@@ -20,13 +20,13 @@ import java.util.Date;
 public class MapNode {
 
     public enum classification {
-        Image, Link, String
+        image, link, string
     }
 
     public int uniqueId;
     public int votes;
     private boolean userVote;
-    public ArrayList<MapNode> children = new ArrayList<MapNode>();
+    public ArrayList<MapNode> children = new ArrayList<>();
     public int parent;
     boolean sinceLastLog;
     public classification type;

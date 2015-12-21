@@ -1,9 +1,10 @@
 package sample;
 
-import java.awt.HeadlessException;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.sql.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.util.concurrent.Semaphore;
 import java.util.*;
@@ -79,14 +80,15 @@ public class DataConnection {
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
-                if (rs.getString("type") == "string") {
+
+                if (new String(rs.getString("type").toString()).equals("string")) {
                     collection.add(new TextNode(rs.getInt("id"), rs.getInt("parent_id"),
-                            rs.getString("string_date"), rs.getTimestamp("time_created")));
+                            rs.getString("string_data"), rs.getTimestamp("time_created")));
                 }
-                else if (rs.getString("type") == "image") {
+                else if (new String(rs.getString("type").toString()).equals("image")) {
                     collection.add(new ImageNode(rs.getInt("id"), rs.getInt("parent_id"), rs.getTimestamp("time_created")));
                     counting.acquire();
-                    loadImg(collection.size() - 1);
+                    loadImg((collection.size() - 1), rs.getInt("id"));
                 }
             }
 
@@ -245,34 +247,44 @@ public class DataConnection {
     /*
     Used with populate to grab images from the database.
      */
-    private static void loadImg(int id) {
+    private static void loadImg(int id, int unique) {
 
         class Minion extends Thread {
             Connection conn = null;
             int minionId;
+            int uniqueid;
 
             public Minion(int id) {
                 minionId = id;
+                uniqueid = unique;
                 conn = dbConnector();
             }
 
             @Override
             public void run() {
-                String query = "select * from images where id=" + "'" + minionId + "'";
-                BufferedImage image = null;
-                InputStream fis = null;
+                String query = "select * from images where id=?";
+                //BufferedImage image = null;
+                //InputStream fis = null;
                 try {
                     PreparedStatement pst = conn.prepareStatement(query);
+                    pst.setInt(1, uniqueid);
                     ResultSet rs = pst.executeQuery();
-                    fis = rs.getBinaryStream("stored_img");
-                    image = javax.imageio.ImageIO.read(fis);
-                    Image im = SwingFXUtils.toFXImage(image, null);
-                    ((ImageNode)(collection.get(id))).setImage(im);
-                    ((ImageNode)(collection.get(id))).drawNode();
+
+                    while(rs.next()) {
+                        System.out.println("GOOD RIGHT NOW");
+                        Blob blob = rs.getBlob("stored_image");
+                        ByteArrayInputStream in = new ByteArrayInputStream
+                                (blob.getBytes(1, (int) blob.length()));
+                        Image im = new Image(in);
+                        ((ImageNode) (collection.get(id))).setImage(im);
+                        ((ImageNode) (collection.get(id))).drawNode();
+                        System.out.println("GOOD SO FAR!");
+                    }
+
                     pst.close();
                     rs.close();
                     conn.close();
-                } catch (SQLException | HeadlessException | IOException e) {
+                } catch (SQLException | HeadlessException e) {
                     JOptionPane.showMessageDialog(null, "Failed to load img at ID: " + minionId);
                     counting.release();
 

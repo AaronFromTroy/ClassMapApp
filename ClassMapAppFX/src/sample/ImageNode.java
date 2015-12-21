@@ -44,7 +44,7 @@ public class ImageNode extends MapNode {
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a");
         formattedDate = sdf.format(date);
-        this.type = type.Image;
+        this.type = type.image;
 
         image = new Image(in);
 
@@ -59,7 +59,7 @@ public class ImageNode extends MapNode {
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a");
         formattedDate = sdf.format(date);
-        this.type = type.Image;
+        this.type = type.image;
 
 
         this.image = new Image(in.toURI().toString());
@@ -69,7 +69,7 @@ public class ImageNode extends MapNode {
 
     public ImageNode(int id, int pid, Timestamp created)
     {
-        this.type = type.Image;
+        this.type = type.image;
         uniqueId = id;
         parent = pid;
         timeCreated = created;
@@ -105,7 +105,7 @@ public class ImageNode extends MapNode {
         arrowView.setPreserveRatio(Boolean.TRUE);
         arrowView.setFitHeight(20.0f);
         Text numberOfVotes = new Text(" "+votes);
-        numberOfVotes.setStyle("-fx-font: 22 arial; -fx-color: grey");
+        numberOfVotes.setStyle("-fx-font: 22 arial");
         HBox arr = new HBox();
         arr.getChildren().addAll(arrowView,numberOfVotes);
 
@@ -127,7 +127,7 @@ public class ImageNode extends MapNode {
 
     public void setTypeToImage()
     {
-        this.type = classification.Image;
+        this.type = classification.image;
     }
 
     public GridPane getNodePane()

@@ -55,8 +55,12 @@ public class Controller {
     public GridPane root;
     public Pane nodeStage;
     public ArrayList<MapNode> masterNodeList = new ArrayList<MapNode>();
+    public MapNode daroot;
 
-    public void createTextNode(ActionEvent actionEvent) {
+
+    public void createTextNode(ActionEvent actionEvent){
+
+
         TextInputDialog dialog = new TextInputDialog("Enter the text for the node");
         dialog.setTitle("Create Text Node");
         dialog.setHeaderText("Enter the text below.");
@@ -116,5 +120,27 @@ public class Controller {
         //masterNodeList.add(newNode);
 
        nodeStage.getChildren().add(newNode.getNodePane());
+    }
+
+    public void drawWorld(ActionEvent actionEvent) throws InterruptedException {
+        daroot = DataConnection.populate();
+        recursiveDisplay(daroot);
+    }
+
+    private void recursiveDisplay(MapNode rootNode) {
+
+        int children = rootNode.children.size();
+
+        if(rootNode.type.toString().equals("string"))
+            nodeStage.getChildren().add(((TextNode)(rootNode)).getNodePane());
+        System.out.println(rootNode.uniqueId);
+
+        if(rootNode.type.toString().equals("image"))
+            nodeStage.getChildren().add(((ImageNode)(rootNode)).getNodePane());
+
+        for (int i = 0; i < children; i++) {
+            if (!rootNode.children.isEmpty())
+                recursiveDisplay(rootNode.children.get(i));
+        }
     }
 }

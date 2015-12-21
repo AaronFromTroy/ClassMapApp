@@ -14,6 +14,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/ClassMapAppFX$Main.coverage" NAME="Main Coverage Results" MODIFIED="1450685386375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>sample.*</FILTER>
+    </SUITE>
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -114,10 +119,8 @@
         <entry file="file://$PROJECT_DIR$/src/sample/ClassMap.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
-              <folding>
-                <element signature="e#855#856#0" expanded="true" />
-              </folding>
+              <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -126,9 +129,22 @@
         <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="53" column="32" selection-start-line="53" selection-start-column="32" selection-end-line="53" selection-end-column="32" />
+              <caret line="134" column="50" selection-start-line="134" selection-start-column="50" selection-end-line="134" selection-end-column="50" />
               <folding>
-                <marker date="1450662646634" expanded="true" signature="24:721" placeholder="..." />
+                <element signature="e#1605#1614#0" expanded="true" />
+                <marker date="1450693209153" expanded="true" signature="24:721" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FXMLLoader.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="1656" column="0" selection-start-line="1656" selection-start-column="0" selection-end-line="1656" selection-end-column="0" />
+              <folding>
+                <element signature="e#66978#66979#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -138,10 +154,20 @@
         <entry file="file://$PROJECT_DIR$/src/sample/ImageNode.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="45" column="38" selection-start-line="45" selection-start-column="38" selection-end-line="45" selection-end-column="38" />
+              <caret line="71" column="31" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
               <folding>
-                <marker date="1450676008132" expanded="true" signature="24:32" placeholder="..." />
+                <marker date="1450693129833" expanded="true" signature="24:32" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ArrayList.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/util/ArrayList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="652" column="0" selection-start-line="652" selection-start-column="0" selection-end-line="652" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -150,10 +176,11 @@
         <entry file="file://$PROJECT_DIR$/src/sample/MapNode.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+              <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#815#816#0" expanded="true" />
+                <element signature="e#775#776#0" expanded="true" />
+                <element signature="e#808#809#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -162,8 +189,8 @@
       <file leaf-file-name="ClassMapDataFile.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/ClassMapDataFile.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.6909091">
-              <caret line="19" column="66" selection-start-line="19" selection-start-column="66" selection-end-line="19" selection-end-column="66" />
+            <state vertical-scroll-proportion="-6.490909">
+              <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -175,65 +202,34 @@
       <file leaf-file-name="DataConnection.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/DataConnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="6.413509">
-              <caret line="238" column="25" selection-start-line="238" selection-start-column="25" selection-end-line="238" selection-end-column="25" />
+            <state vertical-scroll-proportion="7.2817135">
+              <caret line="270" column="54" selection-start-line="270" selection-start-column="54" selection-end-line="270" selection-end-column="54" />
               <folding>
-                <marker date="1450683436531" expanded="true" signature="1349:1402" placeholder="select * fro... members" />
-                <marker date="1450683436531" expanded="true" signature="2387:2406" placeholder="Select * fro... nodes" />
-                <marker date="1450683436531" expanded="true" signature="4051:4119" placeholder="insert into nodes... " />
-                <marker date="1450683436531" expanded="true" signature="4588:4654" placeholder="insert into nodes... " />
-                <marker date="1450683436531" expanded="true" signature="4682:4739" placeholder="select id fr... nodes" />
-                <marker date="1450683436531" expanded="true" signature="4767:4821" placeholder="insert into images... " />
-                <marker date="1450683436531" expanded="true" signature="5864:5908" placeholder="UPDATE nodes... " />
-                <marker date="1450683436531" expanded="true" signature="5864:5909" placeholder="UPDATE nodes... " />
-                <marker date="1450683436531" expanded="true" signature="6490:6584" placeholder="insert into members... " />
-                <marker date="1450683436531" expanded="true" signature="7086:7122" placeholder="delete from " />
-                <marker date="1450683436531" expanded="true" signature="7721:7749" placeholder="delete from " />
-                <marker date="1450683436531" expanded="true" signature="8006:8035" placeholder="delete from " />
-                <marker date="1450683436531" expanded="true" signature="8903:8956" placeholder="select * fro... images" />
+                <marker date="1450694259133" expanded="true" signature="1363:1416" placeholder="select * fro... members" />
+                <marker date="1450694259133" expanded="true" signature="2401:2420" placeholder="Select * fro... nodes" />
+                <marker date="1450694259133" expanded="true" signature="4141:4209" placeholder="insert into nodes... " />
+                <marker date="1450694259133" expanded="true" signature="4678:4744" placeholder="insert into nodes... " />
+                <marker date="1450694259133" expanded="true" signature="4772:4829" placeholder="select id fr... nodes" />
+                <marker date="1450694259133" expanded="true" signature="4857:4911" placeholder="insert into images... " />
+                <marker date="1450694259133" expanded="true" signature="5954:5998" placeholder="UPDATE nodes... " />
+                <marker date="1450694259133" expanded="true" signature="5954:5999" placeholder="UPDATE nodes... " />
+                <marker date="1450694259133" expanded="true" signature="6580:6674" placeholder="insert into members... " />
+                <marker date="1450694259133" expanded="true" signature="7176:7212" placeholder="delete from " />
+                <marker date="1450694259133" expanded="true" signature="7811:7839" placeholder="delete from " />
+                <marker date="1450694259133" expanded="true" signature="8096:8125" placeholder="delete from " />
+                <marker date="1450694259133" expanded="true" signature="9066:9097" placeholder="select * fro... images" />
+                <marker date="1450694259133" expanded="true" signature="9066:9098" placeholder="select * fro... images" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/09b6ed7d-69e1-4ca1-9b40-830705488718/console.sql">
+      <file leaf-file-name="ByteArrayInputStream.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/io/ByteArrayInputStream.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.56666666">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding>
-                <marker date="1450682908091" expanded="true" signature="0:50" placeholder="UPDATE nodes... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClassMapApp.nodes" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/b3313065/09b6ed7d-69e1-4ca1-9b40-830705488718/ClassMapApp.nodes">
-          <provider editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClassMapApp.images" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/b3313065/09b6ed7d-69e1-4ca1-9b40-830705488718/ClassMapApp.images">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
@@ -242,7 +238,7 @@
         <entry file="file://$PROJECT_DIR$/src/sample/TextNode.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
+              <caret line="177" column="12" selection-start-line="177" selection-start-column="12" selection-end-line="177" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -275,15 +271,15 @@
         <option value="$PROJECT_DIR$/src/sample/Main.java" />
         <option value="$PROJECT_DIR$/out/production/ClassMapAppFX/sample/ClassMapDataFile.fxml" />
         <option value="$PROJECT_DIR$/src/sample/DictParser.java" />
-        <option value="$PROJECT_DIR$/src/sample/ClassMapDataFile.fxml" />
         <option value="dbtable:/b3313065/1e1e7f57-ced3-491c-8f42-266d2495a480/ClassMapApp.members" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/4efef16e-4bd7-493d-a356-231d0dd86f86/console.sql" />
-        <option value="$PROJECT_DIR$/src/sample/Controller.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/09b6ed7d-69e1-4ca1-9b40-830705488718/console.sql" />
+        <option value="$PROJECT_DIR$/src/sample/ClassMap.java" />
+        <option value="$PROJECT_DIR$/src/sample/ClassMapDataFile.fxml" />
         <option value="$PROJECT_DIR$/src/sample/MapNode.java" />
         <option value="$PROJECT_DIR$/src/sample/TextNode.java" />
         <option value="$PROJECT_DIR$/src/sample/ImageNode.java" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/09b6ed7d-69e1-4ca1-9b40-830705488718/console.sql" />
-        <option value="$PROJECT_DIR$/src/sample/ClassMap.java" />
+        <option value="$PROJECT_DIR$/src/sample/Controller.java" />
         <option value="$PROJECT_DIR$/src/sample/DataConnection.java" />
       </list>
     </option>
@@ -292,6 +288,13 @@
   <component name="JsBuildToolPackageJson" detection-done="true" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Bundled (Maven 3)" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
@@ -576,6 +579,133 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="myFilePath" />
+      <option name="GLUE" />
+      <option name="myNameFilter" />
+      <option name="myGeneratedName" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
+      <option name="BCName" value="" />
+      <option name="IOSSimulatorSdkPath" value="" />
+      <option name="adlOptions" value="" />
+      <option name="airProgramParameters" value="" />
+      <option name="appDescriptorForEmulator" value="Android" />
+      <option name="debugTransport" value="USB" />
+      <option name="debuggerSdkRaw" value="BC SDK" />
+      <option name="emulator" value="NexusOne" />
+      <option name="emulatorAdlOptions" value="" />
+      <option name="fastPackaging" value="true" />
+      <option name="fullScreenHeight" value="0" />
+      <option name="fullScreenWidth" value="0" />
+      <option name="launchUrl" value="false" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="mobileRunTarget" value="Emulator" />
+      <option name="moduleName" value="" />
+      <option name="overriddenMainClass" value="" />
+      <option name="overriddenOutputFileName" value="" />
+      <option name="overrideMainClass" value="false" />
+      <option name="runTrusted" value="true" />
+      <option name="screenDpi" value="0" />
+      <option name="screenHeight" value="0" />
+      <option name="screenWidth" value="0" />
+      <option name="url" value="http://" />
+      <option name="usbDebugPort" value="7936" />
+      <method />
+    </configuration>
+    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
+      <option name="BCName" value="" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="moduleName" value="" />
+      <option name="trusted" value="true" />
+      <method />
+    </configuration>
     <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -590,6 +720,16 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
+      <module name="" />
+      <setting name="vmparams" value="" />
+      <setting name="cmdLine" value="run-app" />
+      <setting name="depsClasspath" value="false" />
+      <setting name="passParentEnv" value="true" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <setting name="launchBrowser" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -655,6 +795,9 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" />
@@ -674,6 +817,12 @@
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -732,10 +881,19 @@
       <listeners />
       <method />
     </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
       <command value="run-script" />
       <scripts />
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
+      <method />
+    </configuration>
+    <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
     <configuration default="false" name="Main" type="Application" factoryName="Application">
@@ -782,12 +940,12 @@
       <workItem from="1450562587319" duration="46447000" />
       <workItem from="1450670534100" duration="4787000" />
       <workItem from="1450675461246" duration="2759000" />
-      <workItem from="1450682064566" duration="1493000" />
+      <workItem from="1450682064566" duration="12192000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56788000" />
+    <option name="totallyTimeSpent" value="67487000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="32" width="1936" height="1056" extended-state="6" />
@@ -801,11 +959,12 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32875264" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2109375" sideWeight="0.5055118" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15208334" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2109375" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2109375" sideWeight="0.49448818" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -856,59 +1015,14 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/sample/TextNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ClassMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-          <folding>
-            <element signature="e#855#856#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/DictParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="89" column="56" selection-start-line="89" selection-start-column="56" selection-end-line="89" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="26" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
-          <folding>
-            <marker date="1450662646634" expanded="true" signature="24:721" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/out/production/ClassMapAppFX/sample/ClassMapDataFile.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="83" selection-start-line="10" selection-start-column="83" selection-end-line="10" selection-end-column="83" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/MapNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="54" column="33" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#815#816#0" expanded="true" />
+            <element signature="e#775#776#0" expanded="true" />
+            <element signature="e#808#809#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -925,9 +1039,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="59" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="59" />
-          <folding>
-            <element signature="e#855#856#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -944,7 +1056,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="72" column="52" selection-start-line="72" selection-start-column="52" selection-end-line="72" selection-end-column="52" />
           <folding>
-            <marker date="1450662646634" expanded="true" signature="24:721" placeholder="..." />
+            <element signature="e#1605#1614#0" expanded="true" />
+            <marker date="1450693209153" expanded="true" signature="24:721" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -965,7 +1078,8 @@
           <caret line="53" column="5" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#815#816#0" expanded="true" />
+            <element signature="e#775#776#0" expanded="true" />
+            <element signature="e#808#809#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -974,9 +1088,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="59" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="59" />
-          <folding>
-            <element signature="e#855#856#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -993,7 +1105,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="72" column="52" selection-start-line="72" selection-start-column="52" selection-end-line="72" selection-end-column="52" />
           <folding>
-            <marker date="1450662646634" expanded="true" signature="24:721" placeholder="..." />
+            <element signature="e#1605#1614#0" expanded="true" />
+            <marker date="1450693209153" expanded="true" signature="24:721" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1014,7 +1127,8 @@
           <caret line="53" column="5" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#815#816#0" expanded="true" />
+            <element signature="e#775#776#0" expanded="true" />
+            <element signature="e#808#809#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1023,9 +1137,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-          <folding>
-            <element signature="e#855#856#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1034,7 +1146,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="39" column="64" selection-start-line="39" selection-start-column="64" selection-end-line="39" selection-end-column="64" />
           <folding>
-            <marker date="1450662646634" expanded="true" signature="24:721" placeholder="..." />
+            <element signature="e#1605#1614#0" expanded="true" />
+            <marker date="1450693209153" expanded="true" signature="24:721" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1099,9 +1212,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-          <folding>
-            <element signature="e#855#856#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1110,7 +1221,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1450662646634" expanded="true" signature="24:721" placeholder="..." />
+            <element signature="e#1605#1614#0" expanded="true" />
+            <marker date="1450693209153" expanded="true" signature="24:721" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1130,9 +1242,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="e#855#856#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1141,7 +1251,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1450662646634" expanded="true" signature="24:721" placeholder="..." />
+            <element signature="e#1605#1614#0" expanded="true" />
+            <marker date="1450693209153" expanded="true" signature="24:721" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1220,14 +1331,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/TextNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/b3313065/09b6ed7d-69e1-4ca1-9b40-830705488718/ClassMapApp.images">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1238,26 +1341,6 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="53" column="32" selection-start-line="53" selection-start-column="32" selection-end-line="53" selection-end-column="32" />
-          <folding>
-            <marker date="1450662646634" expanded="true" signature="24:721" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/09b6ed7d-69e1-4ca1-9b40-830705488718/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.56666666">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <marker date="1450682908091" expanded="true" signature="0:50" placeholder="UPDATE nodes... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1274,20 +1357,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ClassMap.java">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/09b6ed7d-69e1-4ca1-9b40-830705488718/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
+          <caret line="0" column="50" selection-start-line="0" selection-start-column="50" selection-end-line="0" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/javafx-src.zip!/com/sun/javafx/application/LauncherImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="388" column="0" selection-start-line="388" selection-start-column="0" selection-end-line="388" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/jre/lib/rt.jar!/sun/launcher/LauncherHelper.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.6666665">
+          <caret line="584" column="0" selection-start-line="584" selection-start-column="0" selection-end-line="584" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="652" column="0" selection-start-line="652" selection-start-column="0" selection-end-line="652" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/MapNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
           <folding>
-            <element signature="e#855#856#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#775#776#0" expanded="true" />
+            <element signature="e#808#809#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/ClassMapDataFile.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6909091">
-          <caret line="19" column="66" selection-start-line="19" selection-start-column="66" selection-end-line="19" selection-end-column="66" />
+        <state vertical-scroll-proportion="-6.490909">
+          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -1295,45 +1412,80 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/MapNode.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/TextNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#815#816#0" expanded="true" />
-          </folding>
+          <caret line="177" column="12" selection-start-line="177" selection-start-column="12" selection-end-line="177" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/io/ByteArrayInputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/ImageNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="38" selection-start-line="45" selection-start-column="38" selection-end-line="45" selection-end-column="38" />
+          <caret line="71" column="31" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
           <folding>
-            <marker date="1450676008132" expanded="true" signature="24:32" placeholder="..." />
+            <marker date="1450693129833" expanded="true" signature="24:32" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1656" column="0" selection-start-line="1656" selection-start-column="0" selection-end-line="1656" selection-end-column="0" />
+          <folding>
+            <element signature="e#66978#66979#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ClassMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="134" column="50" selection-start-line="134" selection-start-column="50" selection-end-line="134" selection-end-column="50" />
+          <folding>
+            <element signature="e#1605#1614#0" expanded="true" />
+            <marker date="1450693209153" expanded="true" signature="24:721" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/DataConnection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="6.413509">
-          <caret line="238" column="25" selection-start-line="238" selection-start-column="25" selection-end-line="238" selection-end-column="25" />
+        <state vertical-scroll-proportion="7.2817135">
+          <caret line="270" column="54" selection-start-line="270" selection-start-column="54" selection-end-line="270" selection-end-column="54" />
           <folding>
-            <marker date="1450683436531" expanded="true" signature="1349:1402" placeholder="select * fro... members" />
-            <marker date="1450683436531" expanded="true" signature="2387:2406" placeholder="Select * fro... nodes" />
-            <marker date="1450683436531" expanded="true" signature="4051:4119" placeholder="insert into nodes... " />
-            <marker date="1450683436531" expanded="true" signature="4588:4654" placeholder="insert into nodes... " />
-            <marker date="1450683436531" expanded="true" signature="4682:4739" placeholder="select id fr... nodes" />
-            <marker date="1450683436531" expanded="true" signature="4767:4821" placeholder="insert into images... " />
-            <marker date="1450683436531" expanded="true" signature="5864:5908" placeholder="UPDATE nodes... " />
-            <marker date="1450683436531" expanded="true" signature="5864:5909" placeholder="UPDATE nodes... " />
-            <marker date="1450683436531" expanded="true" signature="6490:6584" placeholder="insert into members... " />
-            <marker date="1450683436531" expanded="true" signature="7086:7122" placeholder="delete from " />
-            <marker date="1450683436531" expanded="true" signature="7721:7749" placeholder="delete from " />
-            <marker date="1450683436531" expanded="true" signature="8006:8035" placeholder="delete from " />
-            <marker date="1450683436531" expanded="true" signature="8903:8956" placeholder="select * fro... images" />
+            <marker date="1450694259133" expanded="true" signature="1363:1416" placeholder="select * fro... members" />
+            <marker date="1450694259133" expanded="true" signature="2401:2420" placeholder="Select * fro... nodes" />
+            <marker date="1450694259133" expanded="true" signature="4141:4209" placeholder="insert into nodes... " />
+            <marker date="1450694259133" expanded="true" signature="4678:4744" placeholder="insert into nodes... " />
+            <marker date="1450694259133" expanded="true" signature="4772:4829" placeholder="select id fr... nodes" />
+            <marker date="1450694259133" expanded="true" signature="4857:4911" placeholder="insert into images... " />
+            <marker date="1450694259133" expanded="true" signature="5954:5998" placeholder="UPDATE nodes... " />
+            <marker date="1450694259133" expanded="true" signature="5954:5999" placeholder="UPDATE nodes... " />
+            <marker date="1450694259133" expanded="true" signature="6580:6674" placeholder="insert into members... " />
+            <marker date="1450694259133" expanded="true" signature="7176:7212" placeholder="delete from " />
+            <marker date="1450694259133" expanded="true" signature="7811:7839" placeholder="delete from " />
+            <marker date="1450694259133" expanded="true" signature="8096:8125" placeholder="delete from " />
+            <marker date="1450694259133" expanded="true" signature="9066:9097" placeholder="select * fro... images" />
+            <marker date="1450694259133" expanded="true" signature="9066:9098" placeholder="select * fro... images" />
           </folding>
         </state>
       </provider>
