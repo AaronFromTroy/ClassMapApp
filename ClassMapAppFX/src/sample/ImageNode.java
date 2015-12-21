@@ -91,21 +91,21 @@ public class ImageNode extends MapNode {
         ImageView arrowView;
         if(this.getUserVote() == Boolean.TRUE)
         {
-            File path = new File("C:\\Users\\crims_000\\Documents\\GitHub\\ClassMapApp\\ClassMapAppFX\\Images\\Voted.png");
+            File path = new File("C:\\Users\\acous\\Documents\\GitHub\\ClassMapApp\\ClassMapAppFX\\Images\\Voted.png");
             arrow = new Image(path.toURI().toString());
 
         }
         else
         {
-            File path = new File("C:\\Users\\crims_000\\Documents\\GitHub\\ClassMapApp\\ClassMapAppFX\\Images\\NoVote.png");
+            File path = new File("C:\\Users\\acous\\Documents\\GitHub\\ClassMapApp\\ClassMapAppFX\\Images\\NoVote.png");
             arrow = new Image(path.toURI().toString());
         }
 
         arrowView = new ImageView(arrow);
         arrowView.setPreserveRatio(Boolean.TRUE);
         arrowView.setFitHeight(20.0f);
-        Text numberOfVotes = new Text(""+votes);
-        numberOfVotes.setStyle("-fx-font: 22 arial");
+        Text numberOfVotes = new Text(" "+votes);
+        numberOfVotes.setStyle("-fx-font: 22 arial; -fx-color: grey");
         HBox arr = new HBox();
         arr.getChildren().addAll(arrowView,numberOfVotes);
 

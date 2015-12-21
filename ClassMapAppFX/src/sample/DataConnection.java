@@ -164,7 +164,21 @@ public class DataConnection {
             ps2.close();
             conn.close();
         } catch (Exception E) {
-            JOptionPane.showMessageDialog(null, "Happened at 1");
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+    }
+
+    public static void addUpvote(MapNode node) {
+        Connection conn = dbConnector();
+        String query = "UPDATE nodes SET votes = votes + 1 WHERE id=?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, node.uniqueId);
+            ps.executeUpdate();
+            ps.close();
+            conn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Didnt Work Sorry!");
         }
     }
 

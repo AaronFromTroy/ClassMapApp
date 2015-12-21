@@ -117,7 +117,11 @@
       <column id="30" parent="4" name="type">
         <data-type>enum(&apos;image&apos;, &apos;link&apos;, &apos;string&apos;)</data-type>
       </column>
-      <key id="31" parent="4" name="PRIMARY">
+      <column id="31" parent="4" name="votes">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <key id="32" parent="4" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
