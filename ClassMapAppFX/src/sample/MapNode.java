@@ -32,6 +32,11 @@ public class MapNode {
     public classification type;
     public Timestamp timeCreated;
 
+    public Boolean getUserVote()
+    {
+        return userVote;
+    }
+
 
     public int getVotes()
     {

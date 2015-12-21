@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.ImageViewBuilder;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
@@ -31,7 +32,7 @@ import java.io.File;
  * Created by James Davis on 12/19/2015.
  */
 public class ImageNode extends MapNode {
-    private StackPane nodePane;
+    private GridPane nodePane;
     private byte[] imgToByte;
     private String formattedDate;
     private Image image;
@@ -42,6 +43,8 @@ public class ImageNode extends MapNode {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a");
         formattedDate = sdf.format(date);
         this.type = type.Image;
+
+        image = new Image(in);
 
         this.drawNode();
 
@@ -80,8 +83,31 @@ public class ImageNode extends MapNode {
         Ellipse newNode = new Ellipse(0.0f, 0.0f, width, height);
         newNode.setFill(Paint.valueOf("white"));
         newNode.setStroke(Paint.valueOf("black"));
-        nodePane = new StackPane();
-        nodePane.getChildren().addAll(newNode, viewer);
+
+        Image arrow;
+        ImageView arrowView;
+        if(this.getUserVote() == Boolean.TRUE)
+        {
+            File path = new File("C:\\Users\\crims_000\\Documents\\GitHub\\ClassMapApp\\ClassMapAppFX\\Images\\Voted.png");
+            arrow = new Image(path.toURI().toString());
+
+        }
+        else
+        {
+            File path = new File("C:\\Users\\crims_000\\Documents\\GitHub\\ClassMapApp\\ClassMapAppFX\\Images\\NoVote.png");
+            arrow = new Image(path.toURI().toString());
+        }
+
+        arrowView = new ImageView(arrow);
+        arrowView.setPreserveRatio(Boolean.TRUE);
+        arrowView.setFitHeight(20.0f);
+
+        StackPane stack = new StackPane();
+        stack.getChildren().addAll(newNode, viewer);
+
+        nodePane = new GridPane();
+        nodePane.add(arrowView,0,0);
+        nodePane.add(stack,0,1);
 
         nodePane.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
@@ -97,7 +123,7 @@ public class ImageNode extends MapNode {
         this.type = classification.Image;
     }
 
-    public StackPane getNodePane()
+    public GridPane getNodePane()
     {
         return this.nodePane;
     }

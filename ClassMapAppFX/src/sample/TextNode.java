@@ -3,19 +3,23 @@ package sample;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
 
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.Optional;
 
 public class TextNode extends MapNode{
 
-    private StackPane nodePane;
+    private GridPane nodePane;
     private String contents;
 
     TextNode(String in)
@@ -43,8 +47,32 @@ public class TextNode extends MapNode{
         Ellipse newNode = new Ellipse(0.0f, 0.0f, width, height);
         newNode.setFill(Paint.valueOf("white"));
         newNode.setStroke(Paint.valueOf("black"));
-        nodePane = new StackPane();
-        nodePane.getChildren().addAll(newNode, text);
+
+        StackPane stack = new StackPane();
+        stack.getChildren().addAll(newNode, text);
+
+        Image arrow;
+        ImageView arrowView;
+        if(this.getUserVote() == Boolean.TRUE)
+        {
+            File path = new File("C:\\Users\\crims_000\\Documents\\GitHub\\ClassMapApp\\ClassMapAppFX\\Images\\Voted.png");
+            arrow = new Image(path.toURI().toString());
+
+        }
+        else
+        {
+            File path = new File("C:\\Users\\crims_000\\Documents\\GitHub\\ClassMapApp\\ClassMapAppFX\\Images\\NoVote.png");
+            arrow = new Image(path.toURI().toString());
+        }
+
+        arrowView = new ImageView(arrow);
+        arrowView.setPreserveRatio(Boolean.TRUE);
+        arrowView.setFitHeight(20.0f);
+
+        nodePane = new GridPane();
+        nodePane.add(arrowView,0,0);
+        nodePane.add(stack,0,1);
+
         nodePane.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -95,8 +123,32 @@ public class TextNode extends MapNode{
         Ellipse newNode = new Ellipse(0.0f, 0.0f, width, height);
         newNode.setFill(Paint.valueOf("white"));
         newNode.setStroke(Paint.valueOf("black"));
-        nodePane = new StackPane();
-        nodePane.getChildren().addAll(newNode, text);
+
+        StackPane stack = new StackPane();
+        stack.getChildren().addAll(newNode, text);
+
+        Image arrow;
+        ImageView arrowView;
+        if(this.getUserVote() == Boolean.TRUE)
+        {
+            File path = new File("C:\\Users\\crims_000\\Documents\\GitHub\\ClassMapApp\\ClassMapAppFX\\Images\\Voted.png");
+            arrow = new Image(path.toURI().toString());
+
+        }
+        else
+        {
+            File path = new File("C:\\Users\\crims_000\\Documents\\GitHub\\ClassMapApp\\ClassMapAppFX\\Images\\NoVote.png");
+            arrow = new Image(path.toURI().toString());
+        }
+
+        arrowView = new ImageView(arrow);
+        arrowView.setPreserveRatio(Boolean.TRUE);
+        arrowView.setFitHeight(20.0f);
+
+        nodePane = new GridPane();
+        nodePane.add(arrowView,0,0);
+        nodePane.add(arrowView,0,1);
+
         nodePane.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -126,7 +178,7 @@ public class TextNode extends MapNode{
         this.type = classification.String;
     }
 
-    public StackPane getNodePane()
+    public GridPane getNodePane()
     {
         return nodePane;
     }
