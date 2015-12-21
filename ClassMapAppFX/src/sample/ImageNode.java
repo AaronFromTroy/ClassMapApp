@@ -76,7 +76,7 @@ public class ImageNode extends MapNode {
 
     }
 
-    private void drawNode() {
+    public void drawNode() {
         ImageView viewer = new ImageView(image);
         viewer.setPreserveRatio(Boolean.TRUE);
         viewer.setFitHeight(80.0f);
