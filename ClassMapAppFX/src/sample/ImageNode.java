@@ -7,9 +7,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.ImageViewBuilder;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
+import javafx.scene.text.Text;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -59,6 +61,7 @@ public class ImageNode extends MapNode {
         formattedDate = sdf.format(date);
         this.type = type.Image;
 
+
         this.image = new Image(in.toURI().toString());
         this.drawNode();
 
@@ -101,12 +104,16 @@ public class ImageNode extends MapNode {
         arrowView = new ImageView(arrow);
         arrowView.setPreserveRatio(Boolean.TRUE);
         arrowView.setFitHeight(20.0f);
+        Text numberOfVotes = new Text(""+votes);
+        numberOfVotes.setStyle("-fx-font: 22 arial");
+        HBox arr = new HBox();
+        arr.getChildren().addAll(arrowView,numberOfVotes);
 
         StackPane stack = new StackPane();
         stack.getChildren().addAll(newNode, viewer);
 
         nodePane = new GridPane();
-        nodePane.add(arrowView,0,0);
+        nodePane.add(arr,0,0);
         nodePane.add(stack,0,1);
 
         nodePane.setOnMouseDragged(new EventHandler<MouseEvent>() {

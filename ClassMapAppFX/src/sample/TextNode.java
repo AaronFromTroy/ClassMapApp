@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
@@ -68,9 +69,13 @@ public class TextNode extends MapNode{
         arrowView = new ImageView(arrow);
         arrowView.setPreserveRatio(Boolean.TRUE);
         arrowView.setFitHeight(20.0f);
+        Text numberOfVotes = new Text(""+votes);
+        numberOfVotes.setStyle("-fx-font: 22 arial");
+        HBox arr = new HBox();
+        arr.getChildren().addAll(arrowView,numberOfVotes);
 
         nodePane = new GridPane();
-        nodePane.add(arrowView,0,0);
+        nodePane.add(arr,0,0);
         nodePane.add(stack,0,1);
 
         nodePane.setOnMouseDragged(new EventHandler<MouseEvent>() {
@@ -144,10 +149,14 @@ public class TextNode extends MapNode{
         arrowView = new ImageView(arrow);
         arrowView.setPreserveRatio(Boolean.TRUE);
         arrowView.setFitHeight(20.0f);
+        Text numberOfVotes = new Text(""+votes);
+        numberOfVotes.setStyle("-fx-font: 22 arial");
+        HBox arr = new HBox();
+        arr.getChildren().addAll(arrowView,numberOfVotes);
 
         nodePane = new GridPane();
-        nodePane.add(arrowView,0,0);
-        nodePane.add(arrowView,0,1);
+        nodePane.add(arr,0,0);
+        nodePane.add(stack,0,1);
 
         nodePane.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
