@@ -14,7 +14,7 @@ public class DataConnection {
     static int userID;
     static Semaphore counting = new Semaphore(3);
     static ArrayList<MapNode> collection = new ArrayList<>();
-    static User loggedUser;
+    static User loggedUser; //ALL LOGGED IN USER INFORMATION WILL APPEAR HERE
 
     private static Connection dbConnector() {
         Connection conn = null;
@@ -72,7 +72,19 @@ public class DataConnection {
     public static MapNode populate() throws InterruptedException {
         Connection conn = dbConnector();
         String query = "Select * from nodes";
+        String query2 = "Select * from node_votes where id=?";
         try {
+
+//            PreparedStatement ps = conn.prepareStatement(query2);
+//            ps.setInt(1, loggedUser.getId());
+//            ResultSet rst = ps.executeQuery();
+//            while(rst.next()) {
+//                if (rst.getBoolean("vote") == true) {
+//
+//                }
+//            }
+
+
             PreparedStatement pst = conn.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
 
@@ -88,6 +100,7 @@ public class DataConnection {
                     loadImg((collection.size() - 1), rs.getInt("id"));
                 }
             }
+
 
             for (int i = 0; i < collection.size(); i++) {
                 for (int y = 0; y < collection.size(); y++) {
@@ -118,14 +131,26 @@ public class DataConnection {
 
     public static void addTextNode(TextNode node) {
         Connection conn = dbConnector();
-        String query = "insert into nodes (parent_id, string_data, type) " + " values(?,?,?) ";
+        String query = "insert into nodes (parent_id, string_data, type, created_by) " + " values(?,?,?,?) ";
+        String query2 = "SELECT id FROM nodes WHERE created_by=? and string_data=?";
+        int id = -1;
         try
         {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, node.parent);
             ps.setString(2, node.getContents());
             ps.setString(3, "String");
+            ps.setString(4, loggedUser.getUser());
             ps.executeUpdate();
+
+            PreparedStatement pst = conn.prepareStatement(query2);
+            pst.setString(1, loggedUser.getUser());
+            pst.setString(2, node.getContents());
+            ResultSet rs = pst.executeQuery();
+            if(rs.next()) {
+                id = rs.getInt("id");
+                node.setUniqueId(id);
+            }
         }
         catch(Exception e)
         {
@@ -135,24 +160,27 @@ public class DataConnection {
 
     public static void addImageNode(ImageNode node) {
         Connection conn =  dbConnector();
-        String query = "insert into nodes (parent_id, string_data, type)" + "values(?,?,?)";
+        String query = "insert into nodes (parent_id, string_data, type, created_by)" + "values(?,?,?,?)";
         String query2 = "select id from nodes where string_data=? and type='image'";
         String query3 = "insert into images (id, stored_image)" + "values(?, ?)";
-        int id;
+        int id = -1;
 
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, node.getParent());
-            ps.setString(2, node.getFormattedDate());
+            ps.setString(2, node.getFormattedDate() + loggedUser.getUser());
             ps.setString(3, node.getType().toString());
+            ps.setString(4, loggedUser.getUser());
             ps.executeUpdate();
             ps.close();
 
             PreparedStatement pst = conn.prepareStatement(query2);
-            pst.setString(1, node.getFormattedDate());
+            pst.setString(1, node.getFormattedDate() + loggedUser.getUser());
             ResultSet rs = pst.executeQuery();
-            rs.next();
-            id = rs.getInt("id");
+            if(rs.next()) {
+                id = rs.getInt("id");
+                node.setUniqueId(id);
+            }
             rs.close();
             pst.close();
 
@@ -167,9 +195,19 @@ public class DataConnection {
         }
     }
 
+    /*
+    Determines if user has voted for the incoming node and adjust values
+    in database accordingly.
+     */
     public static void addUpvote(MapNode node) {
         Connection conn = dbConnector();
-        String query = "UPDATE nodes SET votes = votes + 1 WHERE id=?";
+        String query = null;
+        if(node.getUserVote() == false) {
+            query = "UPDATE nodes SET votes = votes + 1 WHERE id=?";
+        }
+        else {
+            query = "UPDATE nodes SET votes = votes - 1 WHERE id=?";
+        }
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, node.uniqueId);

@@ -25,7 +25,8 @@ public class MapNode {
 
     public int uniqueId;
     public int votes;
-    private boolean userVote;
+    private boolean userVote = false;
+    public String createdBy;
     public ArrayList<MapNode> children = new ArrayList<>();
     public int parent;
     boolean sinceLastLog;
@@ -36,6 +37,8 @@ public class MapNode {
     {
         return userVote;
     }
+
+    public void setUniqueId(int id) { this.uniqueId = id; }
 
     public void setUserVote(Boolean value) { this.userVote = value; }
 
