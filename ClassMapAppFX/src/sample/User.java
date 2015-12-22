@@ -24,7 +24,19 @@ public class User {
         this.printUser();
     }
 
-    public void printUser() {
+    public String getFirst() { return this.first_name; }
+
+    public String getLast() { return this.last_name; }
+
+    public String getUser() { return this.user_name; }
+
+    public int getId() { return this.getId(); }
+
+    public Timestamp getSQLLog() { return this.last_log; }
+
+    public String getAccount() { return this.account; }
+
+    private void printUser() {
         System.out.println(first_name + " " + last_name + " " + user_name + " " + user_id + " " + last_log.toString()
             + " " + account);
     }
