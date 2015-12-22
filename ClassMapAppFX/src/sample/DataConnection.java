@@ -1,15 +1,12 @@
 package sample;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.sql.*;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.util.concurrent.Semaphore;
 import java.util.*;
 
-import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 
 public class DataConnection {
@@ -17,6 +14,7 @@ public class DataConnection {
     static int userID;
     static Semaphore counting = new Semaphore(3);
     static ArrayList<MapNode> collection = new ArrayList<>();
+    static User loggedUser;
 
     private static Connection dbConnector() {
         Connection conn = null;
@@ -50,16 +48,15 @@ public class DataConnection {
             pst.setString(2, pass);
 
             ResultSet rst = pst.executeQuery();
-            int count = 0;
-            while(rst.next()) {
-                count++;
-            }
-            if(count == 1) {
+            if(rst.next()) {
                 JOptionPane.showMessageDialog(null, "Found User!");
+                User newloggedUser = new User(rst.getString("first_name"), rst.getString("last_name"), rst.getString("username"),
+                        rst.getInt("id"), rst.getTimestamp("log_out"), rst.getString("account_permissions"));
+                loggedUser = newloggedUser;
                 return true;
             }
             else {
-                JOptionPane.showMessageDialog(null, "More Than One User By That Username.");
+
                 return false;
             }
         } catch (Exception e) {

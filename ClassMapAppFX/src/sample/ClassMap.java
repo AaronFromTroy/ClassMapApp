@@ -34,9 +34,7 @@ public class ClassMap extends Application {
 
 
     public static void main(String[] args) throws InterruptedException {
-
         DataConnection.login("tclinkscales", "clinkclink");
-
         launch(args);
     }
 }

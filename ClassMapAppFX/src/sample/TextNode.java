@@ -26,12 +26,26 @@ public class TextNode extends MapNode{
 
     TextNode(String in)
     {
-        contents = in;
+        this.contents = in;
         this.type = type.string;
         this.setUserVote(Boolean.TRUE);
         this.incrementVoteCounter();
+        this.drawNode();
 
-        Text text = new Text(in);
+    }
+
+    TextNode(int id, int pid, String in, Timestamp date_created)
+    {
+        this.uniqueId = id;
+        this.parent = pid;
+        this.contents = in;
+        this.timeCreated = date_created;
+        this.type = type.string;
+        this.drawNode();
+    }
+
+    public void drawNode() {
+        Text text = new Text(contents);
         text.setBoundsType(TextBoundsType.VISUAL);
         text.setWrappingWidth(150.0f);
         double height = (text.getLayoutBounds().getHeight())*2/3;
@@ -74,87 +88,6 @@ public class TextNode extends MapNode{
         arrowView.setFitHeight(20.0f);
         Text numberOfVotes = new Text(""+votes);
         numberOfVotes.setStyle("-fx-font: 20 arial");
-        HBox arr = new HBox();
-        arr.getChildren().addAll(arrowView,numberOfVotes);
-
-        nodePane = new GridPane();
-        nodePane.add(arr,0,0);
-        nodePane.add(stack,0,1);
-
-        nodePane.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                nodePane.setTranslateX(event.getSceneX() - nodePane.getHeight()/2);
-                nodePane.setTranslateY(event.getSceneY() - nodePane.getWidth()/2);
-            }
-        });
-
-        Tooltip tooltip;
-
-        DictParser dict = new DictParser();
-        dict.searchForWord(text.getText());
-        if(dict.getCount() > 0)
-        {
-            tooltip = new Tooltip(dict.getExactDefinition());
-        }
-        else
-        {
-            tooltip = new Tooltip("Not a definable word");
-        }
-
-        Tooltip.install(nodePane,tooltip);
-    }
-
-    TextNode(int id, int pid, String in, Timestamp date_created)
-    {
-        uniqueId = id;
-        parent = pid;
-        contents = in;
-        timeCreated = date_created;
-        this.type = type.string;
-        Text text = new Text(in);
-        text.setBoundsType(TextBoundsType.VISUAL);
-        text.setWrappingWidth(150.0f);
-        double height = (text.getLayoutBounds().getHeight())*2/3;
-        double width = (text.getLayoutBounds().getWidth())*2/3;
-        double minHeight = 60.0f;
-        double minWidth = 60.0f;
-
-        if(width < minHeight)
-        {
-            width = minHeight;
-        }
-        if(height < minWidth)
-        {
-            height = minWidth;
-        }
-
-        Ellipse newNode = new Ellipse(0.0f, 0.0f, width, height);
-        newNode.setFill(Paint.valueOf("white"));
-        newNode.setStroke(Paint.valueOf("black"));
-
-        StackPane stack = new StackPane();
-        stack.getChildren().addAll(newNode, text);
-
-        Image arrow;
-        ImageView arrowView;
-        if(this.getUserVote() == Boolean.TRUE)
-        {
-            File path = new File("C:\\Users\\acous\\Documents\\GitHub\\ClassMapApp\\ClassMapAppFX\\Images\\Voted.png");
-            arrow = new Image(path.toURI().toString());
-
-        }
-        else
-        {
-            File path = new File("C:\\Users\\acous\\Documents\\GitHub\\ClassMapApp\\ClassMapAppFX\\Images\\NoVote.png");
-            arrow = new Image(path.toURI().toString());
-        }
-
-        arrowView = new ImageView(arrow);
-        arrowView.setPreserveRatio(Boolean.TRUE);
-        arrowView.setFitHeight(20.0f);
-        Text numberOfVotes = new Text(""+votes);
-        numberOfVotes.setStyle("-fx-font: 22 arial");
         HBox arr = new HBox();
         arr.getChildren().addAll(arrowView,numberOfVotes);
 
