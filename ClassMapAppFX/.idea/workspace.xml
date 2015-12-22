@@ -33,42 +33,6 @@
         <option name="myItemId" />
         <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
       </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="MySQL - ClassMapApp@107.180.20.80 [4]" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="nodes" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="MySQL - ClassMapApp@107.180.20.80 [4]" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="members" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="MySQL - ClassMapApp@107.180.20.80 [4]" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="images" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
     </PATH>
   </component>
   <component name="DebuggerManager">
@@ -115,11 +79,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ClassMap.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ClassMap.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/ClassMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.6721582">
+              <caret line="37" column="59" selection-start-line="37" selection-start-column="59" selection-end-line="37" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -129,23 +93,8 @@
         <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="134" column="50" selection-start-line="134" selection-start-column="50" selection-end-line="134" selection-end-column="50" />
-              <folding>
-                <element signature="e#1605#1614#0" expanded="true" />
-                <marker date="1450693209153" expanded="true" signature="24:721" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FXMLLoader.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1656" column="0" selection-start-line="1656" selection-start-column="0" selection-end-line="1656" selection-end-column="0" />
-              <folding>
-                <element signature="e#66978#66979#0" expanded="true" />
-              </folding>
+              <caret line="56" column="44" selection-start-line="56" selection-start-column="44" selection-end-line="56" selection-end-column="44" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -154,19 +103,7 @@
         <entry file="file://$PROJECT_DIR$/src/sample/ImageNode.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="71" column="31" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
-              <folding>
-                <marker date="1450693129833" expanded="true" signature="24:32" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArrayList.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/util/ArrayList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="652" column="0" selection-start-line="652" selection-start-column="0" selection-end-line="652" selection-end-column="0" />
+              <caret line="65" column="36" selection-start-line="65" selection-start-column="36" selection-end-line="65" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -176,60 +113,33 @@
         <entry file="file://$PROJECT_DIR$/src/sample/MapNode.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
+              <caret line="41" column="56" selection-start-line="41" selection-start-column="56" selection-end-line="41" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#775#776#0" expanded="true" />
-                <element signature="e#808#809#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClassMapDataFile.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/ClassMapDataFile.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.490909">
-              <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DataConnection.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DataConnection.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/DataConnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="7.2817135">
-              <caret line="270" column="54" selection-start-line="270" selection-start-column="54" selection-end-line="270" selection-end-column="54" />
-              <folding>
-                <marker date="1450694259133" expanded="true" signature="1363:1416" placeholder="select * fro... members" />
-                <marker date="1450694259133" expanded="true" signature="2401:2420" placeholder="Select * fro... nodes" />
-                <marker date="1450694259133" expanded="true" signature="4141:4209" placeholder="insert into nodes... " />
-                <marker date="1450694259133" expanded="true" signature="4678:4744" placeholder="insert into nodes... " />
-                <marker date="1450694259133" expanded="true" signature="4772:4829" placeholder="select id fr... nodes" />
-                <marker date="1450694259133" expanded="true" signature="4857:4911" placeholder="insert into images... " />
-                <marker date="1450694259133" expanded="true" signature="5954:5998" placeholder="UPDATE nodes... " />
-                <marker date="1450694259133" expanded="true" signature="5954:5999" placeholder="UPDATE nodes... " />
-                <marker date="1450694259133" expanded="true" signature="6580:6674" placeholder="insert into members... " />
-                <marker date="1450694259133" expanded="true" signature="7176:7212" placeholder="delete from " />
-                <marker date="1450694259133" expanded="true" signature="7811:7839" placeholder="delete from " />
-                <marker date="1450694259133" expanded="true" signature="8096:8125" placeholder="delete from " />
-                <marker date="1450694259133" expanded="true" signature="9066:9097" placeholder="select * fro... images" />
-                <marker date="1450694259133" expanded="true" signature="9066:9098" placeholder="select * fro... images" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ByteArrayInputStream.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/io/ByteArrayInputStream.java">
-          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
-              <folding />
+              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+              <folding>
+                <marker date="1450750629164" expanded="true" signature="1363:1416" placeholder="select * fro... members" />
+                <marker date="1450750629164" expanded="true" signature="2401:2420" placeholder="Select * fro... nodes" />
+                <marker date="1450750629164" expanded="true" signature="4141:4209" placeholder="insert into nodes... " />
+                <marker date="1450750629164" expanded="true" signature="4678:4744" placeholder="insert into nodes... " />
+                <marker date="1450750629164" expanded="true" signature="4772:4829" placeholder="select id fr... nodes" />
+                <marker date="1450750629164" expanded="true" signature="4857:4911" placeholder="insert into images... " />
+                <marker date="1450750629164" expanded="true" signature="5954:5999" placeholder="UPDATE nodes... " />
+                <marker date="1450750629164" expanded="true" signature="6580:6674" placeholder="insert into members... " />
+                <marker date="1450750629164" expanded="true" signature="7176:7212" placeholder="delete from " />
+                <marker date="1450750629164" expanded="true" signature="7811:7839" placeholder="delete from " />
+                <marker date="1450750629164" expanded="true" signature="8096:8125" placeholder="delete from " />
+                <marker date="1450750629164" expanded="true" signature="9066:9097" placeholder="select * fro... images" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -238,7 +148,7 @@
         <entry file="file://$PROJECT_DIR$/src/sample/TextNode.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="177" column="12" selection-start-line="177" selection-start-column="12" selection-end-line="177" selection-end-column="12" />
+              <caret line="75" column="44" selection-start-line="75" selection-start-column="44" selection-end-line="75" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -274,13 +184,13 @@
         <option value="dbtable:/b3313065/1e1e7f57-ced3-491c-8f42-266d2495a480/ClassMapApp.members" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/4efef16e-4bd7-493d-a356-231d0dd86f86/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/09b6ed7d-69e1-4ca1-9b40-830705488718/console.sql" />
-        <option value="$PROJECT_DIR$/src/sample/ClassMap.java" />
         <option value="$PROJECT_DIR$/src/sample/ClassMapDataFile.fxml" />
-        <option value="$PROJECT_DIR$/src/sample/MapNode.java" />
-        <option value="$PROJECT_DIR$/src/sample/TextNode.java" />
-        <option value="$PROJECT_DIR$/src/sample/ImageNode.java" />
         <option value="$PROJECT_DIR$/src/sample/Controller.java" />
         <option value="$PROJECT_DIR$/src/sample/DataConnection.java" />
+        <option value="$PROJECT_DIR$/src/sample/ClassMap.java" />
+        <option value="$PROJECT_DIR$/src/sample/MapNode.java" />
+        <option value="$PROJECT_DIR$/src/sample/ImageNode.java" />
+        <option value="$PROJECT_DIR$/src/sample/TextNode.java" />
       </list>
     </option>
   </component>
@@ -349,28 +259,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ClassMapAppFX" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mysql-connector-java-5.1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mysql-connector-java-5.1.38-bin.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="ClassMapAppFX" />
@@ -425,6 +315,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -457,6 +348,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -475,18 +367,20 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.webservices" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/mysql-connector-java-5.1.38/mysql-connector-java-5.1.38" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/mysql-connector-java-5.1.38" />
     <property name="aspect.path.notification.shown" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\acous\Documents\GitHub\ClassMapApp\ClassMapAppFX\src\sample" />
-      <recent name="C:\Users\crims_000\Documents\GitHub\ClassMapAppFX\src\sample" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\crims_000\Documents\GitHub\ClassMapApp\ClassMapAppFX" />
+      <recent name="C:\Users\crims_000\Documents\GitHub\ClassMapApp\ClassMapAppFX\src\sample" />
       <recent name="C:\Users\crims_000\Documents\GitHub\ClassMapApp\ClassMapAppFX\Images" />
       <recent name="C:\Users\crims_000\Documents\GitHub" />
       <recent name="C:\Users\crims_000\Documents\GitHub\ClassMapApp" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\acous\Documents\GitHub\ClassMapApp\ClassMapAppFX\src\sample" />
+      <recent name="C:\Users\crims_000\Documents\GitHub\ClassMapAppFX\src\sample" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -882,6 +776,11 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -941,11 +840,12 @@
       <workItem from="1450670534100" duration="4787000" />
       <workItem from="1450675461246" duration="2759000" />
       <workItem from="1450682064566" duration="12192000" />
+      <workItem from="1450750641515" duration="2846000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67487000" />
+    <option name="totallyTimeSpent" value="70333000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="32" width="1936" height="1056" extended-state="6" />
@@ -959,9 +859,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32875264" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2109375" sideWeight="0.5055118" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15208334" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2109375" sideWeight="0.49448818" order="4" side_tool="false" content_ui="tabs" />
@@ -978,7 +876,9 @@
       <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2109375" sideWeight="0.5055118" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1015,14 +915,86 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/sample/ClassMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="134" column="50" selection-start-line="134" selection-start-column="50" selection-end-line="134" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ImageNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="71" column="31" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/MapNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ClassMapDataFile.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/DataConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1450750629164" expanded="true" signature="1363:1416" placeholder="select * fro... members" />
+            <marker date="1450750629164" expanded="true" signature="2401:2420" placeholder="Select * fro... nodes" />
+            <marker date="1450750629164" expanded="true" signature="4141:4209" placeholder="insert into nodes... " />
+            <marker date="1450750629164" expanded="true" signature="4678:4744" placeholder="insert into nodes... " />
+            <marker date="1450750629164" expanded="true" signature="4772:4829" placeholder="select id fr... nodes" />
+            <marker date="1450750629164" expanded="true" signature="4857:4911" placeholder="insert into images... " />
+            <marker date="1450750629164" expanded="true" signature="5954:5999" placeholder="UPDATE nodes... " />
+            <marker date="1450750629164" expanded="true" signature="6580:6674" placeholder="insert into members... " />
+            <marker date="1450750629164" expanded="true" signature="7176:7212" placeholder="delete from " />
+            <marker date="1450750629164" expanded="true" signature="7811:7839" placeholder="delete from " />
+            <marker date="1450750629164" expanded="true" signature="8096:8125" placeholder="delete from " />
+            <marker date="1450750629164" expanded="true" signature="9066:9097" placeholder="select * fro... images" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/TextNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="177" column="12" selection-start-line="177" selection-start-column="12" selection-end-line="177" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/MapNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="54" column="33" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#775#776#0" expanded="true" />
-            <element signature="e#808#809#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1055,21 +1027,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="72" column="52" selection-start-line="72" selection-start-column="52" selection-end-line="72" selection-end-column="52" />
-          <folding>
-            <element signature="e#1605#1614#0" expanded="true" />
-            <marker date="1450693209153" expanded="true" signature="24:721" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/out/production/ClassMapAppFX/sample/ClassMapDataFile.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="83" selection-start-line="10" selection-start-column="83" selection-end-line="10" selection-end-column="83" />
         </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/MapNode.java">
@@ -1078,8 +1047,6 @@
           <caret line="53" column="5" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#775#776#0" expanded="true" />
-            <element signature="e#808#809#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1104,21 +1071,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="72" column="52" selection-start-line="72" selection-start-column="52" selection-end-line="72" selection-end-column="52" />
-          <folding>
-            <element signature="e#1605#1614#0" expanded="true" />
-            <marker date="1450693209153" expanded="true" signature="24:721" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/out/production/ClassMapAppFX/sample/ClassMapDataFile.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="83" selection-start-line="10" selection-start-column="83" selection-end-line="10" selection-end-column="83" />
         </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/MapNode.java">
@@ -1127,8 +1091,6 @@
           <caret line="53" column="5" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#775#776#0" expanded="true" />
-            <element signature="e#808#809#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1145,39 +1107,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="39" column="64" selection-start-line="39" selection-start-column="64" selection-end-line="39" selection-end-column="64" />
-          <folding>
-            <element signature="e#1605#1614#0" expanded="true" />
-            <marker date="1450693209153" expanded="true" signature="24:721" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/out/production/ClassMapAppFX/sample/Controller.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/out/production/ClassMapAppFX/sample/ClassMapDataFile.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ClassMapDataFile.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ClassMapDataFile.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
@@ -1220,22 +1172,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1605#1614#0" expanded="true" />
-            <marker date="1450693209153" expanded="true" signature="24:721" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/ClassMapDataFile.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/ClassMap.java">
@@ -1250,28 +1199,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1605#1614#0" expanded="true" />
-            <marker date="1450693209153" expanded="true" signature="24:721" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/ClassMapDataFile.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
           <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/out/production/ClassMapAppFX/sample/Controller.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1304,13 +1243,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/out/production/ClassMapAppFX/sample/ClassMapDataFile.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4311594">
           <caret line="19" column="60" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
         </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/DictParser.java">
@@ -1321,7 +1260,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ClassMapDataFile.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Images/NoVote.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Images/arrow-up-icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Images/arrow-up-icon_voted.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
@@ -1331,99 +1291,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/b3313065/09b6ed7d-69e1-4ca1-9b40-830705488718/ClassMapApp.images">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/b3313065/09b6ed7d-69e1-4ca1-9b40-830705488718/ClassMapApp.nodes">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/09b6ed7d-69e1-4ca1-9b40-830705488718/console.sql">
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="50" selection-start-line="0" selection-start-column="50" selection-end-line="0" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/javafx-src.zip!/com/sun/javafx/application/LauncherImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="388" column="0" selection-start-line="388" selection-start-column="0" selection-end-line="388" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/jre/lib/rt.jar!/sun/launcher/LauncherHelper.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.6666665">
-          <caret line="584" column="0" selection-start-line="584" selection-start-column="0" selection-end-line="584" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="652" column="0" selection-start-line="652" selection-start-column="0" selection-end-line="652" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/MapNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#775#776#0" expanded="true" />
-            <element signature="e#808#809#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ClassMapDataFile.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.490909">
-          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/TextNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="177" column="12" selection-start-line="177" selection-start-column="12" selection-end-line="177" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/src.zip!/java/io/ByteArrayInputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+          <caret line="56" column="44" selection-start-line="56" selection-start-column="44" selection-end-line="56" selection-end-column="44" />
           <folding />
         </state>
       </provider>
@@ -1431,62 +1302,55 @@
     <entry file="file://$PROJECT_DIR$/src/sample/ImageNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="71" column="31" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
-          <folding>
-            <marker date="1450693129833" expanded="true" signature="24:32" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_66/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1656" column="0" selection-start-line="1656" selection-start-column="0" selection-end-line="1656" selection-end-column="0" />
-          <folding>
-            <element signature="e#66978#66979#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ClassMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+          <caret line="65" column="36" selection-start-line="65" selection-start-column="36" selection-end-line="65" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/MapNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="134" column="50" selection-start-line="134" selection-start-column="50" selection-end-line="134" selection-end-column="50" />
+          <caret line="41" column="56" selection-start-line="41" selection-start-column="56" selection-end-line="41" selection-end-column="56" />
           <folding>
-            <element signature="e#1605#1614#0" expanded="true" />
-            <marker date="1450693209153" expanded="true" signature="24:721" placeholder="..." />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/DataConnection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="7.2817135">
-          <caret line="270" column="54" selection-start-line="270" selection-start-column="54" selection-end-line="270" selection-end-column="54" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
           <folding>
-            <marker date="1450694259133" expanded="true" signature="1363:1416" placeholder="select * fro... members" />
-            <marker date="1450694259133" expanded="true" signature="2401:2420" placeholder="Select * fro... nodes" />
-            <marker date="1450694259133" expanded="true" signature="4141:4209" placeholder="insert into nodes... " />
-            <marker date="1450694259133" expanded="true" signature="4678:4744" placeholder="insert into nodes... " />
-            <marker date="1450694259133" expanded="true" signature="4772:4829" placeholder="select id fr... nodes" />
-            <marker date="1450694259133" expanded="true" signature="4857:4911" placeholder="insert into images... " />
-            <marker date="1450694259133" expanded="true" signature="5954:5998" placeholder="UPDATE nodes... " />
-            <marker date="1450694259133" expanded="true" signature="5954:5999" placeholder="UPDATE nodes... " />
-            <marker date="1450694259133" expanded="true" signature="6580:6674" placeholder="insert into members... " />
-            <marker date="1450694259133" expanded="true" signature="7176:7212" placeholder="delete from " />
-            <marker date="1450694259133" expanded="true" signature="7811:7839" placeholder="delete from " />
-            <marker date="1450694259133" expanded="true" signature="8096:8125" placeholder="delete from " />
-            <marker date="1450694259133" expanded="true" signature="9066:9097" placeholder="select * fro... images" />
-            <marker date="1450694259133" expanded="true" signature="9066:9098" placeholder="select * fro... images" />
+            <marker date="1450750629164" expanded="true" signature="1363:1416" placeholder="select * fro... members" />
+            <marker date="1450750629164" expanded="true" signature="2401:2420" placeholder="Select * fro... nodes" />
+            <marker date="1450750629164" expanded="true" signature="4141:4209" placeholder="insert into nodes... " />
+            <marker date="1450750629164" expanded="true" signature="4678:4744" placeholder="insert into nodes... " />
+            <marker date="1450750629164" expanded="true" signature="4772:4829" placeholder="select id fr... nodes" />
+            <marker date="1450750629164" expanded="true" signature="4857:4911" placeholder="insert into images... " />
+            <marker date="1450750629164" expanded="true" signature="5954:5999" placeholder="UPDATE nodes... " />
+            <marker date="1450750629164" expanded="true" signature="6580:6674" placeholder="insert into members... " />
+            <marker date="1450750629164" expanded="true" signature="7176:7212" placeholder="delete from " />
+            <marker date="1450750629164" expanded="true" signature="7811:7839" placeholder="delete from " />
+            <marker date="1450750629164" expanded="true" signature="8096:8125" placeholder="delete from " />
+            <marker date="1450750629164" expanded="true" signature="9066:9097" placeholder="select * fro... images" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/TextNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="75" column="44" selection-start-line="75" selection-start-column="44" selection-end-line="75" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ClassMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6721582">
+          <caret line="37" column="59" selection-start-line="37" selection-start-column="59" selection-end-line="37" selection-end-column="59" />
+          <folding />
         </state>
       </provider>
     </entry>

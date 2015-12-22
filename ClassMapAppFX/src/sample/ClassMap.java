@@ -24,7 +24,6 @@ public class ClassMap extends Application {
 
 
 
-
         Parent root = FXMLLoader.load(getClass().getResource("ClassMapDataFile.fxml"));
         primaryStage.setTitle("Class Map");
         primaryStage.setScene(new Scene(root, 300, 275));
@@ -35,6 +34,8 @@ public class ClassMap extends Application {
 
 
     public static void main(String[] args) throws InterruptedException {
+
+        DataConnection.login("tclinkscales", "clinkclink");
 
         launch(args);
     }

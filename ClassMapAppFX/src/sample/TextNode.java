@@ -1,5 +1,6 @@
 package sample;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
@@ -27,6 +28,8 @@ public class TextNode extends MapNode{
     {
         contents = in;
         this.type = type.string;
+        this.setUserVote(Boolean.TRUE);
+        this.incrementVoteCounter();
 
         Text text = new Text(in);
         text.setBoundsType(TextBoundsType.VISUAL);
@@ -56,13 +59,13 @@ public class TextNode extends MapNode{
         ImageView arrowView;
         if(this.getUserVote() == Boolean.TRUE)
         {
-            File path = new File("C:\\Users\\crims_000\\Documents\\GitHub\\ClassMapApp\\ClassMapAppFX\\Images\\Voted.png");
+            File path = new File("./Images/arrow-up-icon_voted.png");
             arrow = new Image(path.toURI().toString());
 
         }
         else
         {
-            File path = new File("C:\\Users\\crims_000\\Documents\\GitHub\\ClassMapApp\\ClassMapAppFX\\Images\\NoVote.png");
+            File path = new File("./Images/arrow-up-icon.png");
             arrow = new Image(path.toURI().toString());
         }
 
@@ -70,7 +73,7 @@ public class TextNode extends MapNode{
         arrowView.setPreserveRatio(Boolean.TRUE);
         arrowView.setFitHeight(20.0f);
         Text numberOfVotes = new Text(""+votes);
-        numberOfVotes.setStyle("-fx-font: 22 arial");
+        numberOfVotes.setStyle("-fx-font: 20 arial");
         HBox arr = new HBox();
         arr.getChildren().addAll(arrowView,numberOfVotes);
 

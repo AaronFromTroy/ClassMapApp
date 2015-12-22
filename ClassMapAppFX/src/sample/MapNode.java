@@ -37,6 +37,9 @@ public class MapNode {
         return userVote;
     }
 
+    public void setUserVote(Boolean value) { this.userVote = value; }
+
+    public void incrementVoteCounter() { this.votes++; }
 
     public int getVotes()
     {

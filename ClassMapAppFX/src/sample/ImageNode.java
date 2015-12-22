@@ -45,6 +45,8 @@ public class ImageNode extends MapNode {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a");
         formattedDate = sdf.format(date);
         this.type = type.image;
+        this.setUserVote(Boolean.TRUE);
+        this.incrementVoteCounter();
 
         image = new Image(in);
 
@@ -60,6 +62,8 @@ public class ImageNode extends MapNode {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a");
         formattedDate = sdf.format(date);
         this.type = type.image;
+        this.setUserVote(Boolean.TRUE);
+        this.incrementVoteCounter();
 
 
         this.image = new Image(in.toURI().toString());
@@ -91,13 +95,13 @@ public class ImageNode extends MapNode {
         ImageView arrowView;
         if(this.getUserVote() == Boolean.TRUE)
         {
-            File path = new File("C:\\Users\\acous\\Documents\\GitHub\\ClassMapApp\\ClassMapAppFX\\Images\\Voted.png");
+            File path = new File("./Images/arrow-up-icon_voted.png");
             arrow = new Image(path.toURI().toString());
 
         }
         else
         {
-            File path = new File("C:\\Users\\acous\\Documents\\GitHub\\ClassMapApp\\ClassMapAppFX\\Images\\NoVote.png");
+            File path = new File("./Images/arrow-up-icon.png");
             arrow = new Image(path.toURI().toString());
         }
 
@@ -105,7 +109,7 @@ public class ImageNode extends MapNode {
         arrowView.setPreserveRatio(Boolean.TRUE);
         arrowView.setFitHeight(20.0f);
         Text numberOfVotes = new Text(" "+votes);
-        numberOfVotes.setStyle("-fx-font: 22 arial");
+        numberOfVotes.setStyle("-fx-font: 20 arial");
         HBox arr = new HBox();
         arr.getChildren().addAll(arrowView,numberOfVotes);
 
