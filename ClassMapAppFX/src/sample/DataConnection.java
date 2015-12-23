@@ -22,7 +22,7 @@ public class DataConnection {
         try {
             final String url = "jdbc:mysql://107.180.20.80/ClassMapApp";
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection(url, "amartin125971", "kjedi285");
+            conn = DriverManager.getConnection(url, "ClassMaster", "ClassMap1");
             //JOptionPane.showMessageDialog(null, "Connection Successful");
             return conn;
 
