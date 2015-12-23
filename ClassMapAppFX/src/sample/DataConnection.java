@@ -15,6 +15,7 @@ public class DataConnection {
     static Semaphore counting = new Semaphore(3);
     static ArrayList<MapNode> collection = new ArrayList<>();
     static User loggedUser; //ALL LOGGED IN USER INFORMATION WILL APPEAR HERE
+    static String token = null;
 
     private static Connection dbConnector() {
         Connection conn = null;
@@ -63,6 +64,19 @@ public class DataConnection {
             JOptionPane.showMessageDialog(null, "Incorrect Login. Try again.");
             return false;
         }
+    }
+
+    public static void getToken() {
+        Auth authToken = new Auth("acousticguy9.teacher@yahoo.com", "ed26fLi4");
+        token = authToken.getToken();
+        System.out.println(token);
+
+
+        System.out.println(JsonExtract.getJson("https://api.learningstudio.com/courses/12468893/threadeddiscussions"));
+//        StringBu
+//        StringBuffer newBuff = new String(stuff);
+//        char[] stuff2 = new CharArrayReader(stuff);
+
     }
 
     /*
@@ -129,6 +143,9 @@ public class DataConnection {
 
     }
 
+    /*
+    Sends created node information to Database
+     */
     public static void addTextNode(TextNode node) {
         Connection conn = dbConnector();
         String query = "insert into nodes (parent_id, string_data, type, created_by) " + " values(?,?,?,?) ";
