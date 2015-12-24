@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventTarget;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.Dialog;
 import javafx.scene.input.Dragboard;
@@ -18,6 +19,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 
 import java.awt.*;
@@ -56,6 +59,8 @@ public class Controller {
     public Pane nodeStage;
     public ArrayList<MapNode> masterNodeList = new ArrayList<MapNode>();
     public MapNode daroot;
+    public Accordion topicMenuAccordion;
+
 
 
     public void createTextNode(ActionEvent actionEvent){
@@ -141,6 +146,22 @@ public class Controller {
         for (int i = 0; i < children; i++) {
             if (!rootNode.children.isEmpty())
                 recursiveDisplay(rootNode.children.get(i));
+        }
+    }
+
+    public void populateList(ActionEvent actionEvent) {
+
+        if(DataConnection.getTopic == Boolean.FALSE)
+        {
+            DataConnection.setTopic();
+            for(int x = 0; x < DataConnection.topicNameList.size(); x++)
+            {
+                WebView web = new WebView();
+                WebEngine engine = web.getEngine();
+                engine.loadContent(DataConnection.htmlList.get(x).toString());
+                TitledPane temp = new TitledPane(DataConnection.topicNameList.get(x).toString(),web);
+                topicMenuAccordion.getPanes().addAll(temp);
+            }
         }
     }
 }

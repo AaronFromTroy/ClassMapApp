@@ -8,6 +8,12 @@ import java.util.concurrent.Semaphore;
 import java.util.*;
 
 import javafx.scene.image.Image;
+import org.apache.commons.io.IOUtils;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class DataConnection {
 
@@ -16,6 +22,19 @@ public class DataConnection {
     static ArrayList<MapNode> collection = new ArrayList<>();
     static User loggedUser; //ALL LOGGED IN USER INFORMATION WILL APPEAR HERE
     static String token = null;
+    static ArrayList<String> htmlList = new ArrayList<>();
+    static ArrayList<String> topicNameList = new ArrayList<>();
+    static Boolean getTopic = Boolean.FALSE;
+
+    public static Boolean getTopic()
+    {
+        return getTopic;
+    }
+
+    public static void setTopic()
+    {
+        getTopic = Boolean.TRUE;
+    }
 
     private static Connection dbConnector() {
         Connection conn = null;
@@ -71,8 +90,51 @@ public class DataConnection {
         token = authToken.getToken();
         System.out.println(token);
 
+        String data = JsonExtract.getJson("https://api.learningstudio.com/courses/12468893/threadeddiscussions");
 
-        System.out.println(JsonExtract.getJson("https://api.learningstudio.com/courses/12468893/threadeddiscussions"));
+        JSONObject pearsonThread;
+        try
+        {
+            pearsonThread =  (JSONObject) JSONValue.parseWithException(data);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            pearsonThread = null;
+        }
+        if(pearsonThread != null)
+        {
+            JSONArray threadedDiscussion = (JSONArray) pearsonThread.get("threadedDiscussions");
+
+            for(int x = 0; x < threadedDiscussion.size(); x++)
+            {
+                JSONObject temp = (JSONObject) threadedDiscussion.get(x);
+                long id = (long) temp.get("id");
+                String html = (String) temp.get("introductoryText");
+                htmlList.add(html);
+
+                String topics = JsonExtract.getJson("https://api.learningstudio.com/courses/12468893/threadeddiscussions/"+id+"/topics");
+
+                JSONObject topicObject;
+                try
+                {
+                    topicObject = (JSONObject) JSONValue.parseWithException(topics);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    topicObject = null;
+                }
+
+                if(topicObject != null)
+                {
+                    JSONArray topicArray = (JSONArray) topicObject.get("topics");
+                    JSONObject topicTemp = (JSONObject) topicArray.get(0);
+                    String topicName = topicTemp.get("title").toString();
+                    topicName = topicName.replace("&#58;",":");
+                    topicNameList.add(topicName);
+
+                }
+            }
+        }
+
+
 //        StringBu
 //        StringBuffer newBuff = new String(stuff);
 //        char[] stuff2 = new CharArrayReader(stuff);

@@ -8,6 +8,7 @@ import javafx.scene.chart.PieChart;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import javax.tools.Tool;
 import java.awt.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,12 +22,10 @@ public class ClassMap extends Application {
     public Stage primaryStage;
     @Override
     public void start(Stage primaryStage) throws Exception{
-
-
-
         Parent root = FXMLLoader.load(getClass().getResource("ClassMapDataFile.fxml"));
         primaryStage.setTitle("Class Map");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        Dimension screenRes = Toolkit.getDefaultToolkit().getScreenSize();
+        primaryStage.setScene(new Scene(root, screenRes.width, screenRes.height));
         primaryStage.show();
     }
 

@@ -10,9 +10,9 @@
 
 <GridPane fx:id="root" alignment="CENTER" hgap="10.0" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
   <children>
-    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="537.0" prefWidth="821.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="537.0" prefWidth="821.0">
       <children>
-        <ToolBar layoutY="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="517.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <ToolBar layoutY="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="55.0" prefWidth="821.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
           <items>
             <MenuButton mnemonicParsing="false" text="Create Node">
               <items>
@@ -22,12 +22,22 @@
               </items>
             </MenuButton>
             <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="false" disable="false" mnemonicParsing="false" text="Public" textAlignment="LEFT" />
-            <Button mnemonicParsing="false" text="Home" onAction="#drawWorld"/>
+            <Button mnemonicParsing="false" onAction="#drawWorld" text="Home" />
             <Button mnemonicParsing="false" text="What's New" />
+                  <MenuButton mnemonicParsing="false" text="Topic">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#populateList" text="Get Topics" />
+                        <CustomMenuItem mnemonicParsing="false" text="Unspecified Action">
+                           <content>
+                              <Accordion fx:id="topicMenuAccordion" />
+                           </content>
+                        </CustomMenuItem>
+                     </items>
+                  </MenuButton>
           </items>
         </ToolBar>
-        <Slider fx:id="zoomSlider" layoutX="723.0" layoutY="35.0" orientation="VERTICAL" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="35.0" />
-            <Pane fx:id="nodeStage" layoutY="35.0" prefHeight="417.0" prefWidth="799.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="35.0" />
+        <Slider fx:id="zoomSlider" layoutX="797.0" layoutY="62.0" orientation="VERTICAL" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="62.0" />
+            <Pane fx:id="nodeStage" layoutY="35.0" prefHeight="417.0" prefWidth="799.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="35.0" />
       </children>
     </AnchorPane>
   </children>
