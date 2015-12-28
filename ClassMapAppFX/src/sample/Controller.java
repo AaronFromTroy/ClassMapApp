@@ -8,6 +8,7 @@ import javafx.event.EventTarget;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.Dialog;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
@@ -60,6 +61,7 @@ public class Controller {
     public ArrayList<MapNode> masterNodeList = new ArrayList<MapNode>();
     public MapNode daroot;
     public Accordion topicMenuAccordion;
+    private boolean firstTimePublic = true;
 
 
 
@@ -128,8 +130,15 @@ public class Controller {
     }
 
     public void drawWorld(ActionEvent actionEvent) throws InterruptedException {
-        daroot = DataConnection.populate();
-        recursiveDisplay(daroot);
+        if(firstTimePublic) {
+            daroot = DataConnection.populate();
+            recursiveDisplay(daroot);
+            firstTimePublic = false;
+        }
+        else
+            recursiveShow(daroot);
+
+
     }
 
     private void recursiveDisplay(MapNode rootNode) {
@@ -162,6 +171,40 @@ public class Controller {
                 TitledPane temp = new TitledPane(DataConnection.topicNameList.get(x).toString(),web);
                 topicMenuAccordion.getPanes().addAll(temp);
             }
+        }
+    }
+
+    public void hideNodes(ActionEvent actionEvent) {
+        recursiveHide(daroot);
+    }
+
+    public void recursiveHide(MapNode rootNode) {
+        int children = rootNode.children.size();
+
+        if(rootNode.type.toString().equals("string"))
+            ((TextNode)(rootNode)).setVisible();
+
+        if(rootNode.type.toString().equals("image"))
+            ((ImageNode)(rootNode)).setVisible();
+
+        for (int i = 0; i < children; i++) {
+            if (!rootNode.children.isEmpty())
+                recursiveHide(rootNode.children.get(i));
+        }
+    }
+
+    public void recursiveShow(MapNode rootNode) {
+        int children = rootNode.children.size();
+
+        if(rootNode.type.toString().equals("string"))
+            ((TextNode)(rootNode)).makeVisible();
+
+        if(rootNode.type.toString().equals("image"))
+            ((ImageNode)(rootNode)).makeVisible();
+
+        for (int i = 0; i < children; i++) {
+            if (!rootNode.children.isEmpty())
+                recursiveShow(rootNode.children.get(i));
         }
     }
 }

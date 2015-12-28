@@ -6,6 +6,7 @@ import java.util.List;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.concurrent.SynchronousQueue;
 
 import org.apache.commons.io.IOUtils;
 import org.json.simple.JSONArray;
@@ -83,14 +84,18 @@ public class DictParser {
     public String getExactDefinition()
     {
         String outString = null;
+        int count = 0;
+
 
         for(int x = 0; x < list.size(); x ++)
         {
             String temp = list.get(x).toString();
             if(temp.contains(" " + searchedWord + "\n"))
             {
-                outString = temp;
-                break;
+                if (x != 0)
+                    outString += "\n\n" + temp;
+                else
+                    outString = temp;
             }
         }
         if(outString == null)

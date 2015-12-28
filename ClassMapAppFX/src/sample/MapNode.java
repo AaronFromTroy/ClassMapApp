@@ -27,6 +27,7 @@ public class MapNode {
     public int votes;
     private boolean userVote = false;
     public String createdBy;
+    public String nodePerm;
     public ArrayList<MapNode> children = new ArrayList<>();
     public int parent;
     boolean sinceLastLog;
@@ -44,15 +45,12 @@ public class MapNode {
 
     public void incrementVoteCounter() { this.votes++; }
 
+    public void decrementVoteCounter() { this.votes--; }
+
     public int getVotes()
     {
         return this.votes;
     }
-
-//    public int getUniqueId()
-//    {
-//        return this.uniqueId;
-//    }
 
     public int getParent()
     {
@@ -63,11 +61,6 @@ public class MapNode {
     {
         this.children.add(addition);
     }
-
-//    //public void setTime()
-//    {
-//        timeCreated = new Timestamp();
-//    }
 
     public long getSeconds()
     {

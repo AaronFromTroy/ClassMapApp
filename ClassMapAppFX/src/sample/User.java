@@ -30,7 +30,7 @@ public class User {
 
     public String getUser() { return this.user_name; }
 
-    public int getId() { return this.getId(); }
+    public int getId() { return this.user_id; }
 
     public Timestamp getSQLLog() { return this.last_log; }
 

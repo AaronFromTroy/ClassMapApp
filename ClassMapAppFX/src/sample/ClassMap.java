@@ -33,7 +33,7 @@ public class ClassMap extends Application {
 
 
     public static void main(String[] args) throws InterruptedException {
-        DataConnection.login("tclinkscales", "clinkclink");
+        DataConnection.login("q", "q");
         DataConnection.getToken();
         launch(args);
     }

@@ -4,6 +4,11 @@ import java.awt.*;
 import java.io.*;
 import java.sql.*;
 import javax.swing.*;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.concurrent.Semaphore;
 import java.util.*;
 
@@ -17,7 +22,6 @@ import org.json.simple.parser.ParseException;
 
 public class DataConnection {
 
-    static int userID;
     static Semaphore counting = new Semaphore(3);
     static ArrayList<MapNode> collection = new ArrayList<>();
     static User loggedUser; //ALL LOGGED IN USER INFORMATION WILL APPEAR HERE
@@ -42,7 +46,6 @@ public class DataConnection {
             final String url = "jdbc:mysql://107.180.20.80/ClassMapApp";
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(url, "ClassMaster", "ClassMap1");
-            //JOptionPane.showMessageDialog(null, "Connection Successful");
             return conn;
 
         } catch (SQLException | HeadlessException e) {
@@ -61,6 +64,7 @@ public class DataConnection {
     public static boolean login(String user, String pass) {
         Connection conn = dbConnector();
         String query = "select * from members where username=? and password=? " ;
+        String updateTime = "UPDATE members SET log_out=? WHERE id=?";
         try
         {
             PreparedStatement pst = conn.prepareStatement(query);
@@ -69,14 +73,32 @@ public class DataConnection {
 
             ResultSet rst = pst.executeQuery();
             if(rst.next()) {
-                JOptionPane.showMessageDialog(null, "Found User!");
-                User newloggedUser = new User(rst.getString("first_name"), rst.getString("last_name"), rst.getString("username"),
-                        rst.getInt("id"), rst.getTimestamp("log_out"), rst.getString("account_permissions"));
-                loggedUser = newloggedUser;
-                return true;
+                if(rst.getString("password").equals(pass)) {
+                    JOptionPane.showMessageDialog(null, "Found User!");
+
+                    User newloggedUser = new User(rst.getString("first_name"), rst.getString("last_name"), rst.getString("username"),
+                            rst.getInt("id"), rst.getTimestamp("log_out"), rst.getString("account_permissions"));
+                    loggedUser = newloggedUser;
+                    pst.close();
+                    rst.close();
+
+
+                    PreparedStatement ps = conn.prepareStatement(updateTime);
+                    ps.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
+                    ps.setInt(2, loggedUser.getId());
+                    ps.executeUpdate();
+                    ps.close();
+                    conn.close();
+                    return true;
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Does not match!");
+                    conn.close();
+                    return false;
+                }
             }
             else {
-
+                conn.close();
                 return false;
             }
         } catch (Exception e) {
@@ -85,8 +107,16 @@ public class DataConnection {
         }
     }
 
+    /*
+    We've hardcoded the 2 Pearson log ins to allow for multiple users in a system which we only have 2 accounts for.
+    In an ideal situation, we would have the user log in with his or her Pearson credentials.
+     */
     public static void getToken() {
-        Auth authToken = new Auth("acousticguy9.teacher@yahoo.com", "ed26fLi4");
+        Auth authToken;
+        if (loggedUser.getAccount().equals("teacher"))
+            authToken = new Auth("acousticguy9.teacher@yahoo.com", "ed26fLi4");
+        else
+            authToken = new Auth("acousticguy9.student@yahoo.com", "osai9Mf7");
         token = authToken.getToken();
         System.out.println(token);
 
@@ -134,11 +164,6 @@ public class DataConnection {
             }
         }
 
-
-//        StringBu
-//        StringBuffer newBuff = new String(stuff);
-//        char[] stuff2 = new CharArrayReader(stuff);
-
     }
 
     /*
@@ -151,16 +176,6 @@ public class DataConnection {
         String query2 = "Select * from node_votes where id=?";
         try {
 
-//            PreparedStatement ps = conn.prepareStatement(query2);
-//            ps.setInt(1, loggedUser.getId());
-//            ResultSet rst = ps.executeQuery();
-//            while(rst.next()) {
-//                if (rst.getBoolean("vote") == true) {
-//
-//                }
-//            }
-
-
             PreparedStatement pst = conn.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
 
@@ -168,10 +183,14 @@ public class DataConnection {
 
                 if (new String(rs.getString("type").toString()).equals("string")) {
                     collection.add(new TextNode(rs.getInt("id"), rs.getInt("parent_id"),
-                            rs.getString("string_data"), rs.getTimestamp("time_created")));
+                            rs.getString("string_data"), rs.getTimestamp("time_created"), rs.getString("created_by"),
+                            rs.getString("account")));
+                    System.out.println(rs.getString("account"));
                 }
                 else if (new String(rs.getString("type").toString()).equals("image")) {
-                    collection.add(new ImageNode(rs.getInt("id"), rs.getInt("parent_id"), rs.getTimestamp("time_created")));
+                    collection.add(new ImageNode(rs.getInt("id"), rs.getInt("parent_id"), rs.getTimestamp("time_created"),
+                            rs.getString("created_by"), rs.getString("account")));
+                    System.out.println(rs.getString("account"));
                     counting.acquire();
                     loadImg((collection.size() - 1), rs.getInt("id"));
                 }
@@ -189,6 +208,14 @@ public class DataConnection {
             while (counting.availablePermits() < 3) {
 
             }
+//            PreparedStatement ps = conn.prepareStatement(query2);
+//            ps.setInt(1, loggedUser.getId());
+//            ResultSet rst = ps.executeQuery();
+//            while(rst.next()) {
+//                if (rst.getBoolean("vote") == true) {
+//
+//                }
+//            }
             for (int i = (collection.size() - 1); i > 0; i--) {
                 collection.remove(i);
             }
@@ -210,7 +237,7 @@ public class DataConnection {
      */
     public static void addTextNode(TextNode node) {
         Connection conn = dbConnector();
-        String query = "insert into nodes (parent_id, string_data, type, created_by) " + " values(?,?,?,?) ";
+        String query = "insert into nodes (parent_id, string_data, type, created_by, account) " + " values(?,?,?,?,?) ";
         String query2 = "SELECT id FROM nodes WHERE created_by=? and string_data=?";
         int id = -1;
         try
@@ -220,6 +247,7 @@ public class DataConnection {
             ps.setString(2, node.getContents());
             ps.setString(3, "String");
             ps.setString(4, loggedUser.getUser());
+            ps.setString(5, loggedUser.getAccount());
             ps.executeUpdate();
 
             PreparedStatement pst = conn.prepareStatement(query2);
@@ -230,6 +258,11 @@ public class DataConnection {
                 id = rs.getInt("id");
                 node.setUniqueId(id);
             }
+            pst.close();
+            rs.close();
+            conn.close();
+
+            addUpvote(node);
         }
         catch(Exception e)
         {
@@ -239,7 +272,7 @@ public class DataConnection {
 
     public static void addImageNode(ImageNode node) {
         Connection conn =  dbConnector();
-        String query = "insert into nodes (parent_id, string_data, type, created_by)" + "values(?,?,?,?)";
+        String query = "insert into nodes (parent_id, string_data, type, created_by, account)" + "values(?,?,?,?,?)";
         String query2 = "select id from nodes where string_data=? and type='image'";
         String query3 = "insert into images (id, stored_image)" + "values(?, ?)";
         int id = -1;
@@ -250,6 +283,7 @@ public class DataConnection {
             ps.setString(2, node.getFormattedDate() + loggedUser.getUser());
             ps.setString(3, node.getType().toString());
             ps.setString(4, loggedUser.getUser());
+            ps.setString(5, loggedUser.getAccount());
             ps.executeUpdate();
             ps.close();
 
@@ -269,6 +303,8 @@ public class DataConnection {
             ps2.executeUpdate();
             ps2.close();
             conn.close();
+
+            addUpvote(node);
         } catch (Exception E) {
             JOptionPane.showMessageDialog(null, "Error");
         }
@@ -278,10 +314,10 @@ public class DataConnection {
     Determines if user has voted for the incoming node and adjust values
     in database accordingly.
      */
-    public static void addUpvote(MapNode node) {
+    public static void addUpvote(MapNode node) throws SQLException {
         Connection conn = dbConnector();
         String query = null;
-        if(node.getUserVote() == false) {
+        if(node.getUserVote() == true) {
             query = "UPDATE nodes SET votes = votes + 1 WHERE id=?";
         }
         else {
@@ -292,10 +328,22 @@ public class DataConnection {
             ps.setInt(1, node.uniqueId);
             ps.executeUpdate();
             ps.close();
+
+            if (node.getUserVote() == true) {
+                query = "insert into node_votes (user_id, node_id) " + " values(?,?)";
+            }
+            else
+                query = "delete from node_votes where user_id=? and node_id=?";
+            PreparedStatement pst = conn.prepareStatement(query);
+            pst.setInt(1, loggedUser.getId());
+            pst.setInt(2, node.uniqueId);
+            pst.executeUpdate();
+            pst.close();
             conn.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Didnt Work Sorry!");
         }
+
     }
 
     public static void addMember(String email, String username, String password, String first_name,
@@ -317,46 +365,46 @@ public class DataConnection {
         }
     }
 
-    public static void deleteMember(String username) {
-        Connection conn = dbConnector();
-        String query = "delete from members where username=?"; //put in number for ? and take out ps.setInt(); to make it work also
-        try {
-            PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, username); //set id for the second number
-            ps.executeUpdate();
-            System.out.println("Deleted record...");
-            ps.close();
-            conn.close();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "User could not be deleted.");
-        }
-    }
+//    public static void deleteMember(String username) {
+//        Connection conn = dbConnector();
+//        String query = "delete from members where username=?"; //put in number for ? and take out ps.setInt(); to make it work also
+//        try {
+//            PreparedStatement ps = conn.prepareStatement(query);
+//            ps.setString(1, username); //set id for the second number
+//            ps.executeUpdate();
+//            System.out.println("Deleted record...");
+//            ps.close();
+//            conn.close();
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, "User could not be deleted.");
+//        }
+//    }
 
-    public static void deleteNode(MapNode node) {
-        Connection conn = dbConnector();
-        String query = "delete from nodes where id=?";
-        try {
-            PreparedStatement ps = conn.prepareStatement(query);
-            ps.setInt(1, node.uniqueId);
-            ps.executeUpdate();
-            ps.close();
-            if (node.getType() == "Image") {
-                String query2 = "delete from images where id=?";
-                try {
-                    PreparedStatement pst = conn.prepareStatement(query2);
-                    pst.setInt(1, node.uniqueId);
-                    pst.executeUpdate();
-                    pst.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-            conn.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void deleteNode(MapNode node) {
+//        Connection conn = dbConnector();
+//        String query = "delete from nodes where id=?";
+//        try {
+//            PreparedStatement ps = conn.prepareStatement(query);
+//            ps.setInt(1, node.uniqueId);
+//            ps.executeUpdate();
+//            ps.close();
+//            if (node.getType() == "Image") {
+//                String query2 = "delete from images where id=?";
+//                try {
+//                    PreparedStatement pst = conn.prepareStatement(query2);
+//                    pst.setInt(1, node.uniqueId);
+//                    pst.executeUpdate();
+//                    pst.close();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//            conn.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     /*
     Used with populate to grab images from the database.

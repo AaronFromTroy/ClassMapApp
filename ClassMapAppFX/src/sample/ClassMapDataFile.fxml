@@ -21,8 +21,8 @@
                         <MenuItem mnemonicParsing="false" onAction="#createImageNodeFile" text="Create Image Node from File" />
               </items>
             </MenuButton>
-            <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="false" disable="false" mnemonicParsing="false" text="Public" textAlignment="LEFT" />
-            <Button mnemonicParsing="false" onAction="#drawWorld" text="Home" />
+            <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="false" disable="false" mnemonicParsing="false" text="Public" textAlignment="LEFT" onAction="#drawWorld"/>
+            <Button mnemonicParsing="false" onAction="#hideNodes" text="Home" />
             <Button mnemonicParsing="false" text="What's New" />
                   <MenuButton mnemonicParsing="false" text="Topic">
                      <items>

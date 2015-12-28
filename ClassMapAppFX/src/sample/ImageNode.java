@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.lang.System;
 
@@ -47,7 +48,8 @@ public class ImageNode extends MapNode {
         this.type = type.image;
         this.setUserVote(Boolean.TRUE);
         this.incrementVoteCounter();
-
+        this.createdBy = DataConnection.loggedUser.getUser();
+        this.nodePerm = DataConnection.loggedUser.getAccount();
         image = new Image(in);
 
         this.drawNode();
@@ -64,20 +66,21 @@ public class ImageNode extends MapNode {
         this.type = type.image;
         this.setUserVote(Boolean.TRUE);
         this.incrementVoteCounter();
-
-
+        this.createdBy = DataConnection.loggedUser.getUser();
+        this.nodePerm = DataConnection.loggedUser.getAccount();
         this.image = new Image(in.toURI().toString());
         this.drawNode();
 
     }
 
-    public ImageNode(int id, int pid, Timestamp created)
+    public ImageNode(int id, int pid, Timestamp created,String user, String accountType)
     {
         this.type = type.image;
         uniqueId = id;
         parent = pid;
         timeCreated = created;
-
+        this.createdBy = user;
+        this.nodePerm = accountType;
     }
 
     public void drawNode() {
@@ -88,8 +91,14 @@ public class ImageNode extends MapNode {
         double width = viewer.getBoundsInParent().getWidth() * 2/3;
 
         Ellipse newNode = new Ellipse(0.0f, 0.0f, width, height);
-        newNode.setFill(Paint.valueOf("white"));
-        newNode.setStroke(Paint.valueOf("black"));
+        if(this.nodePerm.equals("student")) {
+            newNode.setFill(Paint.valueOf("white"));
+            newNode.setStroke(Paint.valueOf("black"));
+        }
+        else {
+            newNode.setFill(Paint.valueOf("black"));
+            newNode.setStroke(Paint.valueOf("black"));
+        }
 
         Image arrow;
         ImageView arrowView;
@@ -112,6 +121,54 @@ public class ImageNode extends MapNode {
         numberOfVotes.setStyle("-fx-font: 20 arial");
         HBox arr = new HBox();
         arr.getChildren().addAll(arrowView,numberOfVotes);
+
+        arr.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(getUserVote() == Boolean.TRUE)
+                {
+                    File path = new File("./Images/arrow-up-icon.png");
+                    Image newArrow = new Image(path.toURI().toString());
+                    ImageView newArrowView = new ImageView(newArrow);
+                    newArrowView.setPreserveRatio(Boolean.TRUE);
+                    newArrowView.setFitHeight(20.0f);
+                    decrementVoteCounter();
+                    Text numberOfVotes = new Text(""+(votes));
+                    numberOfVotes.setStyle("-fx-font: 20 arial");
+
+                    arr.getChildren().remove(0, 2);
+                    arr.getChildren().addAll(newArrowView, numberOfVotes);
+                    setUserVote(false);
+                    try {
+                        sendSelf();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    //setVisible();
+
+                }
+                else
+                {
+                    File path = new File("./Images/arrow-up-icon_voted.png");
+                    Image newArrow = new Image(path.toURI().toString());
+                    ImageView newArrowView = new ImageView(newArrow);
+                    newArrowView.setPreserveRatio(Boolean.TRUE);
+                    newArrowView.setFitHeight(20.0f);
+                    incrementVoteCounter();
+                    Text numberOfVotes = new Text(""+(votes));
+                    numberOfVotes.setStyle("-fx-font: 20 arial");
+                    arr.getChildren().remove(0, 2);
+                    arr.getChildren().addAll(newArrowView, numberOfVotes);
+                    setUserVote(true);
+                    try {
+                        sendSelf();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    //setVisible();
+                }
+            }
+        });
 
         StackPane stack = new StackPane();
         stack.getChildren().addAll(newNode, viewer);
@@ -154,6 +211,22 @@ public class ImageNode extends MapNode {
 
     }
 
+    public void sendSelf() throws SQLException { DataConnection.addUpvote(this); }
+
     public void setImage(Image node) { this.image = node; }
+
+    public String getAccountPerm() { return this.nodePerm; }
+
+    public void makeVisible() {
+        this.nodePane.setVisible(true);
+    }
+
+    public void setVisible() {
+        if (getUserVote() == true) {
+            this.nodePane.setVisible(true);
+        }
+        else
+            this.nodePane.setVisible(false);
+    }
 
 }
