@@ -12,36 +12,13 @@
   <children>
     <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="537.0" prefWidth="821.0">
       <children>
-        <ToolBar id="toolbar" layoutY="27.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="55.0" prefWidth="821.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
-          <items>
-            <MenuButton id="menu-button" mnemonicParsing="false" stylesheets="@../Cobra.css" text="Create Node">
-              <items>
-                <MenuItem mnemonicParsing="false" onAction="#createTextNode" style="-fx-text-fill: black;" text="Create Text Node" />
-                <MenuItem mnemonicParsing="false" onAction="#createImageNodeURL" style="-fx-text-fill: black;" text="Create Image Node from URL" />
-                        <MenuItem mnemonicParsing="false" onAction="#createImageNodeFile" style="-fx-text-fill: black;" text="Create Image Node from File" />
-              </items>
-            </MenuButton>
-            <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="false" disable="false" mnemonicParsing="false" onAction="#showHome" text="Public" textAlignment="LEFT" />
-            <Button mnemonicParsing="false" onAction="#hideNodes" text="Home" />
-            <Button mnemonicParsing="false" text="What's New" />
-                  <MenuButton mnemonicParsing="false" id="menu-button" stylesheets="@../Cobra.css" text="Topic">
-                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#populateList" style="-fx-text-fill: black;" text="Get Topics" />
-                        <CustomMenuItem mnemonicParsing="false" text="Unspecified Action">
-                           <content>
-                              <Accordion fx:id="topicMenuAccordion" />
-                           </content>
-                        </CustomMenuItem>
-                     </items>
-                  </MenuButton>
-          </items>
-        </ToolBar>
+
             <Pane fx:id="nodeStage" layoutY="80.0" prefHeight="457.0" prefWidth="821.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="80.0" />
-            <MenuBar id="mainmenu" layoutY="2.0" prefHeight="25.0" prefWidth="821.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0">
+            <MenuBar id="mainmenu" layoutY="-3.0" prefHeight="30.0" prefWidth="821.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" style="-fx-text-fill: black;" onAction="#drawWorld" text="Load ClassMap" />
+                    <MenuItem mnemonicParsing="false" onAction="#drawWorld" style="-fx-text-fill: black;" text="Load ClassMap" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
@@ -56,6 +33,30 @@
                 </Menu>
               </menus>
             </MenuBar>
+          <ToolBar id="toolbar" layoutY="27.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="55.0" prefWidth="821.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
+              <items>
+                  <MenuButton id="menu-button" mnemonicParsing="false" stylesheets="@../Cobra.css" text="Create Node">
+                      <items>
+                          <MenuItem mnemonicParsing="false" onAction="#createTextNode" style="-fx-text-fill: black;" text="Create Text Node" />
+                          <MenuItem mnemonicParsing="false" onAction="#createImageNodeURL" style="-fx-text-fill: black;" text="Create Image Node from URL" />
+                          <MenuItem mnemonicParsing="false" onAction="#createImageNodeFile" style="-fx-text-fill: black;" text="Create Image Node from File" />
+                      </items>
+                  </MenuButton>
+                  <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="false" disable="false" mnemonicParsing="false" onAction="#showHome" text="Public" textAlignment="LEFT" />
+                  <Button mnemonicParsing="false" onAction="#hideNodes" text="Home" />
+                  <Button mnemonicParsing="false" text="What's New" />
+                  <MenuButton id="menu-button" mnemonicParsing="false" stylesheets="@../Cobra.css" text="Topic">
+                      <items>
+                          <CustomMenuItem mnemonicParsing="false" text="Unspecified Action">
+                              <content>
+                                  <Accordion fx:id="topicMenuAccordion" />
+                              </content>
+                          </CustomMenuItem>
+                      </items>
+                  </MenuButton>
+              </items>
+          </ToolBar>
+
       </children>
     </AnchorPane>
   </children>

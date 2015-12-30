@@ -138,6 +138,7 @@ public class Controller {
             daroot = DataConnection.populate();
             recursiveDisplay(daroot);
             firstTimePublic = false;
+            populateList();
         }
     }
 
@@ -164,7 +165,7 @@ public class Controller {
         }
     }
 
-    public void populateList(ActionEvent actionEvent) {
+    public void populateList() {
 
         if(DataConnection.getTopic == Boolean.FALSE)
         {
