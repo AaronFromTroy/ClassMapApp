@@ -350,7 +350,7 @@ public class DataConnection {
                                  String last_name, String accountperms) {
         Connection conn = dbConnector();
         try {
-            String query = "insert into members (email, username, password, first_name, last_name) " + " values(?,?,?,?,?) ";
+            String query = "insert into members (email, username, password, first_name, last_name, account_permissions) " + " values(?,?,?,?,?,?) ";
 
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, email);
@@ -358,6 +358,7 @@ public class DataConnection {
             ps.setString(3, password);
             ps.setString(4, first_name);
             ps.setString(5, last_name);
+            ps.setString(6, accountperms);
 
             ps.executeUpdate();
         } catch (Exception e) {

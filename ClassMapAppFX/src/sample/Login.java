@@ -35,7 +35,7 @@ public class Login extends Application{
         primaryStage.getIcons().add(new javafx.scene.image.Image("sample/OrangeIcon.png"));
 
         Dimension screenRes = Toolkit.getDefaultToolkit().getScreenSize();
-        Scene scene = new Scene(root, screenRes.width, screenRes.height);
+        Scene scene = new Scene(root, (screenRes.width)-200, (screenRes.height)-200);
 
         root.getStyleClass().add("classmap-root");
         scene.getStylesheets().add("Cobra.css");

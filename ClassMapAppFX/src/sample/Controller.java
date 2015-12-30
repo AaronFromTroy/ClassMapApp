@@ -66,21 +66,22 @@ public class Controller {
 
     public void createTextNode(ActionEvent actionEvent){
 
+        if(!firstTimePublic) {
+            TextInputDialog dialog = new TextInputDialog("Enter the text for the node");
+            dialog.setTitle("Create Text Node");
+            dialog.setHeaderText("Enter the text below.");
+            dialog.setContentText("Text: ");
+            Optional<String> result = dialog.showAndWait();
 
-        TextInputDialog dialog = new TextInputDialog("Enter the text for the node");
-        dialog.setTitle("Create Text Node");
-        dialog.setHeaderText("Enter the text below.");
-        dialog.setContentText("Text: ");
-        Optional<String> result = dialog.showAndWait();
+            TextNode newNode = new TextNode(result.get());
+            DataConnection.addTextNode(newNode);
 
-        TextNode newNode = new TextNode(result.get());
-        DataConnection.addTextNode(newNode);
+            newNode.setTypeToText();
 
-        newNode.setTypeToText();
+            //masterNodeList.add(newNode); I think this is still necessary but not for the database
 
-        //masterNodeList.add(newNode); I think this is still necessary but not for the database
-
-        nodeStage.getChildren().add(newNode.getNodePane());
+            nodeStage.getChildren().add(newNode.getNodePane());
+        }
 
     }
 
@@ -96,36 +97,40 @@ public class Controller {
 
 
     public void createImageNodeURL(ActionEvent actionEvent) {
-        TextInputDialog dialog = new TextInputDialog("http://");
-        dialog.setTitle("Create Image Node from URL");
-        dialog.setHeaderText("Enter the URL below.");
-        dialog.setContentText("URL: ");
-        Optional<String> result = dialog.showAndWait();
+        if(!firstTimePublic) {
+            TextInputDialog dialog = new TextInputDialog("http://");
+            dialog.setTitle("Create Image Node from URL");
+            dialog.setHeaderText("Enter the URL below.");
+            dialog.setContentText("URL: ");
+            Optional<String> result = dialog.showAndWait();
 
-        ImageNode newNode = new ImageNode(result.get());
-        DataConnection.addImageNode(newNode);
+            ImageNode newNode = new ImageNode(result.get());
+            DataConnection.addImageNode(newNode);
 
-        newNode.setTypeToImage();
+            newNode.setTypeToImage();
 
-        //masterNodeList.add(image); I think this is still necessary but not for the database
+            //masterNodeList.add(image); I think this is still necessary but not for the database
 
-        nodeStage.getChildren().add(newNode.getNodePane());
+            nodeStage.getChildren().add(newNode.getNodePane());
+        }
     }
 
     public void createImageNodeFile(ActionEvent actionEvent) throws FileNotFoundException {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open an image file");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg","*.gif","*.bmp"));
-        File openedFile = fileChooser.showOpenDialog(null);
+        if(!firstTimePublic) {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open an image file");
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif", "*.bmp"));
+            File openedFile = fileChooser.showOpenDialog(null);
 
-        ImageNode newNode = new ImageNode(openedFile);
-        DataConnection.addImageNode(newNode);
+            ImageNode newNode = new ImageNode(openedFile);
+            DataConnection.addImageNode(newNode);
 
-        newNode.setTypeToImage();
+            newNode.setTypeToImage();
 
-        //masterNodeList.add(newNode);
+            //masterNodeList.add(newNode);
 
-       nodeStage.getChildren().add(newNode.getNodePane());
+            nodeStage.getChildren().add(newNode.getNodePane());
+        }
     }
 
     public void drawWorld(ActionEvent actionEvent) throws InterruptedException {
@@ -134,15 +139,12 @@ public class Controller {
             recursiveDisplay(daroot);
             firstTimePublic = false;
         }
-        else{
-
-        }
-
-
     }
 
     public void showHome(ActionEvent actionEvent){
-        recursiveShow(daroot);
+        if(!firstTimePublic) {
+            recursiveShow(daroot);
+        }
     }
 
     private void recursiveDisplay(MapNode rootNode) {
@@ -179,7 +181,9 @@ public class Controller {
     }
 
     public void hideNodes(ActionEvent actionEvent) {
-        recursiveHide(daroot);
+        if(!firstTimePublic) {
+            recursiveHide(daroot);
+        }
     }
 
     public void recursiveHide(MapNode rootNode) {

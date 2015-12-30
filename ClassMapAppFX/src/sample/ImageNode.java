@@ -14,6 +14,7 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
 
 import javax.imageio.ImageIO;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -180,8 +181,10 @@ public class ImageNode extends MapNode {
         nodePane.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                nodePane.setTranslateX(event.getSceneX() - nodePane.getHeight()/2);
-                nodePane.setTranslateY(event.getSceneY() - nodePane.getWidth()/2);
+                nodePane.setLayoutX(event.getSceneX() - nodePane.getWidth()/2);
+                nodePane.setLayoutY(event.getSceneY()-nodePane.getHeight());
+//                nodePane.setTranslateX(event.getSceneX() - nodePane.getHeight()/2);
+//                nodePane.setTranslateY(event.getSceneY() - nodePane.getWidth()/2);
             }
         });
     }
