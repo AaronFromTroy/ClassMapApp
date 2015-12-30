@@ -54,7 +54,6 @@ import javax.imageio.stream.ImageInputStream;
 
 public class Controller {
 
-    public Slider zoomSlider;
     public TitledPane mainStage;
     public GridPane root;
     public Pane nodeStage;
@@ -135,10 +134,15 @@ public class Controller {
             recursiveDisplay(daroot);
             firstTimePublic = false;
         }
-        else
-            recursiveShow(daroot);
+        else{
+
+        }
 
 
+    }
+
+    public void showHome(ActionEvent actionEvent){
+        recursiveShow(daroot);
     }
 
     private void recursiveDisplay(MapNode rootNode) {
