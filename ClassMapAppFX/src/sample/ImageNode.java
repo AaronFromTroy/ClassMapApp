@@ -2,16 +2,18 @@ package sample;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.ImageViewBuilder;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 import java.awt.event.MouseListener;
@@ -40,6 +42,7 @@ public class ImageNode extends MapNode {
     private byte[] imgToByte;
     private String formattedDate;
     private Image image;
+    private int diffX, diffY;
 
     public ImageNode(String in)
     {
@@ -54,8 +57,6 @@ public class ImageNode extends MapNode {
         image = new Image(in);
 
         this.drawNode();
-
-
 
     }
 
@@ -123,6 +124,7 @@ public class ImageNode extends MapNode {
         HBox arr = new HBox();
         arr.getChildren().addAll(arrowView,numberOfVotes);
 
+
         arr.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -173,20 +175,25 @@ public class ImageNode extends MapNode {
 
         StackPane stack = new StackPane();
         stack.getChildren().addAll(newNode, viewer);
-
+        stack.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                showStage();
+            }
+        });
         nodePane = new GridPane();
         nodePane.add(arr,0,0);
         nodePane.add(stack,0,1);
 
         nodePane.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event) {
-                nodePane.setLayoutX(event.getSceneX() - nodePane.getWidth()/2);
-                nodePane.setLayoutY(event.getSceneY()-nodePane.getHeight());
-//                nodePane.setTranslateX(event.getSceneX() - nodePane.getHeight()/2);
-//                nodePane.setTranslateY(event.getSceneY() - nodePane.getWidth()/2);
+            public void handle(MouseEvent m) {
+
+                nodePane.setLayoutX(m.getSceneX() - nodePane.getWidth()/2);
+                nodePane.setLayoutY(m.getSceneY()-nodePane.getHeight());
             }
         });
+
     }
 
     public void setTypeToImage()
@@ -230,6 +237,27 @@ public class ImageNode extends MapNode {
         }
         else
             this.nodePane.setVisible(false);
+    }
+
+    public void showStage(){
+        Image logo = new Image("sample/OrangeIcon.png");
+        Stage newStage = new Stage();
+        newStage.setTitle("Image Viewer");
+        newStage.getIcons().add(logo);
+        newStage.setResizable(false);
+        VBox comp = new VBox();
+        ImageView img = new ImageView(image);
+        img.setPreserveRatio(true);
+        img.setFitHeight(400.0f);
+        double height = img.getBoundsInParent().getHeight();
+        double width = img.getBoundsInParent().getWidth();
+
+        comp.getChildren().add(img);
+
+        Scene stageScene = new Scene(comp, width, height);
+        newStage.setScene(stageScene);
+        newStage.setResizable(false);
+        newStage.show();
     }
 
 }

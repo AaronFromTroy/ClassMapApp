@@ -1,8 +1,10 @@
 package sample;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.sql.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.sql.Date;
 import java.text.DateFormat;
@@ -12,6 +14,7 @@ import java.time.OffsetDateTime;
 import java.util.concurrent.Semaphore;
 import java.util.*;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import org.apache.commons.io.IOUtils;
 import org.json.simple.JSONArray;
@@ -297,16 +300,42 @@ public class DataConnection {
             rs.close();
             pst.close();
 
+
+
+            addUpvote(node);
+        } catch (Exception E) {
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+        try {
             PreparedStatement ps2 = conn.prepareStatement(query3);
             ps2.setInt(1, id);
             ps2.setBytes(2, node.imageToByteArray());
             ps2.executeUpdate();
             ps2.close();
             conn.close();
+        } catch (Exception e) {
+            try {
+                File path = new File("./Images/arrow-up-icon.png");
+                Image newArrow = new Image(path.toURI().toString());
 
-            addUpvote(node);
-        } catch (Exception E) {
-            JOptionPane.showMessageDialog(null, "Error");
+                BufferedImage bImage = SwingFXUtils.fromFXImage(newArrow, null);
+                ByteArrayOutputStream s = new ByteArrayOutputStream();
+                try {
+                    ImageIO.write(bImage, "jpg", s);
+                } catch (IOException innerEvent) {
+                    e.printStackTrace();
+                }
+
+                PreparedStatement ps3 = conn.prepareStatement(query3);
+                ps3.setInt(1, id);
+                ps3.setBytes(2, s.toByteArray());
+                ps3.executeUpdate();
+                ps3.close();
+                conn.close();
+            } catch (Exception event) {
+                JOptionPane.showMessageDialog(null, "that did not work!");
+            }
+            JOptionPane.showMessageDialog(null, "Image not compatible.");
         }
     }
 

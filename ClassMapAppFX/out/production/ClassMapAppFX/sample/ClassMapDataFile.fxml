@@ -13,7 +13,10 @@
     <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="537.0" prefWidth="821.0">
       <children>
 
-            <Pane fx:id="nodeStage" layoutY="80.0" prefHeight="457.0" prefWidth="821.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="80.0" />
+            <Pane fx:id="nodeStage" layoutY="80.0" prefHeight="457.0" prefWidth="821.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="80.0">
+               <children>
+                  <Pane fx:id="newNodeStage" onMouseDragged="#nodeDragMouseDragged" onMousePressed="#nodeDragMousePressed" prefHeight="457.0" prefWidth="821.0" />
+               </children></Pane>
             <MenuBar id="mainmenu" layoutY="-3.0" prefHeight="30.0" prefWidth="821.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <menus>
                 <Menu mnemonicParsing="false" text="File">

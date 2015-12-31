@@ -5,11 +5,13 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventTarget;
+import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.Dialog;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
@@ -57,16 +59,21 @@ public class Controller {
     public TitledPane mainStage;
     public GridPane root;
     public Pane nodeStage;
+    public Pane newNodeStage;
     public ArrayList<MapNode> masterNodeList = new ArrayList<MapNode>();
     public MapNode daroot;
     public Accordion topicMenuAccordion;
     private boolean firstTimePublic = true;
+    int prevPaneCordX, prevPaneCordY, prevMouseCordX, prevMouseCordY,diffX, diffY;
+
+    public Pane trythisout;
 
 
 
     public void createTextNode(ActionEvent actionEvent){
 
-        if(!firstTimePublic) {
+       // if(!firstTimePublic) {
+
             TextInputDialog dialog = new TextInputDialog("Enter the text for the node");
             dialog.setTitle("Create Text Node");
             dialog.setHeaderText("Enter the text below.");
@@ -81,7 +88,7 @@ public class Controller {
             //masterNodeList.add(newNode); I think this is still necessary but not for the database
 
             nodeStage.getChildren().add(newNode.getNodePane());
-        }
+       // }
 
     }
 
@@ -153,11 +160,11 @@ public class Controller {
         int children = rootNode.children.size();
 
         if(rootNode.type.toString().equals("string"))
-            nodeStage.getChildren().add(((TextNode)(rootNode)).getNodePane());
+            newNodeStage.getChildren().add(((TextNode)(rootNode)).getNodePane());
         System.out.println(rootNode.uniqueId);
 
         if(rootNode.type.toString().equals("image"))
-            nodeStage.getChildren().add(((ImageNode)(rootNode)).getNodePane());
+            newNodeStage.getChildren().add(((ImageNode)(rootNode)).getNodePane());
 
         for (int i = 0; i < children; i++) {
             if (!rootNode.children.isEmpty())
@@ -216,4 +223,26 @@ public class Controller {
                 recursiveShow(rootNode.children.get(i));
         }
     }
+
+    public void nodeDragMousePressed(MouseEvent m)
+    {
+        prevPaneCordX= (int) newNodeStage.getLayoutX();
+        prevPaneCordY= (int) newNodeStage.getLayoutY();
+        prevMouseCordX= (int) m.getX();
+        prevMouseCordY= (int) m.getY();
+    }
+
+    // set this method on Mouse Drag event for newNodeStage
+    public void nodeDragMouseDragged(MouseEvent m)
+    {
+        diffX= (int) (m.getX()- prevMouseCordX);
+        diffY= (int) (m.getY()-prevMouseCordY );
+        int x = (int) (diffX+newNodeStage.getLayoutX()-root.getLayoutX());
+        int y = (int) (diffY+newNodeStage.getLayoutY()-root.getLayoutY());
+        if(m.getSceneX() > 0 && m.getSceneY() > 0) {
+            newNodeStage.setLayoutX(x);
+            newNodeStage.setLayoutY(y);
+        }
+    }
 }
+
