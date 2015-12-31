@@ -1,10 +1,11 @@
 package sample;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
+import javafx.application.Application;
+import static javafx.application.Application.launch;
+
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
-import javafx.scene.chart.PieChart;
-import javafx.scene.control.Tooltip;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -14,61 +15,72 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextBoundsType;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Optional;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-public class TextNode extends MapNode{
 
+/**
+ * Created by acous on 12/30/2015.
+ */
+public class VideoNode extends MapNode{
     private GridPane nodePane;
+    private byte[] imgToByte;
+    private Image image;
     private String contents;
+    private String content_Url;
 
-    public TextNode(String in)
+    public VideoNode(String in)
     {
         this.contents = in;
-        this.type = type.string;
+        this.contents = getContent();
+        this.type = type.link;
         this.setUserVote(Boolean.TRUE);
         this.incrementVoteCounter();
         this.createdBy = DataConnection.loggedUser.getUser();
         this.nodePerm = DataConnection.loggedUser.getAccount();
-        this.drawNode();
+        content_Url = "<iframe width=\"560\" height=\"315\" src=\"http://www.youtube.com/embed/" + contents
+                + "\" frameborder=\"0\" allowfullscreen></iframe>";
 
+        this.drawNode();
 
     }
 
-    public TextNode(int id, int pid, String in, Timestamp date_created, String user, String accountType)
+    public VideoNode(int id, int pid, String in, Timestamp date_created, String user, String accountType)
     {
         this.uniqueId = id;
         this.parent = pid;
         this.contents = in;
         this.timeCreated = date_created;
-        this.type = type.string;
+        this.type = type.link;
         this.createdBy = user;
         this.nodePerm = accountType;
+
+        content_Url = "<iframe width=\"560\" height=\"315\" src=\"http://www.youtube.com/embed/" + contents
+                + "\" frameborder=\"0\" allowfullscreen></iframe>";
+
         this.drawNode();
     }
 
+
     public void drawNode() {
-        Text text = new Text(contents);
-        text.setBoundsType(TextBoundsType.VISUAL);
-        text.setWrappingWidth(150.0f);
-
-        double height = (text.getLayoutBounds().getHeight())*2/3;
-        double width = (text.getLayoutBounds().getWidth())*2/3;
-        double minHeight = 60.0f;
-        double minWidth = 60.0f;
-
-        if(width < minHeight)
-        {
-            width = minHeight;
-        }
-        if(height < minWidth)
-        {
-            height = minWidth;
-        }
+        File icon = new File("./Images/youtube-icon.png");
+        image = new Image(icon.toURI().toString());
+        ImageView viewer = new ImageView(image);
+        viewer.setPreserveRatio(Boolean.TRUE);
+        viewer.setFitWidth(80.0f);
+        double height = viewer.getBoundsInParent().getHeight();
+        double width = viewer.getBoundsInParent().getWidth() * 2/3;
 
         Ellipse newNode = new Ellipse(0.0f, 0.0f, width, height);
         if(this.nodePerm.equals("student")) {
@@ -76,13 +88,9 @@ public class TextNode extends MapNode{
             newNode.setStroke(Paint.valueOf("black"));
         }
         else {
-            text.setStroke(Paint.valueOf("white"));
             newNode.setFill(Paint.valueOf("black"));
             newNode.setStroke(Paint.valueOf("black"));
         }
-
-        StackPane stack = new StackPane();
-        stack.getChildren().addAll(newNode, text);
 
         Image arrow;
         ImageView arrowView;
@@ -101,15 +109,12 @@ public class TextNode extends MapNode{
         arrowView = new ImageView(arrow);
         arrowView.setPreserveRatio(Boolean.TRUE);
         arrowView.setFitHeight(20.0f);
-        Text numberOfVotes = new Text(""+votes);
+        Text numberOfVotes = new Text(" "+votes);
         numberOfVotes.setStyle("-fx-font: 20 arial");
         HBox arr = new HBox();
-
         arr.getChildren().addAll(arrowView,numberOfVotes);
 
-        /*
-        Toggles upvote actions.
-         */
+
         arr.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -158,44 +163,26 @@ public class TextNode extends MapNode{
             }
         });
 
+        StackPane stack = new StackPane();
+        stack.getChildren().addAll(newNode, viewer);
+        stack.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                showStage();
+            }
+        });
         nodePane = new GridPane();
         nodePane.add(arr,0,0);
         nodePane.add(stack,0,1);
 
         nodePane.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event) {
-                nodePane.setLayoutX(event.getSceneX() - nodePane.getWidth()/2);
-                nodePane.setLayoutY(event.getSceneY()-nodePane.getHeight());
+            public void handle(MouseEvent m) {
+
+                nodePane.setLayoutX(m.getSceneX() - nodePane.getWidth()/2);
+                nodePane.setLayoutY(m.getSceneY()-nodePane.getHeight());
             }
         });
-
-        Tooltip tooltip;
-
-        DictParser dict = new DictParser();
-        dict.searchForWord(text.getText());
-        if(dict.getCount() > 0)
-        {
-            tooltip = new Tooltip(dict.getExactDefinition() + "\n\n"
-                + "Created By: " + this.createdBy);
-        }
-        else
-        {
-            tooltip = new Tooltip("Not a definable word" + "\n\n"
-                + "Created By: " + this.createdBy);
-        }
-
-        Tooltip.install(nodePane,tooltip);
-    }
-
-    public void setTypeToText()
-    {
-        this.type = classification.string;
-    }
-
-    public GridPane getNodePane()
-    {
-        return nodePane;
     }
 
     public String getContents() {
@@ -216,5 +203,42 @@ public class TextNode extends MapNode{
             this.nodePane.setVisible(false);
     }
 
-    public String getAccountPerms() { return this.nodePerm; }
+    public void showStage(){
+        Image logo = new Image("sample/OrangeIcon.png");
+        Stage newStage = new Stage();
+        newStage.setTitle("Video Viewer");
+        newStage.getIcons().add(logo);
+        newStage.setResizable(true);
+
+        WebView webView = new WebView();
+        WebEngine webEngine = webView.getEngine();
+        webEngine.loadContent(content_Url);
+
+        StackPane root = new StackPane();
+        root.getChildren().add(webView);
+        Scene scene = new Scene(root, 550, 350);
+        newStage.setScene(scene);
+        newStage.show();
+
+
+    }
+
+    public GridPane getNodePane()
+    {
+        return nodePane;
+    }
+
+    private String getContent() {
+        String temp;
+        if(contents.contains("https://www.youtube.com/watch?v=")) {
+            temp = contents.replace("https://www.youtube.com/watch?v=", "");
+        }
+        else if(contents.contains("http://www.youtube.com/watch?v=")) {
+            temp = contents.replace("http://www.youtube.com/watch?v=", "");
+        }
+        else{
+            temp = null;
+        }
+        return temp;
+    }
 }

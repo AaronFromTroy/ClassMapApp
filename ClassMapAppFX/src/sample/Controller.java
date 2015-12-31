@@ -72,7 +72,7 @@ public class Controller {
 
     public void createTextNode(ActionEvent actionEvent){
 
-       // if(!firstTimePublic) {
+        if(!firstTimePublic) {
 
             TextInputDialog dialog = new TextInputDialog("Enter the text for the node");
             dialog.setTitle("Create Text Node");
@@ -88,7 +88,7 @@ public class Controller {
             //masterNodeList.add(newNode); I think this is still necessary but not for the database
 
             nodeStage.getChildren().add(newNode.getNodePane());
-       // }
+        }
 
     }
 
@@ -163,8 +163,14 @@ public class Controller {
             newNodeStage.getChildren().add(((TextNode)(rootNode)).getNodePane());
         System.out.println(rootNode.uniqueId);
 
+
         if(rootNode.type.toString().equals("image"))
             newNodeStage.getChildren().add(((ImageNode)(rootNode)).getNodePane());
+
+        if(rootNode.type.toString().equals("link")) {
+            newNodeStage.getChildren().add(((VideoNode) (rootNode)).getNodePane());
+            System.out.println(((VideoNode)(rootNode)).getContents());
+        }
 
         for (int i = 0; i < children; i++) {
             if (!rootNode.children.isEmpty())
@@ -242,6 +248,22 @@ public class Controller {
         if(m.getSceneX() > 0 && m.getSceneY() > 0) {
             newNodeStage.setLayoutX(x);
             newNodeStage.setLayoutY(y);
+        }
+    }
+
+    public void createVideoNode(ActionEvent actionEvent) {
+        if(!firstTimePublic) {
+
+            TextInputDialog dialog = new TextInputDialog("Enter YouTube URL");
+            dialog.setTitle("Create Video Node");
+            dialog.setHeaderText("Enter the URL below.");
+            dialog.setContentText("URL: ");
+            Optional<String> result = dialog.showAndWait();
+
+            VideoNode newNode = new VideoNode(result.get());
+            DataConnection.addVideoNode(newNode);
+
+            nodeStage.getChildren().add(newNode.getNodePane());
         }
     }
 }

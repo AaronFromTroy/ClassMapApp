@@ -197,6 +197,12 @@ public class DataConnection {
                     counting.acquire();
                     loadImg((collection.size() - 1), rs.getInt("id"));
                 }
+                else if(new String(rs.getString("type").toString()).equals("link")) {
+                    collection.add(new VideoNode(rs.getInt("id"), rs.getInt("parent_id"),
+                            rs.getString("string_data"), rs.getTimestamp("time_created"), rs.getString("created_by"),
+                            rs.getString("account")));
+                    System.out.println(rs.getString("account"));
+                }
             }
 
 
@@ -336,6 +342,42 @@ public class DataConnection {
                 JOptionPane.showMessageDialog(null, "that did not work!");
             }
             JOptionPane.showMessageDialog(null, "Image not compatible.");
+        }
+    }
+
+    public static void addVideoNode(VideoNode node) {
+
+        Connection conn = dbConnector();
+        String query = "insert into nodes (parent_id, string_data, type, created_by, account) " + " values(?,?,?,?,?) ";
+        String query2 = "SELECT id FROM nodes WHERE created_by=? and string_data=?";
+        int id = -1;
+        try
+        {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, node.parent);
+            ps.setString(2, node.getContents());
+            ps.setString(3, "link");
+            ps.setString(4, loggedUser.getUser());
+            ps.setString(5, loggedUser.getAccount());
+            ps.executeUpdate();
+
+            PreparedStatement pst = conn.prepareStatement(query2);
+            pst.setString(1, loggedUser.getUser());
+            pst.setString(2, node.getContents());
+            ResultSet rs = pst.executeQuery();
+            if(rs.next()) {
+                id = rs.getInt("id");
+                node.setUniqueId(id);
+            }
+            pst.close();
+            rs.close();
+            conn.close();
+
+            addUpvote(node);
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
         }
     }
 

@@ -43,6 +43,7 @@
                           <MenuItem mnemonicParsing="false" onAction="#createTextNode" style="-fx-text-fill: black;" text="Create Text Node" />
                           <MenuItem mnemonicParsing="false" onAction="#createImageNodeURL" style="-fx-text-fill: black;" text="Create Image Node from URL" />
                           <MenuItem mnemonicParsing="false" onAction="#createImageNodeFile" style="-fx-text-fill: black;" text="Create Image Node from File" />
+                          <MenuItem mnemonicParsing="false" onAction="#createVideoNode" style="-fx-text-fill: black;" text="Create Image Node from File" />
                       </items>
                   </MenuButton>
                   <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="false" disable="false" mnemonicParsing="false" onAction="#showHome" text="Public" textAlignment="LEFT" />
