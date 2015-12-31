@@ -5,6 +5,7 @@ import static javafx.application.Application.launch;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
+import javafx.event.WeakEventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,6 +21,7 @@ import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -28,6 +30,14 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 
 /**
@@ -49,7 +59,7 @@ public class VideoNode extends MapNode{
         this.incrementVoteCounter();
         this.createdBy = DataConnection.loggedUser.getUser();
         this.nodePerm = DataConnection.loggedUser.getAccount();
-        content_Url = "<iframe width=\"560\" height=\"315\" src=\"http://www.youtube.com/embed/" + contents
+        content_Url = "<iframe width=\"560\" height=\"315\" src=\"" + contents
                 + "\" frameborder=\"0\" allowfullscreen></iframe>";
 
         this.drawNode();
@@ -66,7 +76,7 @@ public class VideoNode extends MapNode{
         this.createdBy = user;
         this.nodePerm = accountType;
 
-        content_Url = "<iframe width=\"560\" height=\"315\" src=\"http://www.youtube.com/embed/" + contents
+        content_Url = "<iframe width=\"560\" height=\"315\" src=\"" + contents
                 + "\" frameborder=\"0\" allowfullscreen></iframe>";
 
         this.drawNode();
@@ -78,9 +88,9 @@ public class VideoNode extends MapNode{
         image = new Image(icon.toURI().toString());
         ImageView viewer = new ImageView(image);
         viewer.setPreserveRatio(Boolean.TRUE);
-        viewer.setFitWidth(80.0f);
-        double height = viewer.getBoundsInParent().getHeight();
-        double width = viewer.getBoundsInParent().getWidth() * 2/3;
+        viewer.setFitHeight(80.0f);
+        double height = viewer.getBoundsInParent().getHeight() * 4/5;
+        double width = viewer.getBoundsInParent().getWidth() * 4/5;
 
         Ellipse newNode = new Ellipse(0.0f, 0.0f, width, height);
         if(this.nodePerm.equals("student")) {
@@ -168,7 +178,29 @@ public class VideoNode extends MapNode{
         stack.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                showStage();
+                Image logo = new Image("sample/OrangeIcon.png");
+                Stage newStage = new Stage();
+                newStage.setTitle("Video Viewer");
+                newStage.getIcons().add(logo);
+                newStage.setResizable(true);
+
+                WebView webView = new WebView();
+                WebEngine webEngine = webView.getEngine();
+                webEngine.loadContent(content_Url);
+
+                StackPane root = new StackPane();
+                root.getChildren().add(webView);
+                Scene scene = new Scene(root, 600, 330);
+                newStage.setScene(scene);
+                newStage.centerOnScreen();
+                newStage.show();
+
+                newStage.setOnCloseRequest(new EventHandler<javafx.stage.WindowEvent>() {
+                    @Override
+                    public void handle(javafx.stage.WindowEvent event) {
+                        webView.getEngine().load(null);
+                    }
+                });
             }
         });
         nodePane = new GridPane();
@@ -203,26 +235,6 @@ public class VideoNode extends MapNode{
             this.nodePane.setVisible(false);
     }
 
-    public void showStage(){
-        Image logo = new Image("sample/OrangeIcon.png");
-        Stage newStage = new Stage();
-        newStage.setTitle("Video Viewer");
-        newStage.getIcons().add(logo);
-        newStage.setResizable(true);
-
-        WebView webView = new WebView();
-        WebEngine webEngine = webView.getEngine();
-        webEngine.loadContent(content_Url);
-
-        StackPane root = new StackPane();
-        root.getChildren().add(webView);
-        Scene scene = new Scene(root, 550, 350);
-        newStage.setScene(scene);
-        newStage.show();
-
-
-    }
-
     public GridPane getNodePane()
     {
         return nodePane;
@@ -230,15 +242,7 @@ public class VideoNode extends MapNode{
 
     private String getContent() {
         String temp;
-        if(contents.contains("https://www.youtube.com/watch?v=")) {
-            temp = contents.replace("https://www.youtube.com/watch?v=", "");
-        }
-        else if(contents.contains("http://www.youtube.com/watch?v=")) {
-            temp = contents.replace("http://www.youtube.com/watch?v=", "");
-        }
-        else{
-            temp = null;
-        }
+        temp = contents.replace("watch?v=", "embed/");
         return temp;
     }
 }

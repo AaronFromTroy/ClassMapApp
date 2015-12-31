@@ -209,6 +209,9 @@ public class Controller {
         if(rootNode.type.toString().equals("image"))
             ((ImageNode)(rootNode)).setVisible();
 
+        if(rootNode.type.toString().equals("link"))
+            ((VideoNode)(rootNode)).setVisible();
+
         for (int i = 0; i < children; i++) {
             if (!rootNode.children.isEmpty())
                 recursiveHide(rootNode.children.get(i));
@@ -223,6 +226,9 @@ public class Controller {
 
         if(rootNode.type.toString().equals("image"))
             ((ImageNode)(rootNode)).makeVisible();
+
+        if(rootNode.type.toString().equals("link"))
+            ((VideoNode)(rootNode)).makeVisible();
 
         for (int i = 0; i < children; i++) {
             if (!rootNode.children.isEmpty())

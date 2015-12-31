@@ -89,8 +89,8 @@ public class ImageNode extends MapNode {
         ImageView viewer = new ImageView(image);
         viewer.setPreserveRatio(Boolean.TRUE);
         viewer.setFitHeight(80.0f);
-        double height = viewer.getBoundsInParent().getHeight();
-        double width = viewer.getBoundsInParent().getWidth() * 2/3;
+        double height = viewer.getBoundsInParent().getHeight() * 4/5;
+        double width = viewer.getBoundsInParent().getWidth() * 4/5;
 
         Ellipse newNode = new Ellipse(0.0f, 0.0f, width, height);
         if(this.nodePerm.equals("student")) {
