@@ -9,6 +9,7 @@ import javafx.event.WeakEventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -66,12 +67,13 @@ public class VideoNode extends MapNode{
 
     }
 
-    public VideoNode(int id, int pid, String in, Timestamp date_created, String user, String accountType)
+    public VideoNode(int id, int pid, String in, Timestamp date_created, int numVotes, String user, String accountType)
     {
         this.uniqueId = id;
         this.parent = pid;
         this.contents = in;
         this.timeCreated = date_created;
+        this.votes = numVotes;
         this.type = type.link;
         this.createdBy = user;
         this.nodePerm = accountType;
@@ -79,7 +81,7 @@ public class VideoNode extends MapNode{
         content_Url = "<iframe width=\"560\" height=\"315\" src=\"" + contents
                 + "\" frameborder=\"0\" allowfullscreen></iframe>";
 
-        this.drawNode();
+        //this.drawNode();
     }
 
 
@@ -178,29 +180,33 @@ public class VideoNode extends MapNode{
         stack.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Image logo = new Image("sample/OrangeIcon.png");
-                Stage newStage = new Stage();
-                newStage.setTitle("Video Viewer");
-                newStage.getIcons().add(logo);
-                newStage.setResizable(true);
+                if (event.getButton() == MouseButton.SECONDARY) {
+                    Image logo = new Image("sample/OrangeIcon.png");
+                    Stage newStage = new Stage();
+                    newStage.setTitle("Video Viewer");
+                    newStage.getIcons().add(logo);
+                    newStage.setResizable(true);
 
-                WebView webView = new WebView();
-                WebEngine webEngine = webView.getEngine();
-                webEngine.loadContent(content_Url);
+                    WebView webView = new WebView();
+                    WebEngine webEngine = webView.getEngine();
+                    webEngine.loadContent(content_Url);
 
-                StackPane root = new StackPane();
-                root.getChildren().add(webView);
-                Scene scene = new Scene(root, 600, 330);
-                newStage.setScene(scene);
-                newStage.centerOnScreen();
-                newStage.show();
+                    StackPane root = new StackPane();
+                    root.getChildren().add(webView);
+                    Scene scene = new Scene(root, 600, 330);
+                    newStage.setScene(scene);
+                    newStage.centerOnScreen();
+                    newStage.show();
 
-                newStage.setOnCloseRequest(new EventHandler<javafx.stage.WindowEvent>() {
-                    @Override
-                    public void handle(javafx.stage.WindowEvent event) {
-                        webView.getEngine().load(null);
-                    }
-                });
+
+                    newStage.setOnCloseRequest(new EventHandler<javafx.stage.WindowEvent>() {
+                        @Override
+                        public void handle(javafx.stage.WindowEvent event) {
+                            webView.getEngine().load(null);
+                        }
+                    });
+
+                }
             }
         });
         nodePane = new GridPane();
@@ -210,9 +216,10 @@ public class VideoNode extends MapNode{
         nodePane.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent m) {
-
-                nodePane.setLayoutX(m.getSceneX() - nodePane.getWidth()/2);
-                nodePane.setLayoutY(m.getSceneY()-nodePane.getHeight());
+                if(m.getButton() == MouseButton.PRIMARY) {
+                    nodePane.setLayoutX(m.getSceneX() - nodePane.getWidth() / 2);
+                    nodePane.setLayoutY(m.getSceneY() - nodePane.getHeight());
+                }
             }
         });
     }
@@ -244,5 +251,9 @@ public class VideoNode extends MapNode{
         String temp;
         temp = contents.replace("watch?v=", "embed/");
         return temp;
+    }
+
+    public void makeNode() {
+        this.drawNode();
     }
 }

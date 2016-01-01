@@ -7,6 +7,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -39,16 +40,17 @@ public class TextNode extends MapNode{
 
     }
 
-    public TextNode(int id, int pid, String in, Timestamp date_created, String user, String accountType)
+    public TextNode(int id, int pid, String in, Timestamp date_created, int numVotes, String user, String accountType)
     {
         this.uniqueId = id;
         this.parent = pid;
         this.contents = in;
         this.timeCreated = date_created;
+        this.votes = numVotes;
         this.type = type.string;
         this.createdBy = user;
         this.nodePerm = accountType;
-        this.drawNode();
+        //this.drawNode();
     }
 
     public void drawNode() {
@@ -165,8 +167,10 @@ public class TextNode extends MapNode{
         nodePane.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                nodePane.setLayoutX(event.getSceneX() - nodePane.getWidth()/2);
-                nodePane.setLayoutY(event.getSceneY()-nodePane.getHeight());
+                if(event.getButton() == MouseButton.PRIMARY) {
+                    nodePane.setLayoutX(event.getSceneX() - nodePane.getWidth() / 2);
+                    nodePane.setLayoutY(event.getSceneY() - nodePane.getHeight());
+                }
             }
         });
 
@@ -217,4 +221,8 @@ public class TextNode extends MapNode{
     }
 
     public String getAccountPerms() { return this.nodePerm; }
+
+    public void makeNode() {
+        this.drawNode();
+    }
 }

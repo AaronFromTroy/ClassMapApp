@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.ImageViewBuilder;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
@@ -75,14 +76,16 @@ public class ImageNode extends MapNode {
 
     }
 
-    public ImageNode(int id, int pid, Timestamp created,String user, String accountType)
+    public ImageNode(int id, int pid, Timestamp created, int numVotes, String user, String accountType)
     {
         this.type = type.image;
         uniqueId = id;
         parent = pid;
-        timeCreated = created;
+        this.timeCreated = created;
+        this.votes = numVotes;
         this.createdBy = user;
         this.nodePerm = accountType;
+
     }
 
     public void drawNode() {
@@ -178,7 +181,8 @@ public class ImageNode extends MapNode {
         stack.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                showStage();
+                if(event.getButton() == MouseButton.SECONDARY)
+                    showStage();
             }
         });
         nodePane = new GridPane();
@@ -188,9 +192,10 @@ public class ImageNode extends MapNode {
         nodePane.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent m) {
-
-                nodePane.setLayoutX(m.getSceneX() - nodePane.getWidth()/2);
-                nodePane.setLayoutY(m.getSceneY()-nodePane.getHeight());
+                if(m.getButton() == MouseButton.PRIMARY) {
+                    nodePane.setLayoutX(m.getSceneX() - nodePane.getWidth() / 2);
+                    nodePane.setLayoutY(m.getSceneY() - nodePane.getHeight());
+                }
             }
         });
 
@@ -258,6 +263,10 @@ public class ImageNode extends MapNode {
         newStage.setScene(stageScene);
         newStage.setResizable(false);
         newStage.show();
+    }
+
+    public void makeNode() {
+        this.drawNode();
     }
 
 }

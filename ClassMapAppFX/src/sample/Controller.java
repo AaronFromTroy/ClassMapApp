@@ -159,9 +159,13 @@ public class Controller {
 
         int children = rootNode.children.size();
 
-        if(rootNode.type.toString().equals("string"))
-            newNodeStage.getChildren().add(((TextNode)(rootNode)).getNodePane());
-        System.out.println(rootNode.uniqueId);
+        if(rootNode.type.toString().equals("string")) {
+            if(rootNode.uniqueId == 1) {
+
+            }
+            newNodeStage.getChildren().add(((TextNode) (rootNode)).getNodePane());
+        }
+        //System.out.println(rootNode.uniqueId);
 
 
         if(rootNode.type.toString().equals("image"))
@@ -169,7 +173,7 @@ public class Controller {
 
         if(rootNode.type.toString().equals("link")) {
             newNodeStage.getChildren().add(((VideoNode) (rootNode)).getNodePane());
-            System.out.println(((VideoNode)(rootNode)).getContents());
+            //System.out.println(((VideoNode)(rootNode)).getContents());
         }
 
         for (int i = 0; i < children; i++) {

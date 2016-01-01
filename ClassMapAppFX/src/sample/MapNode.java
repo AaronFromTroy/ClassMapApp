@@ -15,7 +15,7 @@ import java.util.Date;
 
 /**
  *
- * @author acous
+ * @author Aaron Martin
  */
 public class MapNode {
 

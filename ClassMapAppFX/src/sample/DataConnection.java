@@ -16,6 +16,7 @@ import java.util.*;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import org.apache.commons.io.IOUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -170,13 +171,13 @@ public class DataConnection {
     }
 
     /*
-    Gets all node information from database.
+    Gets all node information from database. Draws Nodes. Stores nodes into parents Children list.
     Returns the root MapNode.
      */
     public static MapNode populate() throws InterruptedException {
         Connection conn = dbConnector();
         String query = "Select * from nodes";
-        String query2 = "Select * from node_votes where id=?";
+        String query2 = "Select * from node_votes where user_id=?";
         try {
 
             PreparedStatement pst = conn.prepareStatement(query);
@@ -186,27 +187,54 @@ public class DataConnection {
 
                 if (new String(rs.getString("type").toString()).equals("string")) {
                     collection.add(new TextNode(rs.getInt("id"), rs.getInt("parent_id"),
-                            rs.getString("string_data"), rs.getTimestamp("time_created"), rs.getString("created_by"),
+                            rs.getString("string_data"), rs.getTimestamp("time_created"), rs.getInt("votes"), rs.getString("created_by"),
                             rs.getString("account")));
-                    System.out.println(rs.getString("account"));
+                    //System.out.println(rs.getString("account"));
                 }
                 else if (new String(rs.getString("type").toString()).equals("image")) {
                     collection.add(new ImageNode(rs.getInt("id"), rs.getInt("parent_id"), rs.getTimestamp("time_created"),
-                            rs.getString("created_by"), rs.getString("account")));
-                    System.out.println(rs.getString("account"));
+                            rs.getInt("votes"), rs.getString("created_by"), rs.getString("account")));
+                   // System.out.println(rs.getString("account"));
                     counting.acquire();
                     loadImg((collection.size() - 1), rs.getInt("id"));
                 }
                 else if(new String(rs.getString("type").toString()).equals("link")) {
                     collection.add(new VideoNode(rs.getInt("id"), rs.getInt("parent_id"),
-                            rs.getString("string_data"), rs.getTimestamp("time_created"), rs.getString("created_by"),
+                            rs.getString("string_data"), rs.getTimestamp("time_created"), rs.getInt("votes"), rs.getString("created_by"),
                             rs.getString("account")));
-                    System.out.println(rs.getString("account"));
+                    //System.out.println(rs.getString("account"));
                 }
             }
+            rs.close();
+            pst.close();
+
+            PreparedStatement ps = conn.prepareStatement(query2);
+            ps.setInt(1, loggedUser.getId());
+            ResultSet rst = ps.executeQuery();
+            while(rst.next()) {
+                for(int i = 0; i < collection.size(); i++) {
+                    if(collection.get(i).uniqueId == rst.getInt("node_id"))
+                        collection.get(i).setUserVote(true);
+                }
+            }
+            rst.close();
+            ps.close();
 
 
             for (int i = 0; i < collection.size(); i++) {
+
+                if(collection.get(i).getType().equals("string")) {
+                    ((TextNode)(collection.get(i))).makeNode();
+                    //System.out.println("String");
+                }
+                if(collection.get(i).getType().equals("link")) {
+                    ((VideoNode)(collection.get(i))).makeNode();
+                    //System.out.println("Video");
+                }
+                if(collection.get(i).getType().equals("image")) {
+                    ((ImageNode)(collection.get(i))).makeNode();
+                }
+
                 for (int y = 0; y < collection.size(); y++) {
                     if (collection.get(y).parent == collection.get(i).uniqueId) {
                         collection.get(i).children.add(collection.get(y));
@@ -217,19 +245,11 @@ public class DataConnection {
             while (counting.availablePermits() < 3) {
 
             }
-//            PreparedStatement ps = conn.prepareStatement(query2);
-//            ps.setInt(1, loggedUser.getId());
-//            ResultSet rst = ps.executeQuery();
-//            while(rst.next()) {
-//                if (rst.getBoolean("vote") == true) {
-//
-//                }
-//            }
+
             for (int i = (collection.size() - 1); i > 0; i--) {
                 collection.remove(i);
             }
-            rs.close();
-            pst.close();
+
             return collection.get(0);
 
         } catch (SQLException e) {
@@ -408,7 +428,7 @@ public class DataConnection {
             PreparedStatement pst = conn.prepareStatement(query);
             pst.setInt(1, loggedUser.getId());
             pst.setInt(2, node.uniqueId);
-            pst.executeUpdate();
+            pst.execute();
             pst.close();
             conn.close();
         } catch (Exception e) {
@@ -497,8 +517,6 @@ public class DataConnection {
             @Override
             public void run() {
                 String query = "select * from images where id=?";
-                //BufferedImage image = null;
-                //InputStream fis = null;
                 try {
                     PreparedStatement pst = conn.prepareStatement(query);
                     pst.setInt(1, uniqueid);
@@ -511,7 +529,6 @@ public class DataConnection {
                                 (blob.getBytes(1, (int) blob.length()));
                         Image im = new Image(in);
                         ((ImageNode) (collection.get(id))).setImage(im);
-                        ((ImageNode) (collection.get(id))).drawNode();
                         System.out.println("GOOD SO FAR!");
                     }
 
