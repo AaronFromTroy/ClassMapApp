@@ -14,11 +14,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
@@ -123,6 +125,8 @@ public class VideoNode extends MapNode{
         arrowView.setFitHeight(20.0f);
         Text numberOfVotes = new Text(" "+votes);
         numberOfVotes.setStyle("-fx-font: 20 arial");
+        numberOfVotes.setStroke(Color.WHITE);
+        numberOfVotes.setFill(Color.WHITE);
         HBox arr = new HBox();
         arr.getChildren().addAll(arrowView,numberOfVotes);
 
@@ -140,7 +144,8 @@ public class VideoNode extends MapNode{
                     decrementVoteCounter();
                     Text numberOfVotes = new Text(""+(votes));
                     numberOfVotes.setStyle("-fx-font: 20 arial");
-
+                    numberOfVotes.setStroke(Color.WHITE);
+                    numberOfVotes.setFill(Color.WHITE);
                     arr.getChildren().remove(0, 2);
                     arr.getChildren().addAll(newArrowView, numberOfVotes);
                     setUserVote(false);
@@ -162,6 +167,8 @@ public class VideoNode extends MapNode{
                     incrementVoteCounter();
                     Text numberOfVotes = new Text(""+(votes));
                     numberOfVotes.setStyle("-fx-font: 20 arial");
+                    numberOfVotes.setStroke(Color.WHITE);
+                    numberOfVotes.setFill(Color.WHITE);
                     arr.getChildren().remove(0, 2);
                     arr.getChildren().addAll(newArrowView, numberOfVotes);
                     setUserVote(true);
@@ -183,6 +190,7 @@ public class VideoNode extends MapNode{
                 if (event.getButton() == MouseButton.SECONDARY) {
                     Image logo = new Image("sample/OrangeIcon.png");
                     Stage newStage = new Stage();
+                    newStage.initModality(Modality.APPLICATION_MODAL);
                     newStage.setTitle("Video Viewer");
                     newStage.getIcons().add(logo);
                     newStage.setResizable(true);

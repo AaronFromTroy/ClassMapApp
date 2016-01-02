@@ -92,7 +92,7 @@ public class Controller {
 
         @Override
         public void handle(ScrollEvent scrollEvent) {
-            if (scrollEvent.isControlDown()) {
+            //if (scrollEvent.isControlDown()) {
                     if(factor<=0.45)
                         newDragView.setVisible(false);
                     else
@@ -101,7 +101,7 @@ public class Controller {
                     nodeToZoom.setScaleX(scale);
                     nodeToZoom.setScaleY(scale);
                     scrollEvent.consume();
-            }
+            //}
         }
 
         private double calculateScale(ScrollEvent scrollEvent) {
@@ -335,7 +335,7 @@ public class Controller {
                     line.endYProperty().bind(((TextNode)(rootNode)).getNodePane().layoutXProperty().add(((TextNode)(rootNode)).getNodePane().translateYProperty()));
 
                     line.setStrokeWidth(4);
-                    newNodeStage.getChildren().addAll(line);
+                    newNodeStage2.getChildren().addAll(line);
                 }
                 ((TextNode) rootNode).getNodePane().setOnMousePressed(doNothing);
                 ((TextNode) rootNode).getNodePane().setOnMouseDragged(doNothing);

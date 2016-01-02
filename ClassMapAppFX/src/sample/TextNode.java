@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
@@ -26,6 +27,7 @@ public class TextNode extends MapNode{
 
     private GridPane nodePane;
     private String contents;
+    private Alert showString;
 
     public TextNode(String in)
     {
@@ -36,7 +38,6 @@ public class TextNode extends MapNode{
         this.createdBy = DataConnection.loggedUser.getUser();
         this.nodePerm = DataConnection.loggedUser.getAccount();
         this.drawNode();
-
 
     }
 
@@ -86,6 +87,14 @@ public class TextNode extends MapNode{
         StackPane stack = new StackPane();
         stack.getChildren().addAll(newNode, text);
 
+        stack.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.getButton() == MouseButton.SECONDARY)
+                    showString.display("Text Node", contents);
+            }
+        });
+
         Image arrow;
         ImageView arrowView;
         if(this.getUserVote() == Boolean.TRUE)
@@ -104,6 +113,8 @@ public class TextNode extends MapNode{
         arrowView.setPreserveRatio(Boolean.TRUE);
         arrowView.setFitHeight(20.0f);
         Text numberOfVotes = new Text(""+votes);
+        numberOfVotes.setStroke(Color.WHITE);
+        numberOfVotes.setFill(Color.WHITE);
         numberOfVotes.setStyle("-fx-font: 20 arial");
         HBox arr = new HBox();
 
@@ -125,7 +136,8 @@ public class TextNode extends MapNode{
                     decrementVoteCounter();
                     Text numberOfVotes = new Text(""+(votes));
                     numberOfVotes.setStyle("-fx-font: 20 arial");
-
+                    numberOfVotes.setStroke(Color.WHITE);
+                    numberOfVotes.setFill(Color.WHITE);
                     arr.getChildren().remove(0, 2);
                     arr.getChildren().addAll(newArrowView, numberOfVotes);
                     setUserVote(false);
@@ -147,6 +159,8 @@ public class TextNode extends MapNode{
                     incrementVoteCounter();
                     Text numberOfVotes = new Text(""+(votes));
                     numberOfVotes.setStyle("-fx-font: 20 arial");
+                    numberOfVotes.setStroke(Color.WHITE);
+                    numberOfVotes.setFill(Color.WHITE);
                     arr.getChildren().remove(0, 2);
                     arr.getChildren().addAll(newArrowView, numberOfVotes);
                     setUserVote(true);
