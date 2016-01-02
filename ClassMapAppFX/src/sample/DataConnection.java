@@ -238,6 +238,7 @@ public class DataConnection {
                 for (int y = 0; y < collection.size(); y++) {
                     if (collection.get(y).parent == collection.get(i).uniqueId) {
                         collection.get(i).children.add(collection.get(y));
+                        collection.get(y).setParentNode(collection.get(i));
                     }
                 }
             }
@@ -246,9 +247,9 @@ public class DataConnection {
 
             }
 
-            for (int i = (collection.size() - 1); i > 0; i--) {
-                collection.remove(i);
-            }
+//            for (int i = (collection.size() - 1); i > 0; i--) {
+//                collection.remove(i);
+//            }
 
             return collection.get(0);
 

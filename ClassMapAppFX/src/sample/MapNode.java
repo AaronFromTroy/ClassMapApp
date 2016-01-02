@@ -15,7 +15,7 @@ import java.util.Date;
 
 /**
  *
- * @author Aaron Martin
+ * @author acous
  */
 public class MapNode {
 
@@ -33,6 +33,16 @@ public class MapNode {
     boolean sinceLastLog;
     public classification type;
     public Timestamp timeCreated;
+    int layer;
+    MapNode parentNode;
+    int quadrant=1;
+    int noOfChildren=0;
+    int circleNo=1;
+    int childLimit=2;
+    int expansion =2 ;
+    int childno=0;
+    int expansionconst= 1;
+    int offset =0 ;
 
     public Boolean getUserVote()
     {
@@ -69,5 +79,84 @@ public class MapNode {
 
     public String getType() { return this.type.toString(); }
 
+    public void setLayer(int layer) {
+        this.layer = layer;
+    }
+
+    public int getLayer() {
+        return layer;
+    }
+
+    public MapNode getParentNode() {
+        return parentNode;
+    }
+
+    public void setParentNode(MapNode parentNode) {
+        this.parentNode = parentNode;
+    }
+
+    public void setQuadrant(int quadrant) {
+        this.quadrant = quadrant;
+    }
+
+    public int getQuadrant() {
+        return quadrant;
+    }
+
+    public void setNoOfChildren(int noOfChildren) {
+        this.noOfChildren = noOfChildren;
+    }
+
+    public int getNoOfChildren() {
+        return noOfChildren;
+    }
+
+    public int getCircleNo() {
+        return circleNo;
+    }
+
+    public void setCircleNo(int circleNo) {
+        this.circleNo = circleNo;
+    }
+
+    public int getChildLimit() {
+        return childLimit;
+    }
+
+    public void setChildLimit(int childLimit) {
+        this.childLimit = childLimit;
+    }
+
+    public int getExpansion() {
+        return expansion;
+    }
+
+    public void setExpansion(int expansion) {
+        this.expansion = expansion;
+    }
+
+    public void setChildno(int childno) {
+        this.childno = childno;
+    }
+
+    public int getChildno() {
+        return childno;
+    }
+
+    public void setExpansionconst(int expansionconst) {
+        this.expansionconst = expansionconst;
+    }
+
+    public int getExpansionconst() {
+        return expansionconst;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
+    }
+
+    public int getOffset() {
+        return offset;
+    }
 }
 

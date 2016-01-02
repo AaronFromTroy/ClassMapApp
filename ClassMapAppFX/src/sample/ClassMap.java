@@ -33,8 +33,20 @@ public class ClassMap extends Application {
 
 
     public Stage primaryStage;
+    public static java.util.List<Double> circleX = new ArrayList<>();
+    public static java.util.List<Double> circleY = new ArrayList<>();
+    static int radius = 200;
+    static int noOfCircle = 1;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
+
+        for (double i = 0; i < 6.28319; i = i + (0.628319)) {
+            double x = Math.cos(i) * radius;
+            double y = Math.sin(i) * radius;
+            circleX.add(x);
+            circleY.add(y);
+        }
 
         Image img = new Image("sample/OrangeIcon.png");
 
@@ -125,6 +137,21 @@ public class ClassMap extends Application {
         primaryStage.setResizable(false);
         primaryStage.setScene(loginScene);
         primaryStage.show();
+
+
+
+    }
+
+    public static void calculate() {
+
+        double add = 6.28319 / (noOfCircle * 10);
+        for (double i = 0; i < 6.2831; i = i + add) {
+            double x = Math.cos(i) * radius * noOfCircle;
+            double y = Math.sin(i) * radius * noOfCircle;
+            circleX.add(x);
+            circleY.add(y);
+
+        }
     }
 
 
