@@ -196,5 +196,13 @@ public class MapNode {
     public void setParentLine(Line parentLine) {
         this.parentLine = parentLine;
     }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public Timestamp getTimeCreated() {
+        return timeCreated;
+    }
 }
 

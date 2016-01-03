@@ -1,28 +1,28 @@
 package sample;
 
 import javafx.animation.TranslateTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.*;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.event.EventTarget;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.Effect;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
 import javafx.scene.paint.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Ellipse;
-import javafx.scene.shape.Line;
+import javafx.scene.shape.*;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
 import javafx.scene.web.WebEngine;
@@ -30,8 +30,11 @@ import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 
 import java.awt.*;
+import java.awt.Rectangle;
+import java.awt.event.*;
 import java.io.*;
 import java.security.Timestamp;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.List;
 import java.util.logging.Level;
@@ -63,7 +66,8 @@ public class Controller {
     public Pane nodeStage;
     public Pane newNodeStage;
     public Pane newNodeStage2;
-    public Pane newNodeStage3;
+    public ScrollPane teacherPane;
+    public Pane innerPane;
     int[] array = {0, 5, 1, 6, 2, 7, 3, 8, 4, 9};
     java.util.List<MapNode> masterNode = new ArrayList<>();
     java.util.List<java.util.List<MapNode>> nodeList = new ArrayList<>();
@@ -83,15 +87,117 @@ public class Controller {
     int randomNumber;
     double factor = 1;
     boolean nodedrag = false;
-    int index;
-    int layer;
 
+    int index =0 ;
+    int layer = 0;
     File path = new File("./Images/Drag-icon.png");
     javafx.scene.image.Image dragPicture = new javafx.scene.image.Image(path.toURI().toString());
     ImageView newDragView = new ImageView(dragPicture);
 
+    public void drawTeacherPanel(ActionEvent actionEvent) {
+        if (DataConnection.loggedUser.getAccount().equals("teacher")) {
+            GridPane displayGrid = new GridPane();
+            displayGrid.setMaxWidth(200);
 
-    public Pane trythisout;
+            teacherPane.setVisible(true);
+            int numStudents = DataConnection.students.size();
+            for (int i = 0; i < numStudents; i++) {
+
+                Text text = new Text( "   First: " + DataConnection.students.get(i).getFirstName() + "\n" + "   Last: " + DataConnection.students.get(i).getLastName() + "\n" + "   UserName: " + DataConnection.students.get(i).getUserName() + "\n" + "   Email: " + DataConnection.students.get(i).getEmail());
+                text.setBoundsType(TextBoundsType.LOGICAL);
+                //text.setTextAlignment(TextAlignment.LEFT);
+                //text.setWrappingWidth(180.0f);
+
+                double height = (text.getLayoutBounds().getHeight())*8/9;
+                //double width = (text.getLayoutBounds().getWidth())*8/9;
+
+                javafx.scene.shape.Rectangle newNode = new javafx.scene.shape.Rectangle(0.0f, 0.0f, 200, height + 20.0f);
+                newNode.setFill(Paint.valueOf("white"));
+                newNode.setStroke(Paint.valueOf("black"));
+                StackPane stack = new StackPane();
+                stack.getChildren().addAll(newNode, text);
+                stack.setAlignment(text, Pos.CENTER_LEFT);
+
+                int j = i;
+                stack.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        showReset(event);
+                        showUserNodes(event, DataConnection.students.get(j).getUserName());
+                    }
+                });
+
+                DataConnection.displayPanes.add(new GridPane());
+                DataConnection.displayPanes.get(i).add(stack,0,0);
+                DataConnection.displayPanes.get(i).setVisible(true);
+
+                displayGrid.add(DataConnection.displayPanes.get(i), 0, i);
+
+
+            }     //displayGrid.setStyle("-fx-background-color: #000000;");
+            teacherPane.setContent(displayGrid);
+        }
+    }
+
+    public void showNew(ActionEvent actionEvent) {
+        if(!firstTimePublic) {
+            showHome(actionEvent);
+            recursiveShowNew(daroot, DataConnection.loggedUser.getSQLLog());
+        }
+    }
+
+    public boolean recursiveShowNew(MapNode rootNode, java.sql.Timestamp sqlLog) {
+
+        rootNode.previousVote = false;
+        int children = rootNode.children.size();
+
+        if (children == 0) {
+            rootNode.previousVote = (rootNode.timeCreated.after(sqlLog));
+            if (rootNode.previousVote == false) {
+                rootNode.getParentLine().setVisible(false);
+                if (rootNode.type.toString().equals("string"))
+                    ((TextNode) (rootNode)).setVisible();
+
+                if (rootNode.type.toString().equals("image"))
+                    ((ImageNode) (rootNode)).setVisible();
+
+                if (rootNode.type.toString().equals("link"))
+                    ((VideoNode) (rootNode)).setVisible();
+            }
+        }
+        else {
+            for (int i = 0; i < children; i++) {
+                if(rootNode.previousVote == false)
+                    rootNode.previousVote = recursiveShowNew(rootNode.children.get(i), sqlLog);
+                else
+                    recursiveShowNew(rootNode.children.get(i), sqlLog);
+            }
+        }
+
+        if (rootNode.getTimeCreated().after(sqlLog)) {
+            rootNode.previousVote = true;
+        }
+        else {
+            if(rootNode.uniqueId == 1){
+
+            }
+            else {
+                if (rootNode.getTimeCreated().after(sqlLog) == false && rootNode.previousVote == false) {
+                    rootNode.getParentLine().setVisible(false);
+                    if (rootNode.type.toString().equals("string"))
+                        ((TextNode) (rootNode)).setVisible();
+
+                    if (rootNode.type.toString().equals("image"))
+                        ((ImageNode) (rootNode)).setVisible();
+
+                    if (rootNode.type.toString().equals("link"))
+                        ((VideoNode) (rootNode)).setVisible();
+                }
+            }
+        }
+
+        return rootNode.previousVote;
+    }
 
 
     private class ZoomHandler implements EventHandler<ScrollEvent> {
@@ -210,6 +316,7 @@ public class Controller {
     public void drawWorld(ActionEvent actionEvent) throws InterruptedException {
         if(firstTimePublic) {
             daroot = DataConnection.populate();
+            DataConnection.getStudents();
             recursiveDisplay(daroot);
             firstTimePublic = false;
             populateList();
@@ -219,6 +326,13 @@ public class Controller {
     }
 
     public void showHome(ActionEvent actionEvent){
+        if(!firstTimePublic) {
+            recursiveShow(daroot);
+            //newNodeStage2.setVisible(true);
+        }
+    }
+
+    public void showReset(MouseEvent actionEvent){
         if(!firstTimePublic) {
             recursiveShow(daroot);
             //newNodeStage2.setVisible(true);
@@ -454,8 +568,8 @@ public class Controller {
             List<Double> X = newCalculateX(rootNode.getParentNode().getCircleNo()*rootNode.getParentNode().getExpansion());
             List<Double> Y = newCalculateY(rootNode.getParentNode().getCircleNo()*rootNode.getParentNode().getExpansion());
 
-            double newTranslateX = X.get(((rootNode.getQuadrant()-1)*rootNode.getParentNode().getCircleNo()*rootNode.getParentNode().getExpansion())+rootNode.getParentNode().getNoOfChildren()+(rootNode.getParentNode().getOffset()*rootNode.getParentNode().getExpansion()));
-            double newTranslateY = Y.get(((rootNode.getQuadrant()-1)*rootNode.getParentNode().getCircleNo()*rootNode.getParentNode().getExpansion())+rootNode.getParentNode().getNoOfChildren()+(rootNode.getParentNode().getOffset()*rootNode.getParentNode().getExpansion()));
+            double newTranslateX = X.get(((rootNode.getQuadrant()-1)*rootNode.getParentNode().getCircleNo()*rootNode.getParentNode().getExpansion())+rootNode.getParentNode().getNoOfChildren()+(rootNode.getParentNode().getOffset()*rootNode.getParentNode().getExpansion())+(rootNode.getParentNode().getChildno()*rootNode.getParentNode().getExpansion()));
+            double newTranslateY = Y.get(((rootNode.getQuadrant()-1)*rootNode.getParentNode().getCircleNo()*rootNode.getParentNode().getExpansion())+rootNode.getParentNode().getNoOfChildren()+(rootNode.getParentNode().getOffset()*rootNode.getParentNode().getExpansion())+(rootNode.getParentNode().getChildno()*rootNode.getParentNode().getExpansion()));
 
             if(rootNode.type.toString().equals("string")){
                 newNodeStage.getChildren().add(((TextNode)(rootNode)).getNodePane());
@@ -715,7 +829,6 @@ public class Controller {
     public  void expandChildren(){
 
         int add;
-        int off;
         for (int j =1 ; j< nodeList.size();j++) {
 
             for (int i = 0; i < nodeList.get(j).size(); i++) {
@@ -727,12 +840,8 @@ public class Controller {
                     add = nodeList.get(j).get(i).getChildno() / 2;
                 } else add = 0;
 
-                if ( nodeList.get(j).get(i).getOffset() > 0) {
-                    off = nodeList.get(j).get(i).getOffset() / 2;
-                } else off = 0;
-
-                double newTranslateX = X.get(((nodeList.get(j).get(i).getQuadrant() - 1) * nodeList.get(j).get(i).getParentNode().getCircleNo() * nodeList.get(j).get(i).getParentNode().getExpansion()) + add+off);
-                double newTranslateY = Y.get(((nodeList.get(j).get(i).getQuadrant() - 1) * nodeList.get(j).get(i).getParentNode().getCircleNo() * nodeList.get(j).get(i).getParentNode().getExpansion()) + add+off);
+                double newTranslateX = X.get(((nodeList.get(j).get(i).getQuadrant() - 1) * nodeList.get(j).get(i).getParentNode().getCircleNo() * nodeList.get(j).get(i).getParentNode().getExpansion()) + add+(nodeList.get(j).get(i).getParentNode().getOffset()*nodeList.get(j).get(i).getParentNode().getExpansion()));
+                double newTranslateY = Y.get(((nodeList.get(j).get(i).getQuadrant() - 1) * nodeList.get(j).get(i).getParentNode().getCircleNo() * nodeList.get(j).get(i).getParentNode().getExpansion()) + add+(nodeList.get(j).get(i).getParentNode().getOffset()*nodeList.get(j).get(i).getParentNode().getExpansion()));
 
                 if (nodeList.get(j).get(i).type.toString().equals("string")) {
                     ((TextNode) (nodeList.get(j).get(i))).getNodePane().setTranslateX(newTranslateX + 410);
@@ -759,14 +868,12 @@ public class Controller {
                     nodeList.get(j).get(i).setCircleNo(nodeList.get(j).get(i).getParentNode().getCircleNo()*nodeList.get(j).get(i).getParentNode().getExpansion());
                     nodeList.get(j).get(i).setA(newTranslateX + 410);
                     nodeList.get(j).get(i).setB(newTranslateY + 225);
-                    // System.out.println(((VideoNode) (nodeList.get(j).get(i))).getContents());
                 }
             }
         }
     }
     public void expandChildren(MapNode node){
         int add;
-        int off;
         if (node.getLayer()==1){
             node.getParentNode().setExpansionconst(node.getParentNode().getExpansionconst()*2);
             for (int i =0;i<nodeList.get(node.getLayer()-1).size();i++){
@@ -799,12 +906,8 @@ public class Controller {
                     add = nodeList.get(j).get(i).getChildno() / 2;
                 } else add = 0;
 
-                if ( nodeList.get(j).get(i).getOffset() > 0) {
-                    off = nodeList.get(j).get(i).getOffset() / 2;
-                } else off = 0;
-
-                double newTranslateX = X.get(((nodeList.get(j).get(i).getQuadrant() - 1) * nodeList.get(j).get(i).getParentNode().getCircleNo() * nodeList.get(j).get(i).getParentNode().getExpansion()) + add+off);
-                double newTranslateY = Y.get(((nodeList.get(j).get(i).getQuadrant() - 1) * nodeList.get(j).get(i).getParentNode().getCircleNo() * nodeList.get(j).get(i).getParentNode().getExpansion()) + add+off);
+                double newTranslateX = X.get(((nodeList.get(j).get(i).getQuadrant() - 1) * nodeList.get(j).get(i).getParentNode().getCircleNo() * nodeList.get(j).get(i).getParentNode().getExpansion()) + add+(nodeList.get(j).get(i).getParentNode().getOffset()*nodeList.get(j).get(i).getParentNode().getExpansion()));
+                double newTranslateY = Y.get(((nodeList.get(j).get(i).getQuadrant() - 1) * nodeList.get(j).get(i).getParentNode().getCircleNo() * nodeList.get(j).get(i).getParentNode().getExpansion()) + add+(nodeList.get(j).get(i).getParentNode().getOffset()*nodeList.get(j).get(i).getParentNode().getExpansion()));
 
                 if (nodeList.get(j).get(i).type.toString().equals("string")) {
                     ((TextNode) (nodeList.get(j).get(i))).getNodePane().setTranslateX(newTranslateX + 410);
@@ -854,13 +957,70 @@ public class Controller {
 
     public void hideNodes(ActionEvent actionEvent) {
         if(!firstTimePublic) {
+            showHome(actionEvent);
             recursiveHide(daroot);
-//            for (int i = 0; i < lineList.size(); i++) {
-//                lineList.get(i).setVisible(false);
-//            }
-            //newNodeStage2.setVisible(false);
         }
     }
+
+    public void showUserNodes(MouseEvent actionEvent, String user) {
+        if(!firstTimePublic) {
+            recursiveShowUser(daroot, user);
+        }
+    }
+
+    public boolean recursiveShowUser(MapNode rootNode, String user) {
+
+        rootNode.previousVote = false;
+        int children = rootNode.children.size();
+
+        if (children == 0) {
+            rootNode.previousVote = (rootNode.getCreatedBy().equals(user));
+            if (rootNode.previousVote == false) {
+                rootNode.getParentLine().setVisible(false);
+                if (rootNode.type.toString().equals("string"))
+                    ((TextNode) (rootNode)).setVisible();
+
+                if (rootNode.type.toString().equals("image"))
+                    ((ImageNode) (rootNode)).setVisible();
+
+                if (rootNode.type.toString().equals("link"))
+                    ((VideoNode) (rootNode)).setVisible();
+            }
+        }
+        else {
+            for (int i = 0; i < children; i++) {
+                if(rootNode.previousVote == false)
+                    rootNode.previousVote = recursiveShowUser(rootNode.children.get(i), user);
+                else
+                    recursiveShowUser(rootNode.children.get(i), user);
+            }
+        }
+
+        if (rootNode.getCreatedBy().equals(user)) {
+            rootNode.previousVote = true;
+        }
+        else {
+            if(rootNode.uniqueId == 1){
+
+            }
+            else {
+                if (rootNode.getCreatedBy().equals(user) == false && rootNode.previousVote == false) {
+                    rootNode.getParentLine().setVisible(false);
+                    if (rootNode.type.toString().equals("string"))
+                        ((TextNode) (rootNode)).setVisible();
+
+                    if (rootNode.type.toString().equals("image"))
+                        ((ImageNode) (rootNode)).setVisible();
+
+                    if (rootNode.type.toString().equals("link"))
+                        ((VideoNode) (rootNode)).setVisible();
+                }
+            }
+        }
+
+        return rootNode.previousVote;
+    }
+
 
     public boolean recursiveHide(MapNode rootNode) {
 
@@ -1045,6 +1205,23 @@ public class Controller {
         @Override
         public void handle(MouseEvent t) {
 
+            if (nodeList.get(layer).get(index).getType().equals("string")){
+                TextNode textNode = (TextNode) nodeList.get(layer).get(index);
+                textNode.getNodePane().setStyle(null);
+            }
+            else if (nodeList.get(layer).get(index).getType().equals("image"))
+            {
+                ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
+
+                imageNode.getNodePane().setStyle(null);
+            }
+            else  if (nodeList.get(layer).get(index).getType().equals("link"))
+            {
+                VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
+
+                videoNode.getNodePane().setStyle(null);
+            }
+
             nodedrag = false;
             Bounds bounds = newNode.getNodePane().getBoundsInParent();
             if (classNode.getNodePane().intersects(bounds.getMinX() - 410, bounds.getMinY() - 225, 100, 100) && masterNode.size() == (ClassMap.noOfCircle * 10)) {
@@ -1114,9 +1291,8 @@ public class Controller {
 
                 }
 
-                double newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() +(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
-                double newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() +(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
-
+                double newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() +nodeList.get(layer).get(index).getChildno() +(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
+                double newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() +nodeList.get(layer).get(index).getChildno() +(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
                 newNode.getNodePane().setTranslateX(newTranslateX + 410);
                 newNode.getNodePane().setTranslateY(newTranslateY + 225);
 
@@ -1204,6 +1380,24 @@ public class Controller {
 
                 @Override
                 public void handle(MouseEvent t) {
+
+                    if (nodeList.get(layer).get(index).getType().equals("string")){
+                        TextNode textNode = (TextNode) nodeList.get(layer).get(index);
+                        textNode.getNodePane().setStyle(null);
+                    }
+                    else if (nodeList.get(layer).get(index).getType().equals("image"))
+                    {
+                        ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
+
+                        imageNode.getNodePane().setStyle(null);
+                    }
+                    else  if (nodeList.get(layer).get(index).getType().equals("link"))
+                    {
+                        VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
+
+                        videoNode.getNodePane().setStyle(null);
+                    }
+
                     nodedrag = true;
                     double offsetX = t.getSceneX() - orgSceneX;
                     double offsetY = t.getSceneY() - orgSceneY;
@@ -1211,6 +1405,26 @@ public class Controller {
                     double newTranslateY = orgTranslateY + offsetY;
                     ((GridPane) (t.getSource())).setTranslateX(newTranslateX * (1/factor));
                     ((GridPane) (t.getSource())).setTranslateY(newTranslateY * (1/factor));
+                    if (intersection((GridPane)t.getSource())){
+
+                        if (nodeList.get(layer).get(index).getType().equals("string")){
+                            TextNode textNode = (TextNode) nodeList.get(layer).get(index);
+                            textNode.getNodePane().setStyle("-fx-background-color: #4D4DFF;");
+                        }
+                        else if (nodeList.get(layer).get(index).getType().equals("image"))
+                        {
+                            ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
+
+                            imageNode.getNodePane().setStyle("-fx-background-color: #4D4DFF;");
+                        }
+                        else  if (nodeList.get(layer).get(index).getType().equals("link"))
+                        {
+                            VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
+
+                            videoNode.getNodePane().setStyle("-fx-background-color: #4D4DFF;");
+                        }
+                    }
+
                 }
             };
 
@@ -1218,6 +1432,22 @@ public class Controller {
         @Override
         public void handle(MouseEvent t) {
 
+            if (nodeList.get(layer).get(index).getType().equals("string")){
+                TextNode textNode = (TextNode) nodeList.get(layer).get(index);
+                textNode.getNodePane().setStyle(null);
+            }
+            else if (nodeList.get(layer).get(index).getType().equals("image"))
+            {
+                ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
+
+                imageNode.getNodePane().setStyle(null);
+            }
+            else  if (nodeList.get(layer).get(index).getType().equals("link"))
+            {
+                VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
+
+                videoNode.getNodePane().setStyle(null);
+            }
             nodedrag = false;
             Bounds bounds = newImageNode.getNodePane().getBoundsInParent();
             if (classNode.getNodePane().intersects(bounds.getMinX() - 410, bounds.getMinY() - 225, 100, 100) && masterNode.size() == (ClassMap.noOfCircle * 10)) {
@@ -1287,9 +1517,8 @@ public class Controller {
 
                 }
 
-                double newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() +(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
-                double newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() +(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
-
+                double newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren()+nodeList.get(layer).get(index).getChildno() +(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
+                double newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() +nodeList.get(layer).get(index).getChildno()+(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
                 newImageNode.getNodePane().setTranslateX(newTranslateX + 410);
                 newImageNode.getNodePane().setTranslateY(newTranslateY + 225);
 
@@ -1364,6 +1593,23 @@ public class Controller {
         @Override
         public void handle(MouseEvent t) {
 
+            if (nodeList.get(layer).get(index).getType().equals("string")){
+                TextNode textNode = (TextNode) nodeList.get(layer).get(index);
+                textNode.getNodePane().setStyle(null);
+            }
+            else if (nodeList.get(layer).get(index).getType().equals("image"))
+            {
+                ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
+
+                imageNode.getNodePane().setStyle(null);
+            }
+            else  if (nodeList.get(layer).get(index).getType().equals("link"))
+            {
+                VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
+
+                videoNode.getNodePane().setStyle(null);
+            }
+
             nodedrag = false;
             Bounds bounds = videoNode.getNodePane().getBoundsInParent();
             if (classNode.getNodePane().intersects(bounds.getMinX() - 410, bounds.getMinY() - 225, 100, 100) && masterNode.size() == (ClassMap.noOfCircle * 10)) {
@@ -1433,8 +1679,8 @@ public class Controller {
 
                 }
 
-                double newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() +(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
-                double newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() +(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
+                double newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren()+nodeList.get(layer).get(index).getChildno() +(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
+                double newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() +nodeList.get(layer).get(index).getChildno()+(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
 
                 videoNode.getNodePane().setTranslateX(newTranslateX + 410);
                 videoNode.getNodePane().setTranslateY(newTranslateY + 225);
@@ -1504,6 +1750,7 @@ public class Controller {
         }
 
     };
+
 
 }
 

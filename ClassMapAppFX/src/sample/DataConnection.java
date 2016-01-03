@@ -17,6 +17,7 @@ import java.util.*;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import org.apache.commons.io.IOUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -33,6 +34,8 @@ public class DataConnection {
     static ArrayList<String> htmlList = new ArrayList<>();
     static ArrayList<String> topicNameList = new ArrayList<>();
     static Boolean getTopic = Boolean.FALSE;
+    static ArrayList<Student> students = new ArrayList<>();
+    static ArrayList<GridPane> displayPanes = new ArrayList<>();
 
     public static Boolean getTopic()
     {
@@ -68,7 +71,7 @@ public class DataConnection {
     public static boolean login(String user, String pass) {
         Connection conn = dbConnector();
         String query = "select * from members where username=? and password=? " ;
-        String updateTime = "UPDATE members SET log_out=? WHERE id=?";
+        String updateTime = "update members set log_out = CURRENT_TIMESTAMP where id = ?";
         try
         {
             PreparedStatement pst = conn.prepareStatement(query);
@@ -88,15 +91,14 @@ public class DataConnection {
 
 
                     PreparedStatement ps = conn.prepareStatement(updateTime);
-                    ps.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
-                    ps.setInt(2, loggedUser.getId());
+                    ps.setInt(1, loggedUser.getId());
                     ps.executeUpdate();
                     ps.close();
                     conn.close();
                     return true;
                 }
                 else {
-                    JOptionPane.showMessageDialog(null, "Does not match!");
+                    //JOptionPane.showMessageDialog(null, "Does not match!");
                     conn.close();
                     return false;
                 }
@@ -106,8 +108,28 @@ public class DataConnection {
                 return false;
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Incorrect Login. Try again.");
+            //JOptionPane.showMessageDialog(null, "Incorrect Login. Try again.");
             return false;
+        }
+    }
+
+    public static void getStudents() {
+        Connection conn = dbConnector();
+        String query = "select * from members where account_permissions=?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, "student");
+
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                students.add(new Student(rs.getString("first_name"), rs.getString("last_name"), rs.getString("username"),
+                        rs.getString("email")));
+                System.out.println(rs.getString("first_name") + rs.getString("last_name") + rs.getString("username") +
+                        rs.getString("email"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

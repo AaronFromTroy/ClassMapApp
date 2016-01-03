@@ -12,7 +12,6 @@
   <children>
     <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="537.0" prefWidth="821.0">
       <children>
-
             <Pane fx:id="nodeStage" layoutY="80.0" prefHeight="457.0" prefWidth="821.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="80.0">
                <children>
                    <Pane fx:id="newNodeStage2" onMouseDragged="#nodeDragMouseDragged" onMousePressed="#nodeDragMousePressed" prefHeight="457.0" prefWidth="821.0" />
@@ -27,9 +26,9 @@
                     <MenuItem mnemonicParsing="false" onAction="#drawWorld" style="-fx-text-fill: black;" text="Load ClassMap" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
+                <Menu mnemonicParsing="false" text="Teacher">
                   <items>
-                    <MenuItem mnemonicParsing="false" style="-fx-text-fill: black;" text="Delete" />
+                    <MenuItem mnemonicParsing="false" onAction="#drawTeacherPanel" style="-fx-text-fill: black;" text="Teacher Panel" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
@@ -49,9 +48,11 @@
                           <MenuItem mnemonicParsing="false" onAction="#createVideoNode" style="-fx-text-fill: black;" text="Create YouTube Node" />
                       </items>
                   </MenuButton>
+
                   <Button alignment="CENTER" contentDisplay="CENTER" defaultButton="false" disable="false" mnemonicParsing="false" onAction="#showHome" text="Public" textAlignment="LEFT" />
                   <Button mnemonicParsing="false" onAction="#hideNodes" text="Home" />
-                  <Button mnemonicParsing="false" text="What's New" />
+                  <Button mnemonicParsing="false" onAction="#showNew" text="What's New" />
+
                   <MenuButton id="menu-button" mnemonicParsing="false" stylesheets="@../Cobra.css" text="Topic">
                       <items>
                           <CustomMenuItem mnemonicParsing="false" text="Unspecified Action">
@@ -63,6 +64,11 @@
                   </MenuButton>
               </items>
           </ToolBar>
+            <ScrollPane fx:id="teacherPane" visible="false" fitToWidth="true" layoutY="80.0" prefHeight="457.0" prefWidth="230.0" style="-fx-background-color: #29323c;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="80.0">
+              <content>
+                <Pane fx:id="innerPane" minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="200.0" style="-fx-background-color: #29323c;" />
+              </content>
+            </ScrollPane>
 
       </children>
     </AnchorPane>
