@@ -35,7 +35,7 @@ public class ClassMap extends Application {
     public Stage primaryStage;
     public static java.util.List<Double> circleX = new ArrayList<>();
     public static java.util.List<Double> circleY = new ArrayList<>();
-    static int radius = 200;
+    static int radius = 250;
     static int noOfCircle = 1;
 
     @Override

@@ -227,11 +227,7 @@ public class TextNode extends MapNode{
     }
 
     public void setVisible() {
-        if (getUserVote() == true) {
-            this.nodePane.setVisible(true);
-        }
-        else
-            this.nodePane.setVisible(false);
+        this.nodePane.setVisible(false);
     }
 
     public String getAccountPerms() { return this.nodePerm; }

@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.ImageViewBuilder;
@@ -206,6 +207,11 @@ public class ImageNode extends MapNode {
             }
         });
 
+
+        Tooltip tooltip;
+        tooltip = new Tooltip("Created By: " + this.createdBy);
+        Tooltip.install(nodePane,tooltip);
+
     }
 
     public void setTypeToImage()
@@ -244,11 +250,7 @@ public class ImageNode extends MapNode {
     }
 
     public void setVisible() {
-        if (getUserVote() == true) {
-            this.nodePane.setVisible(true);
-        }
-        else
-            this.nodePane.setVisible(false);
+        this.nodePane.setVisible(false);
     }
 
     public void showStage(){

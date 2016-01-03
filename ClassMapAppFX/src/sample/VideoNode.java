@@ -7,6 +7,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.event.WeakEventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -230,6 +231,10 @@ public class VideoNode extends MapNode{
                 }
             }
         });
+
+        Tooltip tooltip;
+        tooltip = new Tooltip("Created By: " + this.createdBy);
+        Tooltip.install(nodePane,tooltip);
     }
 
     public String getContents() {
@@ -243,11 +248,7 @@ public class VideoNode extends MapNode{
     }
 
     public void setVisible() {
-        if (getUserVote() == true) {
-            this.nodePane.setVisible(true);
-        }
-        else
-            this.nodePane.setVisible(false);
+        this.nodePane.setVisible(false);
     }
 
     public GridPane getNodePane()

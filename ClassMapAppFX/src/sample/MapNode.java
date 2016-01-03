@@ -26,6 +26,7 @@ public class MapNode {
     public int uniqueId;
     public int votes;
     private boolean userVote = false;
+    public boolean previousVote = false;
     public String createdBy;
     public String nodePerm;
     public ArrayList<MapNode> children = new ArrayList<>();
@@ -43,6 +44,9 @@ public class MapNode {
     int childno=0;
     int expansionconst= 1;
     int offset =0 ;
+
+    double a;
+    double b;
 
     public Boolean getUserVote()
     {
@@ -157,6 +161,30 @@ public class MapNode {
 
     public int getOffset() {
         return offset;
+    }
+
+    public double getA() {
+        return a;
+    }
+
+    public void setA(double a) {
+        this.a = a;
+    }
+
+    public double getB() {
+        return b;
+    }
+
+    public void setB(double b) {
+        this.b = b;
+    }
+
+    public void setParent(int parent) {
+        this.parent = parent;
+    }
+
+    public int getUniqueId() {
+        return uniqueId;
     }
 }
 
