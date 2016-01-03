@@ -148,6 +148,9 @@ public class Controller {
 
     public boolean recursiveShowNew(MapNode rootNode, java.sql.Timestamp sqlLog) {
 
+        if(rootNode.getTimeCreated()==null) {
+            return true;
+        }
         rootNode.previousVote = false;
         int children = rootNode.children.size();
 
@@ -1300,6 +1303,7 @@ public class Controller {
                 line.setStroke(javafx.scene.paint.Color.BLACK);
 
                 MapNode parentNode = nodeList.get(layer).get(index);
+                parentNode.children.add(newNode);
 
                 if (parentNode.getType() == "string") {
                     TextNode textNode = (TextNode) parentNode;
@@ -1526,6 +1530,7 @@ public class Controller {
                 line.setStroke(javafx.scene.paint.Color.BLACK);
 
                 MapNode parentNode = nodeList.get(layer).get(index);
+                parentNode.children.add(newImageNode);
 
                 if (parentNode.getType() == "string") {
                     TextNode textNode = (TextNode) parentNode;
@@ -1689,6 +1694,7 @@ public class Controller {
                 line.setStroke(javafx.scene.paint.Color.BLACK);
 
                 MapNode parentNode = nodeList.get(layer).get(index);
+                parentNode.children.add(videoNode);
 
                 if (parentNode.getType() == "string") {
                     TextNode textNode = (TextNode) parentNode;
