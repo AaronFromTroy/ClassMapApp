@@ -5,6 +5,8 @@ package sample;/*
 
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.shape.Line;
+
 import java.awt.Image.*;
 
 import javax.swing.*;
@@ -44,7 +46,7 @@ public class MapNode {
     int childno=0;
     int expansionconst= 1;
     int offset =0 ;
-
+    Line parentLine;
     double a;
     double b;
 
@@ -185,6 +187,14 @@ public class MapNode {
 
     public int getUniqueId() {
         return uniqueId;
+    }
+
+    public Line getParentLine() {
+        return parentLine;
+    }
+
+    public void setParentLine(Line parentLine) {
+        this.parentLine = parentLine;
     }
 }
 

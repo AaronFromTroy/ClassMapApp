@@ -67,6 +67,7 @@ public class Controller {
     int[] array = {0, 5, 1, 6, 2, 7, 3, 8, 4, 9};
     java.util.List<MapNode> masterNode = new ArrayList<>();
     java.util.List<java.util.List<MapNode>> nodeList = new ArrayList<>();
+    java.util.List<Line> lineList = new ArrayList<>();
     public ArrayList<MapNode> masterNodeList = new ArrayList<MapNode>();
     public MapNode daroot;
     public Accordion topicMenuAccordion;
@@ -220,7 +221,7 @@ public class Controller {
     public void showHome(ActionEvent actionEvent){
         if(!firstTimePublic) {
             recursiveShow(daroot);
-            newNodeStage2.setVisible(true);
+            //newNodeStage2.setVisible(true);
         }
     }
 
@@ -283,6 +284,7 @@ public class Controller {
                     line.endYProperty().bind(((TextNode)(rootNode)).getNodePane().layoutXProperty().add(((TextNode)(rootNode)).getNodePane().translateYProperty()));
 
                     line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
                 if(rootNode.getParentNode().getType().toString().equals("image")){
@@ -296,6 +298,7 @@ public class Controller {
                     line.endYProperty().bind(((TextNode)(rootNode)).getNodePane().layoutXProperty().add(((TextNode)(rootNode)).getNodePane().translateYProperty()));
 
                     line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
                 if(rootNode.getParentNode().getType().toString().equals("link")){
@@ -309,6 +312,7 @@ public class Controller {
                     line.endYProperty().bind(((TextNode)(rootNode)).getNodePane().layoutXProperty().add(((TextNode)(rootNode)).getNodePane().translateYProperty()));
 
                     line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
                 ((TextNode) rootNode).getNodePane().setOnMousePressed(doNothing);
@@ -338,6 +342,7 @@ public class Controller {
                     line.endYProperty().bind(((ImageNode)(rootNode)).getNodePane().layoutXProperty().add(((ImageNode)(rootNode)).getNodePane().translateYProperty()));
 
                     line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
                 if(rootNode.getParentNode().getType().toString().equals("image")){
@@ -351,6 +356,7 @@ public class Controller {
                     line.endYProperty().bind(((ImageNode)(rootNode)).getNodePane().layoutXProperty().add(((ImageNode)(rootNode)).getNodePane().translateYProperty()));
 
                     line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
                 if(rootNode.getParentNode().getType().toString().equals("link")){
@@ -364,6 +370,7 @@ public class Controller {
                     line.endYProperty().bind(((ImageNode)(rootNode)).getNodePane().layoutXProperty().add(((ImageNode)(rootNode)).getNodePane().translateYProperty()));
 
                     line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
 
@@ -391,6 +398,7 @@ public class Controller {
                     line.endYProperty().bind(((VideoNode)(rootNode)).getNodePane().layoutXProperty().add(((VideoNode)(rootNode)).getNodePane().translateYProperty()));
 
                     line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
                 if(rootNode.getParentNode().getType().toString().equals("image")){
@@ -404,6 +412,7 @@ public class Controller {
                     line.endYProperty().bind(((VideoNode)(rootNode)).getNodePane().layoutXProperty().add(((VideoNode)(rootNode)).getNodePane().translateYProperty()));
 
                     line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
                 if(rootNode.getParentNode().getType().toString().equals("link")){
@@ -417,6 +426,7 @@ public class Controller {
                     line.endYProperty().bind(((VideoNode)(rootNode)).getNodePane().layoutXProperty().add(((VideoNode)(rootNode)).getNodePane().translateYProperty()));
 
                     line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
 
@@ -463,6 +473,7 @@ public class Controller {
                     line.endYProperty().bind(((TextNode)(rootNode)).getNodePane().layoutXProperty().add(((TextNode)(rootNode)).getNodePane().translateYProperty()));
 
                     line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
                 if(rootNode.getParentNode().getType().toString().equals("image")){
@@ -476,6 +487,7 @@ public class Controller {
                     line.endYProperty().bind(((TextNode)(rootNode)).getNodePane().layoutXProperty().add(((TextNode)(rootNode)).getNodePane().translateYProperty()));
 
                     line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
                 if(rootNode.getParentNode().getType().toString().equals("link")){
@@ -489,6 +501,7 @@ public class Controller {
                     line.endYProperty().bind(((TextNode)(rootNode)).getNodePane().layoutXProperty().add(((TextNode)(rootNode)).getNodePane().translateYProperty()));
 
                     line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
                 ((TextNode) rootNode).getNodePane().setOnMousePressed(doNothing);
@@ -516,6 +529,7 @@ public class Controller {
                     line.endYProperty().bind(((ImageNode)(rootNode)).getNodePane().layoutXProperty().add(((ImageNode)(rootNode)).getNodePane().translateYProperty()));
 
                     line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
                 if(rootNode.getParentNode().getType().toString().equals("image")){
@@ -529,6 +543,7 @@ public class Controller {
                     line.endYProperty().bind(((ImageNode)(rootNode)).getNodePane().layoutXProperty().add(((ImageNode)(rootNode)).getNodePane().translateYProperty()));
 
                     line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
                 if(rootNode.getParentNode().getType().toString().equals("link")){
@@ -542,6 +557,7 @@ public class Controller {
                     line.endYProperty().bind(((ImageNode)(rootNode)).getNodePane().layoutXProperty().add(((ImageNode)(rootNode)).getNodePane().translateYProperty()));
 
                     line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
 
@@ -566,6 +582,7 @@ public class Controller {
                     line.endYProperty().bind(((VideoNode)(rootNode)).getNodePane().layoutXProperty().add(((VideoNode)(rootNode)).getNodePane().translateYProperty()));
 
                     line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
                 if(rootNode.getParentNode().getType().toString().equals("image")){
@@ -579,6 +596,7 @@ public class Controller {
                     line.endYProperty().bind(((VideoNode)(rootNode)).getNodePane().layoutXProperty().add(((VideoNode)(rootNode)).getNodePane().translateYProperty()));
 
                     line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
                 if(rootNode.getParentNode().getType().toString().equals("link")){
@@ -592,6 +610,7 @@ public class Controller {
                     line.endYProperty().bind(((VideoNode)(rootNode)).getNodePane().layoutXProperty().add(((VideoNode)(rootNode)).getNodePane().translateYProperty()));
 
                     line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
 
@@ -836,7 +855,10 @@ public class Controller {
     public void hideNodes(ActionEvent actionEvent) {
         if(!firstTimePublic) {
             recursiveHide(daroot);
-            newNodeStage2.setVisible(false);
+//            for (int i = 0; i < lineList.size(); i++) {
+//                lineList.get(i).setVisible(false);
+//            }
+            //newNodeStage2.setVisible(false);
         }
     }
 
@@ -848,6 +870,7 @@ public class Controller {
         if (children == 0) {
             rootNode.previousVote = rootNode.getUserVote();
             if (rootNode.getUserVote() == false) {
+                rootNode.getParentLine().setVisible(false);
                 if (rootNode.type.toString().equals("string"))
                     ((TextNode) (rootNode)).setVisible();
 
@@ -876,6 +899,7 @@ public class Controller {
             }
             else {
                 if (rootNode.getUserVote() == false && rootNode.previousVote == false) {
+                    rootNode.getParentLine().setVisible(false);
                     if (rootNode.type.toString().equals("string"))
                         ((TextNode) (rootNode)).setVisible();
 
@@ -892,21 +916,28 @@ public class Controller {
     }
 
     public void recursiveShow(MapNode rootNode) {
+
         int children = rootNode.children.size();
 
-        if(rootNode.type.toString().equals("string"))
-            ((TextNode)(rootNode)).makeVisible();
+        if(rootNode.type.toString().equals("string")) {
+            ((TextNode) (rootNode)).makeVisible();
+        }
 
-        if(rootNode.type.toString().equals("image"))
-            ((ImageNode)(rootNode)).makeVisible();
+        if(rootNode.type.toString().equals("image")) {
+            ((ImageNode) (rootNode)).makeVisible();
+        }
 
-        if(rootNode.type.toString().equals("link"))
-            ((VideoNode)(rootNode)).makeVisible();
+        if(rootNode.type.toString().equals("link")) {
+            ((VideoNode) (rootNode)).makeVisible();
+        }
 
         for (int i = 0; i < children; i++) {
             if (!rootNode.children.isEmpty())
                 recursiveShow(rootNode.children.get(i));
         }
+        if(rootNode.getParentLine() != null)
+            (rootNode).getParentLine().setVisible(true);
+
     }
 
     public void nodeDragMousePressed(MouseEvent m)
@@ -1043,7 +1074,7 @@ public class Controller {
                 line.endYProperty().bind(newNode.getNodePane().layoutXProperty().add(newNode.getNodePane().translateYProperty()));
 
                 line.setStrokeWidth(4);
-
+                newNode.setParentLine(line);
                 newNodeStage2.getChildren().addAll(line);
                 newNode.setA(newTranslateX + 410);
                 newNode.setB(newTranslateY + 225);
@@ -1115,7 +1146,7 @@ public class Controller {
 
                 line.endXProperty().bind(newNode.getNodePane().layoutXProperty().add(newNode.getNodePane().translateXProperty()));
                 line.endYProperty().bind(newNode.getNodePane().layoutXProperty().add(newNode.getNodePane().translateYProperty()));
-
+                newNode.setParentLine(line);
                 newNodeStage2.getChildren().addAll(line);
 
 
@@ -1216,7 +1247,7 @@ public class Controller {
                 line.endYProperty().bind(newImageNode.getNodePane().layoutXProperty().add(newImageNode.getNodePane().translateYProperty()));
 
                 line.setStrokeWidth(4);
-
+                newImageNode.setParentLine(line);
                 newNodeStage2.getChildren().addAll(line);
                 newImageNode.setA(newTranslateX + 410);
                 newImageNode.setB(newTranslateY + 225);
@@ -1288,7 +1319,7 @@ public class Controller {
 
                 line.endXProperty().bind(newImageNode.getNodePane().layoutXProperty().add(newImageNode.getNodePane().translateXProperty()));
                 line.endYProperty().bind(newImageNode.getNodePane().layoutXProperty().add(newImageNode.getNodePane().translateYProperty()));
-
+                newImageNode.setParentLine(line);
                 newNodeStage2.getChildren().addAll(line);
 
 
@@ -1362,7 +1393,7 @@ public class Controller {
                 line.endYProperty().bind(videoNode.getNodePane().layoutXProperty().add(videoNode.getNodePane().translateYProperty()));
 
                 line.setStrokeWidth(4);
-
+                videoNode.setParentLine(line);
                 newNodeStage2.getChildren().addAll(line);
                 videoNode.setA(newTranslateX + 410);
                 videoNode.setB(newTranslateY + 225);
@@ -1434,7 +1465,7 @@ public class Controller {
 
                 line.endXProperty().bind(videoNode.getNodePane().layoutXProperty().add(videoNode.getNodePane().translateXProperty()));
                 line.endYProperty().bind(videoNode.getNodePane().layoutXProperty().add(videoNode.getNodePane().translateYProperty()));
-
+                videoNode.setParentLine(line);
                 newNodeStage2.getChildren().addAll(line);
 
 
