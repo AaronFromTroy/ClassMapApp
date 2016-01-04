@@ -1208,17 +1208,17 @@ public class Controller {
         @Override
         public void handle(MouseEvent t) {
 
-            if (nodeList.get(layer).get(index).getType().equals("string")){
+            if (nodeList.get(layer).get(index).getType().equals("string") && nodeList.get(layer).get(index) != null ){
                 TextNode textNode = (TextNode) nodeList.get(layer).get(index);
                 textNode.getNodePane().setStyle(null);
             }
-            else if (nodeList.get(layer).get(index).getType().equals("image"))
+            else if (nodeList.get(layer).get(index).getType().equals("image") && nodeList.get(layer).get(index) != null)
             {
                 ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
 
                 imageNode.getNodePane().setStyle(null);
             }
-            else  if (nodeList.get(layer).get(index).getType().equals("link"))
+            else  if (nodeList.get(layer).get(index).getType().equals("link") && nodeList.get(layer).get(index) != null)
             {
                 VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
 
@@ -1286,13 +1286,13 @@ public class Controller {
                 DataConnection.addTextNode(newNode);
             } else if (intersection(newNode.getNodePane())) {
 
-                List<Double> X = newCalculateX(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
-                List<Double> Y = newCalculateY(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
-
                 if (nodeList.get(layer).get(index).getNoOfChildren() == nodeList.get(layer).get(index).getChildLimit()){
                     expandChildren(nodeList.get(layer).get(index));
 
                 }
+
+                List<Double> X = newCalculateX(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
+                List<Double> Y = newCalculateY(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
 
                 double newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() +nodeList.get(layer).get(index).getChildno() +(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
                 double newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() +nodeList.get(layer).get(index).getChildno() +(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
@@ -1385,17 +1385,17 @@ public class Controller {
                 @Override
                 public void handle(MouseEvent t) {
 
-                    if (nodeList.get(layer).get(index).getType().equals("string")){
+                    if (nodeList.get(layer).get(index).getType().equals("string") && nodeList.get(layer).get(index) != null){
                         TextNode textNode = (TextNode) nodeList.get(layer).get(index);
                         textNode.getNodePane().setStyle(null);
                     }
-                    else if (nodeList.get(layer).get(index).getType().equals("image"))
+                    else if (nodeList.get(layer).get(index).getType().equals("image") && nodeList.get(layer).get(index) != null)
                     {
                         ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
 
                         imageNode.getNodePane().setStyle(null);
                     }
-                    else  if (nodeList.get(layer).get(index).getType().equals("link"))
+                    else  if (nodeList.get(layer).get(index).getType().equals("link") && nodeList.get(layer).get(index) != null)
                     {
                         VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
 
@@ -1411,17 +1411,17 @@ public class Controller {
                     ((GridPane) (t.getSource())).setTranslateY(newTranslateY * (1/factor));
                     if (intersection((GridPane)t.getSource())){
 
-                        if (nodeList.get(layer).get(index).getType().equals("string")){
+                        if (nodeList.get(layer).get(index).getType().equals("string") && nodeList.get(layer).get(index) != null){
                             TextNode textNode = (TextNode) nodeList.get(layer).get(index);
                             textNode.getNodePane().setStyle("-fx-background-color: #4D4DFF;");
                         }
-                        else if (nodeList.get(layer).get(index).getType().equals("image"))
+                        else if (nodeList.get(layer).get(index).getType().equals("image") && nodeList.get(layer).get(index) != null)
                         {
                             ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
 
                             imageNode.getNodePane().setStyle("-fx-background-color: #4D4DFF;");
                         }
-                        else  if (nodeList.get(layer).get(index).getType().equals("link"))
+                        else  if (nodeList.get(layer).get(index).getType().equals("link") && nodeList.get(layer).get(index) != null)
                         {
                             VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
 
@@ -1436,17 +1436,17 @@ public class Controller {
         @Override
         public void handle(MouseEvent t) {
 
-            if (nodeList.get(layer).get(index).getType().equals("string")){
+            if (nodeList.get(layer).get(index).getType().equals("string") && nodeList.get(layer).get(index) != null){
                 TextNode textNode = (TextNode) nodeList.get(layer).get(index);
                 textNode.getNodePane().setStyle(null);
             }
-            else if (nodeList.get(layer).get(index).getType().equals("image"))
+            else if (nodeList.get(layer).get(index).getType().equals("image") && nodeList.get(layer).get(index) != null)
             {
                 ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
 
                 imageNode.getNodePane().setStyle(null);
             }
-            else  if (nodeList.get(layer).get(index).getType().equals("link"))
+            else  if (nodeList.get(layer).get(index).getType().equals("link") && nodeList.get(layer).get(index) != null)
             {
                 VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
 
@@ -1513,13 +1513,13 @@ public class Controller {
                 DataConnection.addImageNode(newImageNode);
             } else if (intersection(newImageNode.getNodePane())) {
 
-                List<Double> X = newCalculateX(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
-                List<Double> Y = newCalculateY(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
-
                 if (nodeList.get(layer).get(index).getNoOfChildren() == nodeList.get(layer).get(index).getChildLimit()){
                     expandChildren(nodeList.get(layer).get(index));
 
                 }
+
+                List<Double> X = newCalculateX(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
+                List<Double> Y = newCalculateY(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
 
                 double newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren()+nodeList.get(layer).get(index).getChildno() +(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
                 double newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() +nodeList.get(layer).get(index).getChildno()+(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
@@ -1598,17 +1598,17 @@ public class Controller {
         @Override
         public void handle(MouseEvent t) {
 
-            if (nodeList.get(layer).get(index).getType().equals("string")){
+            if (nodeList.get(layer).get(index).getType().equals("string") && nodeList.get(layer).get(index) != null){
                 TextNode textNode = (TextNode) nodeList.get(layer).get(index);
                 textNode.getNodePane().setStyle(null);
             }
-            else if (nodeList.get(layer).get(index).getType().equals("image"))
+            else if (nodeList.get(layer).get(index).getType().equals("image") && nodeList.get(layer).get(index) != null)
             {
                 ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
 
                 imageNode.getNodePane().setStyle(null);
             }
-            else  if (nodeList.get(layer).get(index).getType().equals("link"))
+            else  if (nodeList.get(layer).get(index).getType().equals("link") && nodeList.get(layer).get(index) != null)
             {
                 VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
 
@@ -1676,13 +1676,13 @@ public class Controller {
                 DataConnection.addVideoNode(videoNode);
             } else if (intersection(videoNode.getNodePane())) {
 
-                List<Double> X = newCalculateX(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
-                List<Double> Y = newCalculateY(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
-
                 if (nodeList.get(layer).get(index).getNoOfChildren() == nodeList.get(layer).get(index).getChildLimit()){
                     expandChildren(nodeList.get(layer).get(index));
 
                 }
+
+                List<Double> X = newCalculateX(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
+                List<Double> Y = newCalculateY(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
 
                 double newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren()+nodeList.get(layer).get(index).getChildno() +(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
                 double newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() +nodeList.get(layer).get(index).getChildno()+(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
