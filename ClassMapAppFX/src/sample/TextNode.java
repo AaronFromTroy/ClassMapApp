@@ -74,7 +74,12 @@ public class TextNode extends MapNode{
         }
 
         Ellipse newNode = new Ellipse(0.0f, 0.0f, width, height);
-        if(this.nodePerm.equals("student")) {
+        if(this.uniqueId == 1) {
+            text.setStroke(Paint.valueOf("white"));
+            newNode.setFill(Paint.valueOf("blue"));
+            newNode.setStroke(Paint.valueOf("black"));
+        }
+        else if(this.nodePerm.equals("student")) {
             newNode.setFill(Paint.valueOf("white"));
             newNode.setStroke(Paint.valueOf("black"));
         }
