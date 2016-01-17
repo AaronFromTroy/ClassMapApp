@@ -1,26 +1,17 @@
 package sample;
 
-import javafx.animation.TranslateTransition;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.*;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.effect.Effect;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.*;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.*;
 import javafx.scene.text.Text;
@@ -29,34 +20,12 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 
-import java.awt.*;
-import java.awt.Rectangle;
-import java.awt.event.*;
-import java.io.*;
-import java.security.Timestamp;
-import java.sql.SQLException;
 import java.util.*;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.imageio.ImageReadParam;
-import javax.imageio.ImageReader;
-import javax.imageio.stream.ImageInputStream;
-
-
+import javax.swing.*;
 
 
 public class Controller {
@@ -1143,12 +1112,16 @@ public class Controller {
             dialog.setHeaderText("Enter the URL below.");
             dialog.setContentText("URL: ");
             Optional<String> result = dialog.showAndWait();
+            if(result.toString().contains("youtube.com/watch?v=")) {
 
-            videoNode = new VideoNode(result.get());
-            videoNode.getNodePane().setOnMousePressed(OnMousePressedEventHandler);
-            videoNode.getNodePane().setOnMouseDragged(OnMouseDraggedEventHandler);
-            videoNode.getNodePane().setOnMouseReleased(VideoOnMouseReleasedEventHandler);
-            newNodeStage.getChildren().add(videoNode.getNodePane());
+                videoNode = new VideoNode(result.get());
+                videoNode.getNodePane().setOnMousePressed(OnMousePressedEventHandler);
+                videoNode.getNodePane().setOnMouseDragged(OnMouseDraggedEventHandler);
+                videoNode.getNodePane().setOnMouseReleased(VideoOnMouseReleasedEventHandler);
+                newNodeStage.getChildren().add(videoNode.getNodePane());
+            }
+            else
+                JOptionPane.showMessageDialog(null, "Not a valid youtube URL.");
         }
     }
 
