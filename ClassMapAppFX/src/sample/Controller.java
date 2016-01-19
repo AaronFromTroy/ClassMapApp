@@ -64,78 +64,83 @@ public class Controller {
     javafx.scene.image.Image dragPicture = new javafx.scene.image.Image(path.toURI().toString());
     ImageView newDragView = new ImageView(dragPicture);
 
-    GridPane sideGrid = new GridPane();
-    private int nodeTrailCount = 0;
+    //GridPane sideGrid = new GridPane();
+    private static int nodeTrailCount = 0;
 
     /*
     Used to draw a trail of nodes from the selected node on the side Pane
      */
-    public void drawNodeTrail() {
-        int nodeID = DataConnection.chosenNode;
-        sideGrid.getChildren().removeAll();
-        nodeTrailCount = 0;
-        sidePane.setContent(null);
-        sideGrid.setMaxWidth(200);
+    public static void drawNodeTrail(int nodeID) {
 
-        recursivePrintTrail(DataConnection.collection.get(0), nodeID);
-        sidePane.setContent(sideGrid);
-        sidePane.setVisible(true);
+//        //sidePane.setVisible(true);
+//        Pane tryThis = new Pane();
+//        tryThis = Controller.getInstance().getNodeStage();
+//        System.out.println(nodeID + "\n");
+//        GridPane sideGrid = new GridPane();
+//        ScrollPane newSidePane = new ScrollPane();
+//        //sideGrid.getChildren().removeAll();
+//        nodeTrailCount = 0;
+//        //sidePane.setContent(null);
+//        sideGrid.setMaxWidth(200);
+////        if (sidePane.isVisible()) {
+////            System.out.println("Hey Dude");
+////        }
+//        nodeTrailCount = 0;
+//        recursivePrintTrail(DataConnection.collection.get(0), nodeID, sideGrid);
+//        sideGrid.setVisible(true);
+//        newSidePane.setContent(sideGrid);
+//        tryThis.getChildren().add(newSidePane);
+//        newSidePane.setVisible(true);
+
     }
 
     /*
     recursivePrintTrail is used to recursively find the trail to the selected node
     from the drawNodeTrail method
      */
-    private boolean recursivePrintTrail(MapNode rootNode, int nodeId) {
+    private static boolean recursivePrintTrail(MapNode rootNode, int nodeId, GridPane sideGrid) {
 
-        rootNode.previousVote = false;
         int children = rootNode.children.size();
-
-        if (rootNode.uniqueId == nodeId) {
-            if (rootNode.getType().equals("string")) {
+        if (rootNode.getUniqueId() == nodeId) {
+            if (rootNode.getType() == "string") {
                 sideGrid.add(((TextNode)rootNode).getNodePane(), 0, nodeTrailCount);
-                nodeTrailCount++;
             }
-            if (rootNode.getType().equals("link")) {
-                sideGrid.add(((TextNode)rootNode).getNodePane(), 0, nodeTrailCount);
-                nodeTrailCount++;
+            if (rootNode.getType() == "link") {
+                sideGrid.add(((VideoNode)rootNode).getNodePane(), 0, nodeTrailCount);
             }
-            if (rootNode.getType().equals("link")) {
-                sideGrid.add(((TextNode)rootNode).getNodePane(), 0, nodeTrailCount);
-                nodeTrailCount++;
+            if (rootNode.getType() == "image") {
+                sideGrid.add(((ImageNode)rootNode).getNodePane(), 0, nodeTrailCount);
             }
+            nodeTrailCount++;
             return true;
-        } else if (children != 0) {
-            for (int i = 0; i < children; i++) {
-                rootNode.previousVote = recursivePrintTrail(rootNode.children.get(i), nodeId);
-            }
-            if (rootNode.previousVote == true) {
-                if (rootNode.getType().equals("string")) {
+        }
+        for (int i = 0; i < children; i++) {
+            if (recursivePrintTrail(rootNode.children.get(i), nodeId, sideGrid) == true) {
+                if (rootNode.getType() == "string") {
                     sideGrid.add(((TextNode)rootNode).getNodePane(), 0, nodeTrailCount);
-                    nodeTrailCount++;
                 }
-                if (rootNode.getType().equals("link")) {
-                    sideGrid.add(((TextNode)rootNode).getNodePane(), 0, nodeTrailCount);
-                    nodeTrailCount++;
+                if (rootNode.getType() == "link") {
+                    sideGrid.add(((VideoNode)rootNode).getNodePane(), 0, nodeTrailCount);
                 }
-                if (rootNode.getType().equals("link")) {
-                    sideGrid.add(((TextNode)rootNode).getNodePane(), 0, nodeTrailCount);
-                    nodeTrailCount++;
+                if (rootNode.getType() == "image") {
+                    sideGrid.add(((ImageNode)rootNode).getNodePane(), 0, nodeTrailCount);
                 }
+                nodeTrailCount++;
+                return true;
             }
         }
+        return false;
 
-        return rootNode.previousVote;
     }
 
-    EventHandler<MouseEvent> onMouseRightClick = new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent event) {
-            if (event.getButton() == MouseButton.SECONDARY) {
-
-            }
-        }
-    };
+//    EventHandler<MouseEvent> onMouseRightClick = new EventHandler<MouseEvent>() {
+//        @Override
+//        public void handle(MouseEvent event) {
+//            if (event.getButton() == MouseButton.SECONDARY) {
+//
+//            }
+//        }
+//    };
 
     public void drawTeacherPanel(ActionEvent actionEvent) {
         if (DataConnection.loggedUser.getAccount().equals("teacher")) {
@@ -1811,6 +1816,7 @@ public class Controller {
         }
 
     };
+
 
 
 }

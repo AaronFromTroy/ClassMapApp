@@ -2,7 +2,9 @@ package sample;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -21,6 +23,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Optional;
@@ -205,9 +208,19 @@ public class TextNode extends MapNode{
             @Override
             public void handle(MouseEvent event) {
                 if(event.getButton() == MouseButton.SECONDARY) {
-                    //showString.display("Text Node", contents);
-                    //DataConnection.chosenNode = uniqueId;
+//                    //showString.display("Text Node", contents);
+//                    //DataConnection.chosenNode = uniqueId;
+//                    FXMLLoader loader = new FXMLLoader(this.getClass().getResource("ClassMapDataFile.fxml"));
+//                    try {
+//                        Parent root = (Parent) loader.load();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    Controller controller = loader.getController();
+//                    controller.drawNodeTrail(getUniqueId());
 
+                    //Controller.getInstance().drawNodeTrail(uniqueId);
+                    //Controller.drawNodeTrail(uniqueId);
                 }
             }
         });
