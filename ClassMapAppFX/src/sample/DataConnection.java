@@ -36,6 +36,7 @@ public class DataConnection {
     static Boolean getTopic = Boolean.FALSE;
     static ArrayList<Student> students = new ArrayList<>();
     static ArrayList<GridPane> displayPanes = new ArrayList<>();
+    static int chosenNode;
 
     public static Boolean getTopic()
     {

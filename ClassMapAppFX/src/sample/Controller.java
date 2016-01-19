@@ -35,7 +35,7 @@ public class Controller {
     public Pane nodeStage;
     public Pane newNodeStage;
     public Pane newNodeStage2;
-    public ScrollPane teacherPane;
+    public ScrollPane sidePane;
     public Pane innerPane;
     int[] array = {0, 5, 1, 6, 2, 7, 3, 8, 4, 9};
     java.util.List<MapNode> masterNode = new ArrayList<>();
@@ -56,6 +56,7 @@ public class Controller {
     int randomNumber;
     double factor = 1;
     boolean nodedrag = false;
+    boolean sideOpen = false;
 
     int index =0 ;
     int layer = 0;
@@ -63,48 +64,129 @@ public class Controller {
     javafx.scene.image.Image dragPicture = new javafx.scene.image.Image(path.toURI().toString());
     ImageView newDragView = new ImageView(dragPicture);
 
+    GridPane sideGrid = new GridPane();
+    private int nodeTrailCount = 0;
+
+    /*
+    Used to draw a trail of nodes from the selected node on the side Pane
+     */
+    public void drawNodeTrail() {
+        int nodeID = DataConnection.chosenNode;
+        sideGrid.getChildren().removeAll();
+        nodeTrailCount = 0;
+        sidePane.setContent(null);
+        sideGrid.setMaxWidth(200);
+
+        recursivePrintTrail(DataConnection.collection.get(0), nodeID);
+        sidePane.setContent(sideGrid);
+        sidePane.setVisible(true);
+    }
+
+    /*
+    recursivePrintTrail is used to recursively find the trail to the selected node
+    from the drawNodeTrail method
+     */
+    private boolean recursivePrintTrail(MapNode rootNode, int nodeId) {
+
+        rootNode.previousVote = false;
+        int children = rootNode.children.size();
+
+        if (rootNode.uniqueId == nodeId) {
+            if (rootNode.getType().equals("string")) {
+                sideGrid.add(((TextNode)rootNode).getNodePane(), 0, nodeTrailCount);
+                nodeTrailCount++;
+            }
+            if (rootNode.getType().equals("link")) {
+                sideGrid.add(((TextNode)rootNode).getNodePane(), 0, nodeTrailCount);
+                nodeTrailCount++;
+            }
+            if (rootNode.getType().equals("link")) {
+                sideGrid.add(((TextNode)rootNode).getNodePane(), 0, nodeTrailCount);
+                nodeTrailCount++;
+            }
+            return true;
+        } else if (children != 0) {
+            for (int i = 0; i < children; i++) {
+                rootNode.previousVote = recursivePrintTrail(rootNode.children.get(i), nodeId);
+            }
+            if (rootNode.previousVote == true) {
+                if (rootNode.getType().equals("string")) {
+                    sideGrid.add(((TextNode)rootNode).getNodePane(), 0, nodeTrailCount);
+                    nodeTrailCount++;
+                }
+                if (rootNode.getType().equals("link")) {
+                    sideGrid.add(((TextNode)rootNode).getNodePane(), 0, nodeTrailCount);
+                    nodeTrailCount++;
+                }
+                if (rootNode.getType().equals("link")) {
+                    sideGrid.add(((TextNode)rootNode).getNodePane(), 0, nodeTrailCount);
+                    nodeTrailCount++;
+                }
+            }
+        }
+
+        return rootNode.previousVote;
+    }
+
+    EventHandler<MouseEvent> onMouseRightClick = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            if (event.getButton() == MouseButton.SECONDARY) {
+
+            }
+        }
+    };
+
     public void drawTeacherPanel(ActionEvent actionEvent) {
         if (DataConnection.loggedUser.getAccount().equals("teacher")) {
-            GridPane displayGrid = new GridPane();
-            displayGrid.setMaxWidth(200);
+            if(sideOpen == false) {
+                sideOpen = true;
 
-            teacherPane.setVisible(true);
-            int numStudents = DataConnection.students.size();
-            for (int i = 0; i < numStudents; i++) {
+                GridPane displayGrid = new GridPane();
+                displayGrid.setMaxWidth(200);
+                int numStudents = DataConnection.students.size();
+                for (int i = 0; i < numStudents; i++) {
 
-                Text text = new Text( "   First: " + DataConnection.students.get(i).getFirstName() + "\n" + "   Last: " + DataConnection.students.get(i).getLastName() + "\n" + "   UserName: " + DataConnection.students.get(i).getUserName() + "\n" + "   Email: " + DataConnection.students.get(i).getEmail());
-                text.setBoundsType(TextBoundsType.LOGICAL);
-                //text.setTextAlignment(TextAlignment.LEFT);
-                //text.setWrappingWidth(180.0f);
+                    Text text = new Text("   First: " + DataConnection.students.get(i).getFirstName() + "\n" + "   Last: " + DataConnection.students.get(i).getLastName() + "\n" + "   UserName: " + DataConnection.students.get(i).getUserName() + "\n" + "   Email: " + DataConnection.students.get(i).getEmail());
+                    text.setBoundsType(TextBoundsType.LOGICAL);
+                    //text.setTextAlignment(TextAlignment.LEFT);
+                    //text.setWrappingWidth(180.0f);
 
-                double height = (text.getLayoutBounds().getHeight())*8/9;
-                //double width = (text.getLayoutBounds().getWidth())*8/9;
+                    double height = (text.getLayoutBounds().getHeight()) * 8 / 9;
+                    //double width = (text.getLayoutBounds().getWidth())*8/9;
 
-                javafx.scene.shape.Rectangle newNode = new javafx.scene.shape.Rectangle(0.0f, 0.0f, 200, height + 20.0f);
-                newNode.setFill(Paint.valueOf("white"));
-                newNode.setStroke(Paint.valueOf("black"));
-                StackPane stack = new StackPane();
-                stack.getChildren().addAll(newNode, text);
-                stack.setAlignment(text, Pos.CENTER_LEFT);
+                    javafx.scene.shape.Rectangle newNode = new javafx.scene.shape.Rectangle(0.0f, 0.0f, 200, height + 20.0f);
+                    newNode.setFill(Paint.valueOf("white"));
+                    newNode.setStroke(Paint.valueOf("black"));
+                    StackPane stack = new StackPane();
+                    stack.getChildren().addAll(newNode, text);
+                    stack.setAlignment(text, Pos.CENTER_LEFT);
 
-                int j = i;
-                stack.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        showReset(event);
-                        showUserNodes(event, DataConnection.students.get(j).getUserName());
-                    }
-                });
+                    int j = i;
+                    stack.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            showReset(event);
+                            showUserNodes(event, DataConnection.students.get(j).getUserName());
+                        }
+                    });
 
-                DataConnection.displayPanes.add(new GridPane());
-                DataConnection.displayPanes.get(i).add(stack,0,0);
-                DataConnection.displayPanes.get(i).setVisible(true);
+                    DataConnection.displayPanes.add(new GridPane());
+                    DataConnection.displayPanes.get(i).add(stack, 0, 0);
+                    DataConnection.displayPanes.get(i).setVisible(true);
 
-                displayGrid.add(DataConnection.displayPanes.get(i), 0, i);
+                    displayGrid.add(DataConnection.displayPanes.get(i), 0, i);
 
 
-            }     //displayGrid.setStyle("-fx-background-color: #000000;");
-            teacherPane.setContent(displayGrid);
+                }     //displayGrid.setStyle("-fx-background-color: #000000;");
+                sidePane.setContent(displayGrid);
+                sidePane.setVisible(true);
+            }
+            else {
+                sidePane.setContent(null);
+                sidePane.setVisible(false);
+                sideOpen = false;
+            }
         }
     }
 

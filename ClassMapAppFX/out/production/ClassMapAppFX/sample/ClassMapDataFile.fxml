@@ -64,7 +64,7 @@
                   </MenuButton>
               </items>
           </ToolBar>
-            <ScrollPane fx:id="teacherPane" visible="false" fitToWidth="true" layoutY="80.0" prefHeight="457.0" prefWidth="230.0" style="-fx-background-color: #29323c;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="80.0">
+            <ScrollPane fx:id="sidePane" visible="false" fitToWidth="true" layoutY="80.0" prefHeight="457.0" prefWidth="230.0" style="-fx-background-color: #29323c;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="80.0">
               <content>
                 <Pane fx:id="innerPane" minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="200.0" style="-fx-background-color: #29323c;" />
               </content>

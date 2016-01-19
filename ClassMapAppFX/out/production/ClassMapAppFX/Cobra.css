@@ -1,8 +1,8 @@
 /*root classmap*/
 .classmap-root{
    /* -fx-background-color: #353c3f; */
-    -fx-background-image: url("sample/darker.jpg");
-    /*  -fx-background-color: #003b46; ocean */
+    /*-fx-background-image: url("sample/darker.jpg"); */
+    -fx-background-color: #e6e6e6;
     /* -fx-background-color: #201c1e; blue-green */
 }
 

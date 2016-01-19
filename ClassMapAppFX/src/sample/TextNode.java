@@ -15,6 +15,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
 
@@ -22,6 +24,8 @@ import java.io.File;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Optional;
+
+import javafx.fxml.FXML;
 
 public class TextNode extends MapNode{
 
@@ -51,13 +55,12 @@ public class TextNode extends MapNode{
         this.type = type.string;
         this.createdBy = user;
         this.nodePerm = accountType;
-        //this.drawNode();
     }
 
     public void drawNode() {
         Text text = new Text(contents);
         text.setBoundsType(TextBoundsType.VISUAL);
-        text.setWrappingWidth(150.0f);
+        text.setWrappingWidth(100.0f);
 
         double height = (text.getLayoutBounds().getHeight())*2/3;
         double width = (text.getLayoutBounds().getWidth())*2/3;
@@ -73,32 +76,26 @@ public class TextNode extends MapNode{
             height = minWidth;
         }
 
-        Ellipse newNode = new Ellipse(0.0f, 0.0f, width, height);
+        Rectangle newNode = new Rectangle(0.0f, 0.0f, 150, 50);
         if(this.uniqueId == 1) {
             text.setStroke(Paint.valueOf("white"));
             newNode.setFill(Paint.valueOf("blue"));
             newNode.setStroke(Paint.valueOf("black"));
         }
-        else if(this.nodePerm.equals("student")) {
-            newNode.setFill(Paint.valueOf("white"));
-            newNode.setStroke(Paint.valueOf("black"));
-        }
         else {
-            text.setStroke(Paint.valueOf("white"));
-            newNode.setFill(Paint.valueOf("black"));
-            newNode.setStroke(Paint.valueOf("black"));
+            newNode.setFill(Paint.valueOf("white"));
+            newNode.setStroke(Color.DODGERBLUE);
         }
+//        else {
+//            text.setStroke(Paint.valueOf("white"));
+//            newNode.setFill(Paint.valueOf("black"));
+//            newNode.setStroke(Paint.valueOf("black"));
+//        }
 
         StackPane stack = new StackPane();
         stack.getChildren().addAll(newNode, text);
 
-        stack.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if(event.getButton() == MouseButton.SECONDARY)
-                    showString.display("Text Node", contents);
-            }
-        });
+
 
         Image arrow;
         ImageView arrowView;
@@ -178,10 +175,21 @@ public class TextNode extends MapNode{
                 }
             }
         });
+        Rectangle namePlate = new Rectangle(0.0f, 0.0f, 150, 25);
+        namePlate.setFill(Color.DODGERBLUE);
+        namePlate.setStroke(Color.DODGERBLUE);
+        Text nameDisplay = new Text(this.createdBy);
+        nameDisplay.setBoundsType(TextBoundsType.VISUAL);
+        nameDisplay.setWrappingWidth(100.0f);
+        nameDisplay.setStroke(Color.WHITE);
+        StackPane stack2 = new StackPane();
+        stack2.getChildren().addAll(namePlate, nameDisplay);
 
         nodePane = new GridPane();
         nodePane.add(arr,0,0);
         nodePane.add(stack,0,1);
+        if(this.uniqueId != 1)
+            nodePane.add(stack2,0,2);
 
         nodePane.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
@@ -189,6 +197,17 @@ public class TextNode extends MapNode{
                 if(event.getButton() == MouseButton.PRIMARY) {
                     nodePane.setLayoutX(event.getSceneX() - nodePane.getWidth() / 2);
                     nodePane.setLayoutY(event.getSceneY() - nodePane.getHeight());
+                }
+            }
+        });
+
+        nodePane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(event.getButton() == MouseButton.SECONDARY) {
+                    //showString.display("Text Node", contents);
+                    //DataConnection.chosenNode = uniqueId;
+
                 }
             }
         });
