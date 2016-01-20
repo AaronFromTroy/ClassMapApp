@@ -233,13 +233,11 @@ public class TextNode extends MapNode{
         dict.searchForWord(text.getText());
         if(dict.getCount() > 0)
         {
-            tooltip = new Tooltip(dict.getExactDefinition() + "\n\n"
-                + "Created By: " + this.createdBy);
+            tooltip = new Tooltip(dict.getExactDefinition() + "\n\n");
         }
         else
         {
-            tooltip = new Tooltip("Not a definable word" + "\n\n"
-                + "Created By: " + this.createdBy);
+            tooltip = new Tooltip("Not a definable word" + "\n\n");
         }
 
         Tooltip.install(nodePane,tooltip);

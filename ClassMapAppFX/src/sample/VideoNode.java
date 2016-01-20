@@ -18,7 +18,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextBoundsType;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
@@ -94,10 +96,10 @@ public class VideoNode extends MapNode{
         ImageView viewer = new ImageView(image);
         viewer.setPreserveRatio(Boolean.TRUE);
         viewer.setFitHeight(80.0f);
-        double height = viewer.getBoundsInParent().getHeight() * 4/5;
-        double width = viewer.getBoundsInParent().getWidth() * 4/5;
+        double height = viewer.getBoundsInParent().getHeight() +15;
+        double width = viewer.getBoundsInParent().getWidth() +30;
 
-        Ellipse newNode = new Ellipse(0.0f, 0.0f, width, height);
+        Rectangle newNode = new Rectangle(width, height);
         if(this.nodePerm.equals("student")) {
             newNode.setFill(Paint.valueOf("white"));
             newNode.setStroke(Paint.valueOf("black"));
@@ -183,6 +185,18 @@ public class VideoNode extends MapNode{
             }
         });
 
+        Color youtubeRed = Color.rgb(187,0,0);
+
+        Rectangle namePlate = new Rectangle(width, 25);
+        namePlate.setFill(youtubeRed);
+        namePlate.setStroke(youtubeRed);
+        Text nameDisplay = new Text(this.createdBy);
+        nameDisplay.setBoundsType(TextBoundsType.VISUAL);
+        nameDisplay.setWrappingWidth(100.0f);
+        nameDisplay.setStroke(Color.WHITE);
+        StackPane stack2 = new StackPane();
+        stack2.getChildren().addAll(namePlate, nameDisplay);
+
         StackPane stack = new StackPane();
         stack.getChildren().addAll(newNode, viewer);
         stack.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -218,9 +232,16 @@ public class VideoNode extends MapNode{
                 }
             }
         });
+
+
+
         nodePane = new GridPane();
         nodePane.add(arr,0,0);
         nodePane.add(stack,0,1);
+        if(this.uniqueId != 1)
+            nodePane.add(stack2,0,2);
+
+        nodePane.getStyleClass().add("node-box");
 
         nodePane.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
@@ -233,7 +254,7 @@ public class VideoNode extends MapNode{
         });
 
         Tooltip tooltip;
-        tooltip = new Tooltip("Created By: " + this.createdBy);
+        tooltip = new Tooltip("Video Node");
         Tooltip.install(nodePane,tooltip);
     }
 

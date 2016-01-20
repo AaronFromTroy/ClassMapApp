@@ -15,7 +15,9 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextBoundsType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -95,10 +97,10 @@ public class ImageNode extends MapNode {
         ImageView viewer = new ImageView(image);
         viewer.setPreserveRatio(Boolean.TRUE);
         viewer.setFitHeight(80.0f);
-        double height = viewer.getBoundsInParent().getHeight() * 4/5;
-        double width = viewer.getBoundsInParent().getWidth() * 4/5;
+        double height = viewer.getBoundsInParent().getHeight() + 15;
+        double width = viewer.getBoundsInParent().getWidth() + 30;
 
-        Ellipse newNode = new Ellipse(0.0f, 0.0f, width, height);
+        Rectangle newNode = new Rectangle(width, height);
         if(this.nodePerm.equals("student")) {
             newNode.setFill(Paint.valueOf("white"));
             newNode.setStroke(Paint.valueOf("black"));
@@ -184,6 +186,16 @@ public class ImageNode extends MapNode {
             }
         });
 
+        Rectangle namePlate = new Rectangle(width, 25);
+        namePlate.setFill(Color.FORESTGREEN);
+        namePlate.setStroke(Color.FORESTGREEN);
+        Text nameDisplay = new Text(this.createdBy);
+        nameDisplay.setBoundsType(TextBoundsType.VISUAL);
+        nameDisplay.setWrappingWidth(100.0f);
+        nameDisplay.setStroke(Color.WHITE);
+        StackPane stack2 = new StackPane();
+        stack2.getChildren().addAll(namePlate, nameDisplay);
+
         StackPane stack = new StackPane();
         stack.getChildren().addAll(newNode, viewer);
         stack.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -196,6 +208,10 @@ public class ImageNode extends MapNode {
         nodePane = new GridPane();
         nodePane.add(arr,0,0);
         nodePane.add(stack,0,1);
+        if(this.uniqueId != 1)
+            nodePane.add(stack2,0,2);
+
+        nodePane.getStyleClass().add("node-box");
 
         nodePane.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
@@ -209,7 +225,7 @@ public class ImageNode extends MapNode {
 
 
         Tooltip tooltip;
-        tooltip = new Tooltip("Created By: " + this.createdBy);
+        tooltip = new Tooltip("Image Node");
         Tooltip.install(nodePane,tooltip);
 
     }
