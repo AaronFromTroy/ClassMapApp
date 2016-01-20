@@ -99,15 +99,16 @@ public class VideoNode extends MapNode{
         double height = viewer.getBoundsInParent().getHeight() +15;
         double width = viewer.getBoundsInParent().getWidth() +30;
 
+        Color youtubeRed = Color.rgb(187,0,0);
         Rectangle newNode = new Rectangle(width, height);
-        if(this.nodePerm.equals("student")) {
+        //if(this.nodePerm.equals("student")) {
             newNode.setFill(Paint.valueOf("white"));
-            newNode.setStroke(Paint.valueOf("black"));
-        }
-        else {
-            newNode.setFill(Paint.valueOf("black"));
-            newNode.setStroke(Paint.valueOf("black"));
-        }
+            newNode.setStroke(youtubeRed);
+        //}
+        //else {
+          //  newNode.setFill(Paint.valueOf("black"));
+            //newNode.setStroke(Paint.valueOf("black"));
+        //}
 
         Image arrow;
         ImageView arrowView;
@@ -184,8 +185,6 @@ public class VideoNode extends MapNode{
                 }
             }
         });
-
-        Color youtubeRed = Color.rgb(187,0,0);
 
         Rectangle namePlate = new Rectangle(width, 25);
         namePlate.setFill(youtubeRed);

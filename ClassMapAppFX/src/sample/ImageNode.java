@@ -101,14 +101,14 @@ public class ImageNode extends MapNode {
         double width = viewer.getBoundsInParent().getWidth() + 30;
 
         Rectangle newNode = new Rectangle(width, height);
-        if(this.nodePerm.equals("student")) {
+        //if(this.nodePerm.equals("student")) {
             newNode.setFill(Paint.valueOf("white"));
-            newNode.setStroke(Paint.valueOf("black"));
-        }
-        else {
-            newNode.setFill(Paint.valueOf("black"));
-            newNode.setStroke(Paint.valueOf("black"));
-        }
+            newNode.setStroke(Color.FORESTGREEN);
+        //}
+        //else {
+          //  newNode.setFill(Paint.valueOf("black"));
+            //newNode.setStroke(Paint.valueOf("black"));
+        //}
 
         Image arrow;
         ImageView arrowView;
