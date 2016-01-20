@@ -1,7 +1,7 @@
 /*root classmap*/
 .classmap-root{
    /* -fx-background-color: #353c3f; */
-    /*-fx-background-image: url("sample/darker.jpg"); */
+    /*-fx-background-image: url("sample/darker.jpg");*/
     -fx-background-color: #e6e6e6;
     /* -fx-background-color: #201c1e; blue-green */
 }
@@ -52,6 +52,10 @@
     -fx-stroke: black;
 }
 
+.node-box{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
 .up-vote{
     -fx-font: 20 arial;
 }
@@ -91,6 +95,10 @@
 
 .alert-dialog .button{
     -fx-background-color: linear-gradient(#dc9656, #ab4642);
+}
+
+.alert-dialog .button:hover{
+    -fx-background-color: linear-gradient(#9ea7e5, #61a2b1);
 }
 
 #mainmenu {

@@ -194,6 +194,8 @@ public class TextNode extends MapNode{
         if(this.uniqueId != 1)
             nodePane.add(stack2,0,2);
 
+        nodePane.getStyleClass().add("node-box");
+
         nodePane.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

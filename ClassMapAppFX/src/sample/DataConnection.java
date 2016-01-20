@@ -57,7 +57,8 @@ public class DataConnection {
             return conn;
 
         } catch (SQLException | HeadlessException e) {
-            JOptionPane.showMessageDialog(null, "Failed to Establish Connection!");
+            Alert.display("Error", "Failed to establish a connection!");
+            //JOptionPane.showMessageDialog(null, "Failed to Establish Connection!");
             return null;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -82,7 +83,8 @@ public class DataConnection {
             ResultSet rst = pst.executeQuery();
             if(rst.next()) {
                 if(rst.getString("password").equals(pass)) {
-                    JOptionPane.showMessageDialog(null, "Found User!");
+                    Alert.display("Success", "Welcome to ClassMap!");
+                    //JOptionPane.showMessageDialog(null, "Found User!");
 
                     User newloggedUser = new User(rst.getString("first_name"), rst.getString("last_name"), rst.getString("username"),
                             rst.getInt("id"), rst.getTimestamp("log_out"), rst.getString("account_permissions"));
@@ -278,8 +280,8 @@ public class DataConnection {
 
         } catch (SQLException e) {
             System.out.println(e);
-
-            JOptionPane.showMessageDialog(null, "Errors Occured Building Map!");
+            Alert.display("Error", "Errors Occurred Building Map!");
+            //JOptionPane.showMessageDialog(null, "Errors Occurred Building Map!");
             return null;
         }
 
@@ -354,7 +356,7 @@ public class DataConnection {
 
             addUpvote(node);
         } catch (Exception E) {
-            JOptionPane.showMessageDialog(null, "Error");
+            //JOptionPane.showMessageDialog(null, "Error");
         }
         try {
             PreparedStatement ps2 = conn.prepareStatement(query3);
@@ -365,7 +367,8 @@ public class DataConnection {
             conn.close();
         } catch (Exception e) {
             try {
-                JOptionPane.showMessageDialog(null, "This image failed to upload.\n Try saving the image and upload as file.");
+                Alert.display("Error", "This image failed to upload.\n Try saving the image and upload as file.");
+                //JOptionPane.showMessageDialog(null, "This image failed to upload.\n Try saving the image and upload as file.");
                 File path = new File("./Images/error.jpg");
                 Image newArrow = new Image(path.toURI().toString());
 
@@ -384,9 +387,11 @@ public class DataConnection {
                 ps3.close();
                 conn.close();
             } catch (Exception event) {
-                JOptionPane.showMessageDialog(null, "that did not work!");
+                Alert.display("Error", "That did not work!");
+                //JOptionPane.showMessageDialog(null, "that did not work!");
             }
-            JOptionPane.showMessageDialog(null, "Image not compatible.");
+            Alert.display("Error", "Image not compatible.");
+            //JOptionPane.showMessageDialog(null, "Image not compatible.");
         }
     }
 
@@ -457,7 +462,8 @@ public class DataConnection {
             pst.close();
             conn.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Didnt Work Sorry!");
+            Alert.display("Error", "Did not work. Sorry!");
+            //JOptionPane.showMessageDialog(null, "Didnt Work Sorry!");
         }
 
     }
@@ -493,7 +499,8 @@ public class DataConnection {
 //            ps.close();
 //            conn.close();
 //        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "User could not be deleted.");
+//          Alert.display("Error", "User could not be deleted");
+//          //JOptionPane.showMessageDialog(null, "User could not be deleted.");
 //        }
 //    }
 
@@ -561,7 +568,8 @@ public class DataConnection {
                     rs.close();
                     conn.close();
                 } catch (SQLException | HeadlessException e) {
-                    JOptionPane.showMessageDialog(null, "Failed to load img at ID: " + minionId);
+                    Alert.display("Error", "Failed to load img at ID: " + minionId);
+                    //JOptionPane.showMessageDialog(null, "Failed to load img at ID: " + minionId);
                     counting.release();
 
                 }

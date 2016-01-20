@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -22,6 +23,14 @@ public class Alert {
         Label label = new Label(message);
         Button close = new Button("Close");
         close.setOnAction(e -> window.close());
+
+        close.setOnKeyPressed(e->{
+            if (e.getCode()== KeyCode.ENTER)
+            {
+                window.close();
+            }
+        });
+
         close.getStyleClass().add("login-button");
         VBox layout = new VBox(10);
         layout.getChildren().addAll(label, close);
