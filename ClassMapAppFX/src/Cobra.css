@@ -2,48 +2,56 @@
 .classmap-root{
    /* -fx-background-color: #353c3f; */
     /*-fx-background-image: url("sample/dj.jpg");*/
-    -fx-background-color: linear-gradient(#ece9e6, #ffffff);
+    -fx-background-color: rgb(233,234,237);
     /* -fx-background-color: #201c1e; blue-green */
 }
 
 .button{
-    -fx-background-color: linear-gradient(#dc9656, #ab4642);
-    /* -fx-background-color: #07575b; ocean */
-    /* -fx-background-color: #004445; blue-green */
+    -fx-background-color: #ffffff;
+    -fx-text-fill: rgb(66,95,156);
     -fx-font-size: 10pt;
-    -fx-text-fill: #ffffff;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-effect: none;
 }
 
 .button:hover{
-    -fx-background-color: linear-gradient(#9ea7e5, #61a2b1);
+    -fx-background-color: rgb(233,234,237);
 }
 
 #menu-button{
-    -fx-background-color: linear-gradient(#dc9656, #ab4642);
-    /* -fx-background-color: #07575b; ocean */
-    /* -fx-background-color: #004445; blue-green */
-    -fx-background-radius: 5;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: rgb(66,95,156);
+    -fx-effect: none;
+}
+
+#menu-button .label {
+    -fx-text-fill: rgb(66,95,156);
     -fx-font-size: 10pt;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
 #menu-button:hover{
-    -fx-background-color: linear-gradient(#9ea7e5, #61a2b1);
+    -fx-background-color: rgb(233,234,237);
 }
 
 .label{
-    -fx-text-fill: rgb(115,121,127);
+    -fx-text-fill: white;
     -fx-font-size: 10pt;
 }
 
 .menu-item{
     -fx-background-color: white;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
 }
 
 .menu-item:hover{
-    -fx-background-color: #07575b;
+    -fx-background-color: rgb(233,234,237);
+}
+
+#toolbar-item{
+    -fx-background-color: #1A237E;
+}
+
+#toolbar-item:hover{
+    -fx-background-color: #303F9F;
 }
 
 /*.new-node{
@@ -74,7 +82,7 @@
 }
 
 .login-button:hover{
-    -fx-background-color: linear-gradient(#9ea7e5, #61a2b1);
+    -fx-background-color: #303F9F;
 }
 
 .login-button:selected{
@@ -88,11 +96,11 @@
 }
 
 .signup:hover{
-    -fx-text-fill: black;
+    -fx-text-fill: #303F9F;
 }
 
 #toolbar{
-    -fx-background-color: linear-gradient(#485563, #29323c);
+    -fx-background-color: #303F9F;
     /* -fx-background-color: linear-gradient(#66a5ad, #c4dfe6); ocean */
     /* -fx-background-color: linear-gradient(#2c7873, #6fb98f); blue-green */
 }
@@ -107,11 +115,11 @@
 }
 
 .alert-dialog .button:hover{
-    -fx-background-color: linear-gradient(#9ea7e5, #61a2b1);
+    -fx-background-color: #303F9F;
 }
 
 #mainmenu {
-    -fx-background-color: #29323c;
+    -fx-background-color: #1A237E;
 }
 
 .numberOfVotes{

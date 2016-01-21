@@ -147,25 +147,25 @@ public class Controller {
                 Object obj = event.getSource();
                 drawNodeTrail((Integer)((GridPane)obj).getUserData());
                 
-//                ContextMenu cm = new ContextMenu();
-//                    MenuItem cmItem1 = new MenuItem("Delete");
-//                    MenuItem cmItem2 = new MenuItem("Show Trail");
-//                    cm.getItems().add(cmItem1);
-//                    cm.getItems().add(cmItem2);
-//                    cm.show(nodeStage,event.getSceneX(),event.getScreenY());
-//
-//                    cmItem1.setOnAction(new EventHandler<ActionEvent>() {
-//                        public void handle(ActionEvent e) {
-//
-//                        }
-//                    });
-//                    cmItem2.setOnAction(new EventHandler<ActionEvent>() {
-//                        public void handle(ActionEvent e) {
-//                            drawNodeTrail(DataConnection.chosenNode);
-//                            System.out.println(DataConnection.chosenNode);
-//                            cm.hide();
-//                        }
-//                    });
+                ContextMenu cm = new ContextMenu();
+                    MenuItem cmItem1 = new MenuItem("Delete");
+                    MenuItem cmItem2 = new MenuItem("Show Trail");
+                    cm.getItems().add(cmItem1);
+                    cm.getItems().add(cmItem2);
+                    cm.show(nodeStage,event.getSceneX(),event.getScreenY());
+
+                    cmItem1.setOnAction(new EventHandler<ActionEvent>() {
+                        public void handle(ActionEvent e) {
+
+                        }
+                    });
+                    cmItem2.setOnAction(new EventHandler<ActionEvent>() {
+                        public void handle(ActionEvent e) {
+                            drawNodeTrail(DataConnection.chosenNode);
+                            System.out.println(DataConnection.chosenNode);
+                            cm.hide();
+                        }
+                    });
             }
         }
     };

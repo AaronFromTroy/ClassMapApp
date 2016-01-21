@@ -85,6 +85,7 @@ public class ClassMap extends Application {
 
         javafx.scene.control.TextField nameInput = new javafx.scene.control.TextField();
         //GridPane.setConstraints(nameInput, 2, 1);
+        nameInput.setText("tclinkscales");
         userPane.add(nameInput,1,0);
         //mainPain.add(userPane,0,1);
 
@@ -97,7 +98,9 @@ public class ClassMap extends Application {
 
         PasswordField passInput = new PasswordField();
         //GridPane.setConstraints(passInput, 2, 2);
+        passInput.setText("clinkclink");
         userPane.add(passInput,1,2);
+
 
         //mainPain.setGridLinesVisible(true);
 
