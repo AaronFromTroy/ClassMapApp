@@ -1,11 +1,14 @@
 package sample;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -35,6 +38,7 @@ public class TextNode extends MapNode{
     private GridPane nodePane;
     private String contents;
     private Alert showString;
+    //private Controller.Minion myMinion = new Controller.Minion();
 
     public TextNode(String in)
     {
@@ -44,6 +48,7 @@ public class TextNode extends MapNode{
         this.incrementVoteCounter();
         this.createdBy = DataConnection.loggedUser.getUser();
         this.nodePerm = DataConnection.loggedUser.getAccount();
+        //this.myMinion.setMyId(getUniqueId());
         this.drawNode();
 
     }
@@ -58,6 +63,7 @@ public class TextNode extends MapNode{
         this.type = type.string;
         this.createdBy = user;
         this.nodePerm = accountType;
+        //this.myMinion.setMyId(uniqueId);
     }
 
     public void drawNode() {
@@ -206,23 +212,33 @@ public class TextNode extends MapNode{
             }
         });
 
+//        nodePane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                if(event.getButton() == MouseButton.SECONDARY) {
+////                    //showString.display("Text Node", contents);
+////                    //DataConnection.chosenNode = uniqueId;
+////                    FXMLLoader loader = new FXMLLoader(this.getClass().getResource("ClassMapDataFile.fxml"));
+////                    try {
+////                        Parent root = (Parent) loader.load();
+////                    } catch (IOException e) {
+////                        e.printStackTrace();
+////                    }
+////                    Controller controller = loader.getController();
+////                    controller.drawNodeTrail(getUniqueId());
+//
+//                    //Controller.getInstance().drawNodeTrail(uniqueId);
+//                    //Controller.drawNodeTrail(uniqueId);
+//                }
+//            }
+//        });
+
         nodePane.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 if(event.getButton() == MouseButton.SECONDARY) {
-//                    //showString.display("Text Node", contents);
-//                    //DataConnection.chosenNode = uniqueId;
-//                    FXMLLoader loader = new FXMLLoader(this.getClass().getResource("ClassMapDataFile.fxml"));
-//                    try {
-//                        Parent root = (Parent) loader.load();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                    Controller controller = loader.getController();
-//                    controller.drawNodeTrail(getUniqueId());
-
-                    //Controller.getInstance().drawNodeTrail(uniqueId);
-                    //Controller.drawNodeTrail(uniqueId);
+//                    Controller.bobo2.add(getNodePane(), 0, 0);
+//                    Controller.bobo.setContent(Controller.bobo2);
                 }
             }
         });
@@ -250,6 +266,7 @@ public class TextNode extends MapNode{
 
     public GridPane getNodePane()
     {
+        nodePane.setUserData(getUniqueId());
         return nodePane;
     }
 

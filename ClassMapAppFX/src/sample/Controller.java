@@ -36,6 +36,9 @@ public class Controller {
     public Pane newNodeStage;
     public Pane newNodeStage2;
     public ScrollPane sidePane;
+    public static ScrollPane bobo;
+    public static GridPane bobo2;
+
     public Pane innerPane;
     int[] array = {0, 5, 1, 6, 2, 7, 3, 8, 4, 9};
     java.util.List<MapNode> masterNode = new ArrayList<>();
@@ -70,9 +73,9 @@ public class Controller {
     /*
     Used to draw a trail of nodes from the selected node on the side Pane
      */
-    public static void drawNodeTrail(int nodeID) {
+    public void drawNodeTrail(int nodeID) {
 
-//        //sidePane.setVisible(true);
+        sidePane.setVisible(true);
 //        Pane tryThis = new Pane();
 //        tryThis = Controller.getInstance().getNodeStage();
 //        System.out.println(nodeID + "\n");
@@ -133,14 +136,39 @@ public class Controller {
 
     }
 
-//    EventHandler<MouseEvent> onMouseRightClick = new EventHandler<MouseEvent>() {
-//        @Override
-//        public void handle(MouseEvent event) {
-//            if (event.getButton() == MouseButton.SECONDARY) {
+
+    EventHandler<MouseEvent> onMouseRightClick = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+
+
+
+            if (event.getButton() == MouseButton.SECONDARY) {
+                Object obj = event.getSource();
+                drawNodeTrail((Integer)((GridPane)obj).getUserData());
+                
+//                ContextMenu cm = new ContextMenu();
+//                    MenuItem cmItem1 = new MenuItem("Delete");
+//                    MenuItem cmItem2 = new MenuItem("Show Trail");
+//                    cm.getItems().add(cmItem1);
+//                    cm.getItems().add(cmItem2);
+//                    cm.show(nodeStage,event.getSceneX(),event.getScreenY());
 //
-//            }
-//        }
-//    };
+//                    cmItem1.setOnAction(new EventHandler<ActionEvent>() {
+//                        public void handle(ActionEvent e) {
+//
+//                        }
+//                    });
+//                    cmItem2.setOnAction(new EventHandler<ActionEvent>() {
+//                        public void handle(ActionEvent e) {
+//                            drawNodeTrail(DataConnection.chosenNode);
+//                            System.out.println(DataConnection.chosenNode);
+//                            cm.hide();
+//                        }
+//                    });
+            }
+        }
+    };
 
     public void drawTeacherPanel(ActionEvent actionEvent) {
         if (DataConnection.loggedUser.getAccount().equals("teacher")) {
@@ -318,6 +346,7 @@ public class Controller {
             newNode.getNodePane().setOnMousePressed(OnMousePressedEventHandler);
             newNode.getNodePane().setOnMouseDragged(OnMouseDraggedEventHandler);
             newNode.getNodePane().setOnMouseReleased(OnMouseReleasedEventHandler);
+            //newNode.getNodePane().setOnMouseClicked(onMouseRightClick);
             newNodeStage.getChildren().add(newNode.getNodePane());
         }
 
@@ -374,6 +403,9 @@ public class Controller {
 
     public void drawWorld(ActionEvent actionEvent) throws InterruptedException {
         if(firstTimePublic) {
+//            bobo2.add(new Pane(), 0, 0);
+//            bobo.setContent(bobo2);
+//            nodeStage.getChildren().add(bobo);
             daroot = DataConnection.populate();
             DataConnection.getStudents();
             recursiveDisplay(daroot);
@@ -621,6 +653,7 @@ public class Controller {
         }
 
         else {
+
             if (rootNode.getParentNode().getNoOfChildren()== rootNode.getParentNode().getChildLimit()){
                 expandChildren(rootNode.getParentNode());
             }
@@ -634,6 +667,7 @@ public class Controller {
                 newNodeStage.getChildren().add(((TextNode)(rootNode)).getNodePane());
                 ((TextNode)(rootNode)).getNodePane().setTranslateX(newTranslateX+410);
                 ((TextNode)(rootNode)).getNodePane().setTranslateY(newTranslateY+225);
+                ((TextNode)rootNode).getNodePane().setOnMouseClicked(onMouseRightClick);
 
                 if(rootNode.getParentNode().getType().toString().equals("string")){
                     Line line = new Line();
@@ -1343,6 +1377,7 @@ public class Controller {
                 newNode.getNodePane().setOnMousePressed(doNothing);
                 newNode.getNodePane().setOnMouseDragged(doNothing);
                 newNode.getNodePane().setOnMouseReleased(doNothing);
+                newNode.getNodePane().setOnMouseClicked(onMouseRightClick);
                 DataConnection.addTextNode(newNode);
             } else if (intersection(newNode.getNodePane())) {
 
@@ -1816,8 +1851,6 @@ public class Controller {
         }
 
     };
-
-
 
 }
 
