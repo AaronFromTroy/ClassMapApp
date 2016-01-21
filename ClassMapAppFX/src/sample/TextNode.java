@@ -124,9 +124,10 @@ public class TextNode extends MapNode{
         arrowView.setPreserveRatio(Boolean.TRUE);
         arrowView.setFitHeight(20.0f);
         Text numberOfVotes = new Text(""+votes);
-        numberOfVotes.setStroke(Color.WHITE);
-        numberOfVotes.setFill(Color.WHITE);
-        numberOfVotes.setStyle("-fx-font: 20 arial");
+        numberOfVotes.getStyleClass().add("numberOfVotes");
+        //numberOfVotes.setStroke(Color.WHITE);
+        //numberOfVotes.setFill(Color.WHITE);
+        //numberOfVotes.setStyle("-fx-font: 20 arial");
         HBox arr = new HBox();
 
         arr.getChildren().addAll(arrowView,numberOfVotes);
@@ -146,9 +147,10 @@ public class TextNode extends MapNode{
                     newArrowView.setFitHeight(20.0f);
                     decrementVoteCounter();
                     Text numberOfVotes = new Text(""+(votes));
-                    numberOfVotes.setStyle("-fx-font: 20 arial");
-                    numberOfVotes.setStroke(Color.WHITE);
-                    numberOfVotes.setFill(Color.WHITE);
+                    numberOfVotes.getStyleClass().add("numberOfVotes");
+                    //numberOfVotes.setStyle("-fx-font: 20 arial");
+                    //numberOfVotes.setStroke(Color.WHITE);
+                    //numberOfVotes.setFill(Color.WHITE);
                     arr.getChildren().remove(0, 2);
                     arr.getChildren().addAll(newArrowView, numberOfVotes);
                     setUserVote(false);
@@ -169,9 +171,10 @@ public class TextNode extends MapNode{
                     newArrowView.setFitHeight(20.0f);
                     incrementVoteCounter();
                     Text numberOfVotes = new Text(""+(votes));
-                    numberOfVotes.setStyle("-fx-font: 20 arial");
-                    numberOfVotes.setStroke(Color.WHITE);
-                    numberOfVotes.setFill(Color.WHITE);
+                    numberOfVotes.getStyleClass().add("numberOfVotes");
+                    //numberOfVotes.setStyle("-fx-font: 20 arial");
+                    //numberOfVotes.setStroke(Color.WHITE);
+                    //numberOfVotes.setFill(Color.WHITE);
                     arr.getChildren().remove(0, 2);
                     arr.getChildren().addAll(newArrowView, numberOfVotes);
                     setUserVote(true);
@@ -185,8 +188,9 @@ public class TextNode extends MapNode{
             }
         });
         Rectangle namePlate = new Rectangle(0.0f, 0.0f, 150, 25);
-        namePlate.setFill(Color.DODGERBLUE);
-        namePlate.setStroke(Color.DODGERBLUE);
+        namePlate.getStyleClass().add("namePlate");
+        //namePlate.setFill(Color.DODGERBLUE);
+        //namePlate.setStroke(Color.DODGERBLUE);
         Text nameDisplay = new Text(this.createdBy);
         nameDisplay.setBoundsType(TextBoundsType.VISUAL);
         nameDisplay.setWrappingWidth(100.0f);

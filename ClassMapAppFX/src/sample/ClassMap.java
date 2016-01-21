@@ -53,46 +53,83 @@ public class ClassMap extends Application {
         primaryStage.setTitle("Login");
         primaryStage.getIcons().add(img);
         GridPane grid = new GridPane();
-        grid.setHgap(8);
-        grid.setVgap(10);
-        grid.setPadding(new javafx.geometry.Insets(5));
+//        grid.setHgap(8);
+//        grid.setVgap(10);
+//        grid.setPadding(new javafx.geometry.Insets(5));
         grid.setAlignment(Pos.CENTER);
         grid.getStyleClass().add("login-root");
 
         Image icon = new Image("sample/WhiteLogo.png");
         ImageView iv = new ImageView();
         iv.setImage(icon);
-        iv.setFitWidth(120);
-        iv.setFitHeight(120);
+        iv.setTranslateX(40);
+        iv.setFitWidth(150);
+        iv.setFitHeight(150);
         iv.setPreserveRatio(true);
 
         Group root = new Group();
         HBox box = new HBox();
-        box.getChildren().add(iv);
+        box.getChildren().add(iv);;
         root.getChildren().add(box);
-        GridPane.setConstraints(root, 1, 0);
+
+        GridPane mainPain = new GridPane();
+        mainPain.add(root, 0, 0);
+
+        //GridPane.setConstraints(root, 0, 0, HPos.CENTER, VPos.CENTER);
+        GridPane userPane = new GridPane();
 
         javafx.scene.control.Label nameLabel = new javafx.scene.control.Label("Username");
-        GridPane.setConstraints(nameLabel, 1, 1);
+        //GridPane.setConstraints(nameLabel, 1, 1);
+        userPane.add(nameLabel,0,0);
+        nameLabel.setStyle("-fx-padding: 10px");
 
         javafx.scene.control.TextField nameInput = new javafx.scene.control.TextField();
-        GridPane.setConstraints(nameInput, 2, 1);
+        //GridPane.setConstraints(nameInput, 2, 1);
+        userPane.add(nameInput,1,0);
+        //mainPain.add(userPane,0,1);
 
+        GridPane passPane = new GridPane();
         javafx.scene.control.Label passLabel = new javafx.scene.control.Label("Password");
-        GridPane.setConstraints(passLabel, 1, 2);
+        //GridPane.setConstraints(passLabel, 1, 2);
+        userPane.add(passLabel,0,2);
+
+        passLabel.setStyle("-fx-padding: 10px");
 
         PasswordField passInput = new PasswordField();
-        GridPane.setConstraints(passInput, 2, 2);
+        //GridPane.setConstraints(passInput, 2, 2);
+        userPane.add(passInput,1,2);
 
+        //mainPain.setGridLinesVisible(true);
+
+        //GridPane loginPane = new GridPane();
         javafx.scene.control.Button login = new javafx.scene.control.Button("Login");
         login.getStyleClass().add("login-button");
-        GridPane.setConstraints(login, 2, 3);
+        //GridPane.setConstraints(login, 2, 3);
+        userPane.add(login, 0,4);
 
-        javafx.scene.control.Button signUp = new javafx.scene.control.Button("Sign Up");
-        signUp.getStyleClass().add("login-button");
-        GridPane.setConstraints(signUp, 2, 4);
+        Hyperlink signup = new Hyperlink();
+        signup.setStyle("-fx-padding: 10px");
+        signup.setText("Don't have an account?");
+        signup.getStyleClass().add("signup");
+        signup.setOnAction(e->{
+            try {
+                Register.register(primaryStage);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        });
+        userPane.add(signup, 1, 4);
+        mainPain.add(userPane,0,1);
+//        javafx.scene.control.Button signUp = new javafx.scene.control.Button("Sign Up");
+//        signUp.getStyleClass().add("login-button");
+        //GridPane.setConstraints(signup, 2, 4);
+        //grid.getChildren().addAll(nameLabel, nameInput, passLabel, passInput, login, signup, root);
 
-        grid.getChildren().addAll(nameLabel, nameInput, passLabel, passInput, login, signUp, root);
+
+        //userPane.setGridLinesVisible(true);
+        //passPane.setGridLinesVisible(true);
+        //loginPane.setGridLinesVisible(true);
+        grid.getChildren().addAll(mainPain);
 
         login.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -124,13 +161,13 @@ public class ClassMap extends Application {
             }
         });
 
-        signUp.setOnAction(e -> {
-            try {
-                Register.register(primaryStage);
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-        });
+//        signUp.setOnAction(e -> {
+//            try {
+//                Register.register(primaryStage);
+//            } catch (Exception e1) {
+//                e1.printStackTrace();
+//            }
+//        });
 
         Scene loginScene = new Scene(grid, 350, 270);
         loginScene.getStylesheets().add("Cobra.css");

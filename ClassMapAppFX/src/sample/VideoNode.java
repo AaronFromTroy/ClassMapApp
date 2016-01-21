@@ -128,9 +128,10 @@ public class VideoNode extends MapNode{
         arrowView.setPreserveRatio(Boolean.TRUE);
         arrowView.setFitHeight(20.0f);
         Text numberOfVotes = new Text(" "+votes);
-        numberOfVotes.setStyle("-fx-font: 20 arial");
-        numberOfVotes.setStroke(Color.WHITE);
-        numberOfVotes.setFill(Color.WHITE);
+        numberOfVotes.getStyleClass().add("numberOfVotes");
+        //numberOfVotes.setStyle("-fx-font: 20 arial");
+        //numberOfVotes.setStroke(Color.WHITE);
+        //numberOfVotes.setFill(Color.WHITE);
         HBox arr = new HBox();
         arr.getChildren().addAll(arrowView,numberOfVotes);
 
@@ -147,9 +148,10 @@ public class VideoNode extends MapNode{
                     newArrowView.setFitHeight(20.0f);
                     decrementVoteCounter();
                     Text numberOfVotes = new Text(""+(votes));
-                    numberOfVotes.setStyle("-fx-font: 20 arial");
-                    numberOfVotes.setStroke(Color.WHITE);
-                    numberOfVotes.setFill(Color.WHITE);
+                    numberOfVotes.getStyleClass().add("numberOfVotes");
+                    //numberOfVotes.setStyle("-fx-font: 20 arial");
+                    //numberOfVotes.setStroke(Color.WHITE);
+                    //numberOfVotes.setFill(Color.WHITE);
                     arr.getChildren().remove(0, 2);
                     arr.getChildren().addAll(newArrowView, numberOfVotes);
                     setUserVote(false);
@@ -170,9 +172,10 @@ public class VideoNode extends MapNode{
                     newArrowView.setFitHeight(20.0f);
                     incrementVoteCounter();
                     Text numberOfVotes = new Text(""+(votes));
-                    numberOfVotes.setStyle("-fx-font: 20 arial");
-                    numberOfVotes.setStroke(Color.WHITE);
-                    numberOfVotes.setFill(Color.WHITE);
+                    numberOfVotes.getStyleClass().add("numberOfVotes");
+                    //numberOfVotes.setStyle("-fx-font: 20 arial");
+                    //numberOfVotes.setStroke(Color.WHITE);
+                    //numberOfVotes.setFill(Color.WHITE);
                     arr.getChildren().remove(0, 2);
                     arr.getChildren().addAll(newArrowView, numberOfVotes);
                     setUserVote(true);
@@ -187,8 +190,9 @@ public class VideoNode extends MapNode{
         });
 
         Rectangle namePlate = new Rectangle(width, 25);
-        namePlate.setFill(youtubeRed);
-        namePlate.setStroke(youtubeRed);
+        //namePlate.setFill(youtubeRed);
+        //namePlate.setStroke(youtubeRed);
+        namePlate.getStyleClass().add("youtubeNode");
         Text nameDisplay = new Text(this.createdBy);
         nameDisplay.setBoundsType(TextBoundsType.VISUAL);
         nameDisplay.setWrappingWidth(100.0f);
