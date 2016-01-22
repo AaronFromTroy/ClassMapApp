@@ -1,0 +1,20 @@
+Node                                    			No. Of Votes        
+
+Class Node: Biology                     			7                   
+Six Kingdoms                            			3                   
+Cell Structure and Function             			3                   
+Animal                                  			2                   
+Plantae                                 			2                   
+Protista                                			2                   
+multicellular                           			2                   
+Fungi                                   			2                   
+Mitosis                                 			1                   
+Plant                                   			1                   
+Life Cycle Patterns                     			1                   
+Fern Life Cycle                         			1                   
+Genetics                                			0                   
+Ecology                                 			0                   
+Meiosis                                 			0                   
+Physical Environmental Factors          			0                   
+Biotic Environmental Factors            			0                   
+Human Life Cycle                        			0                   

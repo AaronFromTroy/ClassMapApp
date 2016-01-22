@@ -21,6 +21,8 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 import java.util.List;
 
@@ -170,7 +172,72 @@ public class Controller {
             }
         }
     };
+    public void getAnalytics(ActionEvent actionEvent) {
 
+        if (DataConnection.loggedUser.getAccount().equals("teacher")) {
+            ArrayList<TextNode> collection = new ArrayList<>();
+            boolean add = false;
+            for (int i =0; i<DataConnection.collection.size();i++){
+                if(DataConnection.collection.get(i).getType()=="string"){
+                    TextNode textNode = (TextNode) DataConnection.collection.get(i);
+                    if(collection.size()==0){
+                        collection.add(textNode);
+                        add = true;
+                    }
+                    else{
+                        add = false;
+                        for (int j =0; j< collection.size();j++){
+                            if(textNode.getVotes()>collection.get(j).getVotes()){
+                                collection.add(j,textNode);
+                                add = true;
+                                break;
+                            }
+                        }
+                    }
+                    if(!add){
+                        collection.add(textNode);
+                    }
+                }
+            }
+            try
+            {
+                PrintWriter out = new PrintWriter("Node Analytics-Spring 2016.txt");
+                out.printf("%-40s","Node");
+                out.print("\t\t\t");
+                out.printf("%-20s","No. Of Votes");
+                out.println();
+                out.println();
+                for (int i =0; i<collection.size();i++){
+                        String str = collection.get(i).getContents();
+                        str = str.replaceAll("\n"," ");
+                        str = str.replaceAll("\r","");
+                        out.printf("%-40s",str);
+                        out.print("\t\t\t");
+                        out.printf("%-20s",collection.get(i).getVotes());
+                        out.println();
+                }
+                out.close();
+            }
+            catch ( IOException e)
+            {
+
+            }
+            try
+            {
+                PrintWriter out = new PrintWriter("Student Analytics-Spring 2016.txt");
+                for(int i =0; i< DataConnection.students.size();i++){
+                    out.println(DataConnection.students.get(i).getFirstName()+" "+DataConnection.students.get(i).getLastName());
+                    out.println();
+                    DataConnection.queryUserNodes(DataConnection.students.get(i).getUserName(), out);
+                }
+                out.close();
+            }
+            catch ( IOException e)
+            {
+
+            }
+        }
+    }
     public void drawTeacherPanel(ActionEvent actionEvent) {
         if (DataConnection.loggedUser.getAccount().equals("teacher")) {
             if(sideOpen == false) {

@@ -290,6 +290,46 @@ public class DataConnection {
     /*
     Sends created node information to Database
      */
+
+    public static void queryUserNodes(String user, PrintWriter out){
+        Connection conn = dbConnector();
+        String query = "SELECT string_data FROM nodes WHERE created_by=? AND type=?";
+        String query1 = "SELECT votes FROM nodes WHERE created_by=? AND type=?";
+        try {
+            PreparedStatement ps1 = conn.prepareStatement(query1);
+            ps1.setString(1,user);
+            ps1.setString(2,"String");
+            ResultSet rs1= ps1.executeQuery();
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1,user);
+            ps.setString(2,"String");
+            ResultSet rs= ps.executeQuery();
+
+            while (rs.next()) {
+
+                    String str = rs.getString("string_data");
+                    str = str.replaceAll("\n", " ");
+                    str = str.replaceAll("\r", "");
+                    out.printf("%-40s", str);
+                    out.print("\t\t\t");
+                if(rs1.next()) {
+                    out.printf("%-20s", rs1.getString("votes"));
+                }
+                    out.println();
+
+            }
+            ps.close();
+            rs.close();
+            conn.close();
+            out.println();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+
+    }
+
     public static void addTextNode(TextNode node) {
         Connection conn = dbConnector();
         String query = "insert into nodes (parent_id, string_data, type, created_by, account) " + " values(?,?,?,?,?) ";

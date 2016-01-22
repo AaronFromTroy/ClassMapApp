@@ -29,6 +29,7 @@
                 <Menu id="toolbar-item" mnemonicParsing="false" text="Teacher">
                   <items>
                     <MenuItem mnemonicParsing="false" onAction="#drawTeacherPanel" style="-fx-text-fill: black;" text="Teacher Panel" />
+                      <MenuItem mnemonicParsing="false" onAction="#getAnalytics" style="-fx-text-fill: black;" text="Get Analytics" />
                   </items>
                 </Menu>
                 <Menu id="toolbar-item" mnemonicParsing="false" text="Help">
