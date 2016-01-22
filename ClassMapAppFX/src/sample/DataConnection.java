@@ -83,7 +83,6 @@ public class DataConnection {
             ResultSet rst = pst.executeQuery();
             if(rst.next()) {
                 if(rst.getString("password").equals(pass)) {
-                    Alert.display("Success", "Welcome to ClassMap!");
                     //JOptionPane.showMessageDialog(null, "Found User!");
 
                     User newloggedUser = new User(rst.getString("first_name"), rst.getString("last_name"), rst.getString("username"),

@@ -21,6 +21,7 @@ public class Alert {
         window.setTitle(title);
         window.getIcons().add(new Image("sample/OrangeIcon.png"));
         Label label = new Label(message);
+        label.setStyle("-fx-text-fill: rgb(0, 126, 229)");
         Button close = new Button("Close");
         close.setOnAction(e -> window.close());
 

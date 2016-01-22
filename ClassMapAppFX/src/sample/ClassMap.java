@@ -59,12 +59,12 @@ public class ClassMap extends Application {
         grid.setAlignment(Pos.CENTER);
         grid.getStyleClass().add("login-root");
 
-        Image icon = new Image("sample/WhiteLogo.png");
+        Image icon = new Image("sample/animation.gif");
         ImageView iv = new ImageView();
         iv.setImage(icon);
-        iv.setTranslateX(40);
-        iv.setFitWidth(150);
-        iv.setFitHeight(150);
+        iv.setTranslateX(10);
+        iv.setFitWidth(215);
+        iv.setFitHeight(190);
         iv.setPreserveRatio(true);
 
         Group root = new Group();
@@ -81,7 +81,7 @@ public class ClassMap extends Application {
         javafx.scene.control.Label nameLabel = new javafx.scene.control.Label("Username");
         //GridPane.setConstraints(nameLabel, 1, 1);
         userPane.add(nameLabel,0,0);
-        nameLabel.setStyle("-fx-padding: 10px");
+        nameLabel.setStyle("-fx-padding: 10px; -fx-text-fill: rgb(0, 126, 229);");
 
         javafx.scene.control.TextField nameInput = new javafx.scene.control.TextField();
         //GridPane.setConstraints(nameInput, 2, 1);
@@ -94,7 +94,7 @@ public class ClassMap extends Application {
         //GridPane.setConstraints(passLabel, 1, 2);
         userPane.add(passLabel,0,2);
 
-        passLabel.setStyle("-fx-padding: 10px");
+        passLabel.setStyle("-fx-padding: 10px; -fx-text-fill: rgb(0, 126, 229);");
 
         PasswordField passInput = new PasswordField();
         //GridPane.setConstraints(passInput, 2, 2);

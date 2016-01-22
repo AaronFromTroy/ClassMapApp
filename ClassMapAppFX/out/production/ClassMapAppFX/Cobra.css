@@ -70,8 +70,6 @@
 /*login root*/
 .login-root{
     -fx-background-color: rgb(246,249,252)
-   /* -fx-border-color: white;
-    -fx-border-radius: 4;*/
 }
 
 .login-button{
@@ -106,12 +104,14 @@
 }
 
 .alert-dialog{
-    -fx-background-color: linear-gradient(#485563, #29323c);
-    -fx-text-fill: white;
+    -fx-background-color: rgb(246,249,252)
 }
 
 .alert-dialog .button{
-    -fx-background-color: linear-gradient(#dc9656, #ab4642);
+    -fx-background-color: rgb(0, 126, 229);
+    -fx-text-fill: #ffffff;
+    -fx-padding: 1px 25px;
+    -fx-effect: none;
 }
 
 .alert-dialog .button:hover{
