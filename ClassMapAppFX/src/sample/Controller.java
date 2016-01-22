@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
@@ -36,8 +37,7 @@ public class Controller {
     public Pane newNodeStage;
     public Pane newNodeStage2;
     public ScrollPane sidePane;
-    public static ScrollPane bobo;
-    public static GridPane bobo2;
+    public Label welcomeText;
 
     public Pane innerPane;
     int[] array = {0, 5, 1, 6, 2, 7, 3, 8, 4, 9};
@@ -60,6 +60,7 @@ public class Controller {
     double factor = 1;
     boolean nodedrag = false;
     boolean sideOpen = false;
+    int newNodes = 0;
 
     int index =0 ;
     int layer = 0;
@@ -403,15 +404,23 @@ public class Controller {
 
     public void drawWorld(ActionEvent actionEvent) throws InterruptedException {
         if(firstTimePublic) {
-//            bobo2.add(new Pane(), 0, 0);
-//            bobo.setContent(bobo2);
-//            nodeStage.getChildren().add(bobo);
+
             daroot = DataConnection.populate();
             DataConnection.getStudents();
             recursiveDisplay(daroot);
             firstTimePublic = false;
             populateList();
             nodeStage.getChildren().add(newDragView);
+
+            int noNodes = DataConnection.collection.size();
+
+            for(int i = 0; i < noNodes; i++) {
+                if (DataConnection.collection.get(i).timeCreated.after(DataConnection.loggedUser.getSQLLog())) {
+                    ++newNodes;
+                }
+            }
+            welcomeText.setText("Welcome " + DataConnection.loggedUser.getFirst() + " " + DataConnection.loggedUser.getLast() + "! "
+                    + newNodes + " New Nodes have been added!");
         }
 
     }

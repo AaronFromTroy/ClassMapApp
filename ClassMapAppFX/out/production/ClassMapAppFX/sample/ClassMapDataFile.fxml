@@ -64,11 +64,16 @@
                   </MenuButton>
               </items>
           </ToolBar>
-            <ScrollPane fx:id="sidePane" visible="false" fitToWidth="true" layoutY="80.0" prefHeight="457.0" prefWidth="230.0" style="-fx-background-color: #29323c;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="80.0">
+            <ScrollPane fx:id="sidePane" fitToWidth="true" layoutY="80.0" prefHeight="427.0" prefWidth="230.0" style="-fx-background-color: #29323c;" visible="true" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="80.0">
               <content>
-                <Pane fx:id="innerPane" minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="200.0" style="-fx-background-color: #29323c;" />
+                <Pane fx:id="innerPane" minHeight="0.0" minWidth="0.0" prefHeight="581.0" prefWidth="215.0" style="-fx-background-color: #000000;" />
               </content>
             </ScrollPane>
+            <Pane layoutY="507.0" prefHeight="30.0" prefWidth="821.0" style="-fx-background-color: #303F9F;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Label fx:id="welcomeText" layoutX="14.0" layoutY="6.0" textFill="WHITE" />
+               </children>
+            </Pane>
 
       </children>
     </AnchorPane>
