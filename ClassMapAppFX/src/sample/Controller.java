@@ -73,12 +73,17 @@ public class Controller {
     //GridPane sideGrid = new GridPane();
     private static int nodeTrailCount = 0;
 
+    ContextMenu cm = new ContextMenu();
+    MenuItem cmItem1 = new MenuItem("Delete");
+    MenuItem cmItem2 = new MenuItem("Show Trail");
+
     /*
     Used to draw a trail of nodes from the selected node on the side Pane
      */
     public void drawNodeTrail(int nodeID) {
 
         sidePane.setVisible(true);
+        System.out.println(nodeID);
 //        Pane tryThis = new Pane();
 //        tryThis = Controller.getInstance().getNodeStage();
 //        System.out.println(nodeID + "\n");
@@ -144,17 +149,11 @@ public class Controller {
         @Override
         public void handle(MouseEvent event) {
 
-
-
             if (event.getButton() == MouseButton.SECONDARY) {
+                cm.hide();
                 Object obj = event.getSource();
-                drawNodeTrail((Integer)((GridPane)obj).getUserData());
-                
-                ContextMenu cm = new ContextMenu();
-                    MenuItem cmItem1 = new MenuItem("Delete");
-                    MenuItem cmItem2 = new MenuItem("Show Trail");
-                    cm.getItems().add(cmItem1);
-                    cm.getItems().add(cmItem2);
+                cm.getItems().add(cmItem1);
+                cm.getItems().add(cmItem2);
                     cm.show(nodeStage,event.getSceneX(),event.getScreenY());
 
                     cmItem1.setOnAction(new EventHandler<ActionEvent>() {
@@ -164,9 +163,9 @@ public class Controller {
                     });
                     cmItem2.setOnAction(new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent e) {
-                            drawNodeTrail(DataConnection.chosenNode);
-                            System.out.println(DataConnection.chosenNode);
-                            cm.hide();
+                            drawNodeTrail((Integer)((GridPane)obj).getUserData());
+                            //drawNodeTrail(DataConnection.chosenNode);
+                            //System.out.println(DataConnection.chosenNode);
                         }
                     });
             }
@@ -394,6 +393,7 @@ public class Controller {
 
         nodeStage.addEventFilter(ScrollEvent.ANY, new ZoomHandler(newNodeStage));
         nodeStage.addEventFilter(ScrollEvent.ANY, new ZoomHandler(newNodeStage2));
+        newNodeStage.setOnMouseClicked(doNothing);
     }
 
 
@@ -511,6 +511,12 @@ public class Controller {
 
                 @Override
                 public void handle(MouseEvent t) {
+                    if(t.getButton()== MouseButton.SECONDARY){
+
+                    }
+                    else {
+                        cm.hide();
+                    }
                 }
             };
 
@@ -711,7 +717,9 @@ public class Controller {
                     newNodeStage2.getChildren().addAll(line);
                 }
 
-
+                ((VideoNode) rootNode).getNodePane().setOnMousePressed(doNothing);
+                ((VideoNode) rootNode).getNodePane().setOnMouseDragged(doNothing);
+                ((VideoNode) rootNode).getNodePane().setOnMouseReleased(doNothing);
                 rootNode.setA(newTranslateX+410);
                 rootNode.setB(newTranslateY+225);
             }
@@ -843,7 +851,9 @@ public class Controller {
                     rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
-
+                ((ImageNode) rootNode).getNodePane().setOnMousePressed(doNothing);
+                ((ImageNode) rootNode).getNodePane().setOnMouseDragged(doNothing);
+                ((ImageNode) rootNode).getNodePane().setOnMouseReleased(doNothing);
                 rootNode.setA(newTranslateX+410);
                 rootNode.setB(newTranslateY+225);
             }
@@ -897,7 +907,9 @@ public class Controller {
                     newNodeStage2.getChildren().addAll(line);
                 }
 
-
+                ((VideoNode) rootNode).getNodePane().setOnMousePressed(doNothing);
+                ((VideoNode) rootNode).getNodePane().setOnMouseDragged(doNothing);
+                ((VideoNode) rootNode).getNodePane().setOnMouseReleased(doNothing);
                 rootNode.setA(newTranslateX+410);
                 rootNode.setB(newTranslateY+225);
             }
