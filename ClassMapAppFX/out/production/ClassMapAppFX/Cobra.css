@@ -1,11 +1,10 @@
-/*root classmap*/
-.classmap-root{
-   /* -fx-background-color: #353c3f; */
-    /*-fx-background-image: url("sample/dj.jpg");*/
-    -fx-background-color: rgb(233,234,237);
-    /* -fx-background-color: #201c1e; blue-green */
+/*CLASSMAP BACKGROUND*/
+.root{
+    -fx-background-color: rgb(245,249,252);
 }
+/*END CLASSMAP BACKGROUND*/
 
+/*MENU BUTTON*/
 .button{
     -fx-background-color: #ffffff;
     -fx-text-fill: rgb(66,95,156);
@@ -39,11 +38,17 @@
 
 .menu-item{
     -fx-background-color: white;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .menu-item:hover{
     -fx-background-color: rgb(233,234,237);
+}
+/*END MENU BUTTON*/
+
+/*TOOLBAR*/
+#toolbar{
+    -fx-background-color: #303F9F;
 }
 
 #toolbar-item{
@@ -53,25 +58,9 @@
 #toolbar-item:hover{
     -fx-background-color: #303F9F;
 }
+/*END TOOLBAR*/
 
-/*.new-node{
-    -fx-fill: white;
-    -fx-stroke: black;
-}*/
-
-.node-box{
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-}
-
-.up-vote{
-    -fx-font: 20 arial;
-}
-
-/*login root*/
-.login-root{
-    -fx-background-color: rgb(246,249,252)
-}
-
+/*LOGIN SCREEN*/
 .login-button{
     -fx-background-color: rgb(0, 126, 229);
     -fx-text-fill: #ffffff;
@@ -96,17 +85,9 @@
 .signup:hover{
     -fx-text-fill: #303F9F;
 }
+/*END LOGIN SCREEN*/
 
-#toolbar{
-    -fx-background-color: #303F9F;
-    /* -fx-background-color: linear-gradient(#66a5ad, #c4dfe6); ocean */
-    /* -fx-background-color: linear-gradient(#2c7873, #6fb98f); blue-green */
-}
-
-.alert-dialog{
-    -fx-background-color: rgb(246,249,252)
-}
-
+/*ALERT DIALOG BOX*/
 .alert-dialog .button{
     -fx-background-color: rgb(0, 126, 229);
     -fx-text-fill: #ffffff;
@@ -117,7 +98,9 @@
 .alert-dialog .button:hover{
     -fx-background-color: #303F9F;
 }
+/*END ALERT DIALOG BOX*/
 
+/*OTHER*/
 #mainmenu {
     -fx-background-color: #1A237E;
 }
@@ -142,3 +125,12 @@
     -fx-fill: forestgreen;
     -fx-stroke: forestgreen;
 }
+
+.node-box{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+.up-vote{
+    -fx-font: 20 arial;
+}
+/*END OTHER*/
