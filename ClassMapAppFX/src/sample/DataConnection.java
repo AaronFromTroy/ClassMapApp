@@ -358,6 +358,41 @@ public class DataConnection {
         }
     }
 
+    public static void addTopicNode(TopicNode node) {
+        Connection conn = dbConnector();
+        String query = "insert into nodes (parent_id, string_data, type, created_by, account) " + " values(?,?,?,?,?) ";
+        String query2 = "SELECT id FROM nodes WHERE created_by=? and string_data=?";
+        int id = -1;
+        try
+        {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, node.parent);
+            ps.setString(2, node.getContents());
+            ps.setString(3, "topic");
+            ps.setString(4, loggedUser.getUser());
+            ps.setString(5, loggedUser.getAccount());
+            ps.executeUpdate();
+
+            PreparedStatement pst = conn.prepareStatement(query2);
+            pst.setString(1, loggedUser.getUser());
+            pst.setString(2, node.getContents());
+            ResultSet rs = pst.executeQuery();
+            if(rs.next()) {
+                id = rs.getInt("id");
+                node.setUniqueId(id);
+            }
+            pst.close();
+            rs.close();
+            conn.close();
+
+            addUpvote(node);
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+
     public static void addImageNode(ImageNode node) {
         Connection conn =  dbConnector();
         String query = "insert into nodes (parent_id, string_data, type, created_by, account)" + "values(?,?,?,?,?)";

@@ -43,7 +43,7 @@ public class TopicNode extends MapNode{
     public TopicNode(String in)
     {
         this.contents = in;
-        this.type = type.string;
+        this.type = type.topic;
         this.setUserVote(Boolean.TRUE);
         this.incrementVoteCounter();
         this.createdBy = DataConnection.loggedUser.getUser();
@@ -60,7 +60,7 @@ public class TopicNode extends MapNode{
         this.contents = in;
         this.timeCreated = date_created;
         this.votes = numVotes;
-        this.type = type.string;
+        this.type = type.topic;
         this.createdBy = user;
         this.nodePerm = accountType;
         //this.myMinion.setMyId(uniqueId);
@@ -241,9 +241,9 @@ public class TopicNode extends MapNode{
         Tooltip.install(nodePane,tooltip);
     }
 
-    public void setTypeToText()
+    public void setTypeToTopic()
     {
-        this.type = classification.string;
+        this.type = classification.topic;
     }
 
     public GridPane getNodePane()

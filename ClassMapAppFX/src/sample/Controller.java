@@ -55,6 +55,7 @@ public class Controller {
     TextNode classNode;
     TextNode newNode;
     ImageNode newImageNode;
+    TopicNode newTopicNode;
     double orgSceneX, orgSceneY;
     double orgTranslateX, orgTranslateY;
     VideoNode videoNode;
@@ -122,6 +123,9 @@ public class Controller {
             if (rootNode.getType() == "image") {
                 sideGrid.add(((ImageNode)rootNode).getNodePane(), 0, nodeTrailCount);
             }
+            if (rootNode.getType() == "topic") {
+                sideGrid.add(((TopicNode)rootNode).getNodePane(), 0, nodeTrailCount);
+            }
             nodeTrailCount++;
             return true;
         }
@@ -135,6 +139,9 @@ public class Controller {
                 }
                 if (rootNode.getType() == "image") {
                     sideGrid.add(((ImageNode)rootNode).getNodePane(), 0, nodeTrailCount);
+                }
+                if (rootNode.getType() == "topic") {
+                    sideGrid.add(((TopicNode)rootNode).getNodePane(), 0, nodeTrailCount);
                 }
                 nodeTrailCount++;
                 return true;
@@ -175,6 +182,7 @@ public class Controller {
 
         if (DataConnection.loggedUser.getAccount().equals("teacher")) {
             ArrayList<TextNode> collection = new ArrayList<>();
+            ArrayList<TopicNode> topicscollection = new ArrayList<>();
             boolean add = false;
             for (int i =0; i<DataConnection.collection.size();i++){
                 if(DataConnection.collection.get(i).getType()=="string"){
@@ -198,6 +206,30 @@ public class Controller {
                     }
                 }
             }
+
+            for (int i =0; i<DataConnection.collection.size();i++){
+                if(DataConnection.collection.get(i).getType()=="topic"){
+                    TopicNode topicNode = (TopicNode) DataConnection.collection.get(i);
+                    if(topicscollection.size()==0){
+                        topicscollection.add(topicNode);
+                        add = true;
+                    }
+                    else{
+                        add = false;
+                        for (int j =0; j< topicscollection.size();j++){
+                            if(topicNode.getNoOfChildren()>topicscollection.get(j).getNoOfChildren()){
+                                topicscollection.add(j,topicNode);
+                                add = true;
+                                break;
+                            }
+                        }
+                    }
+                    if(!add){
+                        topicscollection.add(topicNode);
+                    }
+                }
+            }
+
             try
             {
                 PrintWriter out = new PrintWriter("Node Analytics-Spring 2016.txt");
@@ -215,6 +247,23 @@ public class Controller {
                         out.printf("%-20s",collection.get(i).getVotes());
                         out.println();
                 }
+
+                out.println();
+                out.printf("%-40s","Topic Nodes : ");
+                out.print("\t\t\t");
+                out.printf("%-20s","No. Of Children");
+                out.println();
+                out.println();
+                for (int i =0; i<topicscollection.size();i++){
+                    String str = topicscollection.get(i).getContents();
+                    str = str.replaceAll("\n"," ");
+                    str = str.replaceAll("\r","");
+                    out.printf("%-40s",str);
+                    out.print("\t\t\t");
+                    out.printf("%-20s",topicscollection.get(i).getNoOfChildren());
+                    out.println();
+                }
+
                 out.close();
             }
             catch ( IOException e)
@@ -317,6 +366,9 @@ public class Controller {
 
                 if (rootNode.type.toString().equals("link"))
                     ((VideoNode) (rootNode)).setVisible();
+
+                if (rootNode.type.toString().equals("topic"))
+                    ((TopicNode) (rootNode)).setVisible();
             }
         }
         else {
@@ -346,6 +398,9 @@ public class Controller {
 
                     if (rootNode.type.toString().equals("link"))
                         ((VideoNode) (rootNode)).setVisible();
+
+                    if (rootNode.type.toString().equals("topic"))
+                        ((TopicNode) (rootNode)).setVisible();
                 }
             }
         }
@@ -431,15 +486,15 @@ public class Controller {
                 dialog.setContentText("Text: ");
                 Optional<String> result = dialog.showAndWait();
 
-                TopicNode newNode = new TopicNode(result.get());
+                newTopicNode = new TopicNode(result.get());
 
-                newNode.setTypeToText();
+                newTopicNode.setTypeToTopic();
                 //masterNodeList.add(newNode); I think this is still necessary but not for the database
-                newNode.getNodePane().setOnMousePressed(OnMousePressedEventHandler);
-                newNode.getNodePane().setOnMouseDragged(OnMouseDraggedEventHandler);
-                newNode.getNodePane().setOnMouseReleased(OnMouseReleasedEventHandler);
+                newTopicNode.getNodePane().setOnMousePressed(OnMousePressedEventHandler);
+                newTopicNode.getNodePane().setOnMouseDragged(OnMouseDraggedEventHandler);
+                newTopicNode.getNodePane().setOnMouseReleased(TopicOnMouseReleasedEventHandler);
                 //newNode.getNodePane().setOnMouseClicked(onMouseRightClick);
-                newNodeStage.getChildren().add(newNode.getNodePane());
+                newNodeStage.getChildren().add(newTopicNode.getNodePane());
             }
         }
 
@@ -627,6 +682,20 @@ public class Controller {
                     rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
+                if(rootNode.getParentNode().getType().toString().equals("topic")){
+                    Line line = new Line();
+                    line.setStroke(javafx.scene.paint.Color.BLACK);
+                    TopicNode topicNode =(TopicNode) rootNode.getParentNode();
+
+                    line.startXProperty().bind(topicNode.getNodePane().layoutXProperty().add((topicNode.getNodePane().translateXProperty())));
+                    line.startYProperty().bind(topicNode.getNodePane().layoutYProperty().add(topicNode.getNodePane().translateYProperty()));
+                    line.endXProperty().bind(((TextNode)(rootNode)).getNodePane().layoutXProperty().add(((TextNode)(rootNode)).getNodePane().translateXProperty()));
+                    line.endYProperty().bind(((TextNode)(rootNode)).getNodePane().layoutXProperty().add(((TextNode)(rootNode)).getNodePane().translateYProperty()));
+
+                    line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
+                    newNodeStage2.getChildren().addAll(line);
+                }
                 ((TextNode) rootNode).getNodePane().setOnMousePressed(doNothing);
                 ((TextNode) rootNode).getNodePane().setOnMouseDragged(doNothing);
                 ((TextNode) rootNode).getNodePane().setOnMouseReleased(doNothing);
@@ -678,6 +747,20 @@ public class Controller {
 
                     line.startXProperty().bind(videoNode.getNodePane().layoutXProperty().add((videoNode.getNodePane().translateXProperty())));
                     line.startYProperty().bind(videoNode.getNodePane().layoutYProperty().add(videoNode.getNodePane().translateYProperty()));
+                    line.endXProperty().bind(((ImageNode)(rootNode)).getNodePane().layoutXProperty().add(((ImageNode)(rootNode)).getNodePane().translateXProperty()));
+                    line.endYProperty().bind(((ImageNode)(rootNode)).getNodePane().layoutXProperty().add(((ImageNode)(rootNode)).getNodePane().translateYProperty()));
+
+                    line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
+                    newNodeStage2.getChildren().addAll(line);
+                }
+                if(rootNode.getParentNode().getType().toString().equals("topic")){
+                    Line line = new Line();
+                    line.setStroke(javafx.scene.paint.Color.BLACK);
+                    TopicNode topicNode =(TopicNode) rootNode.getParentNode();
+
+                    line.startXProperty().bind(topicNode.getNodePane().layoutXProperty().add((topicNode.getNodePane().translateXProperty())));
+                    line.startYProperty().bind(topicNode.getNodePane().layoutYProperty().add(topicNode.getNodePane().translateYProperty()));
                     line.endXProperty().bind(((ImageNode)(rootNode)).getNodePane().layoutXProperty().add(((ImageNode)(rootNode)).getNodePane().translateXProperty()));
                     line.endYProperty().bind(((ImageNode)(rootNode)).getNodePane().layoutXProperty().add(((ImageNode)(rootNode)).getNodePane().translateYProperty()));
 
@@ -741,12 +824,95 @@ public class Controller {
                     rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
+                if(rootNode.getParentNode().getType().toString().equals("topic")){
+                    Line line = new Line();
+                    line.setStroke(javafx.scene.paint.Color.BLACK);
+                    TopicNode topicNode =(TopicNode) rootNode.getParentNode();
+
+                    line.startXProperty().bind(topicNode.getNodePane().layoutXProperty().add((topicNode.getNodePane().translateXProperty())));
+                    line.startYProperty().bind(topicNode.getNodePane().layoutYProperty().add(topicNode.getNodePane().translateYProperty()));
+                    line.endXProperty().bind(((VideoNode)(rootNode)).getNodePane().layoutXProperty().add(((VideoNode)(rootNode)).getNodePane().translateXProperty()));
+                    line.endYProperty().bind(((VideoNode)(rootNode)).getNodePane().layoutXProperty().add(((VideoNode)(rootNode)).getNodePane().translateYProperty()));
+
+                    line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
+                    newNodeStage2.getChildren().addAll(line);
+                }
 
                 ((VideoNode) rootNode).getNodePane().setOnMousePressed(doNothing);
                 ((VideoNode) rootNode).getNodePane().setOnMouseDragged(doNothing);
                 ((VideoNode) rootNode).getNodePane().setOnMouseReleased(doNothing);
                 rootNode.setA(newTranslateX+410);
                 rootNode.setB(newTranslateY+225);
+            }
+
+            if(rootNode.type.toString().equals("topic")){
+                newNodeStage.getChildren().add(((TopicNode)(rootNode)).getNodePane());
+                ((TopicNode)(rootNode)).getNodePane().setTranslateX(newTranslateX+410);
+                ((TopicNode)(rootNode)).getNodePane().setTranslateY(newTranslateY+225);
+
+                if(rootNode.getParentNode().getType().toString().equals("string")){
+                    Line line = new Line();
+                    line.setStroke(javafx.scene.paint.Color.BLACK);
+                    TextNode textNode =(TextNode) rootNode.getParentNode();
+
+                    line.startXProperty().bind(textNode.getNodePane().layoutXProperty().add((textNode.getNodePane().translateXProperty())));
+                    line.startYProperty().bind(textNode.getNodePane().layoutYProperty().add(textNode.getNodePane().translateYProperty()));
+                    line.endXProperty().bind(((TopicNode)(rootNode)).getNodePane().layoutXProperty().add(((TopicNode)(rootNode)).getNodePane().translateXProperty()));
+                    line.endYProperty().bind(((TopicNode)(rootNode)).getNodePane().layoutXProperty().add(((TopicNode)(rootNode)).getNodePane().translateYProperty()));
+
+                    line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
+                    newNodeStage2.getChildren().addAll(line);
+                }
+                if(rootNode.getParentNode().getType().toString().equals("image")){
+                    Line line = new Line();
+                    line.setStroke(javafx.scene.paint.Color.BLACK);
+                    ImageNode imageNode =(ImageNode) rootNode.getParentNode();
+
+                    line.startXProperty().bind(imageNode.getNodePane().layoutXProperty().add((imageNode.getNodePane().translateXProperty())));
+                    line.startYProperty().bind(imageNode.getNodePane().layoutYProperty().add(imageNode.getNodePane().translateYProperty()));
+                    line.endXProperty().bind(((TopicNode)(rootNode)).getNodePane().layoutXProperty().add(((TopicNode)(rootNode)).getNodePane().translateXProperty()));
+                    line.endYProperty().bind(((TopicNode)(rootNode)).getNodePane().layoutXProperty().add(((TopicNode)(rootNode)).getNodePane().translateYProperty()));
+
+                    line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
+                    newNodeStage2.getChildren().addAll(line);
+                }
+                if(rootNode.getParentNode().getType().toString().equals("link")){
+                    Line line = new Line();
+                    line.setStroke(javafx.scene.paint.Color.BLACK);
+                    VideoNode videoNode =(VideoNode) rootNode.getParentNode();
+
+                    line.startXProperty().bind(videoNode.getNodePane().layoutXProperty().add((videoNode.getNodePane().translateXProperty())));
+                    line.startYProperty().bind(videoNode.getNodePane().layoutYProperty().add(videoNode.getNodePane().translateYProperty()));
+                    line.endXProperty().bind(((TopicNode)(rootNode)).getNodePane().layoutXProperty().add(((TopicNode)(rootNode)).getNodePane().translateXProperty()));
+                    line.endYProperty().bind(((TopicNode)(rootNode)).getNodePane().layoutXProperty().add(((TopicNode)(rootNode)).getNodePane().translateYProperty()));
+
+                    line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
+                    newNodeStage2.getChildren().addAll(line);
+                }
+                if(rootNode.getParentNode().getType().toString().equals("topic")){
+                    Line line = new Line();
+                    line.setStroke(javafx.scene.paint.Color.BLACK);
+                    TopicNode topicNode =(TopicNode) rootNode.getParentNode();
+
+                    line.startXProperty().bind(topicNode.getNodePane().layoutXProperty().add((topicNode.getNodePane().translateXProperty())));
+                    line.startYProperty().bind(topicNode.getNodePane().layoutYProperty().add(topicNode.getNodePane().translateYProperty()));
+                    line.endXProperty().bind(((TopicNode)(rootNode)).getNodePane().layoutXProperty().add(((TopicNode)(rootNode)).getNodePane().translateXProperty()));
+                    line.endYProperty().bind(((TopicNode)(rootNode)).getNodePane().layoutXProperty().add(((TopicNode)(rootNode)).getNodePane().translateYProperty()));
+
+                    line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
+                    newNodeStage2.getChildren().addAll(line);
+                }
+                ((TopicNode) rootNode).getNodePane().setOnMousePressed(doNothing);
+                ((TopicNode) rootNode).getNodePane().setOnMouseDragged(doNothing);
+                ((TopicNode) rootNode).getNodePane().setOnMouseReleased(doNothing);
+                rootNode.setA(newTranslateX+410);
+                rootNode.setB(newTranslateY+225);
+
             }
 
             rootNode.setQuadrant(array[masterNode.size()%10] + 1);
@@ -820,6 +986,20 @@ public class Controller {
                     rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
+                if(rootNode.getParentNode().getType().toString().equals("topic")){
+                    Line line = new Line();
+                    line.setStroke(javafx.scene.paint.Color.BLACK);
+                    TopicNode topicNode =(TopicNode) rootNode.getParentNode();
+
+                    line.startXProperty().bind(topicNode.getNodePane().layoutXProperty().add((topicNode.getNodePane().translateXProperty())));
+                    line.startYProperty().bind(topicNode.getNodePane().layoutYProperty().add(topicNode.getNodePane().translateYProperty()));
+                    line.endXProperty().bind(((TextNode)(rootNode)).getNodePane().layoutXProperty().add(((TextNode)(rootNode)).getNodePane().translateXProperty()));
+                    line.endYProperty().bind(((TextNode)(rootNode)).getNodePane().layoutXProperty().add(((TextNode)(rootNode)).getNodePane().translateYProperty()));
+
+                    line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
+                    newNodeStage2.getChildren().addAll(line);
+                }
                 ((TextNode) rootNode).getNodePane().setOnMousePressed(doNothing);
                 ((TextNode) rootNode).getNodePane().setOnMouseDragged(doNothing);
                 ((TextNode) rootNode).getNodePane().setOnMouseReleased(doNothing);
@@ -869,6 +1049,20 @@ public class Controller {
 
                     line.startXProperty().bind(videoNode.getNodePane().layoutXProperty().add((videoNode.getNodePane().translateXProperty())));
                     line.startYProperty().bind(videoNode.getNodePane().layoutYProperty().add(videoNode.getNodePane().translateYProperty()));
+                    line.endXProperty().bind(((ImageNode)(rootNode)).getNodePane().layoutXProperty().add(((ImageNode)(rootNode)).getNodePane().translateXProperty()));
+                    line.endYProperty().bind(((ImageNode)(rootNode)).getNodePane().layoutXProperty().add(((ImageNode)(rootNode)).getNodePane().translateYProperty()));
+
+                    line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
+                    newNodeStage2.getChildren().addAll(line);
+                }
+                if(rootNode.getParentNode().getType().toString().equals("topic")){
+                    Line line = new Line();
+                    line.setStroke(javafx.scene.paint.Color.BLACK);
+                    TopicNode topicNode =(TopicNode) rootNode.getParentNode();
+
+                    line.startXProperty().bind(topicNode.getNodePane().layoutXProperty().add((topicNode.getNodePane().translateXProperty())));
+                    line.startYProperty().bind(topicNode.getNodePane().layoutYProperty().add(topicNode.getNodePane().translateYProperty()));
                     line.endXProperty().bind(((ImageNode)(rootNode)).getNodePane().layoutXProperty().add(((ImageNode)(rootNode)).getNodePane().translateXProperty()));
                     line.endYProperty().bind(((ImageNode)(rootNode)).getNodePane().layoutXProperty().add(((ImageNode)(rootNode)).getNodePane().translateYProperty()));
 
@@ -931,10 +1125,93 @@ public class Controller {
                     rootNode.setParentLine(line);
                     newNodeStage2.getChildren().addAll(line);
                 }
+                if(rootNode.getParentNode().getType().toString().equals("topic")){
+                    Line line = new Line();
+                    line.setStroke(javafx.scene.paint.Color.BLACK);
+                    TopicNode topicNode =(TopicNode) rootNode.getParentNode();
+
+                    line.startXProperty().bind(topicNode.getNodePane().layoutXProperty().add((topicNode.getNodePane().translateXProperty())));
+                    line.startYProperty().bind(topicNode.getNodePane().layoutYProperty().add(topicNode.getNodePane().translateYProperty()));
+                    line.endXProperty().bind(((VideoNode)(rootNode)).getNodePane().layoutXProperty().add(((VideoNode)(rootNode)).getNodePane().translateXProperty()));
+                    line.endYProperty().bind(((VideoNode)(rootNode)).getNodePane().layoutXProperty().add(((VideoNode)(rootNode)).getNodePane().translateYProperty()));
+
+                    line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
+                    newNodeStage2.getChildren().addAll(line);
+                }
 
                 ((VideoNode) rootNode).getNodePane().setOnMousePressed(doNothing);
                 ((VideoNode) rootNode).getNodePane().setOnMouseDragged(doNothing);
                 ((VideoNode) rootNode).getNodePane().setOnMouseReleased(doNothing);
+                rootNode.setA(newTranslateX+410);
+                rootNode.setB(newTranslateY+225);
+            }
+            if(rootNode.type.toString().equals("topic")) {
+                newNodeStage.getChildren().add(((TopicNode) (rootNode)).getNodePane());
+                ((TopicNode)(rootNode)).getNodePane().setTranslateX(newTranslateX+410);
+                ((TopicNode)(rootNode)).getNodePane().setTranslateY(newTranslateY+225);
+
+
+                if(rootNode.getParentNode().getType().toString().equals("string")){
+                    Line line = new Line();
+                    line.setStroke(javafx.scene.paint.Color.BLACK);
+                    TextNode textNode =(TextNode) rootNode.getParentNode();
+
+                    line.startXProperty().bind(textNode.getNodePane().layoutXProperty().add((textNode.getNodePane().translateXProperty())));
+                    line.startYProperty().bind(textNode.getNodePane().layoutYProperty().add(textNode.getNodePane().translateYProperty()));
+                    line.endXProperty().bind(((TopicNode)(rootNode)).getNodePane().layoutXProperty().add(((TopicNode)(rootNode)).getNodePane().translateXProperty()));
+                    line.endYProperty().bind(((TopicNode)(rootNode)).getNodePane().layoutXProperty().add(((TopicNode)(rootNode)).getNodePane().translateYProperty()));
+
+                    line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
+                    newNodeStage2.getChildren().addAll(line);
+                }
+                if(rootNode.getParentNode().getType().toString().equals("image")){
+                    Line line = new Line();
+                    line.setStroke(javafx.scene.paint.Color.BLACK);
+                    ImageNode imageNode =(ImageNode) rootNode.getParentNode();
+
+                    line.startXProperty().bind(imageNode.getNodePane().layoutXProperty().add((imageNode.getNodePane().translateXProperty())));
+                    line.startYProperty().bind(imageNode.getNodePane().layoutYProperty().add(imageNode.getNodePane().translateYProperty()));
+                    line.endXProperty().bind(((TopicNode)(rootNode)).getNodePane().layoutXProperty().add(((TopicNode)(rootNode)).getNodePane().translateXProperty()));
+                    line.endYProperty().bind(((TopicNode)(rootNode)).getNodePane().layoutXProperty().add(((TopicNode)(rootNode)).getNodePane().translateYProperty()));
+
+                    line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
+                    newNodeStage2.getChildren().addAll(line);
+                }
+                if(rootNode.getParentNode().getType().toString().equals("link")){
+                    Line line = new Line();
+                    line.setStroke(javafx.scene.paint.Color.BLACK);
+                    VideoNode videoNode =(VideoNode) rootNode.getParentNode();
+
+                    line.startXProperty().bind(videoNode.getNodePane().layoutXProperty().add((videoNode.getNodePane().translateXProperty())));
+                    line.startYProperty().bind(videoNode.getNodePane().layoutYProperty().add(videoNode.getNodePane().translateYProperty()));
+                    line.endXProperty().bind(((TopicNode)(rootNode)).getNodePane().layoutXProperty().add(((TopicNode)(rootNode)).getNodePane().translateXProperty()));
+                    line.endYProperty().bind(((TopicNode)(rootNode)).getNodePane().layoutXProperty().add(((TopicNode)(rootNode)).getNodePane().translateYProperty()));
+
+                    line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
+                    newNodeStage2.getChildren().addAll(line);
+                }
+                if(rootNode.getParentNode().getType().toString().equals("topic")){
+                    Line line = new Line();
+                    line.setStroke(javafx.scene.paint.Color.BLACK);
+                    TopicNode topicNode =(TopicNode) rootNode.getParentNode();
+
+                    line.startXProperty().bind(topicNode.getNodePane().layoutXProperty().add((topicNode.getNodePane().translateXProperty())));
+                    line.startYProperty().bind(topicNode.getNodePane().layoutYProperty().add(topicNode.getNodePane().translateYProperty()));
+                    line.endXProperty().bind(((TopicNode)(rootNode)).getNodePane().layoutXProperty().add(((TopicNode)(rootNode)).getNodePane().translateXProperty()));
+                    line.endYProperty().bind(((TopicNode)(rootNode)).getNodePane().layoutXProperty().add(((TopicNode)(rootNode)).getNodePane().translateYProperty()));
+
+                    line.setStrokeWidth(4);
+                    rootNode.setParentLine(line);
+                    newNodeStage2.getChildren().addAll(line);
+                }
+
+                ((TopicNode) rootNode).getNodePane().setOnMousePressed(doNothing);
+                ((TopicNode) rootNode).getNodePane().setOnMouseDragged(doNothing);
+                ((TopicNode) rootNode).getNodePane().setOnMouseReleased(doNothing);
                 rootNode.setA(newTranslateX+410);
                 rootNode.setB(newTranslateY+225);
             }
@@ -1021,6 +1298,13 @@ public class Controller {
                 nodeList.get(0).get(i).setA(ClassMap.circleX.get(((nodeList.get(0).get(i).getQuadrant() - 1) * ClassMap.noOfCircle) + j) + 410);
                 nodeList.get(0).get(i).setB(ClassMap.circleY.get(((nodeList.get(0).get(i).getQuadrant() - 1) * ClassMap.noOfCircle) + j) + 225);
             }
+            else if (nodeList.get(0).get(i).getType().equals("topic")){
+                ((TopicNode)nodeList.get(0).get(i)).getNodePane().setTranslateX(ClassMap.circleX.get(((nodeList.get(0).get(i).getQuadrant() - 1) * ClassMap.noOfCircle) + j) + 410);
+                ((TopicNode)nodeList.get(0).get(i)).getNodePane().setTranslateY(ClassMap.circleY.get(((nodeList.get(0).get(i).getQuadrant() - 1) * ClassMap.noOfCircle) + j) + 225);
+                nodeList.get(0).get(i).setCircleNo(ClassMap.noOfCircle);
+                nodeList.get(0).get(i).setA(ClassMap.circleX.get(((nodeList.get(0).get(i).getQuadrant() - 1) * ClassMap.noOfCircle) + j) + 410);
+                nodeList.get(0).get(i).setB(ClassMap.circleY.get(((nodeList.get(0).get(i).getQuadrant() - 1) * ClassMap.noOfCircle) + j) + 225);
+            }
         }
 
         for (int i = 0; i < ClassMap.circleX.size(); i++) {
@@ -1071,6 +1355,13 @@ public class Controller {
                 if (nodeList.get(j).get(i).type.toString().equals("link")) {
                     ((VideoNode) (nodeList.get(j).get(i))).getNodePane().setTranslateX(newTranslateX + 410);
                     ((VideoNode) (nodeList.get(j).get(i))).getNodePane().setTranslateY(newTranslateY + 225);
+                    nodeList.get(j).get(i).setCircleNo(nodeList.get(j).get(i).getParentNode().getCircleNo()*nodeList.get(j).get(i).getParentNode().getExpansion());
+                    nodeList.get(j).get(i).setA(newTranslateX + 410);
+                    nodeList.get(j).get(i).setB(newTranslateY + 225);
+                }
+                if (nodeList.get(j).get(i).type.toString().equals("topic")) {
+                    ((TopicNode) (nodeList.get(j).get(i))).getNodePane().setTranslateX(newTranslateX + 410);
+                    ((TopicNode) (nodeList.get(j).get(i))).getNodePane().setTranslateY(newTranslateY + 225);
                     nodeList.get(j).get(i).setCircleNo(nodeList.get(j).get(i).getParentNode().getCircleNo()*nodeList.get(j).get(i).getParentNode().getExpansion());
                     nodeList.get(j).get(i).setA(newTranslateX + 410);
                     nodeList.get(j).get(i).setB(newTranslateY + 225);
@@ -1141,6 +1432,14 @@ public class Controller {
                     nodeList.get(j).get(i).setB(newTranslateY + 225);
                     //System.out.println(((VideoNode) (nodeList.get(j).get(i))).getContents());
                 }
+                if (nodeList.get(j).get(i).type.toString().equals("topic")) {
+                    ((TopicNode) (nodeList.get(j).get(i))).getNodePane().setTranslateX(newTranslateX + 410);
+                    ((TopicNode) (nodeList.get(j).get(i))).getNodePane().setTranslateY(newTranslateY + 225);
+                    nodeList.get(j).get(i).setCircleNo(nodeList.get(j).get(i).getParentNode().getCircleNo()*nodeList.get(j).get(i).getParentNode().getExpansion());
+                    nodeList.get(j).get(i).setA(newTranslateX + 410);
+                    nodeList.get(j).get(i).setB(newTranslateY + 225);
+                    //System.out.println(((VideoNode) (nodeList.get(j).get(i))).getContents());
+                }
             }
         }
     }
@@ -1191,6 +1490,9 @@ public class Controller {
 
                 if (rootNode.type.toString().equals("link"))
                     ((VideoNode) (rootNode)).setVisible();
+
+                if (rootNode.type.toString().equals("topic"))
+                    ((TopicNode) (rootNode)).setVisible();
             }
         }
         else {
@@ -1220,6 +1522,9 @@ public class Controller {
 
                     if (rootNode.type.toString().equals("link"))
                         ((VideoNode) (rootNode)).setVisible();
+
+                    if (rootNode.type.toString().equals("topic"))
+                        ((TopicNode) (rootNode)).setVisible();
                 }
             }
         }
@@ -1245,6 +1550,9 @@ public class Controller {
 
                 if (rootNode.type.toString().equals("link"))
                     ((VideoNode) (rootNode)).setVisible();
+
+                if (rootNode.type.toString().equals("topic"))
+                    ((TopicNode) (rootNode)).setVisible();
             }
         }
         else {
@@ -1274,6 +1582,9 @@ public class Controller {
 
                     if (rootNode.type.toString().equals("link"))
                         ((VideoNode) (rootNode)).setVisible();
+
+                    if (rootNode.type.toString().equals("topic"))
+                        ((TopicNode) (rootNode)).setVisible();
                 }
             }
         }
@@ -1295,6 +1606,10 @@ public class Controller {
 
         if(rootNode.type.toString().equals("link")) {
             ((VideoNode) (rootNode)).makeVisible();
+        }
+
+        if(rootNode.type.toString().equals("topic")) {
+            ((TopicNode) (rootNode)).makeVisible();
         }
 
         for (int i = 0; i < children; i++) {
@@ -1403,6 +1718,18 @@ public class Controller {
                         break;
                     }
                 }
+                else if (nodeList.get(j).get(i).getType() == "topic") {
+                    TopicNode topicNode = (TopicNode) nodeList.get(j).get(i);
+                    Bounds bounds = pane.getBoundsInParent();
+                    double a = topicNode.getA();
+                    double b = topicNode.getB();
+                    if (topicNode.getNodePane().intersects(bounds.getMinX() - a, bounds.getMinY() - b, 100, 100)) {
+                        intersect = true;
+                        index = i;
+                        layer = j;
+                        break;
+                    }
+                }
             }
 
         }
@@ -1430,6 +1757,12 @@ public class Controller {
                 VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
 
                 videoNode.getNodePane().setStyle(null);
+            }
+            else  if (nodeList.get(layer).get(index).getType().equals("topic") && nodeList.get(layer).get(index) != null)
+            {
+                TopicNode topicNode = (TopicNode) nodeList.get(layer).get(index);
+
+                topicNode.getNodePane().setStyle(null);
             }
 
             nodedrag = false;
@@ -1529,6 +1862,12 @@ public class Controller {
                     line.startXProperty().bind(videoNode.getNodePane().layoutXProperty().add(videoNode.getNodePane().translateXProperty()));
                     line.startYProperty().bind(videoNode.getNodePane().layoutYProperty().add(videoNode.getNodePane().translateYProperty()));
                 }
+                else if (parentNode.getType() == "topic") {
+
+                    TopicNode topicNode = (TopicNode) parentNode;
+                    line.startXProperty().bind(topicNode.getNodePane().layoutXProperty().add(topicNode.getNodePane().translateXProperty()));
+                    line.startYProperty().bind(topicNode.getNodePane().layoutYProperty().add(topicNode.getNodePane().translateYProperty()));
+                }
 
                 line.setStrokeWidth(4);
 
@@ -1609,6 +1948,12 @@ public class Controller {
 
                         videoNode.getNodePane().setStyle(null);
                     }
+                    else  if (nodeList.get(layer).get(index).getType().equals("topic") && nodeList.get(layer).get(index) != null)
+                    {
+                        TopicNode topicNode = (TopicNode) nodeList.get(layer).get(index);
+
+                        topicNode.getNodePane().setStyle(null);
+                    }
 
                     nodedrag = true;
                     double offsetX = t.getSceneX() - orgSceneX;
@@ -1635,6 +1980,12 @@ public class Controller {
 
                             videoNode.getNodePane().setStyle("-fx-background-color: #4D4DFF;");
                         }
+                        else  if (nodeList.get(layer).get(index).getType().equals("topic") && nodeList.get(layer).get(index) != null)
+                        {
+                            TopicNode topicNode = (TopicNode) nodeList.get(layer).get(index);
+
+                            topicNode.getNodePane().setStyle("-fx-background-color: #4D4DFF;");
+                        }
                     }
 
                 }
@@ -1659,6 +2010,12 @@ public class Controller {
                 VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
 
                 videoNode.getNodePane().setStyle(null);
+            }
+            else  if (nodeList.get(layer).get(index).getType().equals("topic") && nodeList.get(layer).get(index) != null)
+            {
+                TopicNode topicNode = (TopicNode) nodeList.get(layer).get(index);
+
+                topicNode.getNodePane().setStyle(null);
             }
             nodedrag = false;
             Bounds bounds = newImageNode.getNodePane().getBoundsInParent();
@@ -1756,6 +2113,12 @@ public class Controller {
                     line.startXProperty().bind(videoNode.getNodePane().layoutXProperty().add(videoNode.getNodePane().translateXProperty()));
                     line.startYProperty().bind(videoNode.getNodePane().layoutYProperty().add(videoNode.getNodePane().translateYProperty()));
                 }
+                else if (parentNode.getType() == "topic") {
+
+                    TopicNode topicNode = (TopicNode) parentNode;
+                    line.startXProperty().bind(topicNode.getNodePane().layoutXProperty().add(topicNode.getNodePane().translateXProperty()));
+                    line.startYProperty().bind(topicNode.getNodePane().layoutYProperty().add(topicNode.getNodePane().translateYProperty()));
+                }
 
                 line.setStrokeWidth(4);
 
@@ -1821,6 +2184,12 @@ public class Controller {
                 VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
 
                 videoNode.getNodePane().setStyle(null);
+            }
+            else  if (nodeList.get(layer).get(index).getType().equals("topic") && nodeList.get(layer).get(index) != null)
+            {
+                TopicNode topicNode = (TopicNode) nodeList.get(layer).get(index);
+
+                topicNode.getNodePane().setStyle(null);
             }
 
             nodedrag = false;
@@ -1920,6 +2289,12 @@ public class Controller {
                     line.startXProperty().bind(videoNode.getNodePane().layoutXProperty().add(videoNode.getNodePane().translateXProperty()));
                     line.startYProperty().bind(videoNode.getNodePane().layoutYProperty().add(videoNode.getNodePane().translateYProperty()));
                 }
+                else if (parentNode.getType() == "topic") {
+
+                    TopicNode topicNode = (TopicNode) parentNode;
+                    line.startXProperty().bind(topicNode.getNodePane().layoutXProperty().add(topicNode.getNodePane().translateXProperty()));
+                    line.startYProperty().bind(topicNode.getNodePane().layoutYProperty().add(topicNode.getNodePane().translateYProperty()));
+                }
 
                 line.setStrokeWidth(4);
 
@@ -1960,6 +2335,180 @@ public class Controller {
                 videoNode.getNodePane().setOnMouseReleased(doNothing);
 
                 DataConnection.addVideoNode(videoNode);
+            }
+        }
+
+    };
+
+
+    EventHandler<MouseEvent> TopicOnMouseReleasedEventHandler = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent t) {
+
+            if (nodeList.get(layer).get(index).getType().equals("string") && nodeList.get(layer).get(index) != null){
+                TextNode textNode = (TextNode) nodeList.get(layer).get(index);
+                textNode.getNodePane().setStyle(null);
+            }
+            else if (nodeList.get(layer).get(index).getType().equals("image") && nodeList.get(layer).get(index) != null)
+            {
+                ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
+
+                imageNode.getNodePane().setStyle(null);
+            }
+            else  if (nodeList.get(layer).get(index).getType().equals("link") && nodeList.get(layer).get(index) != null)
+            {
+                VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
+
+                videoNode.getNodePane().setStyle(null);
+            }
+            else  if (nodeList.get(layer).get(index).getType().equals("topic") && nodeList.get(layer).get(index) != null)
+            {
+                TopicNode topicNode = (TopicNode) nodeList.get(layer).get(index);
+
+                topicNode.getNodePane().setStyle(null);
+            }
+            nodedrag = false;
+            Bounds bounds = newTopicNode.getNodePane().getBoundsInParent();
+            if (classNode.getNodePane().intersects(bounds.getMinX() - 410, bounds.getMinY() - 225, 100, 100) && masterNode.size() == (ClassMap.noOfCircle * 10)) {
+                expand();
+            }
+            if (classNode.getNodePane().intersects(bounds.getMinX() - 410, bounds.getMinY() - 225, 100, 100)) {
+
+                if (ClassMap.circleX.size() % 2 == 0) {
+                    randomNumber = 0;
+
+                } else randomNumber = ClassMap.circleX.size() / 2;
+
+                double newTranslateX = ClassMap.circleX.get(randomNumber);
+                double newTranslateY = ClassMap.circleY.get(randomNumber);
+                ClassMap.circleX.remove(randomNumber);
+                ClassMap.circleY.remove(randomNumber);
+
+                newTopicNode.getNodePane().setTranslateX(newTranslateX + 410);
+                newTopicNode.getNodePane().setTranslateY(newTranslateY + 225);
+
+                Line line = new Line();
+                line.setStroke(javafx.scene.paint.Color.BLACK);
+
+                line.startXProperty().bind(classNode.getNodePane().layoutXProperty().add(classNode.getNodePane().translateXProperty()));
+                line.startYProperty().bind(classNode.getNodePane().layoutYProperty().add(classNode.getNodePane().translateYProperty()));
+                line.endXProperty().bind(newTopicNode.getNodePane().layoutXProperty().add(newTopicNode.getNodePane().translateXProperty()));
+                line.endYProperty().bind(newTopicNode.getNodePane().layoutXProperty().add(newTopicNode.getNodePane().translateYProperty()));
+
+                line.setStrokeWidth(4);
+                newTopicNode.setParentLine(line);
+                newNodeStage2.getChildren().addAll(line);
+                newTopicNode.setA(newTranslateX + 410);
+                newTopicNode.setB(newTranslateY + 225);
+                newTopicNode.setQuadrant(array[masterNode.size()%10] + 1);
+                newTopicNode.setCircleNo(ClassMap.noOfCircle);
+                newTopicNode.setParentNode(classNode);
+                newTopicNode.setParent(newTopicNode.getParentNode().getUniqueId());
+                newTopicNode.setChildLimit(2*classNode.getExpansionconst());
+                newTopicNode.setLayer(0);
+                newTopicNode.setExpansion(2*classNode.getExpansionconst());
+                if (masterNode.size() >= 10){
+                    newTopicNode.setOffset(1);
+                }
+
+                if (nodeList.size() == 0) {
+
+                    masterNode.add(newTopicNode);
+                    nodeList.add(masterNode);
+                } else {
+                    nodeList.get(0).add(newTopicNode);
+                }
+
+                classNode.setNoOfChildren(classNode.getNoOfChildren()+1);
+
+
+                newTopicNode.getNodePane().setOnMousePressed(doNothing);
+                newTopicNode.getNodePane().setOnMouseDragged(doNothing);
+                newTopicNode.getNodePane().setOnMouseReleased(doNothing);
+                DataConnection.addTopicNode(newTopicNode);
+            } else if (intersection(newTopicNode.getNodePane())) {
+
+                if (nodeList.get(layer).get(index).getNoOfChildren() == nodeList.get(layer).get(index).getChildLimit()){
+                    expandChildren(nodeList.get(layer).get(index));
+
+                }
+
+                List<Double> X = newCalculateX(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
+                List<Double> Y = newCalculateY(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
+
+                double newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren()+nodeList.get(layer).get(index).getChildno() +(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
+                double newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() +nodeList.get(layer).get(index).getChildno()+(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
+                newTopicNode.getNodePane().setTranslateX(newTranslateX + 410);
+                newTopicNode.getNodePane().setTranslateY(newTranslateY + 225);
+
+                Line line = new Line();
+                line.setStroke(javafx.scene.paint.Color.BLACK);
+
+                MapNode parentNode = nodeList.get(layer).get(index);
+                parentNode.children.add(newTopicNode);
+
+                if (parentNode.getType() == "string") {
+                    TextNode textNode = (TextNode) parentNode;
+                    line.startXProperty().bind(textNode.getNodePane().layoutXProperty().add(textNode.getNodePane().translateXProperty()));
+                    line.startYProperty().bind(textNode.getNodePane().layoutYProperty().add(textNode.getNodePane().translateYProperty()));
+                } else if (parentNode.getType() == "image") {
+
+                    ImageNode imageNode = (ImageNode) parentNode;
+                    line.startXProperty().bind(imageNode.getNodePane().layoutXProperty().add(imageNode.getNodePane().translateXProperty()));
+                    line.startYProperty().bind(imageNode.getNodePane().layoutYProperty().add(imageNode.getNodePane().translateYProperty()));
+                }
+                else if (parentNode.getType() == "link") {
+
+                    VideoNode videoNode = (VideoNode) parentNode;
+                    line.startXProperty().bind(videoNode.getNodePane().layoutXProperty().add(videoNode.getNodePane().translateXProperty()));
+                    line.startYProperty().bind(videoNode.getNodePane().layoutYProperty().add(videoNode.getNodePane().translateYProperty()));
+                }
+                else if (parentNode.getType() == "topic") {
+
+                    TopicNode topicNode = (TopicNode) parentNode;
+                    line.startXProperty().bind(topicNode.getNodePane().layoutXProperty().add(topicNode.getNodePane().translateXProperty()));
+                    line.startYProperty().bind(topicNode.getNodePane().layoutYProperty().add(topicNode.getNodePane().translateYProperty()));
+                }
+
+                line.setStrokeWidth(4);
+
+                line.endXProperty().bind(newTopicNode.getNodePane().layoutXProperty().add(newTopicNode.getNodePane().translateXProperty()));
+                line.endYProperty().bind(newTopicNode.getNodePane().layoutXProperty().add(newTopicNode.getNodePane().translateYProperty()));
+                newTopicNode.setParentLine(line);
+                newNodeStage2.getChildren().addAll(line);
+
+
+                newTopicNode.setChildno((nodeList.get(layer).get(index).getNoOfChildren()+nodeList.get(layer).get(index).getChildno()) * 2);
+                newTopicNode.setA(newTranslateX + 435);
+                newTopicNode.setB(newTranslateY + 260);
+                newTopicNode.setQuadrant(nodeList.get(layer).get(index).getQuadrant());
+                newTopicNode.setCircleNo(nodeList.get(layer).get(index).getCircleNo() *nodeList.get(layer).get(index).getExpansion());
+                newTopicNode.setLayer(nodeList.get(layer).get(index).getLayer() + 1);
+                newTopicNode.setExpansion(2*nodeList.get(layer).get(index).getExpansionconst());
+                newTopicNode.setChildLimit(2*nodeList.get(layer).get(index).getExpansionconst());
+                newTopicNode.setParentNode(nodeList.get(layer).get(index));
+                newTopicNode.setParent(newTopicNode.getParentNode().getUniqueId());
+
+                if(nodeList.get(layer).get(index).getOffset()!=0)
+                {
+                    newTopicNode.setOffset((nodeList.get(layer).get(index).getNoOfChildren()+nodeList.get(layer).get(index).getOffset()) * 2);
+                }
+
+                nodeList.get(layer).get(index).setNoOfChildren(nodeList.get(layer).get(index).getNoOfChildren() + 1);
+
+                if (nodeList.size() == layer + 1) {
+                    List<MapNode> node = new ArrayList<>();
+                    node.add(newTopicNode);
+                    nodeList.add(node);
+                } else {
+                    nodeList.get(layer + 1).add(newTopicNode);
+                }
+
+                newTopicNode.getNodePane().setOnMousePressed(doNothing);
+                newTopicNode.getNodePane().setOnMouseDragged(doNothing);
+                newTopicNode.getNodePane().setOnMouseReleased(doNothing);
+
+                DataConnection.addTopicNode(newTopicNode);
             }
         }
 

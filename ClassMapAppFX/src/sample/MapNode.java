@@ -22,7 +22,7 @@ import java.util.Date;
 public class MapNode {
 
     public enum classification {
-        image, link, string
+        image, link, string, topic
     }
 
     public int uniqueId;
