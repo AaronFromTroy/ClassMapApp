@@ -38,7 +38,7 @@ public class TextNode extends MapNode{
     private GridPane nodePane;
     private String contents;
     private Alert showString;
-    //private Controller.Minion myMinion = new Controller.Minion();
+    private String description;
 
     public TextNode(String in)
     {
@@ -95,11 +95,6 @@ public class TextNode extends MapNode{
             newNode.setFill(Paint.valueOf("white"));
             newNode.setStroke(Color.DODGERBLUE);
         }
-//        else {
-//            text.setStroke(Paint.valueOf("white"));
-//            newNode.setFill(Paint.valueOf("black"));
-//            newNode.setStroke(Paint.valueOf("black"));
-//        }
 
         StackPane stack = new StackPane();
         stack.getChildren().addAll(newNode, text);
@@ -125,8 +120,6 @@ public class TextNode extends MapNode{
         arrowView.setFitHeight(20.0f);
         Text numberOfVotes = new Text(""+votes);
         numberOfVotes.getStyleClass().add("numberOfVotes");
-        //numberOfVotes.setStroke(Color.WHITE);
-        //numberOfVotes.setFill(Color.WHITE);
         //numberOfVotes.setStyle("-fx-font: 20 arial");
         HBox arr = new HBox();
 
@@ -173,8 +166,6 @@ public class TextNode extends MapNode{
                     Text numberOfVotes = new Text(""+(votes));
                     numberOfVotes.getStyleClass().add("numberOfVotes");
                     //numberOfVotes.setStyle("-fx-font: 20 arial");
-                    //numberOfVotes.setStroke(Color.WHITE);
-                    //numberOfVotes.setFill(Color.WHITE);
                     arr.getChildren().remove(0, 2);
                     arr.getChildren().addAll(newArrowView, numberOfVotes);
                     setUserVote(true);
@@ -189,8 +180,6 @@ public class TextNode extends MapNode{
         });
         Rectangle namePlate = new Rectangle(0.0f, 0.0f, 150, 25);
         namePlate.getStyleClass().add("namePlate");
-        //namePlate.setFill(Color.DODGERBLUE);
-        //namePlate.setStroke(Color.DODGERBLUE);
         Text nameDisplay = new Text(this.createdBy);
         nameDisplay.setBoundsType(TextBoundsType.VISUAL);
         nameDisplay.setWrappingWidth(100.0f);
@@ -216,33 +205,10 @@ public class TextNode extends MapNode{
             }
         });
 
-//        nodePane.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                if(event.getButton() == MouseButton.SECONDARY) {
-////                    //showString.display("Text Node", contents);
-////                    //DataConnection.chosenNode = uniqueId;
-////                    FXMLLoader loader = new FXMLLoader(this.getClass().getResource("ClassMapDataFile.fxml"));
-////                    try {
-////                        Parent root = (Parent) loader.load();
-////                    } catch (IOException e) {
-////                        e.printStackTrace();
-////                    }
-////                    Controller controller = loader.getController();
-////                    controller.drawNodeTrail(getUniqueId());
-//
-//                    //Controller.getInstance().drawNodeTrail(uniqueId);
-//                    //Controller.drawNodeTrail(uniqueId);
-//                }
-//            }
-//        });
-
         nodePane.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 if(event.getButton() == MouseButton.SECONDARY) {
-//                    Controller.bobo2.add(getNodePane(), 0, 0);
-//                    Controller.bobo.setContent(Controller.bobo2);
                 }
             }
         });
@@ -293,4 +259,6 @@ public class TextNode extends MapNode{
     public void makeNode() {
         this.drawNode();
     }
+
+    public String getDescription() { return this.description; }
 }

@@ -38,7 +38,7 @@
 
 .menu-item{
     -fx-background-color: white;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
 }
 
 .menu-item:hover{

@@ -55,6 +55,7 @@ public class VideoNode extends MapNode{
     private Image image;
     private String contents;
     private String content_Url;
+    private String description;
 
     public VideoNode(String in)
     {
@@ -289,4 +290,6 @@ public class VideoNode extends MapNode{
     public void makeNode() {
         this.drawNode();
     }
+
+    public String getDescription() { return this.description; }
 }

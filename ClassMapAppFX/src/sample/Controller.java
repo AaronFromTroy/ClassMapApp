@@ -83,26 +83,8 @@ public class Controller {
      */
     public void drawNodeTrail(int nodeID) {
 
-        sidePane.setVisible(true);
         System.out.println(nodeID);
-//        Pane tryThis = new Pane();
-//        tryThis = Controller.getInstance().getNodeStage();
-//        System.out.println(nodeID + "\n");
-//        GridPane sideGrid = new GridPane();
-//        ScrollPane newSidePane = new ScrollPane();
-//        //sideGrid.getChildren().removeAll();
-//        nodeTrailCount = 0;
-//        //sidePane.setContent(null);
-//        sideGrid.setMaxWidth(200);
-////        if (sidePane.isVisible()) {
-////            System.out.println("Hey Dude");
-////        }
-//        nodeTrailCount = 0;
-//        recursivePrintTrail(DataConnection.collection.get(0), nodeID, sideGrid);
-//        sideGrid.setVisible(true);
-//        newSidePane.setContent(sideGrid);
-//        tryThis.getChildren().add(newSidePane);
-//        newSidePane.setVisible(true);
+
 
     }
 
@@ -157,8 +139,10 @@ public class Controller {
         public void handle(MouseEvent event) {
 
             if (event.getButton() == MouseButton.SECONDARY) {
-                cm.hide();
                 Object obj = event.getSource();
+                //drawNodeTrail((Integer)((GridPane)obj).getUserData());
+
+                cm.hide();
                 cm.getItems().add(cmItem1);
                 cm.getItems().add(cmItem2);
                     cm.show(nodeStage,event.getSceneX(),event.getScreenY());

@@ -133,4 +133,8 @@
 .up-vote{
     -fx-font: 20 arial;
 }
+
+.flash-card{
+    -fx-text-fill: #000000;
+}
 /*END OTHER*/

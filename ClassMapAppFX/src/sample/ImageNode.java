@@ -49,6 +49,7 @@ public class ImageNode extends MapNode {
     private String formattedDate;
     private Image image;
     private int diffX, diffY;
+    private String description;
 
     public ImageNode(String in)
     {
@@ -298,5 +299,9 @@ public class ImageNode extends MapNode {
     public void makeNode() {
         this.drawNode();
     }
+
+    public String getDescription() { return this.description; }
+
+    public Image getImage() { return this.image; }
 
 }

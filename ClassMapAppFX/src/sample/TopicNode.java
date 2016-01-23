@@ -1,14 +1,7 @@
 package sample;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import javafx.event.ActionEvent;
+
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.chart.PieChart;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,25 +12,20 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
 
 import java.io.File;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Optional;
-
-import javafx.fxml.FXML;
 
 public class TopicNode extends MapNode{
 
     private GridPane nodePane;
     private String contents;
     private Alert showString;
+    private String description;
     //private Controller.Minion myMinion = new Controller.Minion();
 
     public TopicNode(String in)
@@ -271,4 +259,6 @@ public class TopicNode extends MapNode{
     public void makeNode() {
         this.drawNode();
     }
+
+    public String getDescription() { return this.description; }
 }
