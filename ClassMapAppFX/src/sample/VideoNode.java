@@ -55,7 +55,7 @@ public class VideoNode extends MapNode{
     private Image image;
     private String contents;
     private String content_Url;
-    private String description;
+    private String description = "hello";
 
     public VideoNode(String in)
     {
@@ -207,31 +207,34 @@ public class VideoNode extends MapNode{
             @Override
             public void handle(MouseEvent event) {
                 if (event.getButton() == MouseButton.SECONDARY) {
-                    Image logo = new Image("sample/OrangeIcon.png");
-                    Stage newStage = new Stage();
-                    newStage.initModality(Modality.APPLICATION_MODAL);
-                    newStage.setTitle("Video Viewer");
-                    newStage.getIcons().add(logo);
-                    newStage.setResizable(true);
+//                    Image logo = new Image("sample/OrangeIcon.png");
+//                    Stage newStage = new Stage();
+//                    newStage.initModality(Modality.APPLICATION_MODAL);
+//                    newStage.setTitle("Video Viewer");
+//                    newStage.getIcons().add(logo);
+//                    newStage.setResizable(true);
+//
+//                    WebView webView = new WebView();
+//                    WebEngine webEngine = webView.getEngine();
+//                    webEngine.loadContent(content_Url);
+//                    System.out.println(content_Url);
+//
+//                    StackPane root = new StackPane();
+//                    root.getChildren().add(webView);
+//                    Scene scene = new Scene(root, 600, 330);
+//                    newStage.setScene(scene);
+//                    newStage.centerOnScreen();
+//                    newStage.show();
+//
+//
+//                    newStage.setOnCloseRequest(new EventHandler<javafx.stage.WindowEvent>() {
+//                        @Override
+//                        public void handle(javafx.stage.WindowEvent event) {
+//                            webView.getEngine().load(null);
+//                        }
+//                    });
 
-                    WebView webView = new WebView();
-                    WebEngine webEngine = webView.getEngine();
-                    webEngine.loadContent(content_Url);
-
-                    StackPane root = new StackPane();
-                    root.getChildren().add(webView);
-                    Scene scene = new Scene(root, 600, 330);
-                    newStage.setScene(scene);
-                    newStage.centerOnScreen();
-                    newStage.show();
-
-
-                    newStage.setOnCloseRequest(new EventHandler<javafx.stage.WindowEvent>() {
-                        @Override
-                        public void handle(javafx.stage.WindowEvent event) {
-                            webView.getEngine().load(null);
-                        }
-                    });
+                    new FlashCard(1, getContents(), description, type.toString());
 
                 }
             }
