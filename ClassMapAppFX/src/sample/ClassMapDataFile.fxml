@@ -47,6 +47,7 @@
                           <MenuItem mnemonicParsing="false" onAction="#createImageNodeURL" style="-fx-text-fill: black;" text="Create Image Node from URL" />
                           <MenuItem mnemonicParsing="false" onAction="#createImageNodeFile" style="-fx-text-fill: black;" text="Create Image Node from File" />
                           <MenuItem mnemonicParsing="false" onAction="#createVideoNode" style="-fx-text-fill: black;" text="Create YouTube Node" />
+                          <MenuItem mnemonicParsing="false" onAction="#createTopicNode" style="-fx-text-fill: black;" text="Create Topic Node (Teacher)" />
                       </items>
                   </MenuButton>
 

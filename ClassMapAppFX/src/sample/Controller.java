@@ -420,6 +420,31 @@ public class Controller {
 
     }
 
+    public void createTopicNode(ActionEvent actionEvent){
+
+        if(!firstTimePublic) {
+            if(DataConnection.loggedUser.getAccount().equals("teacher")) {
+
+                TextInputDialog dialog = new TextInputDialog("Enter the text for the node");
+                dialog.setTitle("Create Topic Node");
+                dialog.setHeaderText("Enter the text below.");
+                dialog.setContentText("Text: ");
+                Optional<String> result = dialog.showAndWait();
+
+                TopicNode newNode = new TopicNode(result.get());
+
+                newNode.setTypeToText();
+                //masterNodeList.add(newNode); I think this is still necessary but not for the database
+                newNode.getNodePane().setOnMousePressed(OnMousePressedEventHandler);
+                newNode.getNodePane().setOnMouseDragged(OnMouseDraggedEventHandler);
+                newNode.getNodePane().setOnMouseReleased(OnMouseReleasedEventHandler);
+                //newNode.getNodePane().setOnMouseClicked(onMouseRightClick);
+                newNodeStage.getChildren().add(newNode.getNodePane());
+            }
+        }
+
+    }
+
     public void printMasterList()
     {
         int size = masterNodeList.size();

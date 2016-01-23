@@ -58,7 +58,6 @@ public class DataConnection {
 
         } catch (SQLException | HeadlessException e) {
             Alert.display("Error", "Failed to establish a connection!");
-            //JOptionPane.showMessageDialog(null, "Failed to Establish Connection!");
             return null;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -83,7 +82,6 @@ public class DataConnection {
             ResultSet rst = pst.executeQuery();
             if(rst.next()) {
                 if(rst.getString("password").equals(pass)) {
-                    //JOptionPane.showMessageDialog(null, "Found User!");
 
                     User newloggedUser = new User(rst.getString("first_name"), rst.getString("last_name"), rst.getString("username"),
                             rst.getInt("id"), rst.getTimestamp("log_out"), rst.getString("account_permissions"));
@@ -100,7 +98,6 @@ public class DataConnection {
                     return true;
                 }
                 else {
-                    //JOptionPane.showMessageDialog(null, "Does not match!");
                     conn.close();
                     return false;
                 }
@@ -110,7 +107,6 @@ public class DataConnection {
                 return false;
             }
         } catch (Exception e) {
-            //JOptionPane.showMessageDialog(null, "Incorrect Login. Try again.");
             return false;
         }
     }
@@ -213,12 +209,10 @@ public class DataConnection {
                     collection.add(new TextNode(rs.getInt("id"), rs.getInt("parent_id"),
                             rs.getString("string_data"), rs.getTimestamp("time_created"), rs.getInt("votes"), rs.getString("created_by"),
                             rs.getString("account")));
-                    //System.out.println(rs.getString("account"));
                 }
                 else if (new String(rs.getString("type").toString()).equals("image")) {
                     collection.add(new ImageNode(rs.getInt("id"), rs.getInt("parent_id"), rs.getTimestamp("time_created"),
                             rs.getInt("votes"), rs.getString("created_by"), rs.getString("account")));
-                   // System.out.println(rs.getString("account"));
                     counting.acquire();
                     loadImg((collection.size() - 1), rs.getInt("id"));
                 }
@@ -226,7 +220,11 @@ public class DataConnection {
                     collection.add(new VideoNode(rs.getInt("id"), rs.getInt("parent_id"),
                             rs.getString("string_data"), rs.getTimestamp("time_created"), rs.getInt("votes"), rs.getString("created_by"),
                             rs.getString("account")));
-                    //System.out.println(rs.getString("account"));
+                }
+                if (new String(rs.getString("type").toString()).equals("topic")) {
+                    collection.add(new TopicNode(rs.getInt("id"), rs.getInt("parent_id"),
+                            rs.getString("string_data"), rs.getTimestamp("time_created"), rs.getInt("votes"), rs.getString("created_by"),
+                            rs.getString("account")));
                 }
             }
             rs.close();
@@ -249,14 +247,15 @@ public class DataConnection {
 
                 if(collection.get(i).getType().equals("string")) {
                     ((TextNode)(collection.get(i))).makeNode();
-                    //System.out.println("String");
                 }
                 if(collection.get(i).getType().equals("link")) {
                     ((VideoNode)(collection.get(i))).makeNode();
-                    //System.out.println("Video");
                 }
                 if(collection.get(i).getType().equals("image")) {
                     ((ImageNode)(collection.get(i))).makeNode();
+                }
+                if(collection.get(i).getType().equals("topic")) {
+                    ((TopicNode)(collection.get(i))).makeNode();
                 }
 
                 for (int y = 0; y < collection.size(); y++) {
@@ -271,16 +270,11 @@ public class DataConnection {
 
             }
 
-//            for (int i = (collection.size() - 1); i > 0; i--) {
-//                collection.remove(i);
-//            }
-
             return collection.get(0);
 
         } catch (SQLException e) {
             System.out.println(e);
             Alert.display("Error", "Errors Occurred Building Map!");
-            //JOptionPane.showMessageDialog(null, "Errors Occurred Building Map!");
             return null;
         }
 
@@ -407,7 +401,6 @@ public class DataConnection {
         } catch (Exception e) {
             try {
                 Alert.display("Error", "This image failed to upload.\n Try saving the image and upload as file.");
-                //JOptionPane.showMessageDialog(null, "This image failed to upload.\n Try saving the image and upload as file.");
                 File path = new File("./Images/error.jpg");
                 Image newArrow = new Image(path.toURI().toString());
 
@@ -427,10 +420,8 @@ public class DataConnection {
                 conn.close();
             } catch (Exception event) {
                 Alert.display("Error", "That did not work!");
-                //JOptionPane.showMessageDialog(null, "that did not work!");
             }
             Alert.display("Error", "Image not compatible.");
-            //JOptionPane.showMessageDialog(null, "Image not compatible.");
         }
     }
 
@@ -502,7 +493,6 @@ public class DataConnection {
             conn.close();
         } catch (Exception e) {
             Alert.display("Error", "Did not work. Sorry!");
-            //JOptionPane.showMessageDialog(null, "Didnt Work Sorry!");
         }
 
     }
@@ -527,47 +517,6 @@ public class DataConnection {
         }
     }
 
-//    public static void deleteMember(String username) {
-//        Connection conn = dbConnector();
-//        String query = "delete from members where username=?"; //put in number for ? and take out ps.setInt(); to make it work also
-//        try {
-//            PreparedStatement ps = conn.prepareStatement(query);
-//            ps.setString(1, username); //set id for the second number
-//            ps.executeUpdate();
-//            System.out.println("Deleted record...");
-//            ps.close();
-//            conn.close();
-//        } catch (Exception e) {
-//          Alert.display("Error", "User could not be deleted");
-//          //JOptionPane.showMessageDialog(null, "User could not be deleted.");
-//        }
-//    }
-
-//    public static void deleteNode(MapNode node) {
-//        Connection conn = dbConnector();
-//        String query = "delete from nodes where id=?";
-//        try {
-//            PreparedStatement ps = conn.prepareStatement(query);
-//            ps.setInt(1, node.uniqueId);
-//            ps.executeUpdate();
-//            ps.close();
-//            if (node.getType() == "Image") {
-//                String query2 = "delete from images where id=?";
-//                try {
-//                    PreparedStatement pst = conn.prepareStatement(query2);
-//                    pst.setInt(1, node.uniqueId);
-//                    pst.executeUpdate();
-//                    pst.close();
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//
-//            }
-//            conn.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     /*
     Used with populate to grab images from the database.
