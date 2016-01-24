@@ -77,6 +77,7 @@ public class Controller {
     ContextMenu cm = new ContextMenu();
     MenuItem cmItem1 = new MenuItem("Delete");
     MenuItem cmItem2 = new MenuItem("Show Trail");
+    MenuItem cmItem3 = new MenuItem("Flash Card");
 
     /*
     Used to draw a trail of nodes from the selected node on the side Pane
@@ -143,20 +144,31 @@ public class Controller {
                 //drawNodeTrail((Integer)((GridPane)obj).getUserData());
 
                 cm.hide();
-                cm.getItems().add(cmItem1);
+                //cm.getItems().add(cmItem1);
                 cm.getItems().add(cmItem2);
+                cm.getItems().add(cmItem3);
+
                     cm.show(nodeStage,event.getSceneX(),event.getScreenY());
 
-                    cmItem1.setOnAction(new EventHandler<ActionEvent>() {
-                        public void handle(ActionEvent e) {
-
-                        }
-                    });
+//                    cmItem1.setOnAction(new EventHandler<ActionEvent>() {
+//                        public void handle(ActionEvent e) {
+//
+//                        }
+//                    });
                     cmItem2.setOnAction(new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent e) {
                             drawNodeTrail((Integer)((GridPane)obj).getUserData());
-                            //drawNodeTrail(DataConnection.chosenNode);
-                            //System.out.println(DataConnection.chosenNode);
+                        }
+                    });
+                    cmItem3.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            for (int i = 0; i < DataConnection.collection.size(); i++) {
+                                if (DataConnection.collection.get(i).getUniqueId() == ((Integer)((GridPane)obj).getUserData())) {
+                                    //System.out.println(((Integer)((GridPane)obj).getUserData()));
+                                    new FlashCard(DataConnection.collection.get(i));
+                                }
+                            }
                         }
                     });
             }

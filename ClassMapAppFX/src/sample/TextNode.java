@@ -38,7 +38,7 @@ public class TextNode extends MapNode{
     private GridPane nodePane;
     private String contents;
     private Alert showString;
-    private String description;
+    private String description = "hello";
 
     public TextNode(String in)
     {

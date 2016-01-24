@@ -234,7 +234,7 @@ public class VideoNode extends MapNode{
 //                        }
 //                    });
 
-                    new FlashCard(1, getContents(), description, type.toString());
+                    //new FlashCard(1, getContents(), description, type.toString());
 
                 }
             }

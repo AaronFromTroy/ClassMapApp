@@ -3,6 +3,7 @@ package sample;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -35,27 +36,6 @@ public class FlashCard {
         contentURL = "<iframe width=\"560\" height=\"350\" src=\"" + content
                 + "\" frameborder=\"0\" allowfullscreen></iframe>";
 
-//        if (type.equals("string")) {
-//            content = ((TextNode)incomingNode).getContents();
-//            description = ((TextNode)incomingNode).getDescription();
-//            type = "Text";
-//        }
-//        else if (incomingNode.getType().equals("link")) {
-//            content = ((VideoNode)incomingNode).getContents();
-//            description = ((VideoNode)incomingNode).getDescription();
-//            type = "Video";
-//        }
-//        else if (incomingNode.getType().equals("image")) {
-//            imgContent = ((ImageNode)incomingNode).getImage();
-//            description = ((ImageNode)incomingNode).getDescription();
-//            type = "Image";
-//        }
-//        else if (incomingNode.getType().equals("topic")) {
-//            imgContent = ((ImageNode)incomingNode).getImage();
-//            description = ((ImageNode)incomingNode).getDescription();
-//            type = "Topic";
-//        }
-
         this.drawFlashCard();
 
     }
@@ -77,8 +57,8 @@ public class FlashCard {
             type = "Image";
         }
         else if (incomingNode.getType().equals("topic")) {
-            imgContent = ((ImageNode)incomingNode).getImage();
-            description = ((ImageNode)incomingNode).getDescription();
+            content = ((TopicNode)incomingNode).getContents();
+            description = ((TopicNode)incomingNode).getDescription();
             type = "Topic";
         }
 
@@ -92,6 +72,7 @@ public class FlashCard {
         cardWindow.getIcons().add(new Image("sample/OrangeIcon.png"));
 
         TextArea descriptionWindow = new TextArea(description);
+        TextArea definitionWindow = new TextArea();
 
         GridPane masterGrid = new GridPane();
         Label headerLabel = new Label("Current Node Content: ");
@@ -100,13 +81,16 @@ public class FlashCard {
 
         StackPane webPane = new StackPane();
 
-        if (type.equals("text") || type.equals("topic")) {
+        /*
+        Setting content into masterGrid
+         */
+        if (type.equals("Text") || type.equals("Topic")) {
             Label contentLabel = new Label(content);
             contentLabel.setTextFill(Color.web("#303F9F"));
             contentLabel.setFont(new Font("Arial", 30));
             masterGrid.add(contentLabel, 0, 1);
         }
-        else if (type.equals("image")) {
+        else if (type.equals("Image")) {
             ImageView setImage = new ImageView(imgContent);
             setImage.setPreserveRatio(true);
 
@@ -128,12 +112,41 @@ public class FlashCard {
             System.out.println(contentURL);
         }
 
-        descriptionWindow.setMaxSize(400.0f, 250.0f);
-        descriptionWindow.setMinSize(400.0f, 250.0f);
-        masterGrid.add(descriptionWindow, 0, 2);
+        GridPane otherContent  = new GridPane();
+        Label discLabel = new Label("Description: ");
+        otherContent.add(discLabel, 0, 0);
+
+        Label defLabel = new Label("Definition: ");
+        otherContent.add(defLabel, 1, 0);
+
+        descriptionWindow.setMaxSize(300.0f, 200.0f);
+        descriptionWindow.setMinSize(300.0f, 200.0f);
+        descriptionWindow.setWrapText(true);
+        otherContent.add(descriptionWindow, 0, 1);
+
+        definitionWindow.setMaxSize(300.0f, 200.0f);
+        definitionWindow.setMinSize(300.0f, 200.0f);
+        if (type.equals("Text")) {
+            DictParser dict = new DictParser();
+            dict.searchForWord(content);
+            if (dict.getCount() > 0) {
+                definitionWindow.setText(dict.getExactDefinition() + "\n\n");
+
+            } else {
+                definitionWindow.setText("Not a definable word" + "\n\n");
+            }
+        }
+        definitionWindow.setWrapText(true);
+
+        otherContent.add(definitionWindow, 1, 1);
+        masterGrid.add(otherContent, 0, 2);
 
         Pane backGround = new Pane();
-        backGround.setPrefSize(600.0f, 675.0f);
+        if(type == "Text" || type == "Topic") {
+            backGround.setPrefSize(600.0f, 400.0f);
+        }
+        else
+            backGround.setPrefSize(600.0f, 675.0f);
         backGround.setStyle("-fx-background-color: white;");
         Pane gridBack = new Pane();
         gridBack.setPrefSize(550.0f, 650.0f);
