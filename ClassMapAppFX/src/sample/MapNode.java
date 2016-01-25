@@ -32,6 +32,7 @@ public class MapNode {
     public String createdBy;
     public String nodePerm;
     public ArrayList<MapNode> children = new ArrayList<>();
+    public String description = "hello";
     public int parent;
     boolean sinceLastLog;
     public classification type;
@@ -203,6 +204,14 @@ public class MapNode {
 
     public Timestamp getTimeCreated() {
         return timeCreated;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }
 

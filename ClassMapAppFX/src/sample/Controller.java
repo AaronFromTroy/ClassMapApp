@@ -1,9 +1,11 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.event.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
@@ -20,6 +22,7 @@ import javafx.scene.text.TextBoundsType;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
+import javafx.util.Pair;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -452,13 +455,52 @@ public class Controller {
 
         if(!firstTimePublic) {
 
-            TextInputDialog dialog = new TextInputDialog("Enter the text for the node");
+            Dialog<Pair<String, String>> dialog = new Dialog<>();
             dialog.setTitle("Create Text Node");
             dialog.setHeaderText("Enter the text below.");
-            dialog.setContentText("Text: ");
-            Optional<String> result = dialog.showAndWait();
 
-            newNode = new TextNode(result.get());
+            ButtonType okButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+            dialog.getDialogPane().getButtonTypes().addAll(okButtonType, ButtonType.CANCEL);
+
+            GridPane grid = new GridPane();
+            grid.setHgap(10);
+            grid.setVgap(10);
+            grid.setPadding(new Insets(20, 150, 10, 10));
+
+            TextField text = new TextField();
+            text.setPromptText("Enter Text");
+            TextField description = new TextField();
+            description.setPromptText("Enter Description");
+
+            grid.add(new Label("Text : "), 0, 0);
+            grid.add(text, 1, 0);
+            grid.add(new Label("Description : "), 0, 1);
+            grid.add(description, 1, 1);
+
+            Node okButton = dialog.getDialogPane().lookupButton(okButtonType);
+            okButton.setDisable(true);
+
+            text.textProperty().addListener((observable, oldValue, newValue) -> {
+                okButton.setDisable(newValue.trim().isEmpty());
+            });
+
+            dialog.getDialogPane().setContent(grid);
+
+            Platform.runLater(() -> text.requestFocus());
+
+            dialog.setResultConverter(dialogButton -> {
+                if (dialogButton == okButtonType) {
+                    return new Pair<>(text.getText(), description.getText());
+                }
+                return null;
+            });
+
+            Optional<Pair<String, String>> result = dialog.showAndWait();
+
+            result.ifPresent(textDescription -> {
+                newNode = new TextNode(textDescription.getKey());
+                newNode.setDescription(textDescription.getValue());
+            });
 
             newNode.setTypeToText();
             //masterNodeList.add(newNode); I think this is still necessary but not for the database
@@ -1902,7 +1944,7 @@ public class Controller {
                 newNode.getNodePane().setOnMousePressed(doNothing);
                 newNode.getNodePane().setOnMouseDragged(doNothing);
                 newNode.getNodePane().setOnMouseReleased(doNothing);
-
+                newNode.getNodePane().setOnMouseClicked(onMouseRightClick);
                 DataConnection.addTextNode(newNode);
             }
         }
