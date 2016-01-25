@@ -146,6 +146,9 @@ public class Controller {
                 Object obj = event.getSource();
                 //drawNodeTrail((Integer)((GridPane)obj).getUserData());
 
+                cmItem2.setStyle("-fx-text-fill: black");
+                cmItem3.setStyle("-fx-text-fill: black");
+
                 cm.hide();
                 //cm.getItems().add(cmItem1);
                 cm.getItems().add(cmItem2);

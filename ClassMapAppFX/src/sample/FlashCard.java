@@ -151,14 +151,11 @@ public class FlashCard {
         Pane gridBack = new Pane();
         gridBack.setPrefSize(550.0f, 650.0f);
         backGround.setStyle("-fx-background-color: rgb(233,234,237);");
-        //gridBack.getChildren().add(masterGrid);
         backGround.getChildren().add(masterGrid);
 
         Scene scene = new Scene(backGround);
         cardWindow.setScene(scene);
-        cardWindow.show();
-
-
+        cardWindow.showAndWait();
     }
 
 }
