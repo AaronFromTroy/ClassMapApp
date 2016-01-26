@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -473,7 +475,9 @@ public class Controller {
 
             TextField text = new TextField();
             text.setPromptText("Enter Text");
-            TextField description = new TextField();
+            TextArea description = new TextArea();
+            description.setWrapText(true);
+            description.setMaxHeight(100);
             description.setPromptText("Enter Description");
 
             grid.add(new Label("Text : "), 0, 0);
@@ -522,13 +526,54 @@ public class Controller {
         if(!firstTimePublic) {
             if(DataConnection.loggedUser.getAccount().equals("teacher")) {
 
-                TextInputDialog dialog = new TextInputDialog("Enter the text for the node");
+                Dialog<Pair<String, String>> dialog = new Dialog<>();
                 dialog.setTitle("Create Topic Node");
                 dialog.setHeaderText("Enter the text below.");
-                dialog.setContentText("Text: ");
-                Optional<String> result = dialog.showAndWait();
 
-                newTopicNode = new TopicNode(result.get());
+                ButtonType okButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+                dialog.getDialogPane().getButtonTypes().addAll(okButtonType, ButtonType.CANCEL);
+
+                GridPane grid = new GridPane();
+                grid.setHgap(10);
+                grid.setVgap(10);
+                grid.setPadding(new Insets(20, 150, 10, 10));
+
+                TextField text = new TextField();
+                text.setPromptText("Enter Text");
+                TextArea description = new TextArea();
+                description.setWrapText(true);
+                description.setMaxHeight(100);
+                description.setPromptText("Enter Description");
+
+                grid.add(new Label("Text : "), 0, 0);
+                grid.add(text, 1, 0);
+                grid.add(new Label("Description : "), 0, 1);
+                grid.add(description, 1, 1);
+
+                Node okButton = dialog.getDialogPane().lookupButton(okButtonType);
+                okButton.setDisable(true);
+
+                text.textProperty().addListener((observable, oldValue, newValue) -> {
+                    okButton.setDisable(newValue.trim().isEmpty());
+                });
+
+                dialog.getDialogPane().setContent(grid);
+
+                Platform.runLater(() -> text.requestFocus());
+
+                dialog.setResultConverter(dialogButton -> {
+                    if (dialogButton == okButtonType) {
+                        return new Pair<>(text.getText(), description.getText());
+                    }
+                    return null;
+                });
+
+                Optional<Pair<String, String>> result = dialog.showAndWait();
+
+                result.ifPresent(textDescription -> {
+                    newTopicNode = new TopicNode(textDescription.getKey());
+                    newTopicNode.setDescription(textDescription.getValue());
+                });
 
                 newTopicNode.setTypeToTopic();
                 //masterNodeList.add(newNode); I think this is still necessary but not for the database
@@ -555,13 +600,57 @@ public class Controller {
 
     public void createImageNodeURL(ActionEvent actionEvent) {
         if(!firstTimePublic) {
-            TextInputDialog dialog = new TextInputDialog("http://");
+
+            Dialog<Pair<String, String>> dialog = new Dialog<>();
             dialog.setTitle("Create Image Node from URL");
             dialog.setHeaderText("Enter the URL below.");
-            dialog.setContentText("URL: ");
-            Optional<String> result = dialog.showAndWait();
 
-            newImageNode = new ImageNode(result.get());
+            ButtonType okButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+            dialog.getDialogPane().getButtonTypes().addAll(okButtonType, ButtonType.CANCEL);
+
+            GridPane grid = new GridPane();
+            grid.setHgap(10);
+            grid.setVgap(10);
+            grid.setPadding(new Insets(20, 150, 10, 10));
+
+            TextField text = new TextField();
+            text.setPromptText("Enter Image URL");
+            TextArea description = new TextArea();
+            description.setWrapText(true);
+            description.setMaxHeight(100);
+            description.setPromptText("Enter Description");
+
+            grid.add(new Label("URL: "), 0, 0);
+            grid.add(text, 1, 0);
+            grid.add(new Label("Description : "), 0, 1);
+            grid.add(description, 1, 1);
+
+            Node okButton = dialog.getDialogPane().lookupButton(okButtonType);
+            okButton.setDisable(true);
+
+            text.textProperty().addListener((observable, oldValue, newValue) -> {
+                okButton.setDisable(newValue.trim().isEmpty());
+            });
+
+            dialog.getDialogPane().setContent(grid);
+
+            Platform.runLater(() -> text.requestFocus());
+
+            dialog.setResultConverter(dialogButton -> {
+                if (dialogButton == okButtonType) {
+                    return new Pair<>(text.getText(), description.getText());
+                }
+                return null;
+            });
+
+            Optional<Pair<String, String>> result = dialog.showAndWait();
+
+            result.ifPresent(imageDescription -> {
+                newImageNode = new ImageNode(imageDescription.getKey());
+                newImageNode.setDescription(imageDescription.getValue());
+            });
+
+
             newImageNode.setTypeToImage();
             //masterNodeList.add(newNode); I think this is still necessary but not for the database
 
@@ -581,6 +670,12 @@ public class Controller {
 
             newImageNode = new ImageNode(openedFile);
             newImageNode.setTypeToImage();
+
+            TextInputDialog dialog = new TextInputDialog("Enter description for the image");
+            dialog.setHeaderText("Enter the description below.");
+            dialog.setContentText("Description: ");
+            Optional<String> result = dialog.showAndWait();
+            newImageNode.setDescription(result.get());
 
             //masterNodeList.add(newNode); I think this is still necessary but not for the database
 
@@ -1698,21 +1793,65 @@ public class Controller {
     public void createVideoNode(ActionEvent actionEvent) {
         if(!firstTimePublic) {
 
-            TextInputDialog dialog = new TextInputDialog("Enter YouTube URL");
+
+            Dialog<Pair<String, String>> dialog = new Dialog<>();
             dialog.setTitle("Create Video Node");
             dialog.setHeaderText("Enter the URL below.");
-            dialog.setContentText("URL: ");
-            Optional<String> result = dialog.showAndWait();
-            if(result.toString().contains("youtube.com/watch?v=")) {
 
-                videoNode = new VideoNode(result.get());
-                videoNode.getNodePane().setOnMousePressed(OnMousePressedEventHandler);
-                videoNode.getNodePane().setOnMouseDragged(OnMouseDraggedEventHandler);
-                videoNode.getNodePane().setOnMouseReleased(VideoOnMouseReleasedEventHandler);
-                newNodeStage.getChildren().add(videoNode.getNodePane());
-            }
-            else
-                JOptionPane.showMessageDialog(null, "Not a valid youtube URL.");
+            ButtonType okButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+            dialog.getDialogPane().getButtonTypes().addAll(okButtonType, ButtonType.CANCEL);
+
+            GridPane grid = new GridPane();
+            grid.setHgap(10);
+            grid.setVgap(10);
+            grid.setPadding(new Insets(20, 150, 10, 10));
+
+            TextField text = new TextField();
+            text.setPromptText("Enter URL");
+            TextArea description = new TextArea();
+            description.setWrapText(true);
+            description.setMaxHeight(100);
+            description.setPromptText("Enter Description");
+
+            grid.add(new Label("Enter YouTube URL : "), 0, 0);
+            grid.add(text, 1, 0);
+            grid.add(new Label("Description : "), 0, 1);
+            grid.add(description, 1, 1);
+
+            Node okButton = dialog.getDialogPane().lookupButton(okButtonType);
+            okButton.setDisable(true);
+
+            text.textProperty().addListener((observable, oldValue, newValue) -> {
+                okButton.setDisable(newValue.trim().isEmpty());
+            });
+
+            dialog.getDialogPane().setContent(grid);
+
+            Platform.runLater(() -> text.requestFocus());
+
+            dialog.setResultConverter(dialogButton -> {
+                if (dialogButton == okButtonType) {
+                    return new Pair<>(text.getText(), description.getText());
+                }
+                return null;
+            });
+
+            Optional<Pair<String, String>> result = dialog.showAndWait();
+
+            result.ifPresent(videoDescription -> {
+                if(result.toString().contains("youtube.com/watch?v=")) {
+
+                    videoNode = new VideoNode(videoDescription.getKey());
+                    videoNode.setDescription(videoDescription.getValue());
+                    videoNode.getNodePane().setOnMousePressed(OnMousePressedEventHandler);
+                    videoNode.getNodePane().setOnMouseDragged(OnMouseDraggedEventHandler);
+                    videoNode.getNodePane().setOnMouseReleased(VideoOnMouseReleasedEventHandler);
+                    newNodeStage.getChildren().add(videoNode.getNodePane());
+                }
+                else
+                    JOptionPane.showMessageDialog(null, "Not a valid youtube URL.");
+
+            });
         }
     }
 
