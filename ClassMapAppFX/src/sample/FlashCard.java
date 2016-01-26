@@ -37,7 +37,6 @@ public class FlashCard {
                 + "\" frameborder=\"0\" allowfullscreen></iframe>";
 
         this.drawFlashCard();
-
     }
 
     public FlashCard(MapNode incomingNode) {
