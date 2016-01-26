@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.animation.Animation;
+import javafx.animation.Transition;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -24,6 +26,7 @@ import javafx.scene.text.TextBoundsType;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
 import javafx.util.Pair;
 
 import java.io.IOException;
@@ -148,7 +151,6 @@ public class Controller {
                 Object obj = event.getSource();
                 //drawNodeTrail((Integer)((GridPane)obj).getUserData());
 
-                
                 cmItem2.setStyle("-fx-text-fill: black");
                 cmItem3.setStyle("-fx-text-fill: black");
 
@@ -294,6 +296,9 @@ public class Controller {
     public void drawTeacherPanel(ActionEvent actionEvent) {
         if (DataConnection.loggedUser.getAccount().equals("teacher")) {
             if(sideOpen == false) {
+
+
+
                 sideOpen = true;
 
                 GridPane displayGrid = new GridPane();

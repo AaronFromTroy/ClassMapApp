@@ -1,3 +1,8 @@
+@font-face {
+    -fx-font-family: myFont;
+    src: url("sample/weblysleekuil.ttf");
+}
+
 /*CLASSMAP BACKGROUND*/
 .root{
     -fx-background-color: rgb(245,249,252);
@@ -100,6 +105,18 @@
 }
 /*END ALERT DIALOG BOX*/
 
+/*FLASHCARD STYLING*/
+.flash-card{
+    -fx-text-fill: #303F9F;
+    -fx-font-size: 30px;
+    -fx-font-family: myFont;
+}
+
+.flash-card-textarea{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+/*END FLASHCARD STYLING*/
+
 /*OTHER*/
 #mainmenu {
     -fx-background-color: #1A237E;
@@ -132,9 +149,5 @@
 
 .up-vote{
     -fx-font: 20 arial;
-}
-
-.flash-card{
-    -fx-text-fill: #000000;
 }
 /*END OTHER*/

@@ -29,7 +29,6 @@ public class FlashCard {
 
     public FlashCard(int id, String incomingContent, String incomingDescription, String thisType) {
         uniqueId = id;
-        //imgContent = goods;
         content = incomingContent;
         description = incomingDescription;
         type = thisType;
@@ -40,6 +39,7 @@ public class FlashCard {
     }
 
     public FlashCard(MapNode incomingNode) {
+
         if (incomingNode.getType().equals("string")) {
             content = ((TextNode)incomingNode).getContents();
             description = ((TextNode)incomingNode).getDescription();
@@ -71,11 +71,14 @@ public class FlashCard {
         cardWindow.getIcons().add(new Image("sample/OrangeIcon.png"));
 
         TextArea descriptionWindow = new TextArea(description);
+        descriptionWindow.getStyleClass().add("flash-card-textarea");
         TextArea definitionWindow = new TextArea();
+        definitionWindow.getStyleClass().add("flash-card-textarea");
 
         GridPane masterGrid = new GridPane();
         Label headerLabel = new Label("Current Node Content: ");
-        headerLabel.setTextFill(Color.web("#303f9f"));
+        headerLabel.getStyleClass().add("flash-card");
+//        headerLabel.setTextFill(Color.web("#303f9f"));
         masterGrid.add(headerLabel, 0 , 0);
 
         StackPane webPane = new StackPane();
@@ -85,8 +88,9 @@ public class FlashCard {
          */
         if (type.equals("Text") || type.equals("Topic")) {
             Label contentLabel = new Label(content);
-            contentLabel.setTextFill(Color.web("#303F9F"));
-            contentLabel.setFont(new Font("Arial", 30));
+            contentLabel.getStyleClass().add("flash-card");
+//            contentLabel.setTextFill(Color.web("#303F9F"));
+//            contentLabel.setFont(new Font("Arial", 30));
             masterGrid.add(contentLabel, 0, 1);
         }
         else if (type.equals("Image")) {
@@ -113,9 +117,11 @@ public class FlashCard {
 
         GridPane otherContent  = new GridPane();
         Label discLabel = new Label("Description: ");
+        discLabel.getStyleClass().add("flash-card");
         otherContent.add(discLabel, 0, 0);
 
         Label defLabel = new Label("Definition: ");
+        defLabel.getStyleClass().add("flash-card");
         otherContent.add(defLabel, 1, 0);
 
         descriptionWindow.setMaxSize(300.0f, 200.0f);
@@ -146,13 +152,15 @@ public class FlashCard {
         }
         else
             backGround.setPrefSize(600.0f, 675.0f);
-        backGround.setStyle("-fx-background-color: white;");
+//        backGround.setStyle("-fx-background-color: white;");
+        backGround.getStyleClass().add("flash-card background");
         Pane gridBack = new Pane();
         gridBack.setPrefSize(550.0f, 650.0f);
-        backGround.setStyle("-fx-background-color: rgb(233,234,237);");
+//        backGround.setStyle("-fx-background-color: rgb(233,234,237);");
         backGround.getChildren().add(masterGrid);
 
         Scene scene = new Scene(backGround);
+        scene.getStylesheets().add("Cobra.css");
         cardWindow.setScene(scene);
         cardWindow.showAndWait();
     }
