@@ -84,11 +84,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FlashCard.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FlashCard.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/FlashCard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.69207776">
-              <caret line="75" column="68" selection-start-line="75" selection-start-column="68" selection-end-line="75" selection-end-column="68" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="167" column="0" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -96,11 +96,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Cobra.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Cobra.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Cobra.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.6025641">
-              <caret line="110" column="24" selection-start-line="110" selection-start-column="24" selection-end-line="110" selection-end-column="24" />
+            <state vertical-scroll-proportion="1.2031496">
+              <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -806,6 +806,11 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -896,11 +901,12 @@
       <workItem from="1453840136793" duration="913000" />
       <workItem from="1453844448628" duration="103000" />
       <workItem from="1453849374714" duration="2972000" />
+      <workItem from="1453930627286" duration="113000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116875000" />
+    <option name="totallyTimeSpent" value="116988000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
@@ -916,7 +922,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20225988" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19947916" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19947916" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2109375" sideWeight="0.49448818" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1002,13 +1008,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/out/production/ClassMapAppFX/sample/ClassMapDataFile.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="83" selection-start-line="10" selection-start-column="83" selection-end-line="10" selection-end-column="83" />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/MapNode.java">
@@ -1035,24 +1041,24 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/out/production/ClassMapAppFX/sample/ClassMapDataFile.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/ClassMapDataFile.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/ClassMapDataFile.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
@@ -1099,14 +1105,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/ClassMapDataFile.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/ClassMap.java">
@@ -1125,14 +1131,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/ClassMapDataFile.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
@@ -1164,13 +1170,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/out/production/ClassMapAppFX/sample/ClassMapDataFile.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4311594">
           <caret line="19" column="60" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Images/NoVote.png">
@@ -1339,14 +1345,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/ClassMapDataFile.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.9178321">
           <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/ClassMap.java">
@@ -1357,21 +1363,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Cobra.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6025641">
-          <caret line="110" column="24" selection-start-line="110" selection-start-column="24" selection-end-line="110" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/FlashCard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.69207776">
-          <caret line="75" column="68" selection-start-line="75" selection-start-column="68" selection-end-line="75" selection-end-column="68" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="167" column="0" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Cobra.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2031496">
+          <caret line="175" column="0" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

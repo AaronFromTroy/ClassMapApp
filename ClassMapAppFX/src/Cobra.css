@@ -1,6 +1,6 @@
 /*@font-face {*/
-    /*-fx-font-family: myFont;*/
-    /*src: url("../fonts/weblysleekuil.ttf");*/
+/*-fx-font-family: myFont;*/
+/*src: url("../fonts/weblysleekuil.ttf");*/
 /*}*/
 
 /*CLASSMAP BACKGROUND*/
@@ -77,14 +77,19 @@
     -fx-background-color: #303F9F;
 }
 
-.login-button:selected{
-    -fx-background-color: white;
-    -fx-text-fill: black;
-}
+/*.login-button:selected{*/
+/*-fx-background-color: white;*/
+/*-fx-text-fill: black;*/
+/*}*/
 
 .signup{
     -fx-text-fill: rgb(115, 121, 127);
     -fx-underline: true;
+}
+
+#signup-label{
+    -fx-text-fill: black;
+    -fx-font-size: 10pt;
 }
 
 .signup:hover{
@@ -106,13 +111,30 @@
 /*END ALERT DIALOG BOX*/
 
 /*FLASHCARD STYLING*/
-.flash-card{
-    -fx-text-fill: #303F9F;
-    -fx-font-size: 30px;
+/*background of entire pane*/
+#flash-bg{
+    -fx-background-color: rgb(245,249,252);
 }
-
-.flash-card-textarea{
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+/*current node content*/
+#flashHead{
+    -fx-font-family: Georgia, sans-serif;
+    -fx-text-fill: black;
+}
+/*human life cycle content*/
+#flashContent{
+    -fx-font-family: Georgia, sans-serif;
+    -fx-text-fill: black;
+    -fx-font-size: 45pt;
+}
+/*description label content*/
+#descLabel{
+    -fx-font-family: Georgia, sans-serif;
+    -fx-text-fill: black;
+}
+/*definition label content*/
+#defLabel{
+    -fx-font-family: Georgia, sans-serif;
+    -fx-text-fill: black;
 }
 /*END FLASHCARD STYLING*/
 
@@ -150,3 +172,4 @@
     -fx-font: 20 arial;
 }
 /*END OTHER*/
+

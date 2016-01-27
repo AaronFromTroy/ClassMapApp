@@ -71,13 +71,11 @@ public class FlashCard {
         cardWindow.getIcons().add(new Image("sample/OrangeIcon.png"));
 
         TextArea descriptionWindow = new TextArea(description);
-        descriptionWindow.getStyleClass().add("flash-card-textarea");
         TextArea definitionWindow = new TextArea();
-        definitionWindow.getStyleClass().add("flash-card-textarea");
 
         GridPane masterGrid = new GridPane();
         Label headerLabel = new Label("Current Node Content: ");
-        headerLabel.getStyleClass().add("flash-card");
+        headerLabel.setId("flashHead");
 //        headerLabel.setTextFill(Color.web("#303f9f"));
         masterGrid.add(headerLabel, 0 , 0);
 
@@ -88,7 +86,7 @@ public class FlashCard {
          */
         if (type.equals("Text") || type.equals("Topic")) {
             Label contentLabel = new Label(content);
-            contentLabel.getStyleClass().add("flash-card");
+            contentLabel.setId("flashContent");
 //            contentLabel.setTextFill(Color.web("#303F9F"));
 //            contentLabel.setFont(new Font("Arial", 30));
             masterGrid.add(contentLabel, 0, 1);
@@ -117,11 +115,11 @@ public class FlashCard {
 
         GridPane otherContent  = new GridPane();
         Label discLabel = new Label("Description: ");
-        discLabel.getStyleClass().add("flash-card");
+        discLabel.setId("descLabel");
         otherContent.add(discLabel, 0, 0);
 
         Label defLabel = new Label("Definition: ");
-        defLabel.getStyleClass().add("flash-card");
+        defLabel.setId("defLabel");
         otherContent.add(defLabel, 1, 0);
 
         descriptionWindow.setMaxSize(300.0f, 200.0f);
@@ -153,7 +151,7 @@ public class FlashCard {
         else
             backGround.setPrefSize(600.0f, 675.0f);
 //        backGround.setStyle("-fx-background-color: white;");
-        backGround.getStyleClass().add("flash-card background");
+        backGround.setId("flash-bg");
         Pane gridBack = new Pane();
         gridBack.setPrefSize(550.0f, 650.0f);
 //        backGround.setStyle("-fx-background-color: rgb(233,234,237);");
@@ -166,3 +164,4 @@ public class FlashCard {
     }
 
 }
+
