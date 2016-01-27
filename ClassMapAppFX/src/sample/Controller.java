@@ -297,8 +297,6 @@ public class Controller {
         if (DataConnection.loggedUser.getAccount().equals("teacher")) {
             if(sideOpen == false) {
 
-
-
                 sideOpen = true;
 
                 GridPane displayGrid = new GridPane();
@@ -1070,6 +1068,8 @@ public class Controller {
         }
 
         else {
+            double newTranslateX;
+            double newTranslateY;
 
             if (rootNode.getParentNode().getNoOfChildren()== rootNode.getParentNode().getChildLimit()){
                 expandChildren(rootNode.getParentNode());
@@ -1077,9 +1077,17 @@ public class Controller {
             List<Double> X = newCalculateX(rootNode.getParentNode().getCircleNo()*rootNode.getParentNode().getExpansion());
             List<Double> Y = newCalculateY(rootNode.getParentNode().getCircleNo()*rootNode.getParentNode().getExpansion());
 
-            double newTranslateX = X.get(((rootNode.getQuadrant()-1)*rootNode.getParentNode().getCircleNo()*rootNode.getParentNode().getExpansion())+rootNode.getParentNode().getNoOfChildren()+(rootNode.getParentNode().getOffset()*rootNode.getParentNode().getExpansion())+(rootNode.getParentNode().getChildno()*rootNode.getParentNode().getExpansion()));
-            double newTranslateY = Y.get(((rootNode.getQuadrant()-1)*rootNode.getParentNode().getCircleNo()*rootNode.getParentNode().getExpansion())+rootNode.getParentNode().getNoOfChildren()+(rootNode.getParentNode().getOffset()*rootNode.getParentNode().getExpansion())+(rootNode.getParentNode().getChildno()*rootNode.getParentNode().getExpansion()));
+            if(rootNode.getParentNode().getExpansion()>3) {
 
+                newTranslateX = X.get(((rootNode.getQuadrant() - 1) * rootNode.getParentNode().getCircleNo() * rootNode.getParentNode().getExpansion()) + rootNode.getParentNode().getNoOfChildren() + (rootNode.getParentNode().getOffset() * rootNode.getParentNode().getExpansion()) + (rootNode.getParentNode().getChildno() * rootNode.getParentNode().getExpansion()));
+                newTranslateY = Y.get(((rootNode.getQuadrant() - 1) * rootNode.getParentNode().getCircleNo() * rootNode.getParentNode().getExpansion()) + rootNode.getParentNode().getNoOfChildren() + (rootNode.getParentNode().getOffset() * rootNode.getParentNode().getExpansion()) + (rootNode.getParentNode().getChildno() * rootNode.getParentNode().getExpansion()));
+            }
+
+            else {
+
+                newTranslateX = X.get(((rootNode.getQuadrant() - 1) * rootNode.getParentNode().getCircleNo() * rootNode.getParentNode().getExpansion()) + rootNode.getParentNode().getNoOfChildren() + (rootNode.getParentNode().getOffset() * rootNode.getParentNode().getExpansion()) + (rootNode.getParentNode().getChildno()));
+                newTranslateY = Y.get(((rootNode.getQuadrant() - 1) * rootNode.getParentNode().getCircleNo() * rootNode.getParentNode().getExpansion()) + rootNode.getParentNode().getNoOfChildren() + (rootNode.getParentNode().getOffset() * rootNode.getParentNode().getExpansion()) + (rootNode.getParentNode().getChildno()));
+            }
             if(rootNode.type.toString().equals("string")){
                 newNodeStage.getChildren().add(((TextNode)(rootNode)).getNodePane());
                 ((TextNode)(rootNode)).getNodePane().setTranslateX(newTranslateX+410);
