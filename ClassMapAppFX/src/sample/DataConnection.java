@@ -323,6 +323,21 @@ public class DataConnection {
 
     }
 
+    public static void delete() {
+        Connection conn = dbConnector();
+        String query = "DELETE FROM nodes WHERE created_by='tclinkscales'";
+        try
+        {
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.execute();
+            ps.close();
+            conn.close();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+    }
     public static void addTextNode(TextNode node) {
         Connection conn = dbConnector();
         String query = "insert into nodes (parent_id, string_data, type, created_by, account, description) " + " values(?,?,?,?,?,?) ";

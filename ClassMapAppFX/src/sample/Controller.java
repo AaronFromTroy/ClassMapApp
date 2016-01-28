@@ -554,6 +554,7 @@ public class Controller {
         nodeStage.addEventFilter(ScrollEvent.ANY, new ZoomHandler(newNodeStage));
         nodeStage.addEventFilter(ScrollEvent.ANY, new ZoomHandler(newNodeStage2));
         newNodeStage.setOnMouseClicked(doNothing);
+        //DataConnection.delete();
     }
 
 
@@ -876,6 +877,7 @@ public class Controller {
                 newNodeStage.getChildren().add(((TextNode)(rootNode)).getNodePane());
                 ((TextNode)(rootNode)).getNodePane().setTranslateX(newTranslateX+410);
                 ((TextNode)(rootNode)).getNodePane().setTranslateY(newTranslateY+225);
+                ((TextNode)rootNode).getNodePane().setOnMouseClicked(onMouseRightClick);
 
                 if(rootNode.getParentNode().getType().toString().equals("string")){
                     Line line = new Line();
@@ -948,6 +950,7 @@ public class Controller {
                 newNodeStage.getChildren().add(((ImageNode)(rootNode)).getNodePane());
                 ((ImageNode)(rootNode)).getNodePane().setTranslateX(newTranslateX+410);
                 ((ImageNode)(rootNode)).getNodePane().setTranslateY(newTranslateY+225);
+                ((ImageNode)rootNode).getNodePane().setOnMouseClicked(onMouseRightClick);
 
                 if(rootNode.getParentNode().getType().toString().equals("string")){
                     Line line = new Line();
@@ -1018,6 +1021,7 @@ public class Controller {
                 newNodeStage.getChildren().add(((VideoNode) (rootNode)).getNodePane());
                 ((VideoNode)(rootNode)).getNodePane().setTranslateX(newTranslateX+410);
                 ((VideoNode)(rootNode)).getNodePane().setTranslateY(newTranslateY+225);
+                ((VideoNode)rootNode).getNodePane().setOnMouseClicked(onMouseRightClick);
 
                 if(rootNode.getParentNode().getType().toString().equals("string")){
                     Line line = new Line();
@@ -1087,6 +1091,7 @@ public class Controller {
                 newNodeStage.getChildren().add(((TopicNode)(rootNode)).getNodePane());
                 ((TopicNode)(rootNode)).getNodePane().setTranslateX(newTranslateX+410);
                 ((TopicNode)(rootNode)).getNodePane().setTranslateY(newTranslateY+225);
+                ((TopicNode)rootNode).getNodePane().setOnMouseClicked(onMouseRightClick);
 
                 if(rootNode.getParentNode().getType().toString().equals("string")){
                     Line line = new Line();
@@ -1260,6 +1265,7 @@ public class Controller {
                 newNodeStage.getChildren().add(((ImageNode)(rootNode)).getNodePane());
                 ((ImageNode)(rootNode)).getNodePane().setTranslateX(newTranslateX+410);
                 ((ImageNode)(rootNode)).getNodePane().setTranslateY(newTranslateY+225);
+                ((ImageNode)rootNode).getNodePane().setOnMouseClicked(onMouseRightClick);
 
                 if(rootNode.getParentNode().getType().toString().equals("string")){
                     Line line = new Line();
@@ -1328,6 +1334,7 @@ public class Controller {
                 newNodeStage.getChildren().add(((VideoNode) (rootNode)).getNodePane());
                 ((VideoNode)(rootNode)).getNodePane().setTranslateX(newTranslateX+410);
                 ((VideoNode)(rootNode)).getNodePane().setTranslateY(newTranslateY+225);
+                ((VideoNode)rootNode).getNodePane().setOnMouseClicked(onMouseRightClick);
 
 
                 if(rootNode.getParentNode().getType().toString().equals("string")){
@@ -1397,7 +1404,7 @@ public class Controller {
                 newNodeStage.getChildren().add(((TopicNode) (rootNode)).getNodePane());
                 ((TopicNode)(rootNode)).getNodePane().setTranslateX(newTranslateX+410);
                 ((TopicNode)(rootNode)).getNodePane().setTranslateY(newTranslateY+225);
-
+                ((TopicNode)rootNode).getNodePane().setOnMouseClicked(onMouseRightClick);
 
                 if(rootNode.getParentNode().getType().toString().equals("string")){
                     Line line = new Line();
@@ -2366,6 +2373,7 @@ public class Controller {
                 newImageNode.getNodePane().setOnMousePressed(doNothing);
                 newImageNode.getNodePane().setOnMouseDragged(doNothing);
                 newImageNode.getNodePane().setOnMouseReleased(doNothing);
+                newImageNode.getNodePane().setOnMouseClicked(onMouseRightClick);
                 DataConnection.addImageNode(newImageNode);
             } else if (intersection(newImageNode.getNodePane())) {
 
@@ -2448,7 +2456,7 @@ public class Controller {
                 newImageNode.getNodePane().setOnMousePressed(doNothing);
                 newImageNode.getNodePane().setOnMouseDragged(doNothing);
                 newImageNode.getNodePane().setOnMouseReleased(doNothing);
-
+                newImageNode.getNodePane().setOnMouseClicked(onMouseRightClick);
                 DataConnection.addImageNode(newImageNode);
             }
         }
@@ -2541,6 +2549,7 @@ public class Controller {
                 videoNode.getNodePane().setOnMousePressed(doNothing);
                 videoNode.getNodePane().setOnMouseDragged(doNothing);
                 videoNode.getNodePane().setOnMouseReleased(doNothing);
+                videoNode.getNodePane().setOnMouseClicked(onMouseRightClick);
                 DataConnection.addVideoNode(videoNode);
             } else if (intersection(videoNode.getNodePane())) {
 
@@ -2624,7 +2633,7 @@ public class Controller {
                 videoNode.getNodePane().setOnMousePressed(doNothing);
                 videoNode.getNodePane().setOnMouseDragged(doNothing);
                 videoNode.getNodePane().setOnMouseReleased(doNothing);
-
+                videoNode.getNodePane().setOnMouseClicked(onMouseRightClick);
                 DataConnection.addVideoNode(videoNode);
             }
         }
@@ -2716,6 +2725,7 @@ public class Controller {
                 newTopicNode.getNodePane().setOnMousePressed(doNothing);
                 newTopicNode.getNodePane().setOnMouseDragged(doNothing);
                 newTopicNode.getNodePane().setOnMouseReleased(doNothing);
+                newTopicNode.getNodePane().setOnMouseClicked(onMouseRightClick);
                 DataConnection.addTopicNode(newTopicNode);
             } else if (intersection(newTopicNode.getNodePane())) {
 
@@ -2798,7 +2808,7 @@ public class Controller {
                 newTopicNode.getNodePane().setOnMousePressed(doNothing);
                 newTopicNode.getNodePane().setOnMouseDragged(doNothing);
                 newTopicNode.getNodePane().setOnMouseReleased(doNothing);
-
+                newTopicNode.getNodePane().setOnMouseClicked(onMouseRightClick);
                 DataConnection.addTopicNode(newTopicNode);
             }
         }
