@@ -107,7 +107,6 @@ public class FlashCard {
             WebEngine webEngine = webView.getEngine();
             webEngine.loadContent(contentURL);
             webView.setMaxSize(600.0f, 400.0f);
-            //webView.setStyle("-fx-background-color: rgb(233,234,237);");
             webPane.getChildren().add(webView);
             masterGrid.add(webPane, 0, 1);
             System.out.println(contentURL);
@@ -150,11 +149,9 @@ public class FlashCard {
         }
         else
             backGround.setPrefSize(600.0f, 675.0f);
-//        backGround.setStyle("-fx-background-color: white;");
         backGround.setId("flash-bg");
         Pane gridBack = new Pane();
         gridBack.setPrefSize(550.0f, 650.0f);
-//        backGround.setStyle("-fx-background-color: rgb(233,234,237);");
         backGround.getChildren().add(masterGrid);
 
         Scene scene = new Scene(backGround);

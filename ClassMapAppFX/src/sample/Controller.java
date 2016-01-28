@@ -97,8 +97,6 @@ public class Controller {
     public void drawNodeTrail(int nodeID) {
 
         System.out.println(nodeID);
-
-
     }
 
     /*
@@ -187,7 +185,7 @@ public class Controller {
 
                                     if(cardOpen == false) {
                                         cardOpen = true;
-                                        final Animation hideSidebar = new Transition() {
+                                        final Animation showSidebar = new Transition() {
                                             {
                                                 setCycleDuration(Duration.seconds(.6));
                                             }
@@ -197,8 +195,8 @@ public class Controller {
                                                     cardPane.setTranslateX(cardPane.getTranslateX() - 20.0f);
                                             }
                                         };
-                                        hideSidebar.play();
-                                        System.out.println(hideSidebar.statusProperty());
+                                        showSidebar.play();
+                                        System.out.println(showSidebar.statusProperty());
                                     }
 
                                 }
@@ -214,18 +212,74 @@ public class Controller {
             cardPane.getChildren().clear();
         }
         if (node.getType() == "string") {
-            VBox box = new VBox(10);
-            box.setPrefSize(450.0f, 200.0f);
-            box.setMaxWidth(450.0f);
+            VBox vbox = new VBox(35);
+            vbox.setPrefSize(450.0f, 200.0f);
+            vbox.setMaxWidth(450.0f);
             Label contentLabel = new Label(((TextNode)node).getContents());
-            box.setAlignment(Pos.CENTER);
-            box.getChildren().add(contentLabel);
-            cardPane.getChildren().add(box);
-            //contentLabel.setTranslateX();
+            contentLabel.setId("contentLabel");
+
+            Label descrLabel = new Label("Decription: ");
+            descrLabel.setId("descrLabel");
+            descrLabel.setTranslateX(-160);
+
+            TextArea descriptionWindow = new TextArea();
+            descriptionWindow.setId("descrWindow");
+            descriptionWindow.setMaxSize(400.0f, 100.0f);
+            descriptionWindow.setMinSize(400.0f, 100.0f);
+            descriptionWindow.setWrapText(true);
+
+            Label defLabel = new Label("Definition: ");
+            defLabel.setId("defLabel");
+            defLabel.setTranslateX(-160);
+
+            TextArea definitionWindow = new TextArea();
+            definitionWindow.setId("defWindow");
+            definitionWindow.setMaxSize(400.0f, 100.0f);
+            definitionWindow.setMinSize(400.0f, 100.0f);
+            definitionWindow.setWrapText(true);
+
+            HBox hbox = new HBox(25);
+            hbox.setPrefSize(100.0f, 100.0f);
+            Button back = new Button("Back");
+
+            back.setTranslateY(20);
+            back.setTranslateX(15);
+
+
+
+            back.setOnAction(new EventHandler<ActionEvent>() {
+                 @Override
+                 public void handle(ActionEvent event) {
+
+                     cardPane.getChildren().clear();
+
+                     if (cardOpen == true) {
+
+                         cardOpen = false;
+                         final Animation hideSidebar = new Transition() {
+                             {
+                                 setCycleDuration(Duration.seconds(.6));
+                             }
+
+                             protected void interpolate(double frac) {
+                                 if (cardPane.getTranslateX() != 460.0f)
+                                     cardPane.setTranslateX(cardPane.getTranslateX() + 20.0f);
+                             }
+                         };
+                         hideSidebar.play();
+                         System.out.println(hideSidebar.statusProperty());
+                     }
+                 }
+            });
+
+            hbox.getChildren().add(back);
+
+            vbox.setAlignment(Pos.CENTER);
+            vbox.getChildren().addAll(contentLabel, descrLabel, descriptionWindow, defLabel, definitionWindow);
+
+            cardPane.getChildren().addAll(vbox, hbox);
         }
     }
-
-
 
 
     public void getAnalytics(ActionEvent actionEvent) {

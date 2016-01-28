@@ -48,7 +48,7 @@ public class ClassMap extends Application {
             circleY.add(y);
         }
 
-        Image img = new Image("sample/OrangeIcon.png");
+        Image img = new Image("sample/blueIcon.jpg");
 
         primaryStage.setTitle("Login");
         primaryStage.getIcons().add(img);
@@ -59,7 +59,7 @@ public class ClassMap extends Application {
         grid.setAlignment(Pos.CENTER);
         grid.getStyleClass().add("login-root");
 
-        Image icon = new Image("sample/animation.gif");
+        Image icon = new Image("sample/animation1.gif");
         ImageView iv = new ImageView();
         iv.setImage(icon);
         iv.setTranslateX(10);

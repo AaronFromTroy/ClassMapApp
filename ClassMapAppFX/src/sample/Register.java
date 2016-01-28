@@ -23,11 +23,17 @@ public class Register
 
         Label first_name = new Label("First Name: ");
         GridPane.setConstraints(first_name, 0, 0);
+
+        first_name.setId("signup-label");
+
         TextField first_nameInput = new TextField();
         GridPane.setConstraints(first_nameInput, 1, 0);
 
         Label last_name = new Label("Last Name: ");
         GridPane.setConstraints(last_name, 0, 1);
+
+        last_name.setId("signup-label");
+
         TextField last_nameInput = new TextField();
         GridPane.setConstraints(last_nameInput, 1, 1);
 
@@ -36,18 +42,24 @@ public class Register
         TextField emailInput = new TextField();
         GridPane.setConstraints(emailInput, 1, 2);
 
+        email.setId("signup-label");
+
         Label username = new Label("Username: ");
         GridPane.setConstraints(username, 0, 3);
         TextField usernameInput = new TextField();
         GridPane.setConstraints(usernameInput, 1, 3);
         ToggleGroup toggle = new ToggleGroup();
 
+        username.setId("signup-label");
+
         RadioButton teacher = new RadioButton("Teacher");
         RadioButton student = new RadioButton("Student");
         teacher.setToggleGroup(toggle);
         student.setToggleGroup(toggle);
-        teacher.setStyle("-fx-text-fill: #ffffff");
-        student.setStyle("-fx-text-fill: #ffffff");
+
+        teacher.setId("signup-label");
+        student.setId("signup-label");
+
         GridPane.setConstraints(teacher, 0, 4);
         GridPane.setConstraints(student, 1, 4);
 
@@ -56,10 +68,14 @@ public class Register
         PasswordField passwordInput = new PasswordField();
         GridPane.setConstraints(passwordInput, 1, 5);
 
+        password.setId("signup-label");
+
         Label confirmPassword = new Label("Confirm Password: ");
         GridPane.setConstraints(confirmPassword, 0, 6);
         PasswordField confirmPasswordInput = new PasswordField();
         GridPane.setConstraints(confirmPasswordInput, 1, 6);
+
+        confirmPassword.setId("signup-label");
 
         Button save = new Button("Save");
         save.getStyleClass().add("login-button");

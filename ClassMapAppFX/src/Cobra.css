@@ -88,7 +88,7 @@
 }
 
 #signup-label{
-    -fx-text-fill: black;
+    -fx-text-fill: rgb(0, 126, 229);
     -fx-font-size: 10pt;
 }
 
@@ -111,31 +111,27 @@
 /*END ALERT DIALOG BOX*/
 
 /*FLASHCARD STYLING*/
-/*background of entire pane*/
-#flash-bg{
-    -fx-background-color: rgb(245,249,252);
+
+#contentLabel{
+    -fx-text-fill: white;
+    -fx-font-family: Georgia;
+    -fx-border-style: solid;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-padding: 10 10;
+    -fx-font-size: 35px;
+    -fx-font-weight: 800;
+    -fx-translate-y: 20px;
 }
-/*current node content*/
-#flashHead{
-    -fx-font-family: Georgia, sans-serif;
-    -fx-text-fill: black;
+
+#descrLabel, #defLabel{
+    -fx-text-fill: white;
+    -fx-font-family: Georgia;
+    -fx-padding: 5 10;
+    -fx-font-size: 15px;
+    -fx-font-weight: 800;
 }
-/*human life cycle content*/
-#flashContent{
-    -fx-font-family: Georgia, sans-serif;
-    -fx-text-fill: black;
-    -fx-font-size: 45pt;
-}
-/*description label content*/
-#descLabel{
-    -fx-font-family: Georgia, sans-serif;
-    -fx-text-fill: black;
-}
-/*definition label content*/
-#defLabel{
-    -fx-font-family: Georgia, sans-serif;
-    -fx-text-fill: black;
-}
+
 /*END FLASHCARD STYLING*/
 
 /*OTHER*/
@@ -173,7 +169,3 @@
     -fx-text-fill: dodgerblue;
 }
 /*END OTHER*/
-
-#contentLabel {
-
-}

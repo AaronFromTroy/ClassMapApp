@@ -36,7 +36,7 @@ public class Login extends Application{
         Parent root = FXMLLoader.load(getClass().getResource("ClassMapDataFile.fxml"));
         primaryStage.setTitle("Class Map");
         primaryStage.setResizable(true);
-        primaryStage.getIcons().add(new javafx.scene.image.Image("sample/OrangeIcon.png"));
+        primaryStage.getIcons().add(new javafx.scene.image.Image("sample/blueIcon.jpg"));
 
         Dimension screenRes = Toolkit.getDefaultToolkit().getScreenSize();
         Scene scene = new Scene(root, (screenRes.width)-200, (screenRes.height)-200);
