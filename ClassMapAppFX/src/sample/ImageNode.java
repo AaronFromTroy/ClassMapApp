@@ -49,7 +49,6 @@ public class ImageNode extends MapNode {
     private String formattedDate;
     private Image image;
     private int diffX, diffY;
-    private String description;
 
     public ImageNode(String in)
     {
@@ -82,7 +81,7 @@ public class ImageNode extends MapNode {
 
     }
 
-    public ImageNode(int id, int pid, Timestamp created, int numVotes, String user, String accountType)
+    public ImageNode(int id, int pid, Timestamp created, int numVotes, String user, String accountType, String desc)
     {
         this.type = type.image;
         uniqueId = id;
@@ -91,6 +90,7 @@ public class ImageNode extends MapNode {
         this.votes = numVotes;
         this.createdBy = user;
         this.nodePerm = accountType;
+        this.description = desc;
 
     }
 

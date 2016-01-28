@@ -55,7 +55,6 @@ public class VideoNode extends MapNode{
     private Image image;
     private String contents;
     private String content_Url;
-    private String description = "hello";
 
     public VideoNode(String in)
     {
@@ -73,7 +72,7 @@ public class VideoNode extends MapNode{
 
     }
 
-    public VideoNode(int id, int pid, String in, Timestamp date_created, int numVotes, String user, String accountType)
+    public VideoNode(int id, int pid, String in, Timestamp date_created, int numVotes, String user, String accountType, String desc)
     {
         this.uniqueId = id;
         this.parent = pid;
@@ -83,6 +82,7 @@ public class VideoNode extends MapNode{
         this.type = type.link;
         this.createdBy = user;
         this.nodePerm = accountType;
+        this.description = desc;
 
         content_Url = "<iframe width=\"560\" height=\"315\" src=\"" + contents
                 + "\" frameborder=\"0\" allowfullscreen></iframe>";

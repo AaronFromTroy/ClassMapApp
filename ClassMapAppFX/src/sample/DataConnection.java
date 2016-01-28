@@ -208,23 +208,23 @@ public class DataConnection {
                 if (new String(rs.getString("type").toString()).equals("string")) {
                     collection.add(new TextNode(rs.getInt("id"), rs.getInt("parent_id"),
                             rs.getString("string_data"), rs.getTimestamp("time_created"), rs.getInt("votes"), rs.getString("created_by"),
-                            rs.getString("account")));
+                            rs.getString("account"), rs.getString("description")));
                 }
                 else if (new String(rs.getString("type").toString()).equals("image")) {
                     collection.add(new ImageNode(rs.getInt("id"), rs.getInt("parent_id"), rs.getTimestamp("time_created"),
-                            rs.getInt("votes"), rs.getString("created_by"), rs.getString("account")));
+                            rs.getInt("votes"), rs.getString("created_by"), rs.getString("account"), rs.getString("description")));
                     counting.acquire();
                     loadImg((collection.size() - 1), rs.getInt("id"));
                 }
                 else if(new String(rs.getString("type").toString()).equals("link")) {
                     collection.add(new VideoNode(rs.getInt("id"), rs.getInt("parent_id"),
                             rs.getString("string_data"), rs.getTimestamp("time_created"), rs.getInt("votes"), rs.getString("created_by"),
-                            rs.getString("account")));
+                            rs.getString("account"), rs.getString("description")));
                 }
                 if (new String(rs.getString("type").toString()).equals("topic")) {
                     collection.add(new TopicNode(rs.getInt("id"), rs.getInt("parent_id"),
                             rs.getString("string_data"), rs.getTimestamp("time_created"), rs.getInt("votes"), rs.getString("created_by"),
-                            rs.getString("account")));
+                            rs.getString("account"), rs.getString("description")));
                 }
             }
             rs.close();
@@ -325,7 +325,7 @@ public class DataConnection {
 
     public static void addTextNode(TextNode node) {
         Connection conn = dbConnector();
-        String query = "insert into nodes (parent_id, string_data, type, created_by, account) " + " values(?,?,?,?,?) ";
+        String query = "insert into nodes (parent_id, string_data, type, created_by, account, description) " + " values(?,?,?,?,?,?) ";
         String query2 = "SELECT id FROM nodes WHERE created_by=? and string_data=?";
         int id = -1;
         try
@@ -336,6 +336,7 @@ public class DataConnection {
             ps.setString(3, "String");
             ps.setString(4, loggedUser.getUser());
             ps.setString(5, loggedUser.getAccount());
+            ps.setString(6, node.getDescription());
             ps.executeUpdate();
 
             PreparedStatement pst = conn.prepareStatement(query2);
@@ -360,7 +361,7 @@ public class DataConnection {
 
     public static void addTopicNode(TopicNode node) {
         Connection conn = dbConnector();
-        String query = "insert into nodes (parent_id, string_data, type, created_by, account) " + " values(?,?,?,?,?) ";
+        String query = "insert into nodes (parent_id, string_data, type, created_by, account, description) " + " values(?,?,?,?,?,?) ";
         String query2 = "SELECT id FROM nodes WHERE created_by=? and string_data=?";
         int id = -1;
         try
@@ -371,6 +372,7 @@ public class DataConnection {
             ps.setString(3, "topic");
             ps.setString(4, loggedUser.getUser());
             ps.setString(5, loggedUser.getAccount());
+            ps.setString(6, node.getDescription());
             ps.executeUpdate();
 
             PreparedStatement pst = conn.prepareStatement(query2);
@@ -395,7 +397,7 @@ public class DataConnection {
 
     public static void addImageNode(ImageNode node) {
         Connection conn =  dbConnector();
-        String query = "insert into nodes (parent_id, string_data, type, created_by, account)" + "values(?,?,?,?,?)";
+        String query = "insert into nodes (parent_id, string_data, type, created_by, account, description)" + "values(?,?,?,?,?,?)";
         String query2 = "select id from nodes where string_data=? and type='image'";
         String query3 = "insert into images (id, stored_image)" + "values(?, ?)";
         int id = -1;
@@ -407,6 +409,7 @@ public class DataConnection {
             ps.setString(3, node.getType().toString());
             ps.setString(4, loggedUser.getUser());
             ps.setString(5, loggedUser.getAccount());
+            ps.setString(6, node.getDescription());
             ps.executeUpdate();
             ps.close();
 
@@ -463,7 +466,7 @@ public class DataConnection {
     public static void addVideoNode(VideoNode node) {
 
         Connection conn = dbConnector();
-        String query = "insert into nodes (parent_id, string_data, type, created_by, account) " + " values(?,?,?,?,?) ";
+        String query = "insert into nodes (parent_id, string_data, type, created_by, account, description) " + " values(?,?,?,?,?,?) ";
         String query2 = "SELECT id FROM nodes WHERE created_by=? and string_data=?";
         int id = -1;
         try
@@ -474,6 +477,7 @@ public class DataConnection {
             ps.setString(3, "link");
             ps.setString(4, loggedUser.getUser());
             ps.setString(5, loggedUser.getAccount());
+            ps.setString(6, node.getDescription());
             ps.executeUpdate();
 
             PreparedStatement pst = conn.prepareStatement(query2);

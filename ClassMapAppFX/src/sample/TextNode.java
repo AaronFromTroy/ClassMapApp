@@ -38,7 +38,6 @@ public class TextNode extends MapNode{
     private GridPane nodePane;
     private String contents;
     private Alert showString;
-    private String description = "hello";
 
     public TextNode(String in)
     {
@@ -53,7 +52,7 @@ public class TextNode extends MapNode{
 
     }
 
-    public TextNode(int id, int pid, String in, Timestamp date_created, int numVotes, String user, String accountType)
+    public TextNode(int id, int pid, String in, Timestamp date_created, int numVotes, String user, String accountType, String desc)
     {
         this.uniqueId = id;
         this.parent = pid;
@@ -63,6 +62,7 @@ public class TextNode extends MapNode{
         this.type = type.string;
         this.createdBy = user;
         this.nodePerm = accountType;
+        this.description = desc;
         //this.myMinion.setMyId(uniqueId);
     }
 

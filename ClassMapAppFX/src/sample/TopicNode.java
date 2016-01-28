@@ -25,8 +25,6 @@ public class TopicNode extends MapNode{
     private GridPane nodePane;
     private String contents;
     private Alert showString;
-    private String description;
-    //private Controller.Minion myMinion = new Controller.Minion();
 
     public TopicNode(String in)
     {
@@ -41,7 +39,7 @@ public class TopicNode extends MapNode{
 
     }
 
-    public TopicNode(int id, int pid, String in, Timestamp date_created, int numVotes, String user, String accountType)
+    public TopicNode(int id, int pid, String in, Timestamp date_created, int numVotes, String user, String accountType, String desc)
     {
         this.uniqueId = id;
         this.parent = pid;
@@ -51,6 +49,7 @@ public class TopicNode extends MapNode{
         this.type = type.topic;
         this.createdBy = user;
         this.nodePerm = accountType;
+        this.description = desc;
         //this.myMinion.setMyId(uniqueId);
     }
 

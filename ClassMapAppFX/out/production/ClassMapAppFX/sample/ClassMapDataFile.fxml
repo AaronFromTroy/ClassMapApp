@@ -76,6 +76,7 @@
                   <Label fx:id="welcomeText" layoutX="14.0" layoutY="6.0" textFill="WHITE" />
                </children>
             </Pane>
+            <Pane fx:id="cardPane" layoutX="371.0" layoutY="80.0" prefHeight="425.0" prefWidth="450.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="82.0" />
 
       </children>
     </AnchorPane>
