@@ -1,10 +1,5 @@
-/*@font-face {*/
-/*-fx-font-family: myFont;*/
-/*src: url("../fonts/weblysleekuil.ttf");*/
-/*}*/
-
-/*CLASSMAP BACKGROUND*/
-.root{
+    /*CLASSMAP BACKGROUND*/
+.root {
     -fx-background-color: rgb(245,249,252);
 }
 /*END CLASSMAP BACKGROUND*/
@@ -140,9 +135,10 @@
 }
 
 .numberOfVotes{
-    -fx-font: 20 arial;
-    -fx-fill: white;
-    -fx-stroke: white;
+    -fx-font-family: "Comic Sans MS", sans-serif;
+    -fx-font-size: 20;
+    -fx-fill: #1A237E;
+    -fx-stroke: #1A237E;
 }
 
 .namePlate{
