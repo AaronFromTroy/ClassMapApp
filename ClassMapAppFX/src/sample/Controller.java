@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.effect.Effect;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.input.MouseEvent;
@@ -48,6 +49,7 @@ public class Controller {
     public Pane newNodeStage2;
     public ScrollPane sidePane;
     public Label welcomeText;
+    public Pane cardPane;
 
     public Pane innerPane;
     int[] array = {0, 5, 1, 6, 2, 7, 3, 8, 4, 9};
@@ -71,6 +73,7 @@ public class Controller {
     double factor = 1;
     boolean nodedrag = false;
     boolean sideOpen = false;
+    boolean cardOpen = false;
     int newNodes = 0;
 
     int index =0 ;
@@ -174,10 +177,30 @@ public class Controller {
                     cmItem3.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
+
                             for (int i = 0; i < DataConnection.collection.size(); i++) {
+
                                 if (DataConnection.collection.get(i).getUniqueId() == ((Integer)((GridPane)obj).getUserData())) {
-                                    //System.out.println(((Integer)((GridPane)obj).getUserData()));
-                                    new FlashCard(DataConnection.collection.get(i));
+
+                                    paintCardPane(DataConnection.collection.get(i));
+
+                                    if(cardOpen == false) {
+                                        final Animation hideSidebar = new Transition() {
+                                            {
+                                                setCycleDuration(Duration.seconds(.7));
+                                            }
+
+                                            protected void interpolate(double frac) {
+                                                if (cardPane.getTranslateX() != -460.0f)
+                                                    cardPane.setTranslateX(cardPane.getTranslateX() - 20.0f);
+                                                else
+                                                    System.out.println(cardPane.getTranslateX());
+                                            }
+                                        };
+                                        hideSidebar.play();
+                                        System.out.println(hideSidebar.statusProperty());
+                                    }
+
                                 }
                             }
                         }
@@ -185,6 +208,17 @@ public class Controller {
             }
         }
     };
+
+    private void paintCardPane(MapNode node) {
+        if (node.getType() == "string") {
+            Label contentLabel = new Label(((TextNode)node).getContents());
+            cardPane.getChildren().add(contentLabel);
+        }
+    }
+
+
+
+
     public void getAnalytics(ActionEvent actionEvent) {
 
         if (DataConnection.loggedUser.getAccount().equals("teacher")) {
