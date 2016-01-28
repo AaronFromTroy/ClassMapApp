@@ -38,6 +38,7 @@ import java.util.List;
 import java.io.File;
 import java.io.FileNotFoundException;
 import javax.swing.*;
+import javax.swing.text.Position;
 
 
 public class Controller {
@@ -185,16 +186,15 @@ public class Controller {
                                     paintCardPane(DataConnection.collection.get(i));
 
                                     if(cardOpen == false) {
+                                        cardOpen = true;
                                         final Animation hideSidebar = new Transition() {
                                             {
-                                                setCycleDuration(Duration.seconds(.7));
+                                                setCycleDuration(Duration.seconds(.6));
                                             }
 
                                             protected void interpolate(double frac) {
                                                 if (cardPane.getTranslateX() != -460.0f)
                                                     cardPane.setTranslateX(cardPane.getTranslateX() - 20.0f);
-                                                else
-                                                    System.out.println(cardPane.getTranslateX());
                                             }
                                         };
                                         hideSidebar.play();
@@ -210,9 +210,18 @@ public class Controller {
     };
 
     private void paintCardPane(MapNode node) {
+        if(cardOpen == true) {
+            cardPane.getChildren().clear();
+        }
         if (node.getType() == "string") {
+            VBox box = new VBox(10);
+            box.setPrefSize(450.0f, 200.0f);
+            box.setMaxWidth(450.0f);
             Label contentLabel = new Label(((TextNode)node).getContents());
-            cardPane.getChildren().add(contentLabel);
+            box.setAlignment(Pos.CENTER);
+            box.getChildren().add(contentLabel);
+            cardPane.getChildren().add(box);
+            //contentLabel.setTranslateX();
         }
     }
 

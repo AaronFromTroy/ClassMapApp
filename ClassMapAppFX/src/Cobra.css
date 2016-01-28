@@ -170,6 +170,10 @@
 
 .up-vote{
     -fx-font: 20 arial;
+    -fx-text-fill: dodgerblue;
 }
 /*END OTHER*/
 
+#contentLabel {
+
+}
