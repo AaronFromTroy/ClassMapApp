@@ -191,12 +191,12 @@ public class Controller {
                                             }
 
                                             protected void interpolate(double frac) {
-                                                if (cardPane.getTranslateX() != -460.0f)
-                                                    cardPane.setTranslateX(cardPane.getTranslateX() - 20.0f);
+                                                if (cardPane.getTranslateX() != -cardPane.getWidth())
+                                                    cardPane.setTranslateX(cardPane.getWidth() * (-frac));
                                             }
                                         };
                                         showSidebar.play();
-                                        System.out.println(showSidebar.statusProperty());
+                                        //System.out.println(showSidebar.statusProperty());
                                     }
 
                                 }
@@ -262,12 +262,14 @@ public class Controller {
                              }
 
                              protected void interpolate(double frac) {
-                                 if (cardPane.getTranslateX() != 460.0f)
-                                     cardPane.setTranslateX(cardPane.getTranslateX() + 20.0f);
+                                 if (cardPane.getTranslateX() != 0) {
+                                     cardPane.setTranslateX(cardPane.getTranslateX() * (1-frac));
+                                     System.out.println(cardPane.getTranslateX());
+                                 }
                              }
                          };
                          hideSidebar.play();
-                         System.out.println(hideSidebar.statusProperty());
+                         //System.out.println(hideSidebar.statusProperty());
                      }
                  }
             });

@@ -137,8 +137,8 @@
 .numberOfVotes{
     -fx-font-family: "Comic Sans MS", sans-serif;
     -fx-font-size: 20;
-    -fx-fill: #1A237E;
-    -fx-stroke: #1A237E;
+    -fx-fill: #1A237E;   /*changes color of the number on the upvote*/
+    -fx-stroke: #1A237E; /*changes color of the number on the upvote*/
 }
 
 .namePlate{
