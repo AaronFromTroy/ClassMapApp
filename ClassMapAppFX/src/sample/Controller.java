@@ -245,8 +245,6 @@ public class Controller {
             back.setTranslateY(20);
             back.setTranslateX(15);
 
-
-
             back.setOnAction(new EventHandler<ActionEvent>() {
                  @Override
                  public void handle(ActionEvent event) {
