@@ -217,6 +217,8 @@ public class Controller {
             vbox.setMaxWidth(450.0f);
             Label contentLabel = new Label(((TextNode)node).getContents());
             contentLabel.setId("contentLabel");
+            contentLabel.setMaxWidth(250.0f);
+            contentLabel.setWrapText(true);
 
             Label descrLabel = new Label("Decription: ");
             descrLabel.setId("descrLabel");

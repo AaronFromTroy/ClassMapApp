@@ -4,6 +4,7 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.chart.PieChart;
@@ -23,6 +24,7 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextBoundsType;
 
 import java.io.File;
@@ -184,6 +186,7 @@ public class TextNode extends MapNode{
         nameDisplay.setBoundsType(TextBoundsType.VISUAL);
         nameDisplay.setWrappingWidth(100.0f);
         nameDisplay.setStroke(Color.WHITE);
+        nameDisplay.setTextAlignment(TextAlignment.CENTER);
         StackPane stack2 = new StackPane();
         stack2.getChildren().addAll(namePlate, nameDisplay);
 
