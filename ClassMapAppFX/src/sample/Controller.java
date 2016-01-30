@@ -1183,8 +1183,8 @@ public class Controller {
 
             if(rootNode.getParentNode().getExpansion()>3) {
 
-                newTranslateX = X.get(((rootNode.getQuadrant() - 1) * rootNode.getParentNode().getCircleNo() * rootNode.getParentNode().getExpansion()) + rootNode.getParentNode().getNoOfChildren() + (rootNode.getParentNode().getOffset() * rootNode.getParentNode().getExpansion()) + (rootNode.getParentNode().getChildno() * rootNode.getParentNode().getExpansion()));
-                newTranslateY = Y.get(((rootNode.getQuadrant() - 1) * rootNode.getParentNode().getCircleNo() * rootNode.getParentNode().getExpansion()) + rootNode.getParentNode().getNoOfChildren() + (rootNode.getParentNode().getOffset() * rootNode.getParentNode().getExpansion()) + (rootNode.getParentNode().getChildno() * rootNode.getParentNode().getExpansion()));
+                newTranslateX = X.get(((rootNode.getQuadrant() - 1) * rootNode.getParentNode().getCircleNo() * rootNode.getParentNode().getExpansion()) + rootNode.getParentNode().getNoOfChildren() + (rootNode.getParentNode().getOffset() * rootNode.getParentNode().getExpansion()) + (rootNode.getParentNode().getChildno() * (rootNode.getParentNode().getExpansion()/2) ));
+                newTranslateY = Y.get(((rootNode.getQuadrant() - 1) * rootNode.getParentNode().getCircleNo() * rootNode.getParentNode().getExpansion()) + rootNode.getParentNode().getNoOfChildren() + (rootNode.getParentNode().getOffset() * rootNode.getParentNode().getExpansion()) + (rootNode.getParentNode().getChildno() * (rootNode.getParentNode().getExpansion()/2) ));
             }
 
             else {
@@ -1482,7 +1482,7 @@ public class Controller {
             rootNode.setCircleNo(rootNode.getParentNode().getCircleNo()*rootNode.getParentNode().getExpansion());
             rootNode.setExpansion(2*rootNode.getParentNode().getExpansionconst());
             rootNode.setChildLimit(2*rootNode.getParentNode().getExpansionconst());
-            rootNode.setChildno((rootNode.getParentNode().getNoOfChildren()+rootNode.getParentNode().getChildno()) * 2);
+            rootNode.setChildno((rootNode.getParentNode().getNoOfChildren()* 2)+ (rootNode.getParentNode().getChildno() *rootNode.getParentNode().getExpansion()) );
             if(rootNode.getParentNode().getOffset()!=0)
             {
                 rootNode.setOffset((rootNode.getParentNode().getNoOfChildren()+rootNode.getParentNode().getOffset()) * 2);
