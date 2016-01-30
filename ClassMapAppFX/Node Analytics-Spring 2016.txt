@@ -1,28 +1,24 @@
 Node                                    			No. Of Votes        
 
 Class Node: Biology                     			7                   
-Six Kingdoms                            			3                   
-Cell Structure and Function             			3                   
-Animal                                  			2                   
+Plant                                   			2                   
 Plantae                                 			2                   
 multicellular                           			2                   
-Fungi                                   			2                   
-Mitosis                                 			1                   
-Plant                                   			1                   
+Animal                                  			1                   
 Protista                                			1                   
 Fern Life Cycle                         			1                   
-Enter the text for the node             			1                   
-Genetics                                			0                   
-Life Cycle Patterns                     			0                   
-Ecology                                 			0                   
+Human Life Cycle                        			1                   
+jkjkl                                   			1                   
+Science                                 			1                   
+Mitosis                                 			0                   
 Meiosis                                 			0                   
 Physical Environmental Factors          			0                   
 Biotic Environmental Factors            			0                   
-Human Life Cycle                        			0                   
-test                                    			0                   
 
 Topic Nodes :                           			No. Of Children     
 
-Test                                    			2                   
-test                                    			0                   
-test                                    			0                   
+Cell Structure and Function             			3                   
+Six Kingdoms                            			2                   
+Genetics                                			2                   
+Life Cycle Patterns                     			2                   
+Ecology                                 			2                   

@@ -1,6 +1,6 @@
 Travis Clinkscales
 
-Enter the text for the node             			1                   
+Science                                 			1                   
 
 Hunter Howie
 
@@ -25,7 +25,6 @@ Aaron Martin
 Plantae                                 			2                   
 Protista                                			1                   
 multicellular                           			2                   
-Fungi                                   			2                   
 
 Ronald McDonald
 

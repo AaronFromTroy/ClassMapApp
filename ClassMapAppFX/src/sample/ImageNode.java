@@ -203,13 +203,13 @@ public class ImageNode extends MapNode {
 
         StackPane stack = new StackPane();
         stack.getChildren().addAll(newNode, viewer);
-        stack.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if(event.getButton() == MouseButton.SECONDARY)
-                    showStage();
-            }
-        });
+//        stack.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                if(event.getButton() == MouseButton.SECONDARY)
+//                    showStage();
+//            }
+//        });
         nodePane = new GridPane();
         nodePane.add(arr,0,0);
         nodePane.add(stack,0,1);
@@ -232,6 +232,8 @@ public class ImageNode extends MapNode {
         Tooltip tooltip;
         tooltip = new Tooltip("Image Node");
         Tooltip.install(nodePane,tooltip);
+
+        nodePane.setUserData(uniqueId);
 
     }
 

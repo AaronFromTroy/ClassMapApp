@@ -229,6 +229,7 @@ public class Controller {
             descriptionWindow.setMaxSize(400.0f, 100.0f);
             descriptionWindow.setMinSize(400.0f, 100.0f);
             descriptionWindow.setWrapText(true);
+            descriptionWindow.setText(node.getDescription());
 
             Label defLabel = new Label("Definition: ");
             defLabel.setId("defLabel");
@@ -239,6 +240,15 @@ public class Controller {
             definitionWindow.setMaxSize(400.0f, 100.0f);
             definitionWindow.setMinSize(400.0f, 100.0f);
             definitionWindow.setWrapText(true);
+            DictParser dict = new DictParser();
+            dict.searchForWord(((TextNode)node).getContents());
+            if (dict.getCount() > 0) {
+                definitionWindow.setText(dict.getExactDefinition() + "\n\n");
+
+            } else {
+                definitionWindow.setText("Not a definable word" + "\n\n");
+            }
+
 
             HBox hbox = new HBox(25);
             hbox.setPrefSize(100.0f, 100.0f);
@@ -278,6 +288,221 @@ public class Controller {
 
             vbox.setAlignment(Pos.CENTER);
             vbox.getChildren().addAll(contentLabel, descrLabel, descriptionWindow, defLabel, definitionWindow);
+
+            cardPane.getChildren().addAll(vbox, hbox);
+        }
+
+        else if (node.getType() == "topic") {
+            VBox vbox = new VBox(35);
+            vbox.setPrefSize(450.0f, 200.0f);
+            vbox.setMaxWidth(450.0f);
+            Label contentLabel = new Label(((TopicNode)node).getContents());
+            contentLabel.setId("contentLabel");
+            contentLabel.setMaxWidth(250.0f);
+            contentLabel.setWrapText(true);
+
+            Label descrLabel = new Label("Description: ");
+            descrLabel.setId("descrLabel");
+            descrLabel.setTranslateX(-160);
+
+            TextArea descriptionWindow = new TextArea();
+            descriptionWindow.setId("descrWindow");
+            descriptionWindow.setMaxSize(400.0f, 100.0f);
+            descriptionWindow.setMinSize(400.0f, 100.0f);
+            descriptionWindow.setWrapText(true);
+            descriptionWindow.setText(node.getDescription());
+
+            Label defLabel = new Label("Definition: ");
+            defLabel.setId("defLabel");
+            defLabel.setTranslateX(-160);
+
+            TextArea definitionWindow = new TextArea();
+            definitionWindow.setId("defWindow");
+            definitionWindow.setMaxSize(400.0f, 100.0f);
+            definitionWindow.setMinSize(400.0f, 100.0f);
+            definitionWindow.setWrapText(true);
+            DictParser dict = new DictParser();
+            dict.searchForWord(((TopicNode)node).getContents());
+            if (dict.getCount() > 0) {
+                definitionWindow.setText(dict.getExactDefinition() + "\n\n");
+
+            } else {
+                definitionWindow.setText("Not a definable word" + "\n\n");
+            }
+
+
+            HBox hbox = new HBox(25);
+            hbox.setPrefSize(100.0f, 100.0f);
+            Button back = new Button("Back");
+
+            back.setTranslateY(20);
+            back.setTranslateX(15);
+
+            back.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+
+                    cardPane.getChildren().clear();
+
+                    if (cardOpen == true) {
+
+                        cardOpen = false;
+                        final Animation hideSidebar = new Transition() {
+                            {
+                                setCycleDuration(Duration.seconds(.6));
+                            }
+
+                            protected void interpolate(double frac) {
+                                if (cardPane.getTranslateX() != 0) {
+                                    cardPane.setTranslateX(cardPane.getTranslateX() * (1-frac));
+                                    System.out.println(cardPane.getTranslateX());
+                                }
+                            }
+                        };
+                        hideSidebar.play();
+                        //System.out.println(hideSidebar.statusProperty());
+                    }
+                }
+            });
+
+            hbox.getChildren().add(back);
+
+            vbox.setAlignment(Pos.CENTER);
+            vbox.getChildren().addAll(contentLabel, descrLabel, descriptionWindow, defLabel, definitionWindow);
+
+            cardPane.getChildren().addAll(vbox, hbox);
+        }
+
+        else if (node.getType() == "image") {
+            VBox vbox = new VBox(35);
+            vbox.setPrefSize(450.0f, 200.0f);
+            vbox.setMaxWidth(450.0f);
+            //ImageView viewer = new ImageView(((ImageNode)node).getImage());
+            ImageView img = new ImageView(((ImageNode)node).getImage());
+            img.setPreserveRatio(true);
+
+            if(((ImageNode)node).getImage().getWidth() > ((ImageNode)node).getImage().getHeight()){
+                img.setFitWidth(400.0f);
+            }
+            else {
+                img.setFitHeight(400.0f);
+            }
+            Label descrLabel = new Label("Decription: ");
+            descrLabel.setId("descrLabel");
+            descrLabel.setTranslateX(-160);
+
+            TextArea descriptionWindow = new TextArea();
+            descriptionWindow.setId("descrWindow");
+            descriptionWindow.setMaxSize(400.0f, 100.0f);
+            descriptionWindow.setMinSize(400.0f, 100.0f);
+            descriptionWindow.setWrapText(true);
+            descriptionWindow.setText(node.getDescription());
+
+
+            HBox hbox = new HBox(25);
+            hbox.setPrefSize(100.0f, 100.0f);
+            Button back = new Button("Back");
+
+            back.setTranslateY(20);
+            back.setTranslateX(15);
+
+            back.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+
+                    cardPane.getChildren().clear();
+
+                    if (cardOpen == true) {
+
+                        cardOpen = false;
+                        final Animation hideSidebar = new Transition() {
+                            {
+                                setCycleDuration(Duration.seconds(.6));
+                            }
+
+                            protected void interpolate(double frac) {
+                                if (cardPane.getTranslateX() != 0) {
+                                    cardPane.setTranslateX(cardPane.getTranslateX() * (1-frac));
+                                    System.out.println(cardPane.getTranslateX());
+                                }
+                            }
+                        };
+                        hideSidebar.play();
+                        //System.out.println(hideSidebar.statusProperty());
+                    }
+                }
+            });
+
+            hbox.getChildren().add(back);
+
+            vbox.setAlignment(Pos.CENTER);
+            vbox.getChildren().addAll(img, descrLabel, descriptionWindow);
+
+            cardPane.getChildren().addAll(vbox, hbox);
+        }
+
+        else if (node.getType() == "link") {
+            VBox vbox = new VBox(35);
+            vbox.setPrefSize(450.0f, 200.0f);
+            vbox.setMaxWidth(450.0f);
+            WebView webView = new WebView();
+            WebEngine webEngine = webView.getEngine();
+            webEngine.loadContent(((VideoNode)node).getContent_Url());
+            webView.setPrefSize(430,350);
+            Pane webPane = new Pane(webView);
+            //System.out.println(content_Url);
+
+            Label descrLabel = new Label("Decription: ");
+            descrLabel.setId("descrLabel");
+            descrLabel.setTranslateX(-160);
+
+            TextArea descriptionWindow = new TextArea();
+            descriptionWindow.setId("descrWindow");
+            descriptionWindow.setMaxSize(400.0f, 100.0f);
+            descriptionWindow.setMinSize(400.0f, 100.0f);
+            descriptionWindow.setWrapText(true);
+            descriptionWindow.setText(node.getDescription());
+
+
+            HBox hbox = new HBox(25);
+            hbox.setPrefSize(100.0f, 100.0f);
+            Button back = new Button("Back");
+
+            back.setTranslateY(20);
+            back.setTranslateX(15);
+
+            back.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+
+                    webView.getEngine().load(null);
+                    cardPane.getChildren().clear();
+
+                    if (cardOpen == true) {
+
+                        cardOpen = false;
+                        final Animation hideSidebar = new Transition() {
+                            {
+                                setCycleDuration(Duration.seconds(.6));
+                            }
+
+                            protected void interpolate(double frac) {
+                                if (cardPane.getTranslateX() != 0) {
+                                    cardPane.setTranslateX(cardPane.getTranslateX() * (1-frac));
+                                    System.out.println(cardPane.getTranslateX());
+                                }
+                            }
+                        };
+                        hideSidebar.play();
+                        //System.out.println(hideSidebar.statusProperty());
+                    }
+                }
+            });
+
+            hbox.getChildren().add(back);
+
+            vbox.setAlignment(Pos.CENTER);
+            vbox.getChildren().addAll(webPane, descrLabel, descriptionWindow);
 
             cardPane.getChildren().addAll(vbox, hbox);
         }

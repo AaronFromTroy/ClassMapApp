@@ -65,7 +65,7 @@ public class VideoNode extends MapNode{
         this.incrementVoteCounter();
         this.createdBy = DataConnection.loggedUser.getUser();
         this.nodePerm = DataConnection.loggedUser.getAccount();
-        content_Url = "<iframe width=\"560\" height=\"315\" src=\"" + contents
+        content_Url = "<iframe width=\"400\" height=\"300\" src=\"" + contents
                 + "\" frameborder=\"0\" allowfullscreen></iframe>";
 
         this.drawNode();
@@ -84,7 +84,7 @@ public class VideoNode extends MapNode{
         this.nodePerm = accountType;
         this.description = desc;
 
-        content_Url = "<iframe width=\"560\" height=\"315\" src=\"" + contents
+        content_Url = "<iframe width=\"400\" height=\"300\" src=\"" + contents
                 + "\" frameborder=\"0\" allowfullscreen></iframe>";
 
         //this.drawNode();
@@ -263,6 +263,8 @@ public class VideoNode extends MapNode{
         Tooltip tooltip;
         tooltip = new Tooltip("Video Node");
         Tooltip.install(nodePane,tooltip);
+
+        nodePane.setUserData(uniqueId);
     }
 
     public String getContents() {
@@ -295,4 +297,6 @@ public class VideoNode extends MapNode{
     }
 
     public String getDescription() { return this.description; }
+
+    public String getContent_Url() {return this.content_Url;}
 }
