@@ -23,6 +23,19 @@ public class DictParser {
     private List list = Collections.synchronizedList(new ArrayList());
     private String searchedWord;
 
+    private class Word {
+        String head;
+        String pOfSpeech;
+        String definition;
+
+        public Word(String headword, String partOfSpeech, String def)
+        {
+            this.head = headword;
+            this.pOfSpeech = partOfSpeech;
+            this.definition = def;
+        }
+    }
+
     public void searchForWord(String word)
     {
         searchedWord = word;
@@ -69,8 +82,8 @@ public class DictParser {
             definition = definition.replace("[","");
             definition = definition.replace("]","");
 
-            String finalString = "Headword: " + headword + "\nPart of Speech: " + partOfSpeech + "\nDefinition: " + definition;
-            list.add(x,finalString);
+            list.add(new Word(headword,partOfSpeech,definition));
+
 
 
 
@@ -89,13 +102,10 @@ public class DictParser {
 
         for(int x = 0; x < list.size(); x ++)
         {
-            String temp = list.get(x).toString();
-            if(temp.contains(" " + searchedWord + "\n"))
+            Word temp = (Word)list.get(x);
+            if(temp.head.equalsIgnoreCase(searchedWord))
             {
-                if (x != 0)
-                    outString += "\n\n" + temp;
-                else
-                    outString = temp;
+                outString = "Headword: " + temp.head + "\nPart of Speech: " + temp.pOfSpeech + "\nDefinition: " + temp.definition;
             }
         }
         if(outString == null)
