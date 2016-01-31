@@ -96,7 +96,7 @@ public class DictParser {
 
     public String getExactDefinition()
     {
-        String outString = null;
+        String outString = "";
         int count = 0;
 
 
@@ -105,7 +105,7 @@ public class DictParser {
             Word temp = (Word)list.get(x);
             if(temp.head.equalsIgnoreCase(searchedWord))
             {
-                outString = "Headword: " + temp.head + "\nPart of Speech: " + temp.pOfSpeech + "\nDefinition: " + temp.definition;
+                outString = outString +  "Headword: " + temp.head + "\nPart of Speech: " + temp.pOfSpeech + "\nDefinition: " + temp.definition + "\n\n";
             }
         }
         if(outString == null)
