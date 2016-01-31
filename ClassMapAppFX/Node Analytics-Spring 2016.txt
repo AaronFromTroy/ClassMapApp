@@ -1,6 +1,6 @@
 Node                                    			No. Of Votes        
 
-Class Node: Biology                     			7                   
+Class Node: Biology                     			8                   
 Plant                                   			2                   
 Plantae                                 			2                   
 multicellular                           			2                   
@@ -17,8 +17,8 @@ Biotic Environmental Factors            			0
 
 Topic Nodes :                           			No. Of Children     
 
-Cell Structure and Function             			3                   
-Six Kingdoms                            			2                   
+Cell Structure and Function             			5                   
+Six Kingdoms                            			4                   
+Life Cycle Patterns                     			3                   
 Genetics                                			2                   
-Life Cycle Patterns                     			2                   
 Ecology                                 			2                   

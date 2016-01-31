@@ -548,7 +548,7 @@ public class Controller {
                     else{
                         add = false;
                         for (int j =0; j< topicscollection.size();j++){
-                            if(topicNode.getNoOfChildren()>topicscollection.get(j).getNoOfChildren()){
+                            if(topicNode.getTopicChildren()>topicscollection.get(j).getTopicChildren()){
                                 topicscollection.add(j,topicNode);
                                 add = true;
                                 break;
@@ -591,7 +591,7 @@ public class Controller {
                     str = str.replaceAll("\r","");
                     out.printf("%-40s",str);
                     out.print("\t\t\t");
-                    out.printf("%-20s",topicscollection.get(i).getNoOfChildren());
+                    out.printf("%-20s",topicscollection.get(i).getTopicChildren());
                     out.println();
                 }
 
@@ -1724,6 +1724,23 @@ public class Controller {
                 recursiveDisplay(rootNode.children.get(i));
             }
         }
+
+        if (rootNode.getType() == "topic"){
+            num = 0;
+            recursiveNo(rootNode);
+            rootNode.setTopicChildren(num);
+
+        }
+    }
+    int num;
+
+    private void recursiveNo(MapNode rootNode){
+
+        int children = rootNode.children.size();
+        for (int i = 0; i < children; i++) {
+            recursiveNo(rootNode.children.get(i));
+        }
+        num = num + children;
     }
 
     public List newCalculateX(int a) {

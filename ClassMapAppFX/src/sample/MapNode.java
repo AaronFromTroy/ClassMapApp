@@ -34,6 +34,7 @@ public class MapNode {
     public ArrayList<MapNode> children = new ArrayList<>();
     public String description = "hello";
     public int parent;
+    public int topicChildren;
     boolean sinceLastLog;
     public classification type;
     public Timestamp timeCreated;
@@ -212,6 +213,14 @@ public class MapNode {
 
     public String getDescription() {
         return description;
+    }
+
+    public int getTopicChildren() {
+        return topicChildren;
+    }
+
+    public void setTopicChildren(int topicChildren) {
+        this.topicChildren = topicChildren;
     }
 }
 
