@@ -305,7 +305,7 @@ public class Controller {
             hbox.getChildren().add(back);
 
             vbox.setAlignment(Pos.CENTER);
-            vbox.getChildren().addAll(contentLabel, descrLabel, descriptionWindow, defLabel, definitionWindow);
+            vbox.getChildren().addAll(contentLabel, descrLabel, descriptionWindow, defLabel, definitionWindow, back);
 
             cardPane.getChildren().addAll(vbox, hbox);
         }
@@ -386,7 +386,7 @@ public class Controller {
             hbox.getChildren().add(back);
 
             vbox.setAlignment(Pos.CENTER);
-            vbox.getChildren().addAll(contentLabel, descrLabel, descriptionWindow, defLabel, definitionWindow);
+            vbox.getChildren().addAll(contentLabel, descrLabel, descriptionWindow, defLabel, definitionWindow, back);
 
             cardPane.getChildren().addAll(vbox, hbox);
         }
@@ -400,10 +400,10 @@ public class Controller {
             img.setPreserveRatio(true);
 
             if(((ImageNode)node).getImage().getWidth() > ((ImageNode)node).getImage().getHeight()){
-                img.setFitWidth(400.0f);
+                img.setFitWidth(300.0f);
             }
             else {
-                img.setFitHeight(400.0f);
+                img.setFitHeight(300.0f);
             }
             Label descrLabel = new Label("Decription: ");
             descrLabel.setId("descrLabel");
@@ -454,7 +454,7 @@ public class Controller {
             hbox.getChildren().add(back);
 
             vbox.setAlignment(Pos.CENTER);
-            vbox.getChildren().addAll(img, descrLabel, descriptionWindow);
+            vbox.getChildren().addAll(img, descrLabel, descriptionWindow, back);
 
             cardPane.getChildren().addAll(vbox, hbox);
         }
@@ -520,7 +520,7 @@ public class Controller {
             hbox.getChildren().add(back);
 
             vbox.setAlignment(Pos.CENTER);
-            vbox.getChildren().addAll(webPane, descrLabel, descriptionWindow);
+            vbox.getChildren().addAll(webPane, descrLabel, descriptionWindow, back);
 
             cardPane.getChildren().addAll(vbox, hbox);
         }

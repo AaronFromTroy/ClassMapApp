@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 public class ClassMap extends Application {
 
-
     public Stage primaryStage;
     public static java.util.List<Double> circleX = new ArrayList<>();
     public static java.util.List<Double> circleY = new ArrayList<>();
@@ -89,7 +88,9 @@ public class ClassMap extends Application {
         signup.getStyleClass().add("signup");
         signup.setOnAction(e->{
             try {
-                Register.register(primaryStage);
+//                primaryStage.close();
+                new Register();
+
             } catch (Exception e1) {
                 e1.printStackTrace();
             }

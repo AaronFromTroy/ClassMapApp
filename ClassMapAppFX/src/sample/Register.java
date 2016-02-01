@@ -10,7 +10,14 @@ import javafx.stage.Stage;
 
 public class Register
 {
-    public static void register(Stage primaryStage) throws Exception {
+    public Register()
+    {
+        this.drawNode();
+    }
+
+    public void drawNode() {
+
+        Stage primaryStage = new Stage();
 
         primaryStage.setTitle("Register");
 
@@ -103,7 +110,7 @@ public class Register
                     DataConnection.addMember(emailInput.getText(), usernameInput.getText(), passwordInput.getText(), first_nameInput.getText(), last_nameInput.getText(), permission);
                     Alert.display("Successful", "You are now registered. Enjoy our program.");
                     try {
-                        new ClassMap().start(primaryStage);
+                        primaryStage.close();
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
@@ -129,7 +136,7 @@ public class Register
                         DataConnection.addMember(emailInput.getText(), usernameInput.getText(), passwordInput.getText(), first_nameInput.getText(), last_nameInput.getText(), permission);
                         Alert.display("Successful", "You are now registered. Enjoy our program.");
                         try {
-                            new ClassMap().start(primaryStage);
+                            primaryStage.close();
                         } catch (Exception ex) {
                             ex.printStackTrace();
                         }
@@ -142,7 +149,7 @@ public class Register
 
         back.setOnAction(e->{
             try{
-                new ClassMap().start(primaryStage);
+                primaryStage.close();
             }
             catch (Exception ex)
             {
