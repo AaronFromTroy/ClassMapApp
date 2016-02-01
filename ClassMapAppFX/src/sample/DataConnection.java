@@ -325,7 +325,7 @@ public class DataConnection {
 
     public static void delete() {
         Connection conn = dbConnector();
-        String query = "DELETE FROM nodes WHERE created_by='tclinkscales'";
+        String query = "DELETE FROM nodes WHERE string_data='a'";
         try
         {
             PreparedStatement ps = conn.prepareStatement(query);

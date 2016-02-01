@@ -781,7 +781,7 @@ public class Controller {
         nodeStage.addEventFilter(ScrollEvent.ANY, new ZoomHandler(newNodeStage));
         nodeStage.addEventFilter(ScrollEvent.ANY, new ZoomHandler(newNodeStage2));
         newNodeStage.setOnMouseClicked(doNothing);
-        //DataConnection.delete();
+        DataConnection.delete();
     }
 
 
@@ -2377,8 +2377,20 @@ public class Controller {
                 List<Double> X = newCalculateX(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
                 List<Double> Y = newCalculateY(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
 
-                double newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() +nodeList.get(layer).get(index).getChildno() +(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
-                double newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() +nodeList.get(layer).get(index).getChildno() +(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
+                double newTranslateX;
+                double newTranslateY;
+
+                if(nodeList.get(layer).get(index).getExpansion()>3) {
+                    newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() + (nodeList.get(layer).get(index).getOffset() * nodeList.get(layer).get(index).getExpansion()) + (nodeList.get(layer).get(index).getChildno() * (nodeList.get(layer).get(index).getExpansion()/2) ));
+                    newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() + (nodeList.get(layer).get(index).getOffset() * nodeList.get(layer).get(index).getExpansion()) + (nodeList.get(layer).get(index).getChildno() * (nodeList.get(layer).get(index).getExpansion()/2) ));
+                }
+
+                else {
+
+                    newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() + (nodeList.get(layer).get(index).getOffset() * nodeList.get(layer).get(index).getExpansion()) + (nodeList.get(layer).get(index).getChildno()));
+                    newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() + (nodeList.get(layer).get(index).getOffset() * nodeList.get(layer).get(index).getExpansion()) + (nodeList.get(layer).get(index).getChildno()));
+                }
+
                 newNode.getNodePane().setTranslateX(newTranslateX + 410);
                 newNode.getNodePane().setTranslateY(newTranslateY + 225);
 
@@ -2419,7 +2431,7 @@ public class Controller {
                 newNodeStage2.getChildren().addAll(line);
 
 
-                newNode.setChildno((nodeList.get(layer).get(index).getNoOfChildren()+nodeList.get(layer).get(index).getChildno()) * 2);
+                newNode.setChildno((nodeList.get(layer).get(index).getNoOfChildren()*2)+ (nodeList.get(layer).get(index).getChildno() * nodeList.get(layer).get(index).getExpansion()));
                 newNode.setA(newTranslateX + 435);
                 newNode.setB(newTranslateY + 260);
                 newNode.setQuadrant(nodeList.get(layer).get(index).getQuadrant());
@@ -2629,8 +2641,20 @@ public class Controller {
                 List<Double> X = newCalculateX(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
                 List<Double> Y = newCalculateY(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
 
-                double newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren()+nodeList.get(layer).get(index).getChildno() +(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
-                double newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() +nodeList.get(layer).get(index).getChildno()+(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
+                double newTranslateX;
+                double newTranslateY;
+
+                if(nodeList.get(layer).get(index).getExpansion()>3) {
+                    newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() + (nodeList.get(layer).get(index).getOffset() * nodeList.get(layer).get(index).getExpansion()) + (nodeList.get(layer).get(index).getChildno() * (nodeList.get(layer).get(index).getExpansion()/2) ));
+                    newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() + (nodeList.get(layer).get(index).getOffset() * nodeList.get(layer).get(index).getExpansion()) + (nodeList.get(layer).get(index).getChildno() * (nodeList.get(layer).get(index).getExpansion()/2) ));
+                }
+
+                else {
+
+                    newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() + (nodeList.get(layer).get(index).getOffset() * nodeList.get(layer).get(index).getExpansion()) + (nodeList.get(layer).get(index).getChildno()));
+                    newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() + (nodeList.get(layer).get(index).getOffset() * nodeList.get(layer).get(index).getExpansion()) + (nodeList.get(layer).get(index).getChildno()));
+                }
+
                 newImageNode.getNodePane().setTranslateX(newTranslateX + 410);
                 newImageNode.getNodePane().setTranslateY(newTranslateY + 225);
 
@@ -2671,7 +2695,7 @@ public class Controller {
                 newNodeStage2.getChildren().addAll(line);
 
 
-                newImageNode.setChildno((nodeList.get(layer).get(index).getNoOfChildren()+nodeList.get(layer).get(index).getChildno()) * 2);
+                newImageNode.setChildno((nodeList.get(layer).get(index).getNoOfChildren()*2)+ (nodeList.get(layer).get(index).getChildno() * nodeList.get(layer).get(index).getExpansion()));
                 newImageNode.setA(newTranslateX + 435);
                 newImageNode.setB(newTranslateY + 260);
                 newImageNode.setQuadrant(nodeList.get(layer).get(index).getQuadrant());
@@ -2805,8 +2829,19 @@ public class Controller {
                 List<Double> X = newCalculateX(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
                 List<Double> Y = newCalculateY(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
 
-                double newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren()+nodeList.get(layer).get(index).getChildno() +(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
-                double newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() +nodeList.get(layer).get(index).getChildno()+(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
+                double newTranslateX;
+                double newTranslateY;
+
+                if(nodeList.get(layer).get(index).getExpansion()>3) {
+                    newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() + (nodeList.get(layer).get(index).getOffset() * nodeList.get(layer).get(index).getExpansion()) + (nodeList.get(layer).get(index).getChildno() * (nodeList.get(layer).get(index).getExpansion()/2) ));
+                    newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() + (nodeList.get(layer).get(index).getOffset() * nodeList.get(layer).get(index).getExpansion()) + (nodeList.get(layer).get(index).getChildno() * (nodeList.get(layer).get(index).getExpansion()/2) ));
+                }
+
+                else {
+
+                    newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() + (nodeList.get(layer).get(index).getOffset() * nodeList.get(layer).get(index).getExpansion()) + (nodeList.get(layer).get(index).getChildno()));
+                    newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() + (nodeList.get(layer).get(index).getOffset() * nodeList.get(layer).get(index).getExpansion()) + (nodeList.get(layer).get(index).getChildno()));
+                }
 
                 videoNode.getNodePane().setTranslateX(newTranslateX + 410);
                 videoNode.getNodePane().setTranslateY(newTranslateY + 225);
@@ -2848,7 +2883,7 @@ public class Controller {
                 newNodeStage2.getChildren().addAll(line);
 
 
-                videoNode.setChildno((nodeList.get(layer).get(index).getNoOfChildren()+nodeList.get(layer).get(index).getChildno()) * 2);
+                videoNode.setChildno((nodeList.get(layer).get(index).getNoOfChildren()*2)+ (nodeList.get(layer).get(index).getChildno() * nodeList.get(layer).get(index).getExpansion()));
                 videoNode.setA(newTranslateX + 435);
                 videoNode.setB(newTranslateY + 260);
                 videoNode.setQuadrant(nodeList.get(layer).get(index).getQuadrant());
@@ -2981,8 +3016,20 @@ public class Controller {
                 List<Double> X = newCalculateX(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
                 List<Double> Y = newCalculateY(nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion());
 
-                double newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren()+nodeList.get(layer).get(index).getChildno() +(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
-                double newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * (nodeList.get(layer).get(index).getCircleNo())*nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() +nodeList.get(layer).get(index).getChildno()+(nodeList.get(layer).get(index).getOffset()*nodeList.get(layer).get(index).getExpansion()));
+                double newTranslateX;
+                double newTranslateY;
+
+                if(nodeList.get(layer).get(index).getExpansion()>3) {
+                    newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() + (nodeList.get(layer).get(index).getOffset() * nodeList.get(layer).get(index).getExpansion()) + (nodeList.get(layer).get(index).getChildno() * (nodeList.get(layer).get(index).getExpansion()/2) ));
+                    newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() + (nodeList.get(layer).get(index).getOffset() * nodeList.get(layer).get(index).getExpansion()) + (nodeList.get(layer).get(index).getChildno() * (nodeList.get(layer).get(index).getExpansion()/2) ));
+                }
+
+                else {
+
+                    newTranslateX = X.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() + (nodeList.get(layer).get(index).getOffset() * nodeList.get(layer).get(index).getExpansion()) + (nodeList.get(layer).get(index).getChildno()));
+                    newTranslateY = Y.get(((nodeList.get(layer).get(index).getQuadrant() - 1) * nodeList.get(layer).get(index).getCircleNo() * nodeList.get(layer).get(index).getExpansion()) + nodeList.get(layer).get(index).getNoOfChildren() + (nodeList.get(layer).get(index).getOffset() * nodeList.get(layer).get(index).getExpansion()) + (nodeList.get(layer).get(index).getChildno()));
+                }
+
                 newTopicNode.getNodePane().setTranslateX(newTranslateX + 410);
                 newTopicNode.getNodePane().setTranslateY(newTranslateY + 225);
 
@@ -3023,7 +3070,7 @@ public class Controller {
                 newNodeStage2.getChildren().addAll(line);
 
 
-                newTopicNode.setChildno((nodeList.get(layer).get(index).getNoOfChildren()+nodeList.get(layer).get(index).getChildno()) * 2);
+                newTopicNode.setChildno((nodeList.get(layer).get(index).getNoOfChildren()*2)+ (nodeList.get(layer).get(index).getChildno() * nodeList.get(layer).get(index).getExpansion()));
                 newTopicNode.setA(newTranslateX + 435);
                 newTopicNode.setB(newTranslateY + 260);
                 newTopicNode.setQuadrant(nodeList.get(layer).get(index).getQuadrant());
