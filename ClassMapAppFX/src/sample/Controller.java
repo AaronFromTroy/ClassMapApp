@@ -96,52 +96,70 @@ public class Controller {
      */
     public void drawNodeTrail(int nodeID) {
 
-        System.out.println(nodeID);
+        recursivePrintTrail(daroot, nodeID);
     }
 
     /*
     recursivePrintTrail is used to recursively find the trail to the selected node
     from the drawNodeTrail method
      */
-    private static boolean recursivePrintTrail(MapNode rootNode, int nodeId, GridPane sideGrid) {
+    public boolean recursivePrintTrail(MapNode rootNode, int nodeID) {
 
+        rootNode.previousVote = false;
         int children = rootNode.children.size();
-        if (rootNode.getUniqueId() == nodeId) {
-            if (rootNode.getType() == "string") {
-                sideGrid.add(((TextNode)rootNode).getNodePane(), 0, nodeTrailCount);
-            }
-            if (rootNode.getType() == "link") {
-                sideGrid.add(((VideoNode)rootNode).getNodePane(), 0, nodeTrailCount);
-            }
-            if (rootNode.getType() == "image") {
-                sideGrid.add(((ImageNode)rootNode).getNodePane(), 0, nodeTrailCount);
-            }
-            if (rootNode.getType() == "topic") {
-                sideGrid.add(((TopicNode)rootNode).getNodePane(), 0, nodeTrailCount);
-            }
-            nodeTrailCount++;
-            return true;
-        }
-        for (int i = 0; i < children; i++) {
-            if (recursivePrintTrail(rootNode.children.get(i), nodeId, sideGrid) == true) {
-                if (rootNode.getType() == "string") {
-                    sideGrid.add(((TextNode)rootNode).getNodePane(), 0, nodeTrailCount);
-                }
-                if (rootNode.getType() == "link") {
-                    sideGrid.add(((VideoNode)rootNode).getNodePane(), 0, nodeTrailCount);
-                }
-                if (rootNode.getType() == "image") {
-                    sideGrid.add(((ImageNode)rootNode).getNodePane(), 0, nodeTrailCount);
-                }
-                if (rootNode.getType() == "topic") {
-                    sideGrid.add(((TopicNode)rootNode).getNodePane(), 0, nodeTrailCount);
-                }
-                nodeTrailCount++;
-                return true;
-            }
-        }
-        return false;
 
+        if (children == 0) {
+            rootNode.previousVote = (rootNode.getUniqueId() == nodeID);
+            if (rootNode.previousVote == false) {
+                rootNode.getParentLine().setVisible(false);
+                if (rootNode.type.toString().equals("string"))
+                    ((TextNode) (rootNode)).setVisible();
+
+                if (rootNode.type.toString().equals("image"))
+                    ((ImageNode) (rootNode)).setVisible();
+
+                if (rootNode.type.toString().equals("link"))
+                    ((VideoNode) (rootNode)).setVisible();
+
+                if (rootNode.type.toString().equals("topic"))
+                    ((TopicNode) (rootNode)).setVisible();
+            }
+        }
+        else {
+            for (int i = 0; i < children; i++) {
+                if(rootNode.previousVote == false)
+                    rootNode.previousVote = recursivePrintTrail(rootNode.children.get(i),nodeID);
+                else
+                    recursivePrintTrail(rootNode.children.get(i), nodeID);
+            }
+        }
+
+        if (rootNode.getUniqueId() == nodeID) {
+            rootNode.previousVote = true;
+        }
+        else {
+            if(rootNode.uniqueId == 1){
+
+            }
+            else {
+                if (rootNode.getUniqueId() != nodeID && rootNode.previousVote == false) {
+                    rootNode.getParentLine().setVisible(false);
+                    if (rootNode.type.toString().equals("string"))
+                        ((TextNode) (rootNode)).setVisible();
+
+                    if (rootNode.type.toString().equals("image"))
+                        ((ImageNode) (rootNode)).setVisible();
+
+                    if (rootNode.type.toString().equals("link"))
+                        ((VideoNode) (rootNode)).setVisible();
+
+                    if (rootNode.type.toString().equals("topic"))
+                        ((TopicNode) (rootNode)).setVisible();
+                }
+            }
+        }
+
+        return rootNode.previousVote;
     }
 
 
