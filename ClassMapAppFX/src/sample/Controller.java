@@ -787,8 +787,8 @@ public class Controller {
             if(scale<=0.1 ) {
                 scale = 0.1;
             }
-            if(scale>1)
-                scale = 1;
+            if(scale>1.5)
+                scale = 1.5;
             return scale;
         }
     }
