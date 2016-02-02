@@ -20,9 +20,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.*;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextBoundsType;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -39,6 +41,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import javax.swing.*;
 import javax.swing.text.Position;
+import javax.swing.text.StyledEditorKit;
 
 
 public class Controller {
@@ -233,9 +236,15 @@ public class Controller {
             VBox vbox = new VBox(35);
             vbox.setPrefSize(450.0f, 200.0f);
             vbox.setMaxWidth(450.0f);
+            Text words = new Text(((TextNode)node).getContents());
+            words.setTextAlignment(TextAlignment.CENTER);
+            words.setId("contentLabel");
+            //words.setFill(Color.WHITE);
+            words.setWrappingWidth(300);
             Label contentLabel = new Label(((TextNode)node).getContents());
             contentLabel.setId("contentLabel");
             contentLabel.setMaxWidth(250.0f);
+
             contentLabel.setWrapText(true);
 
             Label descrLabel = new Label("Decription: ");
@@ -305,7 +314,7 @@ public class Controller {
             hbox.getChildren().add(back);
 
             vbox.setAlignment(Pos.CENTER);
-            vbox.getChildren().addAll(contentLabel, descrLabel, descriptionWindow, defLabel, definitionWindow, back);
+            vbox.getChildren().addAll(words, descrLabel, descriptionWindow, defLabel, definitionWindow, back);
 
             cardPane.getChildren().addAll(vbox, hbox);
         }
@@ -314,6 +323,11 @@ public class Controller {
             VBox vbox = new VBox(35);
             vbox.setPrefSize(450.0f, 200.0f);
             vbox.setMaxWidth(450.0f);
+
+            Text words = new Text(((TopicNode)node).getContents());
+            words.setTextAlignment(TextAlignment.CENTER);
+            words.setId("contentLabel");
+
             Label contentLabel = new Label(((TopicNode)node).getContents());
             contentLabel.setId("contentLabel");
             contentLabel.setMaxWidth(250.0f);
@@ -386,7 +400,7 @@ public class Controller {
             hbox.getChildren().add(back);
 
             vbox.setAlignment(Pos.CENTER);
-            vbox.getChildren().addAll(contentLabel, descrLabel, descriptionWindow, defLabel, definitionWindow, back);
+            vbox.getChildren().addAll(words, descrLabel, descriptionWindow, defLabel, definitionWindow, back);
 
             cardPane.getChildren().addAll(vbox, hbox);
         }
@@ -473,6 +487,7 @@ public class Controller {
             Label descrLabel = new Label("Decription: ");
             descrLabel.setId("descrLabel");
             descrLabel.setTranslateX(-160);
+            descrLabel.setTranslateY(350);
 
             TextArea descriptionWindow = new TextArea();
             descriptionWindow.setId("descrWindow");
@@ -480,14 +495,16 @@ public class Controller {
             descriptionWindow.setMinSize(400.0f, 100.0f);
             descriptionWindow.setWrapText(true);
             descriptionWindow.setText(node.getDescription());
+            descriptionWindow.setTranslateY(350);
 
 
             HBox hbox = new HBox(25);
             hbox.setPrefSize(100.0f, 100.0f);
             Button back = new Button("Back");
 
-            back.setTranslateY(20);
+            back.setTranslateY(350);
             back.setTranslateX(15);
+
 
             back.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
