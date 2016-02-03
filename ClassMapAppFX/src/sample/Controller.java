@@ -2319,27 +2319,23 @@ public class Controller {
         @Override
         public void handle(MouseEvent t) {
 
-            if (nodeList.get(layer).get(index).getType().equals("string") && nodeList.get(layer).get(index) != null ){
-                TextNode textNode = (TextNode) nodeList.get(layer).get(index);
-                textNode.getNodePane().setStyle(null);
-            }
-            else if (nodeList.get(layer).get(index).getType().equals("image") && nodeList.get(layer).get(index) != null)
-            {
-                ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
+            if (nodeList.size() != 1) {
+                if (nodeList.get(layer).get(index).getType().equals("string") && nodeList.get(layer).get(index) != null) {
+                    TextNode textNode = (TextNode) nodeList.get(layer).get(index);
+                    textNode.getNodePane().setStyle(null);
+                } else if (nodeList.get(layer).get(index).getType().equals("image") && nodeList.get(layer).get(index) != null) {
+                    ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
 
-                imageNode.getNodePane().setStyle(null);
-            }
-            else  if (nodeList.get(layer).get(index).getType().equals("link") && nodeList.get(layer).get(index) != null)
-            {
-                VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
+                    imageNode.getNodePane().setStyle(null);
+                } else if (nodeList.get(layer).get(index).getType().equals("link") && nodeList.get(layer).get(index) != null) {
+                    VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
 
-                videoNode.getNodePane().setStyle(null);
-            }
-            else  if (nodeList.get(layer).get(index).getType().equals("topic") && nodeList.get(layer).get(index) != null)
-            {
-                TopicNode topicNode = (TopicNode) nodeList.get(layer).get(index);
+                    videoNode.getNodePane().setStyle(null);
+                } else if (nodeList.get(layer).get(index).getType().equals("topic") && nodeList.get(layer).get(index) != null) {
+                    TopicNode topicNode = (TopicNode) nodeList.get(layer).get(index);
 
-                topicNode.getNodePane().setStyle(null);
+                    topicNode.getNodePane().setStyle(null);
+                }
             }
 
             nodedrag = false;
@@ -2520,30 +2516,24 @@ public class Controller {
 
                 @Override
                 public void handle(MouseEvent t) {
+                    if (nodeList.size() != 1) {
+                        if (nodeList.get(layer).get(index).getType().equals("string") && nodeList.get(layer).get(index) != null) {
+                            TextNode textNode = (TextNode) nodeList.get(layer).get(index);
+                            textNode.getNodePane().setStyle(null);
+                        } else if (nodeList.get(layer).get(index).getType().equals("image") && nodeList.get(layer).get(index) != null) {
+                            ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
 
-                    if (nodeList.get(layer).get(index).getType().equals("string") && nodeList.get(layer).get(index) != null){
-                        TextNode textNode = (TextNode) nodeList.get(layer).get(index);
-                        textNode.getNodePane().setStyle(null);
+                            imageNode.getNodePane().setStyle(null);
+                        } else if (nodeList.get(layer).get(index).getType().equals("link") && nodeList.get(layer).get(index) != null) {
+                            VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
+
+                            videoNode.getNodePane().setStyle(null);
+                        } else if (nodeList.get(layer).get(index).getType().equals("topic") && nodeList.get(layer).get(index) != null) {
+                            TopicNode topicNode = (TopicNode) nodeList.get(layer).get(index);
+
+                            topicNode.getNodePane().setStyle(null);
+                        }
                     }
-                    else if (nodeList.get(layer).get(index).getType().equals("image") && nodeList.get(layer).get(index) != null)
-                    {
-                        ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
-
-                        imageNode.getNodePane().setStyle(null);
-                    }
-                    else  if (nodeList.get(layer).get(index).getType().equals("link") && nodeList.get(layer).get(index) != null)
-                    {
-                        VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
-
-                        videoNode.getNodePane().setStyle(null);
-                    }
-                    else  if (nodeList.get(layer).get(index).getType().equals("topic") && nodeList.get(layer).get(index) != null)
-                    {
-                        TopicNode topicNode = (TopicNode) nodeList.get(layer).get(index);
-
-                        topicNode.getNodePane().setStyle(null);
-                    }
-
                     nodedrag = true;
                     double offsetX = t.getSceneX() - orgSceneX;
                     double offsetY = t.getSceneY() - orgSceneY;
@@ -2552,28 +2542,23 @@ public class Controller {
                     ((GridPane) (t.getSource())).setTranslateX(newTranslateX * (1/factor));
                     ((GridPane) (t.getSource())).setTranslateY(newTranslateY * (1/factor));
                     if (intersection((GridPane)t.getSource())){
+                        if (nodeList.size() != 1) {
+                            if (nodeList.get(layer).get(index).getType().equals("string") && nodeList.get(layer).get(index) != null) {
+                                TextNode textNode = (TextNode) nodeList.get(layer).get(index);
+                                textNode.getNodePane().setStyle("-fx-background-color: #4D4DFF;");
+                            } else if (nodeList.get(layer).get(index).getType().equals("image") && nodeList.get(layer).get(index) != null) {
+                                ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
 
-                        if (nodeList.get(layer).get(index).getType().equals("string") && nodeList.get(layer).get(index) != null){
-                            TextNode textNode = (TextNode) nodeList.get(layer).get(index);
-                            textNode.getNodePane().setStyle("-fx-background-color: #4D4DFF;");
-                        }
-                        else if (nodeList.get(layer).get(index).getType().equals("image") && nodeList.get(layer).get(index) != null)
-                        {
-                            ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
+                                imageNode.getNodePane().setStyle("-fx-background-color: #4D4DFF;");
+                            } else if (nodeList.get(layer).get(index).getType().equals("link") && nodeList.get(layer).get(index) != null) {
+                                VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
 
-                            imageNode.getNodePane().setStyle("-fx-background-color: #4D4DFF;");
-                        }
-                        else  if (nodeList.get(layer).get(index).getType().equals("link") && nodeList.get(layer).get(index) != null)
-                        {
-                            VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
+                                videoNode.getNodePane().setStyle("-fx-background-color: #4D4DFF;");
+                            } else if (nodeList.get(layer).get(index).getType().equals("topic") && nodeList.get(layer).get(index) != null) {
+                                TopicNode topicNode = (TopicNode) nodeList.get(layer).get(index);
 
-                            videoNode.getNodePane().setStyle("-fx-background-color: #4D4DFF;");
-                        }
-                        else  if (nodeList.get(layer).get(index).getType().equals("topic") && nodeList.get(layer).get(index) != null)
-                        {
-                            TopicNode topicNode = (TopicNode) nodeList.get(layer).get(index);
-
-                            topicNode.getNodePane().setStyle("-fx-background-color: #4D4DFF;");
+                                topicNode.getNodePane().setStyle("-fx-background-color: #4D4DFF;");
+                            }
                         }
                     }
 
@@ -2583,28 +2568,23 @@ public class Controller {
     EventHandler<MouseEvent> ImageOnMouseReleasedEventHandler = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent t) {
+            if (nodeList.size() != 1) {
+                if (nodeList.get(layer).get(index).getType().equals("string") && nodeList.get(layer).get(index) != null) {
+                    TextNode textNode = (TextNode) nodeList.get(layer).get(index);
+                    textNode.getNodePane().setStyle(null);
+                } else if (nodeList.get(layer).get(index).getType().equals("image") && nodeList.get(layer).get(index) != null) {
+                    ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
 
-            if (nodeList.get(layer).get(index).getType().equals("string") && nodeList.get(layer).get(index) != null){
-                TextNode textNode = (TextNode) nodeList.get(layer).get(index);
-                textNode.getNodePane().setStyle(null);
-            }
-            else if (nodeList.get(layer).get(index).getType().equals("image") && nodeList.get(layer).get(index) != null)
-            {
-                ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
+                    imageNode.getNodePane().setStyle(null);
+                } else if (nodeList.get(layer).get(index).getType().equals("link") && nodeList.get(layer).get(index) != null) {
+                    VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
 
-                imageNode.getNodePane().setStyle(null);
-            }
-            else  if (nodeList.get(layer).get(index).getType().equals("link") && nodeList.get(layer).get(index) != null)
-            {
-                VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
+                    videoNode.getNodePane().setStyle(null);
+                } else if (nodeList.get(layer).get(index).getType().equals("topic") && nodeList.get(layer).get(index) != null) {
+                    TopicNode topicNode = (TopicNode) nodeList.get(layer).get(index);
 
-                videoNode.getNodePane().setStyle(null);
-            }
-            else  if (nodeList.get(layer).get(index).getType().equals("topic") && nodeList.get(layer).get(index) != null)
-            {
-                TopicNode topicNode = (TopicNode) nodeList.get(layer).get(index);
-
-                topicNode.getNodePane().setStyle(null);
+                    topicNode.getNodePane().setStyle(null);
+                }
             }
             nodedrag = false;
             Bounds bounds = newImageNode.getNodePane().getBoundsInParent();
@@ -2770,28 +2750,23 @@ public class Controller {
     EventHandler<MouseEvent> VideoOnMouseReleasedEventHandler = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent t) {
+            if (nodeList.size() != 1) {
+                if (nodeList.get(layer).get(index).getType().equals("string") && nodeList.get(layer).get(index) != null) {
+                    TextNode textNode = (TextNode) nodeList.get(layer).get(index);
+                    textNode.getNodePane().setStyle(null);
+                } else if (nodeList.get(layer).get(index).getType().equals("image") && nodeList.get(layer).get(index) != null) {
+                    ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
 
-            if (nodeList.get(layer).get(index).getType().equals("string") && nodeList.get(layer).get(index) != null){
-                TextNode textNode = (TextNode) nodeList.get(layer).get(index);
-                textNode.getNodePane().setStyle(null);
-            }
-            else if (nodeList.get(layer).get(index).getType().equals("image") && nodeList.get(layer).get(index) != null)
-            {
-                ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
+                    imageNode.getNodePane().setStyle(null);
+                } else if (nodeList.get(layer).get(index).getType().equals("link") && nodeList.get(layer).get(index) != null) {
+                    VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
 
-                imageNode.getNodePane().setStyle(null);
-            }
-            else  if (nodeList.get(layer).get(index).getType().equals("link") && nodeList.get(layer).get(index) != null)
-            {
-                VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
+                    videoNode.getNodePane().setStyle(null);
+                } else if (nodeList.get(layer).get(index).getType().equals("topic") && nodeList.get(layer).get(index) != null) {
+                    TopicNode topicNode = (TopicNode) nodeList.get(layer).get(index);
 
-                videoNode.getNodePane().setStyle(null);
-            }
-            else  if (nodeList.get(layer).get(index).getType().equals("topic") && nodeList.get(layer).get(index) != null)
-            {
-                TopicNode topicNode = (TopicNode) nodeList.get(layer).get(index);
-
-                topicNode.getNodePane().setStyle(null);
+                    topicNode.getNodePane().setStyle(null);
+                }
             }
 
             nodedrag = false;
@@ -2958,28 +2933,23 @@ public class Controller {
     EventHandler<MouseEvent> TopicOnMouseReleasedEventHandler = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent t) {
+            if (nodeList.size() != 1) {
+                if (nodeList.get(layer).get(index).getType().equals("string") && nodeList.get(layer).get(index) != null) {
+                    TextNode textNode = (TextNode) nodeList.get(layer).get(index);
+                    textNode.getNodePane().setStyle(null);
+                } else if (nodeList.get(layer).get(index).getType().equals("image") && nodeList.get(layer).get(index) != null) {
+                    ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
 
-            if (nodeList.get(layer).get(index).getType().equals("string") && nodeList.get(layer).get(index) != null){
-                TextNode textNode = (TextNode) nodeList.get(layer).get(index);
-                textNode.getNodePane().setStyle(null);
-            }
-            else if (nodeList.get(layer).get(index).getType().equals("image") && nodeList.get(layer).get(index) != null)
-            {
-                ImageNode imageNode = (ImageNode) nodeList.get(layer).get(index);
+                    imageNode.getNodePane().setStyle(null);
+                } else if (nodeList.get(layer).get(index).getType().equals("link") && nodeList.get(layer).get(index) != null) {
+                    VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
 
-                imageNode.getNodePane().setStyle(null);
-            }
-            else  if (nodeList.get(layer).get(index).getType().equals("link") && nodeList.get(layer).get(index) != null)
-            {
-                VideoNode videoNode = (VideoNode) nodeList.get(layer).get(index);
+                    videoNode.getNodePane().setStyle(null);
+                } else if (nodeList.get(layer).get(index).getType().equals("topic") && nodeList.get(layer).get(index) != null) {
+                    TopicNode topicNode = (TopicNode) nodeList.get(layer).get(index);
 
-                videoNode.getNodePane().setStyle(null);
-            }
-            else  if (nodeList.get(layer).get(index).getType().equals("topic") && nodeList.get(layer).get(index) != null)
-            {
-                TopicNode topicNode = (TopicNode) nodeList.get(layer).get(index);
-
-                topicNode.getNodePane().setStyle(null);
+                    topicNode.getNodePane().setStyle(null);
+                }
             }
             nodedrag = false;
             Bounds bounds = newTopicNode.getNodePane().getBoundsInParent();
