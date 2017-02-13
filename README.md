@@ -9,6 +9,8 @@ This README intends to be a starter template for the Pearson Student Coding Cont
 The "App Overview" section intends to be a high level description of your app. Think of what you might want to know if considering a purchase in an app store. 
 -->
 
+# This is the original Read Me associated with the initial submission of classmap. The UI and several features have been completely redone or added to since the initial submission. I will try to upload images of the final submission at a later time.
+
 ## App Overview
 
 The use of imagery and keywords are two of the strongest techniques for learning a new topic or subject. These two techniques can be used by people with learning disabilities, students learning foreign languages, and just about anyone else struggling with new subjects. The concept of using imagery and keywords is the whole idea behind mind maps. Now imagine, a mind map where students in a particular class could post keywords, images, and other useful items to an ever growing, ever changing community mind map. A mind map that is expanded and shaped by the singular mind of a class! This is the idea behind our application, ClassMap.
