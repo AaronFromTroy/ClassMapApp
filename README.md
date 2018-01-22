@@ -10,7 +10,7 @@ This README intends to be a starter template for the Pearson Student Coding Cont
 The "App Overview" section intends to be a high level description of your app. Think of what you might want to know if considering a purchase in an app store. 
 -->
 
-# The following video shows ClassMap as it was when it was originally submitted into Pearson's national coding contest. We made several changes after making finalist in the competition. The UI was completely redone and several features were added, including a slide in flash card feature and new node type. I will try to upload updated images or a video in the future.
+# The following video shows ClassMap as it was when it was originally submitted into Pearson's national coding contest. We made several changes after making finalist in the competition. The UI was completely redone and several features were added, including a slide-in flash card feature and new node type. I will try to upload updated images or a video in the future.
 
 [![ClassMap](https://img.youtube.com/vi/ExpJavVUKfE/0.jpg)](https://www.youtube.com/watch?v=ExpJavVUKfE)
 
