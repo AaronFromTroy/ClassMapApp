@@ -3,7 +3,7 @@ This README intends to be a starter template for the Pearson Student Coding Cont
 -->
 
 # "ClassMap"
-[![ClassMap](https://github.com/AaronFromTroy/ClassMapApp/blob/master/ClassMapAppFX/src/sample/anime.gif)]
+![ClassMap](https://github.com/AaronFromTroy/ClassMapApp/blob/master/ClassMapAppFX/src/sample/anime.gif)
 
 
 <!--
